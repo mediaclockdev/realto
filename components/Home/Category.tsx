@@ -10,19 +10,20 @@ import loanbroker from "../../public/loanbroker.svg";
 import commercial from "../../public/commercial.svg";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { useRef } from "react";
 
 const Features = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const agents = [
-    buy,
-    rent,
-    agent,
-    loanbroker,
-    commercial,
-    hotel,
-    airbnb,
-    student,
+    { img: buy, href: "" },
+    { img: rent, href: "" },
+    { img: agent, href: "" },
+    { img: loanbroker, href: "" },
+    { img: commercial, href: "" },
+    { img: hotel, href: "" },
+    { img: airbnb, href: "" },
+    { img: student, href: "/studentResidency" },
   ];
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -56,11 +57,17 @@ const Features = () => {
           className="flex items-center gap-5 overflow-x-auto scrollbar-hide scroll-smooth "
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {agents.map((agent, idx) => (
-            <button key={idx} className="shrink-0 ">
-              <Image src={agent} alt={agent} className="size-36" />
-            </button>
-          ))}
+          {agents.map((item, idx) =>
+            item.href ? (
+              <Link key={idx} href={item.href} className="shrink-0">
+                <Image src={item.img} alt="category" className="size-36" />
+              </Link>
+            ) : (
+              <button key={idx} className="shrink-0">
+                <Image src={item.img} alt="category" className="size-36" />
+              </button>
+            )
+          )}
         </div>
 
         {/* Right Arrow Button */}

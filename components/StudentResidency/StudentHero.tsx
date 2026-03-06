@@ -1,9 +1,9 @@
-import Image from "next/image";
 import React from "react";
-import herobg from "../../public/herobg.jpg";
+import Image from "next/image";
+import herobg from "../../public/studentherobg.jpg";
 import Searchbar from "../ui/Searchbar";
 
-const Hero = () => {
+const StudentHero = () => {
   return (
     <div className="relative w-full h-dvh md:h-[85vh] min-h-[500px] max-h-[900px]">
       <Image
@@ -24,4 +24,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default StudentHero;
