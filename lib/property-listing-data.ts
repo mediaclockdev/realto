@@ -4,9 +4,7 @@ import type {
   ListingProperty,
   PropertyListingPageData,
 } from "@/components/PropertyListing/types";
-
-import ana from "@/public/anajonesagent.svg";
-
+import eddy from "../public/eddyjones.svg";
 const PROPERTIES_PER_PAGE = 12;
 const TOTAL_PROPERTIES = 876;
 
@@ -23,7 +21,7 @@ const BASE_PROPERTY: Omit<ListingProperty, "id"> = {
   agentLocation: "Austin, Australia",
   agentPhone: "+9999999999",
   agentEmail: "exampleemail.com",
-  agentImage: ana,
+  agentImage: eddy,
   iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
 };
 

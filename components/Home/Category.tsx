@@ -8,6 +8,7 @@ import hotel from "../../public/hotel.svg";
 import student from "../../public/studentresidency.svg";
 import loanbroker from "../../public/loanbroker.svg";
 import commercial from "../../public/commercial.svg";
+import flatmate from "../../public/flatmate.svg"
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
@@ -24,6 +25,7 @@ const Features = () => {
     { img: hotel, href: "" },
     { img: airbnb, href: "" },
     { img: student, href: "/studentResidency" },
+    { img: flatmate, href : "/flatmate"}
   ];
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {

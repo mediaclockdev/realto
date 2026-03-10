@@ -10,18 +10,19 @@ const Header = () => {
   const pathname = usePathname();
   const isHome = pathname === "/homepage";
   const isStudentResidency = pathname === "/studentResidency";
+  const isFlatmate = pathname === "/flatmate";
 
   return (
     <header
       className={`w-full z-50 transition-all duration-300  ${
-        isHome || isStudentResidency
+        isHome || isStudentResidency || isFlatmate
           ? "absolute top-0 left-0 text-white"
           : "relative bg-white border-b border-gray-200 shadow-sm"
       }`}
     >
       <div
         className={`max-w-screen-2xl mx-auto flex items-center justify-between ${
-          isHome || isStudentResidency
+          isHome || isStudentResidency || isFlatmate
             ? "px-3 lg:px-5 py-2 lg:py-4"
             : "px-4 sm:px-6 lg:px-10 py-2 sm:py-3"
         }`}

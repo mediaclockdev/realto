@@ -9,6 +9,7 @@ import MapWidget from "./MapWidget";
 import PropertyListingCard from "./PropertyListingCard";
 import Pagination from "./Pagination";
 import type { PropertyListingPageData } from "./types";
+import eddy from "../../public/eddyjones.svg";
 
 interface PropertyListingPageProps {
   data: PropertyListingPageData;
@@ -153,7 +154,7 @@ LIST / GRID VIEW (Default + Mobile Map)
                     company="Parker Realestate"
                     experience={9}
                     sales={18}
-                    agentImage="/agent-avatar.png"
+                    agentImage={eddy}
                   />
                   <MapWidget suburb={data.suburb} />
                 </div>

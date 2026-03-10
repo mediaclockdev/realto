@@ -44,7 +44,7 @@ const languages = Array.from({ length: 30 }, (_, i) => ({
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
       <div className="mb-4">
-        <p className="text-black font-medium">Language selection :</p>
+        <p className="text-black font-semibold text-xl">Language selection :</p>
       </div>
 
       <div className="relative group">
