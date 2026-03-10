@@ -5,6 +5,9 @@ import { Property } from "../../types/types";
 import CityTabs from "./CityTabs";
 import PropertyGrid from "./PropertyGrid";
 import house from "../../public/propertyhouse.svg";
+import house2 from "../../public/house2.svg";
+import house3 from "../../public/house3.svg";
+import house4 from "../../public/house4.svg";
 
 // ============================================================
 //  STATIC DATA — delete this entire block once API is ready
@@ -18,7 +21,7 @@ const citiesData: Record<string, Property[]> = {
       price: 200,
       rating: 4.5,
       reviews: 1000,
-      img: house,
+      img: house4,
     },
     {
       id: 2,
@@ -27,7 +30,7 @@ const citiesData: Record<string, Property[]> = {
       price: 250,
       rating: 4.7,
       reviews: 850,
-      img: house,
+      img: house4,
     },
     {
       id: 3,
@@ -36,7 +39,7 @@ const citiesData: Record<string, Property[]> = {
       price: 180,
       rating: 4.3,
       reviews: 620,
-      img: house,
+      img: house4,
     },
     {
       id: 4,
@@ -45,7 +48,7 @@ const citiesData: Record<string, Property[]> = {
       price: 220,
       rating: 4.6,
       reviews: 430,
-      img: house,
+      img: house4,
     },
   ],
   Brisbane: [
@@ -56,7 +59,7 @@ const citiesData: Record<string, Property[]> = {
       price: 175,
       rating: 4.4,
       reviews: 540,
-      img: house,
+      img: house2,
     },
     {
       id: 6,
@@ -65,7 +68,7 @@ const citiesData: Record<string, Property[]> = {
       price: 195,
       rating: 4.2,
       reviews: 310,
-      img: house,
+      img: house2,
     },
     {
       id: 7,
@@ -74,7 +77,7 @@ const citiesData: Record<string, Property[]> = {
       price: 230,
       rating: 4.8,
       reviews: 780,
-      img: house,
+      img: house2,
     },
     {
       id: 8,
@@ -83,7 +86,7 @@ const citiesData: Record<string, Property[]> = {
       price: 160,
       rating: 4.1,
       reviews: 200,
-      img: house,
+      img: house2,
     },
   ],
   Sydney: [
@@ -94,7 +97,7 @@ const citiesData: Record<string, Property[]> = {
       price: 320,
       rating: 4.9,
       reviews: 1200,
-      img: house,
+      img: house3,
     },
     {
       id: 10,
@@ -103,7 +106,7 @@ const citiesData: Record<string, Property[]> = {
       price: 280,
       rating: 4.7,
       reviews: 960,
-      img: house,
+      img: house3,
     },
     {
       id: 11,
@@ -112,7 +115,7 @@ const citiesData: Record<string, Property[]> = {
       price: 260,
       rating: 4.5,
       reviews: 740,
-      img: house,
+      img: house3,
     },
     {
       id: 12,
@@ -121,7 +124,7 @@ const citiesData: Record<string, Property[]> = {
       price: 210,
       rating: 4.3,
       reviews: 380,
-      img: house,
+      img: house3,
     },
   ],
   Adelaide: [
@@ -179,7 +182,7 @@ const citiesData: Record<string, Property[]> = {
       price: 200,
       rating: 4.6,
       reviews: 670,
-      img: house,
+      img: house2,
     },
     {
       id: 19,
@@ -188,7 +191,7 @@ const citiesData: Record<string, Property[]> = {
       price: 215,
       rating: 4.4,
       reviews: 340,
-      img: house,
+      img: house3,
     },
     {
       id: 20,
@@ -197,7 +200,7 @@ const citiesData: Record<string, Property[]> = {
       price: 175,
       rating: 4.2,
       reviews: 250,
-      img: house,
+      img: house4,
     },
   ],
   Canberra: [
@@ -208,7 +211,7 @@ const citiesData: Record<string, Property[]> = {
       price: 165,
       rating: 4.3,
       reviews: 190,
-      img: house,
+      img: house4,
     },
     {
       id: 22,
@@ -217,7 +220,7 @@ const citiesData: Record<string, Property[]> = {
       price: 155,
       rating: 4.1,
       reviews: 140,
-      img: house,
+      img: house3,
     },
     {
       id: 23,
@@ -226,7 +229,7 @@ const citiesData: Record<string, Property[]> = {
       price: 175,
       rating: 4.4,
       reviews: 260,
-      img: house,
+      img: house2,
     },
     {
       id: 24,
@@ -246,7 +249,7 @@ const citiesData: Record<string, Property[]> = {
       price: 240,
       rating: 4.6,
       reviews: 890,
-      img: house,
+      img: house2,
     },
     {
       id: 26,
@@ -255,7 +258,7 @@ const citiesData: Record<string, Property[]> = {
       price: 220,
       rating: 4.5,
       reviews: 720,
-      img: house,
+      img: house3,
     },
     {
       id: 27,
@@ -273,7 +276,7 @@ const citiesData: Record<string, Property[]> = {
       price: 180,
       rating: 4.2,
       reviews: 310,
-      img: house,
+      img: house4,
     },
   ],
   "Coffs Harbour": [
@@ -284,7 +287,7 @@ const citiesData: Record<string, Property[]> = {
       price: 145,
       rating: 4.1,
       reviews: 150,
-      img: house,
+      img: house4,
     },
     {
       id: 30,
@@ -293,7 +296,7 @@ const citiesData: Record<string, Property[]> = {
       price: 135,
       rating: 4.0,
       reviews: 110,
-      img: house,
+      img: house3,
     },
     {
       id: 31,
@@ -302,7 +305,7 @@ const citiesData: Record<string, Property[]> = {
       price: 155,
       rating: 4.3,
       reviews: 200,
-      img: house,
+      img: house2,
     },
     {
       id: 32,

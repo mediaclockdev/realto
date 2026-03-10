@@ -4,14 +4,19 @@ import React, { useRef} from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import century from "../../public/century21.svg";
+import raywhite from "../../public/raywhite.svg";
+import elderrealstate from "../../public/elderrealestate.svg";
 
 const RealEstateAgents = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const agents = Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
+ const agents = [
+   century, raywhite, elderrealstate
+ ];
 
-    icon: century,
-  }));
+const agent = Array.from({ length: 30 }, (_, i) => ({
+  id: i + 1,
+  ...agents[i % agents.length], // rotate between flags
+}));
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
       const scrollAmount = 300;
@@ -47,9 +52,9 @@ const RealEstateAgents = () => {
           className="flex items-center gap-5 overflow-x-auto scrollbar-hide scroll-smooth "
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {agents.map((agent) => (
-            <button key={agent.id} className="shrink-0 ">
-              <Image src={agent.icon} alt={agent.icon} className="size-28" />
+          {agent.map((agents) => (
+            <button key={agents.id} className="shrink-0 ">
+              <Image src={agents} alt={agents} className="size-28" />
             </button>
           ))}
         </div>

@@ -4,17 +4,27 @@ import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import indianflag from "../../public/India.svg";
+import koreanflag from "../../public/koreanflag.svg";
+import  franceflag from "../../public/Franceflag.svg";
+import chinaflag from "../../public/chinaflag.svg";
+import israelflag from "../../public/israelflag.svg";
 
 const LanguageSelection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [selectedLanguage, setSelectedLanguage] = useState<number | null>(null);
 
-  const languages = Array.from({ length: 30 }, (_, i) => ({
-    id: i + 1,
-    name: "Hindi",
-    icon: indianflag,
-    code: "hi",
-  }));
+ const flags = [
+  { name: "Hindi", icon: indianflag, code: "hi" },
+  { name: "french", icon:franceflag , code: "fr" },
+  { name: "korean", icon:koreanflag , code: "ko" },
+  { name: "china", icon:chinaflag , code: "ch" },
+  { name: "israel", icon:israelflag , code: "is" },
+];
+
+const languages = Array.from({ length: 30 }, (_, i) => ({
+  id: i + 1,
+  ...flags[i % flags.length], // rotate between flags
+}));
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {

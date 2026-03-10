@@ -3,6 +3,9 @@ import React from "react";
 import NewListing from "./NewListing";
 import { PropertySlider, PropertyData } from "./PropertySlider";
 import house from "../../public/propertyhouse.svg";
+import house2 from "../../public/house2.svg";
+import house3 from "../../public/house3.svg";
+import house4 from "../../public/house4.svg";
 import elder from "../../public/elderrealestate.svg";
 import ana from "../../public/anajonesagent.svg";
 
@@ -10,7 +13,7 @@ export default function PropertyListing() {
   const newlyListedProperties: PropertyData[] = [
     {
       id: "1",
-      images: [house, "/property1-alt.jpg"],
+      images: [house, house2],
       location: "Austin, Australia",
       size: "8,235sqft",
       date: "12-02-2026",
@@ -27,7 +30,7 @@ export default function PropertyListing() {
     },
     {
       id: "2",
-      images: [house, "/property1-alt.jpg"],
+      images: [house4, house3],
       location: "Austin, Australia",
       size: "8,235sqft",
       date: "12-02-2026",
@@ -44,7 +47,7 @@ export default function PropertyListing() {
     },
     {
       id: "3",
-      images: [house, "/property1-alt.jpg"],
+      images: [house4, house],
       location: "Austin, Australia",
       size: "8,235sqft",
       date: "12-02-2026",
@@ -61,7 +64,7 @@ export default function PropertyListing() {
     },
     {
       id: "4",
-      images: [house, "/property1-alt.jpg"],
+      images: [house3, house2],
       location: "Austin, Australia",
       size: "8,235sqft",
       date: "12-02-2026",
@@ -78,7 +81,7 @@ export default function PropertyListing() {
     },
     {
       id: "5",
-      images: [house, "/property1-alt.jpg"],
+      images: [house2, house3],
       location: "Austin, Australia",
       size: "8,235sqft",
       date: "12-02-2026",
