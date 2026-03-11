@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Share2, Home,  Calendar, Clock, Phone, Mail, Facebook,  Instagram, MessageCircle, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight,  Calendar, Clock, Star } from "lucide-react";
 import locationIcon from "@/public/location.svg";
 import type { ListingProperty } from "./types";
 import airconditioner from "../../public/airconditioner.svg"
