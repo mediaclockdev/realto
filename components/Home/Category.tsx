@@ -17,7 +17,7 @@ import { useRef } from "react";
 const Features = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const agents = [
-    { img: buy, href: "" },
+    { img: buy, href: "/propertyListingpage" },
     { img: rent, href: "" },
     { img: agent, href: "" },
     { img: loanbroker, href: "" },

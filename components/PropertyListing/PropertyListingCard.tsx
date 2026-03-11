@@ -11,11 +11,13 @@ import mail from "../../public/mailicon.svg";
 interface PropertyListingCardProps {
   property: ListingProperty;
   isMapView?: boolean;
+  onClick?: () => void;
 }
 
 const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   property,
   isMapView = false,
+  onClick,
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
 
@@ -32,6 +34,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
 
   return (
     <div
+      onClick={onClick}
       className={`bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md border border-gray-100 transition-shadow duration-200 cursor-pointer ${
         isMapView ? "flex flex-row" : "flex flex-col"
       }`}

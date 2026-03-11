@@ -1,6 +1,12 @@
 import type { StaticImageData } from "next/image";
 
 export type ListingImageSource = string | StaticImageData;
+export type ListingSortOption =
+  | "Relevant listings"
+  | "Newest first"
+  | "Price (low to high)"
+  | "Price (high to low)";
+export type PropertyListingViewMode = "grid" | "map";
 
 export interface ListingProperty {
   id: string;
@@ -19,6 +25,8 @@ export interface ListingProperty {
   agentImage: ListingImageSource;
   iconImages?: ListingImageSource[];
   iconLabels?: string[];
+  thumbnail: ListingImageSource[];
+  socials :  ListingImageSource[];
 }
 
 export interface PropertyListingPageData {
@@ -27,4 +35,17 @@ export interface PropertyListingPageData {
   suburb: string;
   totalProperties: number;
   propertiesPerPage: number;
+  currentPage: number;
+}
+
+export interface PropertyListingQueryState {
+  page: number;
+  search: string;
+  sort: ListingSortOption;
+  view: PropertyListingViewMode;
+}
+
+export interface PropertyMapMarker {
+  top: string;
+  left: string;
 }

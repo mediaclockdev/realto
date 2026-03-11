@@ -10,39 +10,42 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <div className="space-y-2">
-      <div className="bg-[#BCD3DB] max-w-screen-2xl mx-auto px-3 lg:px-5 py-2 lg:py-5 ">
+    <div className="space-y-2 ">
+
+
+      <div className="bg-white">
+      <div className=" max-w-screen-2xl mx-auto px-3 lg:px-5 py-2 lg:py-5 ">
         <div className="flex flex-col gap-3 lg:flex-row items-center justify-between">
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-7 lg:gap-5">
             <Image
               src={facebook}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500  "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
             />
             <Image
               src={instagram}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500 "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
             />
             <Image
               src={twitter}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500  "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
             />
             <Image
               src={pinterest}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500  "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
             />
             <Image
               src={linkedin}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500  "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
             />
             <Image
               src={youtube}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500  "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
             />
           </div>
           <div>
@@ -55,8 +58,12 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-      </div>
-      <div className="bg-[#BCD3DB] max-w-screen-2xl mx-auto px-5 py-5 space-y-6.5">
+        </div>
+         </div>
+
+
+      <div className="bg-white ">
+      <div className="max-w-screen-2xl mx-auto px-5 py-5 space-y-6.5">
         <div>
           <Image src={logo} alt="logo" />
         </div>
@@ -88,7 +95,8 @@ const Footer = () => {
             </p>
           </div>
         </div>
-      </div>
+        </div>
+         </div>
     </div>
   );
 };

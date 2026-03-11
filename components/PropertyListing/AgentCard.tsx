@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
-
+import type { ListingImageSource } from "./types";
 
 interface AgentCardProps {
   name: string;
   company: string;
   experience: number;
   sales: number;
-  agentImage: string;
+  agentImage: ListingImageSource;
 }
 
 const AgentCard: React.FC<AgentCardProps> = ({

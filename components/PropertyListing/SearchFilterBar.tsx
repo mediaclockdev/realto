@@ -1,29 +1,48 @@
 "use client";
 
 import React, { useState } from "react";
+import listicon from "../../public/listToggleicon.svg";
+import mapicon from "../../public/mapToggleicon.svg";
+import Image from "next/image";
 
 const filters = ["Property type", "Price", "Rooms", "More"];
 
 interface SearchFilterBarProps {
   isMapView: boolean;
   onToggleView: () => void;
+  searchValue?: string;
+  onSearchChange?: (value: string) => void;
+  showViewToggle?: boolean;
 }
 
 const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
   isMapView,
   onToggleView,
+  searchValue,
+  onSearchChange,
+  showViewToggle = true,
 }) => {
-  const [search, setSearch] = useState("");
+  const [internalSearch, setInternalSearch] = useState("");
+  const search = searchValue ?? internalSearch;
+
+  const handleSearchChange = (value: string) => {
+    if (onSearchChange) {
+      onSearchChange(value);
+      return;
+    }
+
+    setInternalSearch(value);
+  };
 
   return (
-    <div className="w-full bg-[#BCD3DB] border-b border-gray-200 px-4 sm:px-6 lg:px-10 py-3">
+    <div className="w-full bg-[#0284C7] border-b border-gray-200 px-4 sm:px-6 lg:px-10 py-3">
       <div className="max-w-screen-2xl mx-auto flex items-center gap-3 flex-wrap sm:flex-nowrap">
         {/* Search input */}
         <div className="flex items-center bg-white border border-gray-300 rounded-full px-3 py-2 gap-2 w-full sm:w-56 shrink-0">
           <input
             type="text"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => handleSearchChange(e.target.value)}
             placeholder="Lorem ipsum viverra gravida"
             className="flex-1 text-sm outline-none text-gray-700 placeholder-gray-400 min-w-0"
           />
@@ -67,61 +86,31 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
           ))}
         </div>
 
-        {/* Spacer */}
+
         <div className="flex-1" />
 
-        {/* View toggle */}
-        <div className="flex items-center shrink-0">
-          <button
-            onClick={onToggleView}
-            className="relative flex items-center w-36 h-14 rounded-full bg-gray-200 p-1 shadow-inner transition-all"
-            aria-label="Toggle view"
-          >
-            {/* Sliding Background */}
-            <span
-              className={`absolute top-1 bottom-1 w-1/2 rounded-full bg-gray-900 shadow-md transition-all duration-300 ${
-                isMapView ? "left-1/2" : "left-1"
-              }`}
-            />
-
-            {/* List Icon */}
-            <span
-              className={`relative z-10 flex items-center justify-center w-1/2 transition-colors duration-300 ${
-                !isMapView ? "text-white" : "text-gray-500"
-              }`}
+        
+        {showViewToggle ? (
+          <div className="flex items-center shrink-0">
+            <button
+              onClick={onToggleView}
+              className="relative flex items-center w-20 h-10 rounded-full bg-white p-1 shadow-inner border border-gray-200 transition-all"
+              aria-label="Toggle view"
             >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <circle cx="5" cy="6" r="2" />
-                <circle cx="5" cy="12" r="2" />
-                <circle cx="5" cy="18" r="2" />
-                <rect x="10" y="5" width="10" height="2" rx="1" />
-                <rect x="10" y="11" width="10" height="2" rx="1" />
-                <rect x="10" y="17" width="10" height="2" rx="1" />
-              </svg>
-            </span>
-
-            {/* Map Icon */}
-            <span
-              className={`relative z-10 flex items-center justify-center w-1/2 transition-colors duration-300 ${
-                isMapView ? "text-white" : "text-gray-500"
-              }`}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
+              <span
+                className={`absolute transition-all duration-300 w-8 h-8 rounded-full bg-[#1e1e1e] flex items-center justify-center shadow-md ${
+                  isMapView ? "left-[calc(100%-2.25rem)]" : "left-1"
+                }`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6-3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-                />
-              </svg>
-            </span>
-          </button>
-        </div>
+                {isMapView ? (
+                  <Image src={mapicon} alt="Map" width={20} height={20} />
+                ) : (
+                  <Image src={listicon} alt="List" width={20} height={20} />
+                )}
+              </span>
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

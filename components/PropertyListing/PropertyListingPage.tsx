@@ -1,152 +1,206 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React, { useMemo, useState } from "react";
-import SearchFilterBar from "./SearchFilterBar";
-import ListingMeta from "./ListingMeta";
+import React, { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import AgentCard from "./AgentCard";
+import ListingMeta from "./ListingMeta";
 import MapWidget from "./MapWidget";
-import PropertyListingCard from "./PropertyListingCard";
 import Pagination from "./Pagination";
-import type { PropertyListingPageData } from "./types";
+import PropertyListingCard from "./PropertyListingCard";
+import PropertyListingMapPane from "./PropertyListingMapPane";
+import PropertyListingResultsPane from "./PropertyListingResultsPane";
+import SearchFilterBar from "./SearchFilterBar";
+import type {
+  ListingSortOption,
+  PropertyListingPageData,
+  PropertyListingQueryState,
+} from "./types";
 import eddy from "../../public/eddyjones.svg";
 
 interface PropertyListingPageProps {
   data: PropertyListingPageData;
+  query: PropertyListingQueryState;
 }
 
-/* ───────────────────────────────────────────────
-Reusable Map Section
-Used for:
-- Desktop map view
-- Mobile stacked map
-─────────────────────────────────────────────── */
-const MapSection = ({ mapPreviewProperty }: { mapPreviewProperty: any }) => (
-  <div className="relative w-full h-[420px] border border-gray-300 overflow-hidden rounded-lg bg-[#dedede]">
-    <iframe
-      title="Properties map"
-      width="100%"
-      height="100%"
-      loading="lazy"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=151.0%2C-34.0%2C151.2%2C-33.8&layer=mapnik&marker=-33.9%2C151.1"
-      className="border-0 w-full h-full"
-    />
+const markerPositions = [
+  { top: "62%", left: "58%" },
+  { top: "70%", left: "66%" },
+  { top: "78%", left: "62%" },
+  { top: "64%", left: "71%" },
+  { top: "66%", left: "73%" },
+  { top: "58%", left: "60%" },
+  { top: "52%", left: "55%" },
+  { top: "75%", left: "65%" },
+  { top: "60%", left: "45%" },
+];
 
-    {mapPreviewProperty && (
-      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[200px] lg:w-[300px] bg-white rounded-md shadow-xl border border-gray-200">
-        <PropertyListingCard property={mapPreviewProperty} />
-      </div>
-    )}
+const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
+  data,
+  query,
+}) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isListCollapsed, setIsListCollapsed] = useState(false);
+  const [selectedMapPropId, setSelectedMapPropId] = useState<string | null>(
+    null,
+  );
 
-    {/* Fake map markers */}
-    <div className="absolute inset-0 pointer-events-none">
-      <span className="absolute top-[52%] left-[58%] w-8 h-8 bg-red-500 rounded-full border-4 border-white shadow" />
-      <span className="absolute top-[60%] left-[66%] w-7 h-7 bg-red-500 rounded-full border-4 border-white shadow" />
-      <span className="absolute top-[68%] left-[62%] w-7 h-7 bg-red-500 rounded-full border-4 border-white shadow" />
-      <span className="absolute top-[64%] left-[71%] w-7 h-7 bg-red-500 rounded-full border-4 border-white shadow" />
-      <span className="absolute top-[56%] left-[73%] w-7 h-7 bg-red-500 rounded-full border-4 border-white shadow" />
-    </div>
-  </div>
-);
+  const totalPages = Math.max(
+    1,
+    Math.ceil(data.totalProperties / data.propertiesPerPage),
+  );
+  const activeMapPropertyId =
+    selectedMapPropId &&
+    data.properties.some((property) => property.id === selectedMapPropId)
+      ? selectedMapPropId
+      : data.properties[0]?.id ?? null;
+  const isMapView = query.view === "map";
 
-const PropertyListingPage: React.FC<PropertyListingPageProps> = ({ data }) => {
-  const [isMapView, setIsMapView] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const navigateWithQuery = (partial: Partial<PropertyListingQueryState>) => {
+    const nextQuery = {
+      ...query,
+      ...partial,
+    };
+    const params = new URLSearchParams();
 
-  const totalPages = Math.ceil(data.totalProperties / data.propertiesPerPage);
+    if (nextQuery.page > 1) {
+      params.set("page", String(nextQuery.page));
+    }
 
-  const visibleProperties = useMemo(() => {
-    const start = (currentPage - 1) * data.propertiesPerPage;
-    const end = start + data.propertiesPerPage;
-    return data.properties.slice(start, end);
-  }, [currentPage, data.properties, data.propertiesPerPage]);
+    if (nextQuery.search.trim()) {
+      params.set("search", nextQuery.search.trim());
+    }
 
-  const mapPreviewProperty = visibleProperties[0];
+    if (nextQuery.sort !== "Relevant listings") {
+      params.set("sort", nextQuery.sort);
+    }
+
+    if (nextQuery.view === "map") {
+      params.set("view", "map");
+    }
+
+    const search = params.toString();
+    router.push(search ? `${pathname}?${search}` : pathname);
+  };
+
+  const handleSortChange = (sort: ListingSortOption) => {
+    navigateWithQuery({ sort, page: 1 });
+  };
+
+  const handleSearchChange = (search: string) => {
+    navigateWithQuery({ search, page: 1 });
+  };
+
+  const handleToggleView = () => {
+    setSelectedMapPropId(null);
+    navigateWithQuery({
+      view: isMapView ? "grid" : "map",
+      page: 1,
+    });
+  };
+
+  const openPropertyDetail = (propertyId: string) => {
+    router.push(`/property/${propertyId}`);
+  };
+
+  const desktopContainerClassName =
+    isMapView && !isListCollapsed
+      ? "flex-1 mx-auto w-full max-w-none px-0 transition-all"
+      : "flex-1 mx-auto w-full max-w-screen-2xl px-5 py-5 transition-all";
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      {/* ── Search / Filter bar ── */}
       <SearchFilterBar
         isMapView={isMapView}
-        onToggleView={() => setIsMapView((v) => !v)}
+        onToggleView={handleToggleView}
+        searchValue={query.search}
+        onSearchChange={handleSearchChange}
       />
 
-      {/* ── Main container ── */}
-      <div className="flex-1 max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-10">
-        {/* DESKTOP MAP VIEW */}
-        {isMapView && (
-          <div className="hidden lg:flex items-start gap-0">
-            {/* Left listing sidebar */}
-            <aside className="w-full max-w-[360px] shrink-0 bg-[#efefef]">
-              <div className="bg-[#efefef] border-r border-gray-300">
-                <ListingMeta
-                  location={data.location}
-                  suburb={data.suburb}
-                  count={data.totalProperties}
-                />
-              </div>
+      <div className={desktopContainerClassName}>
+        {isMapView ? (
+          <div className="hidden lg:flex items-start gap-0 relative">
+            <PropertyListingResultsPane
+              properties={data.properties}
+              count={data.totalProperties}
+              location={data.location}
+              suburb={data.suburb}
+              sort={query.sort}
+              onSortChange={handleSortChange}
+              onPropertySelect={openPropertyDetail}
+              className={`relative transition-all duration-300 flex-shrink-0 bg-white border-r border-[#0284C7] z-20 ${
+                isListCollapsed
+                  ? "w-0 overflow-hidden border-r-0"
+                  : "w-full max-w-[390px]"
+              }`}
+              headerClassName="bg-white pb-2 pt-4 px-4 sticky top-0 z-10"
+              listClassName="space-y-4 px-4 pb-8 min-h-[calc(100vh-200px)] h-[calc(100vh-140px)] overflow-y-auto"
+              showCollapseButton={!isListCollapsed}
+              onToggleCollapse={() => setIsListCollapsed(true)}
+            />
 
-              <div className="space-y-3 px-2 pb-4">
-                {visibleProperties.map((p) => (
-                  <PropertyListingCard key={p.id} property={p} />
-                ))}
-              </div>
-            </aside>
+            <section className="flex-1 min-w-0 sticky top-0 h-[calc(100vh-140px)] flex flex-col">
+              {isListCollapsed ? (
+                <button
+                  onClick={() => setIsListCollapsed(false)}
+                  className="absolute z-30 top-16 left-0 bg-white shadow-sm border border-gray-200 border-l-0 w-9 h-14 flex items-center justify-center rounded-r-xl hover:bg-gray-50 transition-colors"
+                  aria-label="Show list"
+                >
+                  <svg
+                    className="w-5 h-5 text-gray-800"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              ) : null}
 
-            {/* Map */}
-            <section className="flex-1 min-w-0">
-              <MapSection mapPreviewProperty={mapPreviewProperty} />
-
-              <div className="bg-white px-4 py-3 border-x border-b border-gray-300">
-                <p className="text-2xl font-semibold text-gray-900">
-                  {data.suburb}
-                </p>
-              </div>
+              <PropertyListingMapPane
+                properties={data.properties}
+                markers={markerPositions}
+                selectedPropertyId={activeMapPropertyId}
+                onSelectProperty={setSelectedMapPropId}
+                onOpenProperty={openPropertyDetail}
+                isFullScreen={isListCollapsed}
+              />
             </section>
           </div>
-        )}
-
-        {/* ============================================================
-LIST / GRID VIEW (Default + Mobile Map)
-        ============================================================ */}
-        {!isMapView || <div className="lg:hidden" />}
-
-        {!isMapView && (
+        ) : (
           <>
             <ListingMeta
               location={data.location}
               suburb={data.suburb}
               count={data.totalProperties}
+              sort={query.sort}
+              onSortChange={handleSortChange}
             />
 
             <div className="flex gap-6">
-              {/* Properties grid */}
               <div className="flex-1 min-w-0">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {visibleProperties.map((p) => (
-                    <PropertyListingCard key={p.id} property={p} />
+                  {data.properties.map((property) => (
+                    <PropertyListingCard
+                      key={property.id}
+                      property={property}
+                      onClick={() => openPropertyDetail(property.id)}
+                    />
                   ))}
                 </div>
 
-                {/* Pagination */}
                 <Pagination
-                  currentPage={currentPage}
+                  currentPage={data.currentPage}
                   totalPages={totalPages}
-                  onPageChange={setCurrentPage}
+                  onPageChange={(page) => navigateWithQuery({ page })}
                 />
-
-                {/* 📱 MOBILE MAP (stacked at bottom) */}
-                {isMapView && (
-                  <div className="block lg:hidden mt-6">
-                    <h3 className="text-lg font-semibold mb-2">
-                      View properties on map
-                    </h3>
-                    <MapSection mapPreviewProperty={mapPreviewProperty} />
-                  </div>
-                )}
               </div>
 
-              {/* Right sidebar */}
               <aside className="hidden lg:block w-64 xl:w-72 shrink-0">
                 <div className="sticky top-6 space-y-4">
                   <AgentCard
@@ -163,37 +217,38 @@ LIST / GRID VIEW (Default + Mobile Map)
           </>
         )}
 
-        {/* ============================================================
-MOBILE MAP VIEW WHEN TOGGLE IS ON
-        ============================================================ */}
-        {isMapView && (
-          <div className="lg:hidden ">
-            <ListingMeta
-              location={data.location}
-              suburb={data.suburb}
-              count={data.totalProperties}
+        {isMapView ? (
+          <div className="lg:hidden flex flex-col mt-0 w-screen">
+            <PropertyListingMapPane
+              properties={data.properties}
+              markers={markerPositions}
+              selectedPropertyId={activeMapPropertyId}
+              onSelectProperty={setSelectedMapPropId}
+              onOpenProperty={openPropertyDetail}
+              isFullScreen
             />
 
-            {/* Property list */}
-            <div className="space-y-3">
-              {visibleProperties.map((p) => (
-                <PropertyListingCard key={p.id} property={p} />
-              ))}
-            </div>
+            <div className="px-4 sm:px-6 pt-6 bg-white w-screen">
+              <PropertyListingResultsPane
+                properties={data.properties}
+                count={data.totalProperties}
+                location={data.location}
+                suburb={data.suburb}
+                sort={query.sort}
+                onSortChange={handleSortChange}
+                onPropertySelect={openPropertyDetail}
+                headerClassName=""
+                listClassName="space-y-4"
+              />
 
-            {/* Pagination */}
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
-
-            {/* Map at bottom */}
-            <div className="my-4">
-              <MapSection mapPreviewProperty={mapPreviewProperty} />
+              <Pagination
+                currentPage={data.currentPage}
+                totalPages={totalPages}
+                onPageChange={(page) => navigateWithQuery({ page })}
+              />
             </div>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
