@@ -45,6 +45,7 @@ const PropertyListingResultsPane: React.FC<PropertyListingResultsPaneProps> = ({
           count={count}
           sort={sort}
           onSortChange={onSortChange}
+          variant="map"
         />
       </div>
 

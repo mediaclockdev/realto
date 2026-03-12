@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight,  Calendar, Clock, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight} from "lucide-react";
 import locationIcon from "@/public/location.svg";
 import type { ListingProperty } from "./types";
 import airconditioner from "../../public/airconditioner.svg"
@@ -12,6 +12,11 @@ import balcony from "../../public/balcony.svg"
 import garage from "../../public/garage.svg"
 import fullyfenced from "../../public/fullyfenced.svg"
 import swimmingpool from "../../public/swimmingpool.svg"
+import clock from "../../public/clock.svg";
+import money from "../../public/money.svg";
+import calender from "../../public/calender.svg";
+import squaremetericon from "../../public/squaremetericon.svg";
+import star from "../../public/star.svg";
 
 interface PropertyDetailViewProps {
   property: ListingProperty;
@@ -100,10 +105,10 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
       <div className="max-w-10xl mx-auto px-4 py-4 space-y-8">
         
         {/* Main Info & Agent Card Grid */}
-      <div className="flex justify-between gap-8 bg-white rounded-[10px] shadow-sm  p-6 sm:p-8">
+      <div className="flex flex-col lg:flex-row justify-between gap-8 bg-white rounded-[10px] shadow-sm  p-6 sm:p-8">
           
   {/* Left Column: Property Highlights */}
-  <div className=" space-y-6   ">
+  <div className=" space-y-3 lg:space-y-6   ">
     {/* Features Icons */}
     {property.iconImages && (
       <div className="flex items-center gap-2">
@@ -121,39 +126,43 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
     )}
 
     {/* Location & Size */}
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+    <div className="flex flex-col sm:flex-row sm:items-center">
       <div className="flex items-start sm:items-center gap-2">
         <Image src={locationIcon} alt="Location" className="w-6 h-6 shrink-0 mt-0.5 sm:mt-0" />
-        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{property.location}</h1>
+        <h1 className="text-base lg:text-xl font-bold text-gray-900">{property.location}</h1>
       </div>
-     
     </div>
 
     {/* Date & Time */}
-    <div className="flex items-center gap-6 text-gray-600 font-medium">
-      <div className="flex items-center gap-2">
-        <Calendar className="w-5 h-5 text-red-500" />
-        <span>{property.date}</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <Clock className="w-5 h-5 text-red-500" />
-        <span>{property.time}</span>
+   <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-1  text-gray-600">
+          <div className="flex items-center ">
+            <Image src={calender} alt="calendericon" className="w-6 h-6  shrink-0" />
+            <span className="text-[#343434] font-semibold text-base lg:text-xl">{property.date}</span>
+          </div>
+          <div className="flex items-center ">
+            <Image src={clock} alt="clockicon" className="w-6 h-6  shrink-0" />
+            <span className="text-[#343434] font-semibold text-base lg:text-xl">{property.time}</span>
               </div>
-        <div className="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200 shrink-0">
-        <span className="text-gray-500">📐</span>
-        <span className="font-semibold text-gray-800">{property.size}</span>
-      </div>
-    </div>
+               <div className="flex items-center gap-1 ml-2 shrink-0">
+              <Image src={squaremetericon} alt="location" className="w-6 h-6 shrink-0" />
+            <p className="text-[#343434] font-semibold text-base lg:text-xl">
+              {property.size}
+            </p>
+          </div>
+        </div>
 
     {/* Price & Type */}
-    <div className="flex items-center gap-4 pt-4">
-      <span className="text-2xl sm:text-3xl font-bold text-green-600">
-        {property.priceRange}
-      </span>
-      <span className="text-lg text-gray-500 font-medium mt-1">
-        • {property.propertyType}
-      </span>
-    </div>
+    <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-2">
+          <div className="flex items-center gap-1">
+          <Image src={money} alt="money icon"/>
+          <p className="text-[#343434] font-semibold text-base lg:text-xl">
+            {property.priceRange}
+          </p>
+          </div>
+          <p className="text-[#343434] font-semibold text-base lg:text-xl">
+            • {property.propertyType}
+          </p>
+        </div>
   </div>
 
   {/* Right Column: Agent Card */}
@@ -168,7 +177,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
             alt={property.agentName}
             width={80}
             height={80}
-            className="rounded-full border-2 border-gray-200 object-cover w-20 h-20 shadow"
+            className="rounded-full border-2 border-gray-200 object-cover w-10 lg:w-20 h-10 lg:h-20 shadow"
           />
           <h3 className="font-bold text-sm text-gray-900 text-center">{property.agentName}</h3>
         </div>
@@ -182,16 +191,14 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
           <p className="text-xs text-gray-400">License# 12345678</p>
 
           {/* 5 Stars */}
-          <div className="flex items-center gap-0.5">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-            ))}
+          <div className="">
+           <Image src={star} alt="star icons" className="size-1/2 lg:size-auto" />
           </div>
 
           {/* Social Icons */}
           <div className="flex items-center gap-2">
             {property.socials.map((icon, i) => (
-              <div key={i} className="w-8 h-8 rounded-full overflow-hidden">
+              <div key={i} className="w-4 lg:w-8 h-4 lg:h-8 rounded-full overflow-hidden">
                 <Image src={icon} alt="icon" width={32} height={32} className="w-full h-full object-contain" />
               </div>
             ))}
@@ -215,7 +222,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
         {/* Amenities & Facilities */}
         <div className="bg-white px-3 py-4 rounded-2xl shadow-sm border border-gray-100">
           <h2 className="text-xl font-bold text-gray-900 mb-6">Amenities & Facilities</h2>
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center justify-between md:justify-start gap-2 lg:gap-4">
             {amenities.map((item, idx) => (
               <div key={idx} className="rounded-xl p-4 flex flex-col items-center justify-center gap-3 text-center transition-transform hover:scale-105 cursor-default">
                 <Image src={item.icon} alt="amenity" width={40} height={40} className="w-full h-full" />

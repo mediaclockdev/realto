@@ -7,6 +7,10 @@ import share from "../../public/share.svg";
 import home from "../../public/home.svg";
 import mobile from "../../public/mobileicon.svg";
 import mail from "../../public/mailicon.svg";
+import clock from "../../public/clock.svg";
+import money from "../../public/money.svg";
+import calender from "../../public/calender.svg";
+import squaremetericon from "../../public/squaremetericon.svg";
 
 interface PropertyListingCardProps {
   property: ListingProperty;
@@ -94,37 +98,44 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
         )}
 
         {/* Location + size */}
-        <div className="flex items-center justify-between mb-1.5">
-          <div className="flex items-center gap-1 min-w-0">
-            <Image src={location} alt="" className="w-4 h-4 shrink-0" />
-            <span className="text-xs lg:text-sm font-semibold text-gray-800 truncate">
+        <div className="flex items-center justify-between mb-2.5">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <Image src={location} alt="location" className="w-5 h-5 shrink-0" />
+            <span className="font-semibold text-gray-800 text-sm truncate">
               {property.location}
             </span>
           </div>
-          <span className="text-xs font-semibold text-gray-700 shrink-0 ml-1">
-            {property.size}
-          </span>
+          <div className="flex items-center gap-1 ml-2 shrink-0">
+              <Image src={squaremetericon} alt="location" className="w-5 h-5 shrink-0" />
+            <span className="text-[#343434] font-semibold text-base">
+              {property.size}
+            </span>
+          </div>
         </div>
 
         {/* Date + time */}
         <div className="flex items-center gap-3 mb-1.5 text-gray-500">
           <div className="flex items-center gap-1">
-            <span className="text-xs">📅</span>
-            <span className="text-xs">{property.date}</span>
+            <Image src={calender} alt="" className="w-4 h-4 shrink-0" />
+            <p className="text-[#343434] font-semibold text-base">{property.date}</p>
           </div>
           <div className="flex items-center gap-1">
-            <span className="text-xs">🕙</span>
-            <span className="text-xs">{property.time}</span>
+            <Image src={clock} alt="" className="w-4 h-4 shrink-0" />
+            <p className="text-[#343434] font-semibold text-base">{property.time}</p>
           </div>
         </div>
 
         {/* Price + type */}
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-bold text-green-600">
+       <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-1">
+
+          <Image src={money} alt="money icon"/>
+          <p className="text-[#343434] font-semibold text-base">
             {property.priceRange}
-          </span>
-          <span className="text-xs text-gray-600 font-medium">
-            •{property.propertyType}
+          </p>
+          </div>
+          <span className="text-[#343434] font-semibold text-base">
+            • {property.propertyType}
           </span>
         </div>
 

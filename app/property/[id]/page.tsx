@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import PropertyDetailPage from "@/components/PropertyListing/PropertyDetailPage";
 import {
   getPropertyById,
+  getPropertyListingMeta,
   getRelatedProperties,
 } from "@/lib/property-listing-data";
 
@@ -18,11 +19,13 @@ const page = async ({ params }: PageProps) => {
   }
 
   const relatedProperties = getRelatedProperties(id);
+  const listingMeta = getPropertyListingMeta();
 
   return (
     <PropertyDetailPage
       property={property}
       relatedProperties={relatedProperties}
+      listingMeta={listingMeta}
     />
   );
 };

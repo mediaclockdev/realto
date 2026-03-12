@@ -168,3 +168,11 @@ export function getRelatedProperties(id: string, limit = 4) {
     )
     .slice(0, limit);
 }
+
+export function getPropertyListingMeta() {
+  return {
+    location: DEFAULT_LOCATION,
+    suburb: DEFAULT_SUBURB,
+    totalProperties: TOTAL_PROPERTIES,
+  };
+}

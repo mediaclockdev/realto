@@ -100,14 +100,13 @@ export default function PropertyListing() {
 
   const handlePropertyClick = (property: PropertyData) => {
     console.log("Property clicked:", property);
-    // Handle navigation or modal opening
   };
 
   return (
     <div className="max-w-screen-2xl mx-auto  py-6">
       <div className="px-5">
         {/* Newly Listed Section */}
-        <NewListing title="Newly Listed" />
+        <NewListing title="Newly Listed" icon="clock"/>
         <PropertySlider
           properties={newlyListedProperties}
           onPropertyClick={handlePropertyClick}
@@ -115,7 +114,7 @@ export default function PropertyListing() {
 
         {/* You can reuse the same components for other sections */}
         <div className="mt-16">
-          <NewListing title="Trending" showIcon={false} />
+          <NewListing title="Trending" icon="magic" />
           <PropertySlider
             properties={newlyListedProperties}
             onPropertyClick={handlePropertyClick}

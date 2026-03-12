@@ -2,11 +2,6 @@
 
 import React, { useRef } from "react";
 import {
-  MapPin,
-  Calendar,
-  Clock,
-  Phone,
-  Mail,
   ChevronRight,
   ChevronLeft,
 } from "lucide-react";
@@ -16,6 +11,10 @@ import share from "../../public/share.svg";
 import home from "../../public/home.svg";
 import mobile from "../../public/mobileicon.svg";
 import mail from "../../public/mailicon.svg";
+import clock from "../../public/clock.svg";
+import money from "../../public/money.svg";
+import calender from "../../public/calender.svg";
+import squaremetericon from "../../public/squaremetericon.svg";
 
 export interface PropertyData {
   id: string;
@@ -121,7 +120,7 @@ const PropertyCard: React.FC<{
 
   return (
     <div
-      className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 shrink-0 w-[340px] cursor-pointer"
+     className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 shrink-0 w-[340px] cursor-pointer border border-transparent hover:border-black"
       onClick={() => onCardClick?.(property)}
     >
       {/* Image Section */}
@@ -197,37 +196,41 @@ const PropertyCard: React.FC<{
             </span>
           </div>
           <div className="flex items-center gap-1 ml-2 shrink-0">
-            <MapPin className="w-4 h-4 text-gray-400" />
-            <span className="text-sm font-semibold text-gray-800">
+              <Image src={squaremetericon} alt="location" className="w-5 h-5 shrink-0" />
+            <p className="text-[#343434] font-semibold text-base">
               {property.size}
-            </span>
+            </p>
           </div>
         </div>
 
         {/* Date and Time */}
-        <div className="flex items-center gap-4 mb-2.5 text-gray-600">
-          <div className="flex items-center gap-1.5">
-            <Calendar className="w-4 h-4 text-red-500 shrink-0" />
-            <span className="text-xs">{property.date}</span>
+        <div className="flex items-center gap-1 mb-2.5 text-gray-600">
+          <div className="flex items-center ">
+            <Image src={calender} alt="calendericon" className="w-4 h-4  shrink-0" />
+            <span className="text-[#343434] font-semibold text-base">{property.date}</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Clock className="w-4 h-4 text-gray-500 shrink-0" />
-            <span className="text-xs">{property.time}</span>
+          <div className="flex items-center ">
+            <Image src={clock} alt="clockicon" className="w-4 h-4  shrink-0" />
+            <span className="text-[#343434] font-semibold text-base">{property.time}</span>
           </div>
         </div>
 
         {/* Price and Property Type */}
         <div className="flex items-center justify-between mb-3">
-          <span className="text-green-600 font-bold text-sm">
+          <div className="flex items-center gap-1">
+
+          <Image src={money} alt="money icon"/>
+          <p className="text-[#343434] font-semibold text-base">
             {property.priceRange}
-          </span>
-          <span className="text-gray-700 font-medium text-sm">
+          </p>
+          </div>
+          <span className="text-[#343434] font-semibold text-base">
             • {property.propertyType}
           </span>
         </div>
 
         {/* lower content */}
-        <div className="flex items-center justify-between pt-3">
+        <div className="flex items-center justify-between">
           {/* Agent Information */}
           <div>
             <div className="flex gap-1">
@@ -238,17 +241,17 @@ const PropertyCard: React.FC<{
                 height={30}
                 className="rounded-full shrink-0 border-2 border-red-100 object-cover"
               />
-              <p className="font-bold text-red-500 text-base truncate">
+              <p className="font-semibold text-[#FA2F2F] text-base truncate">
                 {property.agentName}
               </p>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600 mt-1">
               <Image src={mobile} alt="" width={20} height={20} />
-              <span>{property.agentPhone}</span>
+              <p className="font-semibold text-[#FA2F2F] text-xs">{property.agentPhone}</p>
             </div>
             <div className="flex items-center gap-1 text-xs text-blue-600 mt-1">
               <Image src={mail} alt="" width={20} height={20} />
-              <span className="truncate">{property.agentEmail}</span>
+              <p className="truncate font-semibold text-[#FA2F2F] text-xs">{property.agentEmail}</p>
             </div>
           </div>
 
@@ -262,7 +265,7 @@ const PropertyCard: React.FC<{
               className="object-contain"
             />
 
-            <div className="text-xs text-red-600 font-medium ">
+            <div className="text-xs text-[#FA2F2F] font-medium ">
               <p>{property.agentLocation}</p>
             </div>
             <div className="flex items-center gap-1">

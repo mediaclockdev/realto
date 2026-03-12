@@ -127,11 +127,11 @@ const LuxuryProperties = () => {
 
                   {/* Button */}
                   {featured ? (
-                    <button className="w-full bg-[#2a2a2a]/90 hover:bg-[#3a3a3a] text-white rounded-full py-3 text-sm font-medium transition-colors duration-200">
+                    <button className="w-full bg-[#0284C7] hover:bg-[#3a3a3a] text-white rounded-full py-3 text-sm font-medium transition-colors duration-200">
                       View detail
                     </button>
                   ) : (
-                    <button className="w-full bg-[#2a2a2a]/90 hover:bg-[#3a3a3a] text-white rounded-full py-3 flex items-center justify-center transition-colors duration-200">
+                    <button className="w-full bg-[#0284C7] hover:bg-[#3a3a3a] text-white rounded-full py-3 flex items-center justify-center transition-colors duration-200">
                       <ArrowIcon />
                     </button>
                   )}
