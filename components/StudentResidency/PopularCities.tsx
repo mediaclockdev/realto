@@ -382,7 +382,7 @@ export default function PopularCities() {
 
   return (
     <div className=" bg-gray-50">
-      <section className="max-w-screen-2xl mx-auto px-10 py-6 ">
+      <section className="max-w-screen-2xl mx-auto px-5 py-5 ">
         <h2 className="text-[32px] font-extrabold text-gray-900 mb-5">
           Popular cities in Australia
         </h2>

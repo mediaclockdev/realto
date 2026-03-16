@@ -19,7 +19,7 @@ const Searchbar = () => {
         onClose={() => setIsFilterModalOpen(false)}
       />
 
-      <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-20 left-1/2 -translate-x-1/2 w-[95%] sm:w-[90%] max-w-5xl z-10 px-2 sm:px-0">
+      <div className="absolute bottom-5  left-1/2 -translate-x-1/2 w-[95%] sm:w-[90%] max-w-5xl z-10 px-2 sm:px-0">
         <div className="flex items-center rounded-xl backdrop-blur-xs  bg-white/50 border border-white/30 shadow-lg px-2 sm:px-3 py-2 sm:py-2.5 gap-2 sm:gap-3">
 
           {/* Left icon — hidden on mobile, shown sm+ */}

@@ -37,6 +37,8 @@ const LanguageSelection = () => {
       setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 10);
     }
   };
+  const selectedLang = languages.find((l) => l.id === selectedLanguage);
+
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -62,12 +64,25 @@ const LanguageSelection = () => {
       <div className="relative group flex items-center gap-3">
 
         {/* World Globe Icon */}
-        <div className="shrink-0">
-          <Image src={world} alt="World" width={44} height={44} className="rounded-full" />
+       <div className="shrink-0 relative group/selected mt-8">
+          <Image
+            src={selectedLang ? selectedLang.icon : world}
+            alt={selectedLang ? selectedLang.name : "World"}
+            width={44}
+            height={44}
+            className="rounded-full"
+          />
+           {selectedLang && (
+            <div className="absolute -top-9 left-0 z-50 pointer-events-none opacity-0 group-hover/selected:opacity-100 transition-opacity duration-200">
+              <div className="bg-gray-900 text-white text-xs font-medium px-2 py-1 rounded-lg whitespace-nowrap">
+                {selectedLang.name} / {selectedLang.nativeName}
+              </div>
+              <div className="w-3 h-3 bg-gray-900 rotate-45 -mt-1.5 ml-3.5" />
+            </div>
+          )}
         </div>
-
         {/* Vertical Divider */}
-        <div className="shrink-0 w-px h-8 bg-gray-300" />
+        <div className="shrink-0 w-px h-8 bg-gray-300 mt-8" />
 
         {/* Left Arrow — only show after scrolling right */}
         {scrollLeft > 10 && (
@@ -84,7 +99,7 @@ const LanguageSelection = () => {
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
-          className="flex items-center gap-3 overflow-x-auto scrollbar-hide scroll-smooth py-8 flex-1"
+          className="flex items-center gap-3 overflow-x-auto scrollbar-hide scroll-smooth pt-8 pb-1 flex-1"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {languages.map((lang, index) => (
@@ -121,8 +136,7 @@ const LanguageSelection = () => {
               {/* Flag Button */}
               <button
                 onClick={() => setSelectedLanguage(lang.id)}
-                className={`hover:scale-110 transition-transform duration-200 rounded-full cursor-pointer
-                  ${selectedLanguage === lang.id ? "ring-2 ring-blue-500 ring-offset-2" : ""}`}
+                className="hover:scale-110 transition-transform duration-200 rounded-full cursor-pointer"
                 title={lang.name}
               >
                 <Image

@@ -77,7 +77,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
       <div className="px-3 pt-2 pb-3 flex flex-col flex-1">
         {/* Icons row */}
         {property.iconImages && (
-          <div className="flex items-center gap-2.5 mb-2">
+          <div className="flex items-center gap-2.5 ">
             {property.iconImages.map((icon, i) => (
               <div key={i} className="flex items-center gap-1">
                 <div className="w-8 h-8 rounded overflow-hidden border border-gray-200">
@@ -98,7 +98,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
         )}
 
         {/* Location + size */}
-        <div className="flex items-center justify-between mb-2.5">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5 min-w-0">
             <Image src={location} alt="location" className="w-5 h-5 shrink-0" />
             <span className="font-semibold text-gray-800 text-sm truncate">
@@ -126,7 +126,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
         </div>
 
         {/* Price + type */}
-       <div className="flex items-center justify-between mb-3">
+       <div className="flex items-center justify-between">
           <div className="flex items-center gap-1">
 
           <Image src={money} alt="money icon"/>
@@ -140,7 +140,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
         </div>
 
         {/* Agent */}
-        <div className="flex items-center justify-between pt-3">
+        <div className="flex items-center justify-between">
           {/* Agent Information */}
           <div>
             <div className="flex gap-1">

@@ -103,7 +103,7 @@ export default function PropertyListing() {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto  py-6">
+    <div className="max-w-screen-2xl mx-auto  py-5">
       <div className="px-5">
         {/* Newly Listed Section */}
         <NewListing title="Newly Listed" icon="clock"/>
@@ -113,7 +113,7 @@ export default function PropertyListing() {
         />
 
         {/* You can reuse the same components for other sections */}
-        <div className="mt-16">
+        <div className="mt-5">
           <NewListing title="Trending" icon="magic" />
           <PropertySlider
             properties={newlyListedProperties}

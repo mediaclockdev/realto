@@ -140,7 +140,7 @@ const PropertyFilterModal: React.FC<PropertyFilterModalProps> = ({
         </div>
 
         <div className=" px-6  py-5">
-          <section className="border-b border-black/15 pb-3">
+          <section className="border-b border-black/15 pb-3"> 
             <h2 className="text-lg font-medium text-[#343434] mb-1">
               Property type
             </h2>

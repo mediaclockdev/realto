@@ -9,45 +9,50 @@ import Image from "next/image";
 const partners = [
   {
     name: "Australian National University",
-   img:partner1,
+   logo:partner1,
   },
   {
     name: "Universities Australia",
-    img:partner2,
+    logo:partner2,
   },
   {
     name: "The University of Queensland",
-    img:partner3,
+    logo:partner3,
 },
   {
     name: "The University of Sydney",
-    img:partner4,
+    logo:partner4,
   },
   {
     name: "Monash University",
-    img:partner5,
+    logo:partner5,
   },
 ];
 
 export default function OurPartners() {
   return (
-    <div className="bg-white overflow-hidden">
-      <section className="max-w-screen-2xl mx-auto px-10 py-8">
-        <h2 className="text-[32px] font-extrabold text-gray-900 mb-8">
-          Our Partners
-        </h2>
+    <div className="bg-white">
 
-        <div className="flex items-center gap-5">
-          {partners.map((partner, idx) => (
-            <div
-              key={idx}
-            >
-                <Image src={partner.img} alt={partner.name} />
-                  </div>
-
-          ))}
-        </div>
-      </section>
-    </div>
+    <div className="relative overflow-hidden max-w-screen-2xl mx-auto px-5 py-5">
+         <div className="mb-8">
+           <p className="text-black font-semibold text-2xl lg:text-[32px]">Our Partners</p>
+         </div>
+           <div className="marquee-wrapper">
+             <div className="marquee-track">
+               {[...partners, ...partners, ...partners].map((logo, i) => (
+                 <div key={i} className="logo-item flex items-center justify-center">
+                   <Image
+                     src={logo.logo}
+                     alt="partner logo"
+                     width={160}
+                     height={120}
+                     className="object-contain opacity-100 transition duration-300"
+                   />
+                 </div>
+               ))}
+             </div>
+           </div>
+         </div>
+               </div>
   );
 }

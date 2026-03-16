@@ -75,7 +75,7 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
       {/* Scrollable Container */}
       <div
         ref={scrollContainerRef}
-        className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth"
+        className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-0 lg:py-4 px-0 lg:px-2"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {properties.map((property) => (
@@ -120,7 +120,7 @@ const PropertyCard: React.FC<{
 
   return (
     <div
-     className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 shrink-0 w-[340px] cursor-pointer border border-transparent hover:border-black"
+     className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 shrink-0 w-[340px] cursor-pointer border border-transparent hover:border-gray-500 hover:scale-105  "
       onClick={() => onCardClick?.(property)}
     >
       {/* Image Section */}
@@ -139,13 +139,13 @@ const PropertyCard: React.FC<{
               onClick={handlePrevImage}
               className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 opacity-0 group-hover/image:opacity-100 transition-opacity"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-4 h-4 text-black" />
             </button>
             <button
               onClick={handleNextImage}
               className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 opacity-0 group-hover/image:opacity-100 transition-opacity"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4 text-black" />
             </button>
           </>
         )}
@@ -167,7 +167,7 @@ const PropertyCard: React.FC<{
       <div className="px-4 pt-3 pb-4">
         {/* Icon Preview Images */}
         {property.iconImages && property.iconImages.length > 0 && (
-          <div className="flex items-center gap-3 mb-3 pb-2 ">
+          <div className="flex items-center gap-3 mb-1 pb-2 ">
             {property.iconImages.map((icon, index) => (
               <div key={index} className="flex items-center gap-1.5">
                 <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0">
@@ -188,7 +188,7 @@ const PropertyCard: React.FC<{
         )}
 
         {/* Location and Size */}
-        <div className="flex items-center justify-between mb-2.5">
+        <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-1.5 min-w-0">
             <Image src={location} alt="location" className="w-5 h-5 shrink-0" />
             <span className="font-semibold text-gray-800 text-sm truncate">
@@ -204,7 +204,7 @@ const PropertyCard: React.FC<{
         </div>
 
         {/* Date and Time */}
-        <div className="flex items-center gap-1 mb-2.5 text-gray-600">
+        <div className="flex items-center gap-1 mb-1 text-gray-600">
           <div className="flex items-center ">
             <Image src={calender} alt="calendericon" className="w-4 h-4  shrink-0" />
             <span className="text-[#343434] font-semibold text-base">{property.date}</span>
@@ -216,7 +216,7 @@ const PropertyCard: React.FC<{
         </div>
 
         {/* Price and Property Type */}
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-1">
 
           <Image src={money} alt="money icon"/>

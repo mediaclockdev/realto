@@ -47,7 +47,7 @@ const Features = () => {
         {/* Left Arrow Button */}
         <button
           onClick={() => scroll("left")}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -ml-4"
+          className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -ml-4"
           aria-label="Scroll left"
         >
           <ChevronLeft className="w-5 h-5 text-gray-800" />
@@ -56,7 +56,8 @@ const Features = () => {
         {/* Scrollable Container */}
         <div
           ref={scrollContainerRef}
-          className="flex items-center gap-5 overflow-x-auto scrollbar-hide scroll-smooth "
+        className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth 
+           md:grid md:grid-cols-9 md:overflow-visible"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {agents.map((item, idx) =>
@@ -75,7 +76,7 @@ const Features = () => {
         {/* Right Arrow Button */}
         <button
           onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -mr-4"
+          className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -mr-4"
           aria-label="Scroll right"
         >
           <ChevronRight className="w-5 h-5 text-gray-800" />

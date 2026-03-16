@@ -25,8 +25,8 @@ const offers = [
 export default function OffersAndReferrals() {
   return (
     <div className="bg-gray-50 relative">
-      <section className="max-w-screen-2xl mx-auto px-10 py-6">
-        <h2 className="text-[32px] font-extrabold text-gray-900 mb-5">
+      <section className="max-w-screen-2xl mx-auto px-5 py-5">
+        <h2 className="text-2xl lg:text-[32px] font-extrabold text-gray-900 mb-5">
           Offers and Referal program
         </h2>
 
@@ -34,7 +34,7 @@ export default function OffersAndReferrals() {
           {offers.map((offer, idx) => (
             <div
               key={idx}
-              className="relative rounded-2xl p-6 min-h-[180px] max-w-[450px] flex flex-col justify-end overflow-hidden"
+              className="group relative rounded-2xl p-6 min-h-[100px] lg:min-h-[180px]  max-w-[450px] flex flex-col justify-end overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer"
               style={{
                 backgroundImage: `url('${offer.bgImage}')`,
                 backgroundSize: "cover",
@@ -42,16 +42,16 @@ export default function OffersAndReferrals() {
               }}
             >
               <Star
-                className="absolute top-5 right-5 text-black"
-                fill="black"
-                size={24}
+                className="absolute top-5 right-5 text-black group-hover:text-white transition-colors duration-300 size-5 lg:size-6"
+                fill="currentColor"
+
               />
 
-              <div className="relative z-10 pt-10">
-                <h3 className="text-xl font-semibold text-black mb-[6px] leading-tight max-w-[365px]">
+              <div className="relative z-10 pt-10 ">
+                <h3 className="text-base lg:text-xl font-semibold text-black group-hover:text-white transition-colors duration-300 mb-[6px] leading-tight max-w-[365px] ">
                   {offer.title}
                 </h3>
-                <p className="text-[#343434] text-base leading-snug whitespace-pre-wrap">
+                <p className="text-[#343434] text-sm lg:text-base leading-snug whitespace-pre-wrap group-hover:text-white transition-colors duration-300">
                   {offer.description}
                 </p>
               </div>

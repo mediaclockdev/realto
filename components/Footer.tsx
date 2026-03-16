@@ -15,41 +15,41 @@ const Footer = () => {
 
       <div className="bg-white">
       <div className=" max-w-screen-2xl mx-auto px-3 lg:px-5 py-2 lg:py-5 ">
-        <div className="flex flex-col gap-3 lg:flex-row items-center justify-between">
+        <div className="hidden lg:flex flex-col gap-3 lg:flex-row items-center justify-between">
           <div className="flex items-center gap-7 lg:gap-5">
             <Image
               src={facebook}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7 lg:size-8 "
             />
             <Image
               src={instagram}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7 lg:size-8 "
             />
             <Image
               src={twitter}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7 lg:size-8 "
             />
             <Image
               src={pinterest}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7 lg:size-8 "
             />
             <Image
               src={linkedin}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7 lg:size-8 "
             />
             <Image
               src={youtube}
               alt="icon-facebook"
-              className="cursor-pointer hover:scale-110 transition-all duration-500 size-8 lg:size-auto "
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7 lg:size-8 "
             />
           </div>
-          <div>
-            <ul className="flex items-center gap-5 lg:gap-10 text-black text-sm lg:text-base">
+            <div>
+            <ul className="flex items-center gap-5 lg:gap-10 text-black text-xs lg:text-base">
               <li>Advertise with us</li>
               <li>Contact us</li>
               <li>Legal</li>
@@ -64,9 +64,56 @@ const Footer = () => {
 
       <div className="bg-white ">
       <div className="max-w-screen-2xl mx-auto px-5 py-5 space-y-6.5">
-        <div>
+        <div className="space-y-4">
           <Image src={logo} alt="logo" />
-        </div>
+        
+          <div className="flex lg:hidden items-center gap-5">
+            <Image
+              src={facebook}
+              alt="icon-facebook"
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7  "
+            />
+            <Image
+              src={instagram}
+              alt="icon-facebook"
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7 lg:size-8 "
+            />
+            <Image
+              src={twitter}
+              alt="icon-facebook"
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7 lg:size-8 "
+            />
+            <Image
+              src={pinterest}
+              alt="icon-facebook"
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7 lg:size-8 "
+            />
+            <Image
+              src={linkedin}
+              alt="icon-facebook"
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7 lg:size-8 "
+            />
+            <Image
+              src={youtube}
+              alt="icon-facebook"
+              className="cursor-pointer hover:scale-110 transition-all duration-500 size-7 lg:size-8 "
+            />
+          </div>
+          </div>
+          
+          <div className="space-y-2.5 block
+           md:hidden">
+            <p className="text-black">Quick Links</p>
+             <div>
+            <ul className="flex flex-col  text-gray-400 text-base space-y-1">
+              <li>Advertise with us</li>
+              <li>Contact us</li>
+              <li>Legal</li>
+              <li>Privacy settings</li>
+              <li>Site map</li>
+            </ul>
+          </div>
+          </div>
         <div className="space-y-2.5">
           <div className="space-y-2.5">
             <p className="text-black">International sites</p>
@@ -82,7 +129,7 @@ const Footer = () => {
             <p className="text-black">Partner sites</p>
             <div className="flex">
               <p className="text-[#909090]">Australia</p>
-              <span className="hidden sm:inline mx-2 text-gray-400">|</span>
+              <span className="hidden sm:inline mx-2 ">|</span>
               <p className="text-[#909090]">India</p>
               <span className="hidden sm:inline mx-2 text-gray-400">|</span>
               <p className="text-[#909090]">International sites</p>
