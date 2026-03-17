@@ -6,26 +6,29 @@ import { StaticImageData } from "next/image";
 import { useState, useEffect } from "react";
 
 type HeroSectionProps = {
-  images: (StaticImageData | string)[];
+   image?: StaticImageData | string;
+  images?: (StaticImageData | string)[];
   interval?: number; // ms, default 5000
 };
 
-const HeroSection = ({ images, interval = 5000 }: HeroSectionProps) => {
+const HeroSection = ({ image, images, interval = 5000 }: HeroSectionProps) => {
+  const finalImages = images ?? (image ? [image] : []);
+
   const [current, setCurrent] = useState(0);
   const [prev, setPrev] = useState<number | null>(null);
   const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
-    if (images.length <= 1) return;
+    if (finalImages.length <= 1) return;
 
     const timer = setInterval(() => {
       setPrev(current);
       setTransitioning(true);
-      setCurrent((c) => (c + 1) % images.length);
+      setCurrent((c) => (c + 1) % finalImages.length);
     }, interval);
 
     return () => clearInterval(timer);
-  }, [current, images.length, interval]);
+  }, [current, finalImages.length, interval]);
 
   // Reset transitioning flag after animation completes
   useEffect(() => {
@@ -43,7 +46,7 @@ const HeroSection = ({ images, interval = 5000 }: HeroSectionProps) => {
       {prev !== null && transitioning && (
         <Image
           key={`prev-${prev}`}
-          src={images[prev]}
+src={finalImages[prev]}
           alt="hero background"
           fill
           priority
@@ -56,7 +59,7 @@ const HeroSection = ({ images, interval = 5000 }: HeroSectionProps) => {
       {/* Current image (fades in) */}
       <Image
         key={`current-${current}`}
-        src={images[current]}
+    src={finalImages[current]}
         alt="hero background"
         fill
         priority
