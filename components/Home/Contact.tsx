@@ -1,27 +1,64 @@
-import Image from "next/image";
-import React from "react";
-import contactimg from "../../public/contactimage.svg";
+"use client";
 
-const Contact = () => {
+import Image from "next/image";
+import React, { useState, useEffect } from "react";
+import { StaticImageData } from "next/image";
+
+
+import img1 from "../../public/contactimage.svg";
+import img2 from "../../public/contact1.jpeg";
+import img3 from "../../public/contact2.jpeg";
+import img4 from "../../public/contact3.jpeg";
+import img5 from "../../public/contact4.jpeg";
+
+
+const IMAGES = [img1, img2, img3, img4, img5];
+
+type ContactProps = {
+  images: (StaticImageData | string)[];
+  interval?: number;
+};
+
+const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrent((c) => (c + 1) % images.length);
+    }, interval);
+    return () => clearInterval(timer);
+  }, [images.length, interval]);
+
   return (
     <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 py-8 bg-gray-100 flex items-center">
       <div className="flex flex-col lg:flex-row w-full gap-8">
-        
-        {/* Left: Image */}
-        <div className="w-full lg:w-1/2 shrink-0 ">
-          <div className="relative w-full min-h-[220px] sm:min-h-[300px] lg:min-h-[500px]">
-            <Image
-              src={contactimg}
-              alt="Contact visual"
-              fill
-              className="object-cover rounded-2xl"
-            />
+
+        {/* Left: Image Carousel */}
+        <div className="w-full lg:w-1/2 shrink-0">
+          <div className="relative w-full min-h-[220px] sm:min-h-[300px] lg:min-h-[500px] rounded-2xl overflow-hidden">
+
+            {/* Slides */}
+            {images.map((img, i) => (
+              <Image
+                key={i}
+                src={img}
+                alt={`Contact visual ${i + 1}`}
+                fill
+                priority={i === 0}
+                quality={100}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className={`object-cover rounded-2xl absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  i === current ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
           </div>
         </div>
 
         {/* Right: Form */}
         <div className="w-full lg:w-1/2 flex flex-col justify-between py-2">
-          
+
           {/* Header */}
           <div className="mb-5">
             <h2 className="text-2xl sm:text-3xl font-bold text-black">Get in touch</h2>
@@ -89,7 +126,7 @@ const Contact = () => {
 
           {/* Privacy note */}
           <p className="text-xs text-[#909090] mt-4 leading-relaxed">
-            By clicking submit , you agree to send your info to Realto who agrees to use it according to their privacy policy.{" "}
+            By clicking submit, you agree to send your info to Realto who agrees to use it according to their privacy policy.{" "}
             <a href="#" className="text-blue-500 hover:underline">
               View Privacy Policy.
             </a>

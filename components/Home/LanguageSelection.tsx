@@ -58,7 +58,7 @@ const LanguageSelection = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
       <div className="">
-        <p className="text-black font-semibold text-xl">Language selection :</p>
+        <p className="text-black font-semibold text-xl font-poppins">Language selection :</p>
       </div>
 
       <div className="relative group flex items-center gap-3">
@@ -155,7 +155,7 @@ const LanguageSelection = () => {
         {!isAtEnd && (
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 -mr-4"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 -mr-4 mt-3"
             aria-label="Scroll right"
           >
             <ChevronRight className="w-5 h-5 text-gray-800" />

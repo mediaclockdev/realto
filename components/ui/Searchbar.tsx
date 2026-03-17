@@ -19,17 +19,17 @@ const Searchbar = () => {
         onClose={() => setIsFilterModalOpen(false)}
       />
 
-      <div className="absolute bottom-5  left-1/2 -translate-x-1/2 w-[95%] sm:w-[90%] max-w-5xl z-10 px-2 sm:px-0">
-        <div className="flex items-center rounded-xl backdrop-blur-xs  bg-white/50 border border-white/30 shadow-lg px-2 sm:px-3 py-2 sm:py-2.5 gap-2 sm:gap-3">
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 w-[85%] sm:w-[80%] max-w-4xl z-10">
+        <div className="flex items-stretch rounded-xl backdrop-blur-xs bg-white/50 border border-white/30 shadow-lg overflow-hidden">
 
-          {/* Left icon — hidden on mobile, shown sm+ */}
-          <div className="hidden sm:flex items-center justify-center bg-white/50 rounded-xl p-0.5 shrink-0">
+          {/* Left icon */}
+          <div className="flex items-center justify-center bg-white/50 rounded-xl p-0.5 shrink-0 my-1.5 ml-1.5">
             <Image
               src={searchbar}
               alt="location"
-              width={38}
-              height={38}
-              className="w-8 h-8 md:w-9 md:h-9 lg:w-[50px] lg:h-[50px]"
+              width={44}
+              height={44}
+              className="w-10 h-10 md:w-11 md:h-11"
             />
           </div>
 
@@ -37,61 +37,61 @@ const Searchbar = () => {
           <input
             type="text"
             placeholder="Search suburb, postcode, state"
-            className="flex-1 min-w-0 bg-transparent outline-none text-white placeholder:text-white/70 text-sm sm:text-base font-light tracking-wide"
+            className="flex-1 min-w-0 bg-transparent outline-none text-white placeholder:text-white/70 text-sm sm:text-base font-light tracking-wide px-3"
           />
 
           {/* Right icons */}
-          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0">
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0 px-3">
 
-            {/* Filter — hidden on mobile */}
+            {/* Filter */}
             <button
               type="button"
               onClick={() => setIsFilterModalOpen(true)}
-              className="hidden sm:flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity"
+              className="flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer"
             >
               <Image
                 src={fliter}
                 alt="filter"
-                width={22}
-                height={22}
-                className="w-5 h-5 md:w-[22px] md:h-[22px]"
+                width={26}
+                height={26}
+                className="w-6 h-6 md:w-7 md:h-7"
               />
             </button>
 
-            {/* Voice — always visible */}
-            <button className="flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity">
+            {/* Voice */}
+            <button className="flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
               <Image
                 src={voice}
                 alt="voice"
-                width={22}
-                height={22}
-                className="w-4 h-4 sm:w-5 sm:h-5 md:w-[22px] md:h-[22px]"
+                width={26}
+                height={26}
+                className="w-6 h-6 md:w-7 md:h-7"
               />
             </button>
 
-            {/* Google Lens — always visible */}
-            <button className="flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity">
+            {/* Google Lens */}
+            <button className="flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
               <Image
                 src={googlelens}
                 alt="lens"
-                width={22}
-                height={22}
-                className="w-4 h-4 sm:w-5 sm:h-5 md:w-[22px] md:h-[22px]"
+                width={26}
+                height={26}
+                className="w-6 h-6 md:w-7 md:h-7"
               />
             </button>
-
-            {/* Search button — always visible */}
-            <button className="flex items-center justify-center bg-white/80 hover:bg-white rounded-lg sm:rounded-xl p-1.5 sm:p-2 shadow-md transition-colors shrink-0">
-              <Image
-                src={searchwhite}
-                alt="search"
-                width={20}
-                height={20}
-                className="w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5"
-              />
-            </button>
-
           </div>
+
+          {/* Search button — fills full height */}
+          <button className="flex items-center justify-center bg-white/50 hover:bg-white/40 transition-colors cursor-pointer  self-stretch pl-1">
+            <Image
+              src={searchwhite}
+              alt="search"
+              width={56}
+              height={56}
+              className="w-14 h-14"
+            />
+          </button>
+
         </div>
       </div>
     </>

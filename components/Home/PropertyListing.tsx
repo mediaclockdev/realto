@@ -26,7 +26,7 @@ export default function PropertyListing() {
       agentPhone: "+9999999999",
       agentEmail: "exampleemail.com",
       agentImage: ana,
-      iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+      iconImages: ["/bath.png", "/bedroom.jpg", "/car.jpg"],
     },
     {
       id: "2",
@@ -43,7 +43,7 @@ export default function PropertyListing() {
       agentPhone: "+9999999999",
       agentEmail: "exampleemail.com",
       agentImage: ana,
-      iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+      iconImages: ["/bath.png", "/bedroom.jpg", "/car.jpg"],
     },
     {
       id: "3",
@@ -60,7 +60,7 @@ export default function PropertyListing() {
       agentPhone: "+9999999999",
       agentEmail: "exampleemail.com",
       agentImage: ana,
-      iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+      iconImages: ["/bath.png", "/bedroom.jpg", "/car.jpg"],
     },
     {
       id: "4",
@@ -77,7 +77,7 @@ export default function PropertyListing() {
       agentPhone: "+9999999999",
       agentEmail: "exampleemail.com",
       agentImage: ana,
-      iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+      iconImages: ["/bath.png", "/bedroom.jpg", "/car.jpg"],
     },
     {
       id: "5",
@@ -94,7 +94,7 @@ export default function PropertyListing() {
       agentPhone: "+9999999999",
       agentEmail: "exampleemail.com",
       agentImage: ana,
-      iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+      iconImages: ["/bath.png", "/bedroom.jpg","/car.jpg", ],
     },
   ];
 

@@ -62,17 +62,17 @@ const LuxuryProperties = () => {
         {/* Left text section */}
         <div className="lg:w-1/4 w-full space-y-5 shrink-0">
           <div className="flex items-center gap-2">
-            <p className="text-[#343434] font-bold text-xl sm:text-2xl">
+            <p className="text-[#343434] font-bold text-xl sm:text-2xl font-poppins">
               Luxury Properties
             </p>
             <Image src={building} alt="icon" width={28} height={28} />
           </div>
           <div className="space-y-3">
-            <p className="text-[#343434] text-sm sm:text-base">
+            <p className="text-[#343434] text-sm sm:text-base font-poppins">
               Experience the extraordinary. These are the most popular
               properties of our collections.
             </p>
-            <p className="text-[#4189DD] cursor-pointer hover:underline text-sm sm:text-base">
+            <p className="text-[#4189DD] cursor-pointer hover:underline text-sm sm:text-base font-poppins">
               Explore more ...
             </p>
           </div>
@@ -114,20 +114,20 @@ const LuxuryProperties = () => {
                       marginBottom: featured ? "12px" : "0px",
                     }}
                   >
-                    <p className="text-white font-semibold text-base leading-tight">
+                    <p className="text-white font-semibold text-base leading-tight font-poppins">
                       {property.title}
                     </p>
-                    <p className="text-white/80 text-sm">
+                    <p className="text-white/80 text-sm font-poppins">
                       Location : {property.location}
                     </p>
-                    <p className="text-white/80 text-sm">
+                    <p className="text-white/80 text-sm font-poppins">
                       Price : {property.price}
                     </p>
                   </div>
 
                   {/* Button */}
                   {featured ? (
-                    <button className="w-full bg-[#0284C7] hover:bg-[#3a3a3a] text-white rounded-full py-3 text-sm font-medium transition-colors duration-200">
+                    <button className="w-full bg-[#0284C7] hover:bg-[#3a3a3a] text-white rounded-full py-3 text-sm font-medium font-poppins transition-colors duration-200">
                       View detail
                     </button>
                   ) : (
@@ -162,16 +162,16 @@ const LuxuryProperties = () => {
 
               {/* Always show info on mobile */}
               <div className="absolute bottom-0 left-0 right-0 p-4">
-                <p className="text-white font-semibold text-base">
+                <p className="text-white font-semibold text-base font-poppins">
                   {property.title}
                 </p>
-                <p className="text-white/80 text-sm">
+                <p className="text-white/80 text-sm font-poppins">
                   Location : {property.location}
                 </p>
-                <p className="text-white/80 text-sm mb-3">
+                <p className="text-white/80 text-sm mb-3 font-poppins">
                   Price : {property.price}
                 </p>
-                <button className="w-full bg-[#2a2a2a]/90 hover:bg-[#3a3a3a] text-white rounded-full py-2.5 text-sm font-medium transition-colors duration-200">
+                <button className="w-full bg-[#2a2a2a]/90 hover:bg-[#3a3a3a] text-white rounded-full py-2.5 text-sm font-medium font-poppins transition-colors duration-200">
                   View detail
                 </button>
               </div>

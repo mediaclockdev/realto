@@ -16,7 +16,7 @@ export default function RealEstateAgents() {
   
     <div className="relative overflow-hidden max-w-screen-2xl mx-auto px-5 py-5">
       <div>
-        <p className="text-black font-semibold text-xl">Real Estate Agents :</p>
+        <p className="text-black font-semibold text-xl  font-poppins">Real Estate Agents :</p>
       </div>
         <div className="marquee-wrapper">
           <div className="marquee-track">

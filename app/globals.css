@@ -22,7 +22,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins);
 }
 .marquee-wrapper {
   overflow: hidden;
@@ -47,5 +47,16 @@ body {
   }
   100% {
     transform: translateX(-33.333%);
+  }
+}
+
+@theme {
+  --font-poppins: var(--font-poppins);
+}
+@layer utilities {
+  .border-gold-gradient {
+    padding: 2px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225);
   }
 }
