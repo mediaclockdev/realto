@@ -15,7 +15,7 @@ import img5 from "../../public/contact4.jpeg";
 const IMAGES = [img1, img2, img3, img4, img5];
 
 type ContactProps = {
-  images: (StaticImageData | string)[];
+  images?: (StaticImageData | string)[];
   interval?: number;
 };
 
@@ -23,12 +23,14 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    if (images.length <= 1) return;
-    const timer = setInterval(() => {
-      setCurrent((c) => (c + 1) % images.length);
-    }, interval);
-    return () => clearInterval(timer);
-  }, [images.length, interval]);
+  if (images.length <= 1) return;
+
+  const timer = setInterval(() => {
+    setCurrent((c) => (c + 1) % images.length);
+  }, interval);
+
+  return () => clearInterval(timer);
+}, [images, interval]);
 
   return (
     <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 py-8 bg-gray-100 flex items-center">
