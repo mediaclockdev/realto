@@ -1,15 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { Heart } from "lucide-react";
+
+const GOLD_GRADIENT =
+  "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
 
 export default function ListingCard({ listing }: any) {
   const isFlatmate = listing.type === "flatmate";
   const [liked, setLiked] = useState(false);
+  const outerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="rounded-2xl overflow-hidden w-full bg-white">
+    <div
+      ref={outerRef}
+      className="rounded-2xl cursor-pointer transition-all duration-300 hover:scale-[1.02] p-[2px]"
+      style={{ background: "transparent" }}
+      onMouseEnter={() => {
+        if (outerRef.current) outerRef.current.style.background = GOLD_GRADIENT;
+      }}
+      onMouseLeave={() => {
+        if (outerRef.current) outerRef.current.style.background = "transparent";
+      }}
+    >
+      <div className="rounded-2xl overflow-hidden w-full bg-white">
       {/* Image Section */}
       <div className="relative h-[220px] w-full">
         <Image
@@ -32,10 +47,10 @@ export default function ListingCard({ listing }: any) {
       </div>
 
       {/* Content Section */}
-      <div className="px-4 py-3 space-y-0.5">
+      <div className="px-4 py-3 space-y-0.5 h-[130px]">
         {/* Icon badges for place type - below image */}
         {!isFlatmate && listing.iconImages && (
-          <div className="flex items-center gap-2 pb-1">
+          <div className="flex items-center gap-2">
             {listing.iconImages.map((icon: string, idx: number) => (
               <div
                 key={idx}
@@ -82,6 +97,7 @@ export default function ListingCard({ listing }: any) {
         <p className={`text-[13px] font-medium ${isFlatmate ? "text-gray-500" : "text-[#2EC86A]"}`}>
           {listing.months}
         </p>
+      </div>
       </div>
     </div>
   );

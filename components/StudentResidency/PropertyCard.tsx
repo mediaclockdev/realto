@@ -1,14 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useRef } from "react";
 import Image from "next/image";
 import { PropertyCardProps } from "../../types/types";
 
 export default function PropertyCard({ property }: PropertyCardProps) {
   const [liked, setLiked] = useState<boolean>(false);
+  const GOLD_GRADIENT =
+  "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
+  const outerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer">
+    <div
+      ref={outerRef}
+      className="rounded-2xl cursor-pointer transition-all duration-300 hover:scale-[1.02] p-[2px]"
+      style={{ background: "transparent" }}
+      onMouseEnter={() => {
+        if (outerRef.current) outerRef.current.style.background = GOLD_GRADIENT;
+      }}
+      onMouseLeave={() => {
+        if (outerRef.current) outerRef.current.style.background = "transparent";
+      }}
+    >
+      <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-200">
       {/* Image */}
       <div className="relative w-full h-44">
         <Image
@@ -69,6 +83,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
             </span>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

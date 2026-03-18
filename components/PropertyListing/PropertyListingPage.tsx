@@ -7,6 +7,7 @@ import ListingMeta from "./ListingMeta";
 import MapWidget from "./MapWidget";
 import Pagination from "./Pagination";
 import PropertyListingCard from "./PropertyListingCard";
+import { getListingVariantConfig } from "./config";
 import PropertyListingMapPane from "./PropertyListingMapPane";
 import PropertyListingResultsPane from "./PropertyListingResultsPane";
 import SearchFilterBar from "./SearchFilterBar";
@@ -40,6 +41,7 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
 }) => {
   const router = useRouter();
   const pathname = usePathname();
+  const variantConfig = getListingVariantConfig(data.listingVariant);
   const [isListCollapsed, setIsListCollapsed] = useState(false);
   const [selectedMapPropId, setSelectedMapPropId] = useState<string | null>(
     null,
@@ -100,7 +102,7 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
   };
 
   const openPropertyDetail = (propertyId: string) => {
-    router.push(`/property/${propertyId}`);
+    router.push(`/property/${propertyId}?listingVariant=${data.listingVariant}`);
   };
 
   const desktopContainerClassName =
@@ -115,6 +117,7 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
         onToggleView={handleToggleView}
         searchValue={query.search}
         onSearchChange={handleSearchChange}
+        listingVariant={data.listingVariant}
       />
 
       <div className={desktopContainerClassName}>
@@ -125,10 +128,12 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
               count={data.totalProperties}
               location={data.location}
               suburb={data.suburb}
+              listingLabel={variantConfig.listingLabel}
+              listingVariant={data.listingVariant}
               sort={query.sort}
               onSortChange={handleSortChange}
               onPropertySelect={openPropertyDetail}
-              className={`relative transition-all duration-300 flex-shrink-0 bg-white border-r border-[#0284C7] z-20 ${
+              className={`relative transition-all duration-300 flex-shrink-0 bg-white border-r ${variantConfig.listPanelBorderClassName} z-20 ${
                 isListCollapsed
                   ? "w-0 overflow-hidden border-r-0"
                   : "w-full max-w-[390px]"
@@ -169,6 +174,7 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
                 onSelectProperty={setSelectedMapPropId}
                 onOpenProperty={openPropertyDetail}
                 isFullScreen={isListCollapsed}
+                listingVariant={data.listingVariant}
               />
             </section>
           </div>
@@ -178,6 +184,7 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
               location={data.location}
               suburb={data.suburb}
               count={data.totalProperties}
+              listingLabel={variantConfig.listingLabel}
               sort={query.sort}
               onSortChange={handleSortChange}
             />
@@ -189,6 +196,7 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
                     <PropertyListingCard
                       key={property.id}
                       property={property}
+                      listingVariant={data.listingVariant}
                       onClick={() => openPropertyDetail(property.id)}
                     />
                   ))}
@@ -226,6 +234,7 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
               onSelectProperty={setSelectedMapPropId}
               onOpenProperty={openPropertyDetail}
               isFullScreen
+              listingVariant={data.listingVariant}
             />
 
             <div className="px-4 sm:px-6 pt-6 bg-white w-screen">
@@ -234,6 +243,8 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
                 count={data.totalProperties}
                 location={data.location}
                 suburb={data.suburb}
+                listingLabel={variantConfig.listingLabel}
+                listingVariant={data.listingVariant}
                 sort={query.sort}
                 onSortChange={handleSortChange}
                 onPropertySelect={openPropertyDetail}

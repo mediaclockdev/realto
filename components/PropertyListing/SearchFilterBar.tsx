@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import listicon from "../../public/listToggleicon.svg";
 import mapicon from "../../public/mapToggleicon.svg";
 import Image from "next/image";
+import type { ListingVariant } from "./types";
 
 const filters = ["Property type", "Price", "Rooms", "More"];
 
@@ -13,6 +14,7 @@ interface SearchFilterBarProps {
   searchValue?: string;
   onSearchChange?: (value: string) => void;
   showViewToggle?: boolean;
+  listingVariant?: ListingVariant;
 }
 
 const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
@@ -21,6 +23,7 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
   searchValue,
   onSearchChange,
   showViewToggle = true,
+  listingVariant = "buy",
 }) => {
   const [internalSearch, setInternalSearch] = useState("");
   const search = searchValue ?? internalSearch;
@@ -34,8 +37,32 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
     setInternalSearch(value);
   };
 
+  const ViewToggle = (
+    <button
+      onClick={onToggleView}
+      className="relative flex items-center w-20 h-10 rounded-full bg-white p-1 shadow-inner border border-gray-200 transition-all shrink-0"
+      aria-label="Toggle view"
+    >
+      <span
+        className={`absolute transition-all duration-300 w-8 h-8 rounded-full bg-[#1e1e1e] flex items-center justify-center shadow-md ${
+          isMapView ? "left-[calc(100%-2.25rem)]" : "left-1"
+        }`}
+      >
+        {isMapView ? (
+          <Image src={mapicon} alt="Map" width={20} height={20} />
+        ) : (
+          <Image src={listicon} alt="List" width={20} height={20} />
+        )}
+      </span>
+    </button>
+  );
+
   return (
-    <div className="w-full bg-[#0284C7] border-b border-gray-200 px-4 sm:px-6 lg:px-10 py-3">
+    <div
+      className={`w-full border-b border-gray-200 px-4 sm:px-6 lg:px-10 py-3 ${
+        listingVariant === "rent" ? "bg-[#0284C7]" : "bg-[#0284C7]"
+      }`}
+    >
       <div className="max-w-screen-2xl mx-auto flex items-center gap-3 flex-wrap sm:flex-nowrap">
         {/* Search input */}
         <div className="flex items-center bg-white border border-gray-300 rounded-full px-3 py-2 gap-2 w-full sm:w-56 shrink-0">
@@ -43,7 +70,7 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
             type="text"
             value={search}
             onChange={(e) => handleSearchChange(e.target.value)}
-            placeholder="Lorem ipsum viverra gravida"
+            placeholder="Search property"
             className="flex-1 text-sm outline-none text-gray-700 placeholder-gray-400 min-w-0"
           />
           <button className="bg-gray-700 hover:bg-gray-900 p-1.5 rounded-full transition-colors shrink-0">
@@ -63,7 +90,7 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
           </button>
         </div>
 
-        {/* Filter dropdowns */}
+        {/* Filter dropdowns + Toggle (Mobile) */}
         <div className="flex items-center gap-2 flex-wrap">
           {filters.map((f) => (
             <button
@@ -84,33 +111,13 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
               </svg>
             </button>
           ))}
+          {showViewToggle && <div className="sm:hidden">{ViewToggle}</div>}
         </div>
 
-
-        <div className="flex-1" />
-
-        
-        {showViewToggle ? (
-          <div className="flex items-center shrink-0">
-            <button
-              onClick={onToggleView}
-              className="relative flex items-center w-20 h-10 rounded-full bg-white p-1 shadow-inner border border-gray-200 transition-all"
-              aria-label="Toggle view"
-            >
-              <span
-                className={`absolute transition-all duration-300 w-8 h-8 rounded-full bg-[#1e1e1e] flex items-center justify-center shadow-md ${
-                  isMapView ? "left-[calc(100%-2.25rem)]" : "left-1"
-                }`}
-              >
-                {isMapView ? (
-                  <Image src={mapicon} alt="Map" width={20} height={20} />
-                ) : (
-                  <Image src={listicon} alt="List" width={20} height={20} />
-                )}
-              </span>
-            </button>
-          </div>
-        ) : null}
+        {/* View Toggle (Desktop) */}
+        {showViewToggle && (
+          <div className="hidden sm:flex flex-1 justify-end">{ViewToggle}</div>
+        )}
       </div>
     </div>
   );

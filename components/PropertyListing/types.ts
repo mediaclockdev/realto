@@ -1,6 +1,7 @@
 import type { StaticImageData } from "next/image";
 
 export type ListingImageSource = string | StaticImageData;
+export type ListingVariant = "buy" | "rent";
 export type ListingSortOption =
   | "Relevant listings"
   | "Newest first"
@@ -23,6 +24,7 @@ export interface ListingProperty {
   agentPhone: string;
   agentEmail: string;
   agentImage: ListingImageSource;
+  agentImageCard: ListingImageSource;
   iconImages?: ListingImageSource[];
   iconLabels?: string[];
   thumbnail: ListingImageSource[];
@@ -31,6 +33,7 @@ export interface ListingProperty {
 
 export interface PropertyListingPageData {
   properties: ListingProperty[];
+  listingVariant: ListingVariant;
   location: string;
   suburb: string;
   totalProperties: number;

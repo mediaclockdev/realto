@@ -41,7 +41,7 @@ const page = async ({ searchParams }: PageProps) => {
   };
   const listingPageData = getPropertyListingPageData({
     ...query,
-    listingVariant: "buy",
+    listingVariant: "rent",
   });
 
   return (

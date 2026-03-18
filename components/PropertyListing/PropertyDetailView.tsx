@@ -102,7 +102,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
         </div>
       </div>
 
-      <div className="max-w-10xl mx-auto px-4 py-4 space-y-8">
+      <div className="max-w-screen-2xl lg:max-w-10xl mx-auto px-0 lg:px-4 py-4 space-y-8">
         
         {/* Main Info & Agent Card Grid */}
       <div className="flex flex-col lg:flex-row justify-between gap-8 bg-white rounded-[10px] shadow-sm  p-6 sm:p-8">
@@ -173,7 +173,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
         {/* Left: Avatar + Name */}
         <div className="flex flex-col items-center gap-2 min-w-[90px]">
           <Image
-            src={property.agentImage}
+            src={property.agentImageCard}
             alt={property.agentName}
             width={80}
             height={80}
@@ -215,7 +215,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Property description</h2>
           <p className="text-gray-600 leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur. Enim dolor est adipiscing consequat. Diam id auctor nunc sed id. Consectetur id risus tellus est sed mi. Risus pretium proin nibh condimentum dui non. Lorem ipsum dolor sit amet consectetur. Enim dolor est adipiscing consequat. Diam id auctor nunc sed id. Consectetur id risus tellus est sed mi. Risus pretium proin nibh condimentum dui non.
+            This architecturally designed development offers an sophisticated retreat, just 5km from the Sydney CBD. Bathed in natural light, the spacious open-plan living and dining areas flow effortlessly onto a private balcony with city views. Featuring a gourmet Caesarstone kitchen with Smeg appliances, and a luxurious master suite, this property is the epitome of comfort and style.
           </p>
         </div>
 
@@ -266,9 +266,29 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
         {/* Property History */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Property History</h2>
-          <p className="text-gray-600 leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur. Enim dolor est adipiscing consequat. Diam id auctor nunc sed id. Consectetur id risus tellus est sed mi. Risus pretium proin nibh condimentum dui non. Lorem ipsum dolor sit amet consectetur. Enim dolor est adipiscing consequat. Diam id auctor nunc sed id. Consectetur id risus tellus est sed mi. Risus pretium proin nibh condimentum dui non.
-          </p>
+          <div className="text-gray-600 leading-relaxed">
+            <p>
+           This provides a typical localized sales and construction history for an apartment complex in this area.
+            </p>
+            <p>
+            Mar 2026: Property listed on REALTO by Peter Nikolatos (LJ Hooker).
+            </p>
+            <p>
+            Nov 2025: Construction completion certificate issued for 'A' Block development.
+            </p>
+            <p>
+              Jun 2024: Construction commenced for the 'A' Block modern complex.
+              </p>
+            <p>
+            Jan 2024: DA Approval granted by City of Sydney Council for development (DA/2023/1234).
+            </p>
+            <p>
+            Oct 2023: Site acquisition and DA submission for a new residential development.
+            </p>
+            <p>
+            Sep 2023: Vacant site listed for sale by Expressions of Interest.
+            </p>
+          </div>
         </div>
 
       </div>

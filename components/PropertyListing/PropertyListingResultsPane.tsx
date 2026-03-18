@@ -3,13 +3,19 @@
 import React from "react";
 import ListingMeta from "./ListingMeta";
 import PropertyListingCard from "./PropertyListingCard";
-import type { ListingProperty, ListingSortOption } from "./types";
+import type {
+  ListingProperty,
+  ListingSortOption,
+  ListingVariant,
+} from "./types";
 
 interface PropertyListingResultsPaneProps {
   properties: ListingProperty[];
   count: number;
   location: string;
   suburb: string;
+  listingLabel?: string;
+  listingVariant?: ListingVariant;
   sort: ListingSortOption;
   onSortChange: (sort: ListingSortOption) => void;
   selectedPropertyId?: string | null;
@@ -26,6 +32,8 @@ const PropertyListingResultsPane: React.FC<PropertyListingResultsPaneProps> = ({
   count,
   location,
   suburb,
+  listingLabel,
+  listingVariant = "buy",
   sort,
   onSortChange,
   selectedPropertyId,
@@ -46,6 +54,7 @@ const PropertyListingResultsPane: React.FC<PropertyListingResultsPaneProps> = ({
           sort={sort}
           onSortChange={onSortChange}
           variant="map"
+          listingLabel={listingLabel}
         />
       </div>
 
@@ -61,6 +70,7 @@ const PropertyListingResultsPane: React.FC<PropertyListingResultsPaneProps> = ({
           >
             <PropertyListingCard
               property={property}
+              listingVariant={listingVariant}
               onClick={() => onPropertySelect(property.id)}
             />
           </div>

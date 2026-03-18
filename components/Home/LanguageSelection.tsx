@@ -9,11 +9,23 @@ import franceflag from "../../public/Franceflag.svg";
 import chinaflag from "../../public/chinaflag.svg";
 import israelflag from "../../public/israelflag.svg";
 import world from "../../public/languageworld.svg";
+import greek from "../../public/greek.svg";
+import pakistan from "../../public/pakistan.svg"
+import serbia from "../../public/serbia.svg"
+import Iran from "../../public/iranflag.svg"
+import bangladesh from "../../public/bangladesh.svg"
+import indonesia from "../../public/indonesianflag.svg"
+import malasyia from "../../public/malasyianflag.svg"
+import samoan from "../../public/samoan.svg"
 
 const LanguageSelection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [selectedLanguage, setSelectedLanguage] = useState<number | null>(null);
-  const [hoveredLanguage, setHoveredLanguage] = useState<number | null>(null);
+  const [tooltipInfo, setTooltipInfo] = useState<{
+    name: string;
+    nativeName: string;
+    rect: DOMRect;
+  } | null>(null);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isAtEnd, setIsAtEnd] = useState(false);
 
@@ -23,6 +35,16 @@ const LanguageSelection = () => {
     { name: "Hindi", nativeName: "हिन्दी", icon: indianflag, code: "hi" },
     { name: "Israeli", nativeName: "עברית", icon: israelflag, code: "is" },
     { name: "Korean", nativeName: "한국어", icon: koreanflag, code: "ko" },
+    { name: "Greek", nativeName: "Ελληνικά", icon: greek, code: "gr" },
+    { name: "Urdu", nativeName: "اردو", icon: pakistan, code: "ur" },
+    { name: "Serbia", nativeName: "Српски", icon: serbia, code: "sr" },
+    { name: "Persian(Farsi)", nativeName: "فارسی", icon: Iran, code: "fa" },
+    { name: "Bengali", nativeName: "বাংলা", icon: bangladesh, code: "bn" },
+    { name: "Indonesian", nativeName: "Bahasa Indonesia", icon: indonesia, code: "id" },
+    { name: "Malaysian", nativeName: "Bahasa Malaysia", icon: malasyia, code: "ms" },
+    { name: "Samoan", nativeName: "Samoan", icon: samoan, code: "sm" },
+
+
   ];
 
   const languages = Array.from({ length: 30 }, (_, i) => ({
@@ -88,7 +110,7 @@ const LanguageSelection = () => {
         {scrollLeft > 10 && (
           <button
             onClick={() => scroll("left")}
-            className="absolute left-14 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300"
+            className="absolute left-14 mt-3 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300"
             aria-label="Scroll left"
           >
             <ChevronLeft className="w-5 h-5 text-gray-800" />
@@ -99,44 +121,24 @@ const LanguageSelection = () => {
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
-          className="flex items-center gap-3 overflow-x-auto scrollbar-hide scroll-smooth pt-8 pb-1 flex-1"
+          className="flex items-center gap-5 overflow-x-auto scrollbar-hide scroll-smooth pt-8 pb-1 flex-1"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {languages.map((lang, index) => (
+          {languages.map((lang) => (
             <div
               key={lang.id}
               className="relative shrink-0 flex flex-col items-center"
-              onMouseEnter={() => setHoveredLanguage(lang.id)}
-              onMouseLeave={() => setHoveredLanguage(null)}
+              onMouseEnter={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                setTooltipInfo({ name: lang.name, nativeName: lang.nativeName, rect });
+              }}
+              onMouseLeave={() => setTooltipInfo(null)}
             >
-              {/* Tooltip */}
-              {hoveredLanguage === lang.id && (
-                <div
-                  className="absolute -top-8 z-50 pointer-events-none"
-                  style={{
-                    left: index < 2 ? "0" : index > languages.length - 3 ? "auto" : "50%",
-                    right: index > languages.length - 3 ? "0" : "auto",
-                    transform: index < 2 || index > languages.length - 3 ? "none" : "translateX(-50%)",
-                  }}
-                >
-                  <div className="bg-gray-900 text-white text-xs font-medium px-2 py-1 rounded-lg whitespace-nowrap">
-                    {lang.name} / {lang.nativeName}
-                  </div>
-                  <div
-                    className="w-3 h-3 bg-gray-900 rotate-45 -mt-1.5"
-                    style={{
-                      marginLeft: index < 2 ? "14px" : index > languages.length - 3 ? "auto" : "auto",
-                      marginRight: index > languages.length - 3 ? "14px" : "auto",
-                      display: "block",
-                    }}
-                  />
-                </div>
-              )}
 
               {/* Flag Button */}
               <button
                 onClick={() => setSelectedLanguage(lang.id)}
-                className="hover:scale-110 transition-transform duration-200 rounded-full cursor-pointer"
+                className="hover:scale-105 transition-transform duration-200 rounded-full cursor-pointer"
                 title={lang.name}
               >
                 <Image
@@ -150,6 +152,23 @@ const LanguageSelection = () => {
             </div>
           ))}
         </div>
+
+        {/* Fixed tooltip — rendered outside scroll container to avoid clipping */}
+        {tooltipInfo && (
+          <div
+            className="fixed z-9999 pointer-events-none"
+            style={{
+              left: tooltipInfo.rect.left + tooltipInfo.rect.width / 2,
+              top: tooltipInfo.rect.top - 8,
+              transform: "translate(-50%, -100%)",
+            }}
+          >
+            <div className="bg-gray-900 text-white text-xs font-medium px-2 py-1 rounded-lg whitespace-nowrap">
+              {tooltipInfo.name} / {tooltipInfo.nativeName}
+            </div>
+            <div className="w-3 h-3 bg-gray-900 rotate-45 -mt-1.5 mx-auto" />
+          </div>
+        )}
 
         {/* Right Arrow — only show when not at the end */}
         {!isAtEnd && (

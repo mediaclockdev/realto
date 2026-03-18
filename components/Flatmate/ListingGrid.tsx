@@ -22,7 +22,7 @@ const listings = [
       price: "$450/week",
     img: flatshare,
     months: "Available 13 March 2026",
-    iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+    iconImages: ["/bedroom.jpg","/bath.png", "/car.jpg",],
     
   },
    {
@@ -44,7 +44,7 @@ const listings = [
       price: "$450/week",
     img: flatshare,
     months: "Available 13 March 2026",
-    iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+     iconImages: ["/bedroom.jpg","/bath.png", "/car.jpg",],
     
   },
    {
@@ -66,7 +66,7 @@ const listings = [
       price: "$450/week",
     img: flatshare,
     months: "Available 13 March 2026",
-    iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+   iconImages: ["/bedroom.jpg","/bath.png", "/car.jpg",],
     
   },
    {
@@ -88,7 +88,7 @@ const listings = [
       price: "$450/week",
     img: flatshare,
     months: "Available 13 March 2026",
-    iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+     iconImages: ["/bedroom.jpg","/bath.png", "/car.jpg",],
     
   },
    {
@@ -110,7 +110,7 @@ const listings = [
       price: "$450/week",
     img: flatshare,
     months: "Available 13 March 2026",
-    iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+    iconImages: ["/bedroom.jpg","/bath.png", "/car.jpg",],
     
   },
    {
@@ -132,7 +132,7 @@ const listings = [
       price: "$450/week",
     img: flatshare,
     months: "Available 13 March 2026",
-    iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+    iconImages: ["/bedroom.jpg","/bath.png", "/car.jpg",],
     
   },
    {
@@ -154,7 +154,7 @@ const listings = [
       price: "$450/week",
     img: flatshare,
     months: "Available 13 March 2026",
-    iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+     iconImages: ["/bedroom.jpg","/bath.png", "/car.jpg",],
     
   },
    {
@@ -176,7 +176,7 @@ const listings = [
       price: "$450/week",
     img: flatshare,
     months: "Available 13 March 2026",
-    iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
+     iconImages: ["/bedroom.jpg","/bath.png", "/car.jpg",],
     
   },
 

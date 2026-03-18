@@ -2,7 +2,11 @@
 
 import React from "react";
 import PropertyListingCard from "./PropertyListingCard";
-import type { ListingProperty, PropertyMapMarker } from "./types";
+import type {
+  ListingProperty,
+  ListingVariant,
+  PropertyMapMarker,
+} from "./types";
 
 interface PropertyListingMapPaneProps {
   properties: ListingProperty[];
@@ -11,6 +15,7 @@ interface PropertyListingMapPaneProps {
   onSelectProperty: (id: string) => void;
   onOpenProperty: (id: string) => void;
   isFullScreen?: boolean;
+  listingVariant?: ListingVariant;
 }
 
 const PropertyListingMapPane: React.FC<PropertyListingMapPaneProps> = ({
@@ -20,6 +25,7 @@ const PropertyListingMapPane: React.FC<PropertyListingMapPaneProps> = ({
   onSelectProperty,
   onOpenProperty,
   isFullScreen = false,
+  listingVariant = "buy",
 }) => {
   const activeProperty =
     properties.find((property) => property.id === selectedPropertyId) ??
@@ -60,6 +66,7 @@ const PropertyListingMapPane: React.FC<PropertyListingMapPaneProps> = ({
                     <div className="bg-white rounded-xl relative overflow-hidden">
                       <PropertyListingCard
                         property={property}
+                        listingVariant={listingVariant}
                         onClick={() => onOpenProperty(property.id)}
                       />
                     </div>

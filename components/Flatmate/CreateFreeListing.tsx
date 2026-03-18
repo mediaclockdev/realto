@@ -19,7 +19,7 @@ const CreateFreeListing = ({ setMode }: CreateFreeListingProps) => {
         <p className='text-black font-semibold text-xl lg:text-[32px] lg:max-w-[285px]'>Create a free property listing</p>
                       <button
                           onClick={() => setMode("flatmate")}
-                          className='text-white font-semibold text-sm lg:text-base bg-[#0284C7] p-1 lg:p-2 rounded-[10px]'>I need a flatmate</button>
+                          className='text-white font-semibold text-sm lg:text-base bg-[#0284C7] p-2 rounded-[10px]'>I need a flatmate</button>
                   </div>         
           </div>
           <div className='flex items-center gap-3 lg:gap-6.5 bg-white w-full lg:w-1/2 rounded-[10px]'>

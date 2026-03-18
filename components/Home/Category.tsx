@@ -18,7 +18,7 @@ const Features = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const agents = [
     { img: buy, href: "/propertyListingpage" },
-    { img: rent, href: "" },
+    { img: rent, href: "/rent" },
     { img: agent, href: "" },
     { img: loanbroker, href: "" },
     { img: commercial, href: "" },

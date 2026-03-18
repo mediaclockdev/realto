@@ -103,7 +103,7 @@ export default function PropertyListing() {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto  py-5">
+    <div className="max-w-screen-2xl mx-auto py-5">
       <div className="px-5">
         {/* Newly Listed Section */}
         <NewListing title="Newly Listed" icon="clock"/>

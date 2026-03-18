@@ -10,6 +10,7 @@ interface ListingMetaProps {
   sort?: ListingSortOption;
   onSortChange?: (sort: ListingSortOption) => void;
   variant?: "default" | "map";
+  listingLabel?: string;
 }
 
 const sortOptions: ListingSortOption[] = [
@@ -26,6 +27,7 @@ const ListingMeta: React.FC<ListingMetaProps> = ({
   sort,
   onSortChange,
   variant = "default",
+  listingLabel,
 }) => {
   const [internalSort, setInternalSort] = useState<ListingSortOption>("Relevant listings");
   const [open, setOpen] = useState(false);
@@ -50,7 +52,9 @@ const ListingMeta: React.FC<ListingMetaProps> = ({
         
         {/* Label */}
         <p className="uppercase text-xs text-[#909090]  font-medium mb-1">
-          {isMapVariant ? "Properties for sale in" : `Properties for sale in ${location}`}
+          {isMapVariant
+            ? (listingLabel ?? "Properties for sale in")
+            : `${listingLabel ?? "Properties for sale in"} ${location}`}
         </p>
 
         {/* Suburb */}

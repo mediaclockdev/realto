@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import { getListingVariantConfig } from "./config";
 import type { ListingSortOption, ListingProperty } from "./types";
 import ListingMeta from "./ListingMeta";
 import PropertyDetailView from "./PropertyDetailView";
@@ -12,6 +13,7 @@ interface PropertyDetailPageProps {
   property: ListingProperty;
   relatedProperties: ListingProperty[];
   listingMeta: {
+    listingVariant: "buy" | "rent";
     location: string;
     suburb: string;
     totalProperties: number;
@@ -24,6 +26,7 @@ const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
   listingMeta,
 }) => {
   const router = useRouter();
+  const variantConfig = getListingVariantConfig(listingMeta.listingVariant);
 
   const navigateToListings = (search = "") => {
     const params = new URLSearchParams();
@@ -33,13 +36,19 @@ const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
     }
 
     const query = params.toString();
-    router.push(query ? `/propertyListingpage?${query}` : "/propertyListingpage");
+    router.push(
+      query
+        ? `/${listingMeta.listingVariant === "rent" ? "rent" : "propertyListingpage"}?${query}`
+        : `/${listingMeta.listingVariant === "rent" ? "rent" : "propertyListingpage"}`,
+    );
   };
 
   const handleSortChange = (sort: ListingSortOption) => {
     const params = new URLSearchParams();
     params.set("sort", sort);
-    router.push(`/propertyListingpage?${params.toString()}`);
+    router.push(
+      `/${listingMeta.listingVariant === "rent" ? "rent" : "propertyListingpage"}?${params.toString()}`,
+    );
   };
 
   return (
@@ -49,6 +58,7 @@ const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
         onToggleView={() => {}}
         showViewToggle={false}
         onSearchChange={navigateToListings}
+        listingVariant={listingMeta.listingVariant}
       />
 
       <div className="max-w-screen-2xl mx-auto px-5 py-5">
@@ -63,6 +73,7 @@ const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
                   sort="Relevant listings"
                   onSortChange={handleSortChange}
                   variant="map"
+                  listingLabel={variantConfig.listingLabel}
                 />
               </div>
 
@@ -71,7 +82,12 @@ const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
                   <PropertyListingCard
                     key={relatedProperty.id}
                     property={relatedProperty}
-                    onClick={() => router.push(`/property/${relatedProperty.id}`)}
+                    listingVariant={listingMeta.listingVariant}
+                    onClick={() =>
+                      router.push(
+                        `/property/${relatedProperty.id}?listingVariant=${listingMeta.listingVariant}`,
+                      )
+                    }
                   />
                 ))}
               </div>
@@ -81,7 +97,13 @@ const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
           <section className="order-1 lg:order-2 min-w-0">
             <PropertyDetailView
               property={property}
-              onBack={() => router.push("/propertyListingpage")}
+              onBack={() =>
+                router.push(
+                  listingMeta.listingVariant === "rent"
+                    ? "/rent"
+                    : "/propertyListingpage",
+                )
+              }
             />
           </section>
         </div>

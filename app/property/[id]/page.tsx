@@ -5,13 +5,18 @@ import {
   getPropertyListingMeta,
   getRelatedProperties,
 } from "@/lib/property-listing-data";
+import type { ListingVariant } from "@/components/PropertyListing/types";
 
 type PageProps = {
   params: Promise<{ id: string }>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
-const page = async ({ params }: PageProps) => {
+const page = async ({ params, searchParams }: PageProps) => {
   const { id } = await params;
+  const resolvedSearchParams = (await searchParams) ?? {};
+  const listingVariant =
+    resolvedSearchParams.listingVariant === "rent" ? "rent" : "buy";
   const property = getPropertyById(id);
 
   if (!property) {
@@ -19,7 +24,7 @@ const page = async ({ params }: PageProps) => {
   }
 
   const relatedProperties = getRelatedProperties(id);
-  const listingMeta = getPropertyListingMeta();
+  const listingMeta = getPropertyListingMeta(listingVariant as ListingVariant);
 
   return (
     <PropertyDetailPage

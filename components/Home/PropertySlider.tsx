@@ -120,17 +120,17 @@ const PropertyCard: React.FC<{
 
   return (
    <div
-  ref={outerRef}
-  className="shrink-0 w-[340px] rounded-xl cursor-pointer transition-all duration-300 hover:scale-105 p-[2px]"
-  style={{ background: "transparent" }}
-  onMouseEnter={() => {
+    ref={outerRef}
+    className="shrink-0 w-[340px] rounded-xl cursor-pointer transition-all duration-300 hover:scale-105 p-[2px]"
+    style={{ background: "transparent" }}
+    onMouseEnter={() => {
     if (outerRef.current) outerRef.current.style.background = GOLD_GRADIENT;
-  }}
-  onMouseLeave={() => {
-    if (outerRef.current) outerRef.current.style.background = "transparent";
-  }}
-  onClick={() => onCardClick?.(property)}
-> 
+         }}
+      onMouseLeave={() => {
+      if (outerRef.current) outerRef.current.style.background = "transparent";
+      }}
+      onClick={() => onCardClick?.(property)}
+        > 
       {/* Inner: white card */}
       <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 w-full h-full">
 

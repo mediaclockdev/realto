@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import location from "@/public/location.svg";
@@ -11,19 +11,24 @@ import clock from "../../public/clock.svg";
 import money from "../../public/money.svg";
 import calender from "../../public/calender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
+import type { ListingVariant } from "./types";
 
 interface PropertyListingCardProps {
   property: ListingProperty;
   isMapView?: boolean;
   onClick?: () => void;
+  listingVariant?: ListingVariant;
 }
 
 const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   property,
   isMapView = false,
   onClick,
+  listingVariant = "buy",
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
+  const outerRef = useRef<HTMLDivElement>(null);
+  const hoverBorder = "linear-gradient(135deg, #f6d365 0%, #fda085 100%)";
 
   const next = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -36,13 +41,184 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
     );
   };
 
+  if (listingVariant === "rent") {
+    return (
+      <div
+        ref={outerRef}
+        onClick={onClick}
+        className="rounded-[24px] cursor-pointer transition-all duration-300 hover:scale-[1.02] p-[2px]"
+        style={{ background: "transparent" }}
+        onMouseEnter={() => {
+          if (outerRef.current) {
+            outerRef.current.style.background = hoverBorder;
+          }
+        }}
+        onMouseLeave={() => {
+          if (outerRef.current) {
+            outerRef.current.style.background = "transparent";
+          }
+        }}
+      >
+        <div className="bg-white rounded-[22px] overflow-hidden shadow-[0_12px_30px_rgba(0,0,0,0.16)] border border-[#e7e7e7] transition-shadow duration-200">
+        <div className="bg-[#ED1C24] px-3 py-2.5 ">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <div className="">
+                <Image
+              src={property.agentCompany}
+              alt="Company logo"
+              width={90}
+              height={36}
+              className="object-contain"
+            />
+
+              </div>
+              <p className=" text-[14px] font-semibold leading-none">
+                {property.agentLocation}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 shrink-0">
+              <div className="text-right">
+                <p className="text-[15px] font-bold leading-none">
+                  {property.agentName}
+                </p>
+                <p className="mt-3 text-[14px] font-semibold leading-none">
+                  {property.agentPhone}
+                </p>
+              </div>
+              <Image
+                src={property.agentImage}
+                alt={property.agentName}
+                width={68}
+                height={68}
+                className="rounded-full object-cover size-[68px] border-2 border-white/40"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="relative bg-gray-200 group/img shrink-0 h-44  lg:w-full">
+          <Image
+            src={property.images[imgIndex]}
+            alt={`Property in ${property.location}`}
+            fill
+            className="object-cover w-3/4 lg:w-full h-1/4 lg:h-full"
+          />
+          {property.images.length > 1 && (
+            <>
+              <button
+                onClick={prev}
+                className="absolute left-2 top-1/2 -translate-y-1/2 text-black bg-white/80 hover:bg-white rounded-full p-1.5 opacity-0 group-hover/img:opacity-100 transition-opacity"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={next}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-black bg-white/80 hover:bg-white rounded-full p-1.5 opacity-0 group-hover/img:opacity-100 transition-opacity"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          )}
+          <div className="absolute bottom-0 inset-x-0 h-[5px] bg-[#8f00ff]" />
+        </div>
+
+        <div className="px-4 pt-3 pb-4">
+          {property.iconImages && (
+            <div className="flex items-center gap-4 mb-4">
+              {property.iconImages.map((icon, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <div className="w-[46px] h-[46px] rounded-xl overflow-hidden border border-[#d8d8d8]">
+                    <Image
+                      src={icon}
+                      alt=""
+                      width={46}
+                      height={46}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <span className="text-[16px] font-bold text-[#343434]">
+                    {property.iconLabels?.[i] ?? "1"}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="flex items-center justify-between gap-4 mb-4">
+            <div className="flex items-center gap-2 min-w-0">
+              <Image src={location} alt="location" className="w-7 h-7 shrink-0" />
+              <span className="text-[18px] font-bold text-[#3a3a3a] truncate">
+                {property.location}
+              </span>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <Image
+                src={squaremetericon}
+                alt="size"
+                className="w-7 h-7 shrink-0"
+              />
+              <span className="text-[18px] font-bold text-[#3a3a3a]">
+                {property.size}
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <div className="flex items-center gap-2 min-w-0">
+              <Image src={money} alt="money" className="w-8 h-8 shrink-0" />
+              <p className="text-[18px] font-bold text-[#3a3a3a] truncate">
+                $700 rent<span className="font-medium text-[#8c8c8c]">/week</span>
+              </p>
+            </div>
+            <span className="text-[18px] font-bold text-[#3a3a3a] shrink-0">
+              •Apartment
+            </span>
+          </div>
+
+          <div className="flex justify-end gap-4">
+            <button
+              className="p-1.5 hover:bg-blue-50 rounded-lg transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image src={share} alt="Share" width={36} height={36} />
+            </button>
+            <button
+              className="p-1.5 hover:bg-red-50 rounded-lg transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image src={home} alt="Home" width={36} height={36} />
+            </button>
+          </div>
+        </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
+      ref={outerRef}
       onClick={onClick}
-      className={`bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md border border-gray-100 transition-shadow duration-200 cursor-pointer ${
-        isMapView ? "flex flex-row" : "flex flex-col"
-      }`}
+      className="rounded-[14px] cursor-pointer transition-all duration-300 hover:scale-[1.02] p-[2px]"
+      style={{ background: "transparent" }}
+      onMouseEnter={() => {
+        if (outerRef.current) {
+          outerRef.current.style.background = hoverBorder;
+        }
+      }}
+      onMouseLeave={() => {
+        if (outerRef.current) {
+          outerRef.current.style.background = "transparent";
+        }
+      }}
     >
+      <div
+        className={`bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md border border-gray-100 transition-shadow duration-200 ${
+          isMapView ? "flex flex-row" : "flex flex-col"
+        }`}
+      >
       {/* Image */}
       <div
         className={`relative bg-gray-200 group/img shrink-0 ${
@@ -194,6 +370,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
