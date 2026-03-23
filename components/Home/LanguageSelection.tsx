@@ -10,13 +10,13 @@ import chinaflag from "../../public/chinaflag.svg";
 import israelflag from "../../public/israelflag.svg";
 import world from "../../public/languageworld.svg";
 import greek from "../../public/greek.svg";
-import pakistan from "../../public/pakistan.svg"
-import serbia from "../../public/serbia.svg"
-import Iran from "../../public/iranflag.svg"
-import bangladesh from "../../public/bangladesh.svg"
-import indonesia from "../../public/indonesianflag.svg"
-import malasyia from "../../public/malasyianflag.svg"
-import samoan from "../../public/samoan.svg"
+import pakistan from "../../public/pakistan.svg";
+import serbia from "../../public/serbia.svg";
+import Iran from "../../public/iranflag.svg";
+import bangladesh from "../../public/bangladesh.svg";
+import indonesia from "../../public/indonesianflag.svg";
+import malasyia from "../../public/malasyianflag.svg";
+import samoan from "../../public/samoan.svg";
 
 const LanguageSelection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -40,11 +40,19 @@ const LanguageSelection = () => {
     { name: "Serbia", nativeName: "Српски", icon: serbia, code: "sr" },
     { name: "Persian(Farsi)", nativeName: "فارسی", icon: Iran, code: "fa" },
     { name: "Bengali", nativeName: "বাংলা", icon: bangladesh, code: "bn" },
-    { name: "Indonesian", nativeName: "Bahasa Indonesia", icon: indonesia, code: "id" },
-    { name: "Malaysian", nativeName: "Bahasa Malaysia", icon: malasyia, code: "ms" },
+    {
+      name: "Indonesian",
+      nativeName: "Bahasa Indonesia",
+      icon: indonesia,
+      code: "id",
+    },
+    {
+      name: "Malaysian",
+      nativeName: "Bahasa Malaysia",
+      icon: malasyia,
+      code: "ms",
+    },
     { name: "Samoan", nativeName: "Samoan", icon: samoan, code: "sm" },
-
-
   ];
 
   const languages = Array.from({ length: 30 }, (_, i) => ({
@@ -54,13 +62,13 @@ const LanguageSelection = () => {
 
   const handleScroll = () => {
     if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      const { scrollLeft, scrollWidth, clientWidth } =
+        scrollContainerRef.current;
       setScrollLeft(scrollLeft);
       setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 10);
     }
   };
   const selectedLang = languages.find((l) => l.id === selectedLanguage);
-
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -79,22 +87,19 @@ const LanguageSelection = () => {
 
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
-      <div className="">
-        <p className="text-black font-semibold text-xl font-poppins">Language selection :</p>
-      </div>
-
-      <div className="relative group flex items-center gap-3">
-
-        {/* World Globe Icon */}
-       <div className="shrink-0 relative group/selected mt-8">
+      <div className="flex items-center gap-3">
+        <p className="text-black font-semibold text-xl font-poppins">
+          Language selection :
+        </p>
+        <div className="shrink-0 relative group/selected">
           <Image
-            src={selectedLang ? selectedLang.icon : world}
-            alt={selectedLang ? selectedLang.name : "World"}
-            width={44}
-            height={44}
+            src={world}
+            alt={"World"}
+            width={46}
+            height={46}
             className="rounded-full"
           />
-           {selectedLang && (
+          {selectedLang && (
             <div className="absolute -top-9 left-0 z-50 pointer-events-none opacity-0 group-hover/selected:opacity-100 transition-opacity duration-200">
               <div className="bg-gray-900 text-white text-xs font-medium px-2 py-1 rounded-lg whitespace-nowrap">
                 {selectedLang.name} / {selectedLang.nativeName}
@@ -103,8 +108,13 @@ const LanguageSelection = () => {
             </div>
           )}
         </div>
+      </div>
+
+      <div className="relative group flex items-center gap-3">
+        {/* World Globe Icon */}
+
         {/* Vertical Divider */}
-        <div className="shrink-0 w-px h-8 bg-gray-300 mt-8" />
+        {/* <div className="shrink-0 w-px h-8 bg-gray-300 mt-8" /> */}
 
         {/* Left Arrow — only show after scrolling right */}
         {scrollLeft > 10 && (
@@ -130,11 +140,14 @@ const LanguageSelection = () => {
               className="relative shrink-0 flex flex-col items-center"
               onMouseEnter={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
-                setTooltipInfo({ name: lang.name, nativeName: lang.nativeName, rect });
+                setTooltipInfo({
+                  name: lang.name,
+                  nativeName: lang.nativeName,
+                  rect,
+                });
               }}
               onMouseLeave={() => setTooltipInfo(null)}
             >
-
               {/* Flag Button */}
               <button
                 onClick={() => setSelectedLanguage(lang.id)}
@@ -180,7 +193,6 @@ const LanguageSelection = () => {
             <ChevronRight className="w-5 h-5 text-gray-800" />
           </button>
         )}
-
       </div>
     </div>
   );

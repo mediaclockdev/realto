@@ -23,12 +23,14 @@ export interface ListingProperty {
   agentLocation: string;
   agentPhone: string;
   agentEmail: string;
+  agentCompanyName: string;
   agentImage: ListingImageSource;
   agentImageCard: ListingImageSource;
   iconImages?: ListingImageSource[];
   iconLabels?: string[];
   thumbnail: ListingImageSource[];
-  socials :  ListingImageSource[];
+  socials: ListingImageSource[];
+  flags: ListingImageSource[];
 }
 
 export interface PropertyListingPageData {

@@ -60,138 +60,145 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
         }}
       >
         <div className="bg-white rounded-[22px] overflow-hidden shadow-[0_12px_30px_rgba(0,0,0,0.16)] border border-[#e7e7e7] transition-shadow duration-200">
-        <div className="bg-[#ED1C24] px-3 py-2.5 ">
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <div className="">
-                <Image
-              src={property.agentCompany}
-              alt="Company logo"
-              width={90}
-              height={36}
-              className="object-contain"
-            />
-
+          <div className="bg-[#ED1C24] px-3 py-2.5 ">
+            <div className="flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <div className="">
+                  <Image
+                    src={property.agentCompany}
+                    alt="Company logo"
+                    width={100}
+                    height={44}
+                    className="object-contain"
+                  />
+                </div>
               </div>
-              <p className=" text-[14px] font-semibold leading-none">
-                {property.agentLocation}
-              </p>
+
+              <div className="flex items-center gap-3 shrink-0">
+                <div className="text-right">
+                  <p className="text-base font-semibold leading-none font-poppins">
+                    {property.agentName}
+                  </p>
+                </div>
+                <Image
+                  src={property.agentImage}
+                  alt={property.agentName}
+                  width={54}
+                  height={54}
+                  className="rounded-full object-cover size-13 border-2 border-white/40"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="relative bg-gray-200 group/img shrink-0 h-44  lg:w-full">
+            <Image
+              src={property.images[imgIndex]}
+              alt={`Property in ${property.location}`}
+              fill
+              className="object-cover w-3/4 lg:w-full h-1/4 lg:h-full"
+            />
+            {property.images.length > 1 && (
+              <>
+                <button
+                  onClick={prev}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 text-black bg-white/80 hover:bg-white rounded-full p-1.5 opacity-0 group-hover/img:opacity-100 transition-opacity"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={next}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-black bg-white/80 hover:bg-white rounded-full p-1.5 opacity-0 group-hover/img:opacity-100 transition-opacity"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </>
+            )}
+            <div className="absolute bottom-0 inset-x-0 h-[5px] bg-[#8f00ff]" />
+          </div>
+
+          <div className="px-4 pt-3 pb-4">
+            {property.iconImages && (
+              <div className="flex items-center gap-4 mb-4">
+                {property.iconImages.map((icon, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className="w-[46px] h-[46px] rounded-xl overflow-hidden border border-[#d8d8d8]">
+                      <Image
+                        src={icon}
+                        alt=""
+                        width={46}
+                        height={46}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    <span className="text-base font-bold text-[#343434]">
+                      {property.iconLabels?.[i] ?? "1"}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="flex items-center justify-between gap-4 mb-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <Image
+                  src={location}
+                  alt="location"
+                  className="w-7 h-7 shrink-0"
+                />
+                <span className="text-base font-semibold text-[#343434] truncate">
+                  {property.location}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <Image
+                  src={squaremetericon}
+                  alt="size"
+                  className="w-7 h-7 shrink-0"
+                />
+                <span className="text-base font-semibold text-[#343434]">
+                  {property.size}
+                </span>
+              </div>
             </div>
 
-            <div className="flex items-center gap-3 shrink-0">
-              <div className="text-right">
-                <p className="text-[15px] font-bold leading-none">
-                  {property.agentName}
+            <div className="flex items-end justify-between gap-4 ">
+              <div className="flex items-center gap-2 min-w-0">
+                <Image src={money} alt="money" className="w-8 h-8 shrink-0" />
+                <p className="text-base font-semibold text-[#343434] font-poppins truncate">
+                  $700 rent
+                  <span className="font-poppins text-[#8c8c8c] text-sm">
+                    /week
+                  </span>
                 </p>
-                <p className="mt-3 text-[14px] font-semibold leading-none">
+              </div>
+              <p className="text-base font-semibold text-[#343434] shrink-0">
+                •Apartment
+              </p>
+            </div>
+            <div className="flex justify-between items-center">
+              <div className="flex items-center">
+                <Image src={mobile} alt="mobile icon" />
+                <p className=" text-base font-semibold leading-none text-[#343434] font-poppins">
                   {property.agentPhone}
                 </p>
               </div>
-              <Image
-                src={property.agentImage}
-                alt={property.agentName}
-                width={68}
-                height={68}
-                className="rounded-full object-cover size-[68px] border-2 border-white/40"
-              />
+              <div className="flex gap-1">
+                <button
+                  className="p-1.5 hover:bg-blue-50 rounded-lg transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Image src={share} alt="Share" width={36} height={36} />
+                </button>
+                <button
+                  className="p-1.5 hover:bg-red-50 rounded-lg transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Image src={home} alt="Home" width={36} height={36} />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="relative bg-gray-200 group/img shrink-0 h-44  lg:w-full">
-          <Image
-            src={property.images[imgIndex]}
-            alt={`Property in ${property.location}`}
-            fill
-            className="object-cover w-3/4 lg:w-full h-1/4 lg:h-full"
-          />
-          {property.images.length > 1 && (
-            <>
-              <button
-                onClick={prev}
-                className="absolute left-2 top-1/2 -translate-y-1/2 text-black bg-white/80 hover:bg-white rounded-full p-1.5 opacity-0 group-hover/img:opacity-100 transition-opacity"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={next}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-black bg-white/80 hover:bg-white rounded-full p-1.5 opacity-0 group-hover/img:opacity-100 transition-opacity"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </>
-          )}
-          <div className="absolute bottom-0 inset-x-0 h-[5px] bg-[#8f00ff]" />
-        </div>
-
-        <div className="px-4 pt-3 pb-4">
-          {property.iconImages && (
-            <div className="flex items-center gap-4 mb-4">
-              {property.iconImages.map((icon, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <div className="w-[46px] h-[46px] rounded-xl overflow-hidden border border-[#d8d8d8]">
-                    <Image
-                      src={icon}
-                      alt=""
-                      width={46}
-                      height={46}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <span className="text-[16px] font-bold text-[#343434]">
-                    {property.iconLabels?.[i] ?? "1"}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <div className="flex items-center justify-between gap-4 mb-4">
-            <div className="flex items-center gap-2 min-w-0">
-              <Image src={location} alt="location" className="w-7 h-7 shrink-0" />
-              <span className="text-[18px] font-bold text-[#3a3a3a] truncate">
-                {property.location}
-              </span>
-            </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <Image
-                src={squaremetericon}
-                alt="size"
-                className="w-7 h-7 shrink-0"
-              />
-              <span className="text-[18px] font-bold text-[#3a3a3a]">
-                {property.size}
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-end justify-between gap-4 mb-8">
-            <div className="flex items-center gap-2 min-w-0">
-              <Image src={money} alt="money" className="w-8 h-8 shrink-0" />
-              <p className="text-[18px] font-bold text-[#3a3a3a] truncate">
-                $700 rent<span className="font-medium text-[#8c8c8c]">/week</span>
-              </p>
-            </div>
-            <span className="text-[18px] font-bold text-[#3a3a3a] shrink-0">
-              •Apartment
-            </span>
-          </div>
-
-          <div className="flex justify-end gap-4">
-            <button
-              className="p-1.5 hover:bg-blue-50 rounded-lg transition-colors"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image src={share} alt="Share" width={36} height={36} />
-            </button>
-            <button
-              className="p-1.5 hover:bg-red-50 rounded-lg transition-colors"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image src={home} alt="Home" width={36} height={36} />
-            </button>
-          </div>
-        </div>
         </div>
       </div>
     );
@@ -219,158 +226,169 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           isMapView ? "flex flex-row" : "flex flex-col"
         }`}
       >
-      {/* Image */}
-      <div
-        className={`relative bg-gray-200 group/img shrink-0 ${
-          isMapView ? "w-40 sm:w-48 h-auto" : " h-44  lg:w-full"
-        }`}
-      >
-        <Image
-          src={property.images[imgIndex]}
-          alt={`Property in ${property.location}`}
-          fill
-          className="object-cover w-3/4 lg:w-full h-1/4 lg:h-full"
-        />
-        {property.images.length > 1 && (
-          <>
-            <button
-              onClick={prev}
-              className="absolute left-1.5 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-1 opacity-0 group-hover/img:opacity-100 transition-opacity"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={next}
-              className="absolute right-1.5 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-1 opacity-0 group-hover/img:opacity-100 transition-opacity"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </>
-        )}
-      </div>
+        {/* Image */}
+        <div
+          className={`relative bg-gray-200 group/img shrink-0 ${
+            isMapView ? "w-40 sm:w-48 h-auto" : " h-44  lg:w-full"
+          }`}
+        >
+          <Image
+            src={property.images[imgIndex]}
+            alt={`Property in ${property.location}`}
+            fill
+            className="object-cover w-3/4 lg:w-full h-1/4 lg:h-full"
+          />
+          {property.images.length > 1 && (
+            <>
+              <button
+                onClick={prev}
+                className="absolute left-1.5 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-1 opacity-0 group-hover/img:opacity-100 transition-opacity"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={next}
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-1 opacity-0 group-hover/img:opacity-100 transition-opacity"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </>
+          )}
+        </div>
 
-      {/* Content */}
-      <div className="px-3 pt-2 pb-3 flex flex-col flex-1">
-        {/* Icons row */}
-        {property.iconImages && (
-          <div className="flex items-center gap-2.5 ">
-            {property.iconImages.map((icon, i) => (
-              <div key={i} className="flex items-center gap-1">
-                <div className="w-8 h-8 rounded overflow-hidden border border-gray-200">
-                  <Image
-                    src={icon}
-                    alt=""
-                    width={32}
-                    height={32}
-                    className="object-cover w-full h-full"
-                  />
+        {/* Content */}
+        <div className="px-3 pt-2 pb-3 flex flex-col flex-1">
+          {/* Icons row */}
+          {property.iconImages && (
+            <div className="flex items-center gap-2.5 ">
+              {property.iconImages.map((icon, i) => (
+                <div key={i} className="flex items-center gap-1">
+                  <div className="w-8 h-8 rounded overflow-hidden border border-gray-200">
+                    <Image
+                      src={icon}
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <span className="text-xs font-semibold text-gray-700">
+                    {property.iconLabels?.[i] ?? "1"}
+                  </span>
                 </div>
-                <span className="text-xs font-semibold text-gray-700">
-                  {property.iconLabels?.[i] ?? "1"}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
 
-        {/* Location + size */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1.5 min-w-0">
-            <Image src={location} alt="location" className="w-5 h-5 shrink-0" />
-            <span className="font-semibold text-gray-800 text-sm truncate">
-              {property.location}
-            </span>
-          </div>
-          <div className="flex items-center gap-1 ml-2 shrink-0">
-              <Image src={squaremetericon} alt="location" className="w-5 h-5 shrink-0" />
-            <span className="text-[#343434] font-semibold text-base">
-              {property.size}
-            </span>
-          </div>
-        </div>
-
-        {/* Date + time */}
-        <div className="flex items-center gap-3 mb-1.5 text-gray-500">
-          <div className="flex items-center gap-1">
-            <Image src={calender} alt="" className="w-4 h-4 shrink-0" />
-            <p className="text-[#343434] font-semibold text-base">{property.date}</p>
-          </div>
-          <div className="flex items-center gap-1">
-            <Image src={clock} alt="" className="w-4 h-4 shrink-0" />
-            <p className="text-[#343434] font-semibold text-base">{property.time}</p>
-          </div>
-        </div>
-
-        {/* Price + type */}
-       <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1">
-
-          <Image src={money} alt="money icon"/>
-          <p className="text-[#343434] font-semibold text-base">
-            {property.priceRange}
-          </p>
-          </div>
-          <span className="text-[#343434] font-semibold text-base">
-            • {property.propertyType}
-          </span>
-        </div>
-
-        {/* Agent */}
-        <div className="flex items-center justify-between">
-          {/* Agent Information */}
-          <div>
-            <div className="flex gap-1">
+          {/* Location + size */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5 min-w-0">
               <Image
-                src={property.agentImage}
-                alt={property.agentName}
-                width={30}
-                height={30}
-                className="rounded-full shrink-0 border-2 border-red-100 object-cover"
+                src={location}
+                alt="location"
+                className="w-5 h-5 shrink-0"
               />
-              <p className="font-bold text-red-500 text-base truncate">
-                {property.agentName}
+              <span className="font-semibold text-gray-800 text-sm truncate">
+                {property.location}
+              </span>
+            </div>
+            <div className="flex items-center gap-1 ml-2 shrink-0">
+              <Image
+                src={squaremetericon}
+                alt="location"
+                className="w-5 h-5 shrink-0"
+              />
+              <span className="text-[#343434] font-semibold text-base">
+                {property.size}
+              </span>
+            </div>
+          </div>
+
+          {/* Date + time */}
+          <div className="flex items-center gap-3 mb-1.5 text-gray-500">
+            <div className="flex items-center gap-1">
+              <Image src={calender} alt="" className="w-4 h-4 shrink-0" />
+              <p className="text-[#343434] font-semibold text-base">
+                {property.date}
               </p>
             </div>
-            <div className="flex items-center gap-1 text-xs text-gray-600 mt-1">
-              <Image src={mobile} alt="" width={20} height={20} />
-              <span>{property.agentPhone}</span>
-            </div>
-            <div className="flex items-center gap-1 text-xs text-blue-600 mt-1">
-              <Image src={mail} alt="" width={20} height={20} />
-              <span className="truncate">{property.agentEmail}</span>
+            <div className="flex items-center gap-1">
+              <Image src={clock} alt="" className="w-4 h-4 shrink-0" />
+              <p className="text-[#343434] font-semibold text-base">
+                {property.time}
+              </p>
             </div>
           </div>
 
-          {/* Company Badge + Actions */}
-          <div>
-            <Image
-              src={property.agentCompany}
-              alt="Company logo"
-              width={80}
-              height={36}
-              className="object-contain"
-            />
-
-            <div className="text-xs text-red-600 font-medium ">
-              <p>{property.agentLocation}</p>
-            </div>
+          {/* Price + type */}
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">
-              <button
-                className="flex items-center gap-1 px-2 py-1.5 hover:bg-blue-50 rounded-lg transition-colors text-xs text-blue-600 font-medium"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Image src={share} alt="Share" width={20} height={20} />
-              </button>
-              <button
-                className="flex items-center gap-1 px-2 py-1.5 hover:bg-red-50 rounded-lg transition-colors text-xs text-red-500 font-medium"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Image src={home} alt="Home" width={20} height={20} />
-              </button>
+              <Image src={money} alt="money icon" />
+              <p className="text-[#343434] font-semibold text-base">
+                {property.priceRange}
+              </p>
+            </div>
+            <span className="text-[#343434] font-semibold text-base">
+              • {property.propertyType}
+            </span>
+          </div>
+
+          {/* Agent */}
+          <div className="flex items-center justify-between">
+            {/* Agent Information */}
+            <div>
+              <div className="flex gap-1">
+                <Image
+                  src={property.agentImage}
+                  alt={property.agentName}
+                  width={30}
+                  height={30}
+                  className="rounded-full shrink-0 border-2 border-red-100 object-cover"
+                />
+                <p className="font-bold text-red-500 text-base truncate">
+                  {property.agentName}
+                </p>
+              </div>
+              <div className="flex items-center gap-1 text-xs text-gray-600 mt-1">
+                <Image src={mobile} alt="" width={20} height={20} />
+                <span>{property.agentPhone}</span>
+              </div>
+              <div className="flex items-center gap-1 text-xs text-blue-600 mt-1">
+                <Image src={mail} alt="" width={20} height={20} />
+                <span className="truncate">{property.agentEmail}</span>
+              </div>
+            </div>
+
+            {/* Company Badge + Actions */}
+            <div>
+              <Image
+                src={property.agentCompany}
+                alt="Company logo"
+                width={80}
+                height={36}
+                className="object-contain"
+              />
+
+              <div className="text-xs text-red-600 font-medium ">
+                <p>{property.agentLocation}</p>
+              </div>
+              <div className="flex items-center gap-1">
+                <button
+                  className="flex items-center gap-1 px-2 py-1.5 hover:bg-blue-50 rounded-lg transition-colors text-xs text-blue-600 font-medium"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Image src={share} alt="Share" width={20} height={20} />
+                </button>
+                <button
+                  className="flex items-center gap-1 px-2 py-1.5 hover:bg-red-50 rounded-lg transition-colors text-xs text-red-500 font-medium"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Image src={home} alt="Home" width={20} height={20} />
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );

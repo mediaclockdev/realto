@@ -1,32 +1,61 @@
 "use client";
 import React from "react";
 import agent from "../../public/agent.svg";
+import agent1 from "../../public/agent1.svg";
 import airbnb from "../../public/airbnb.svg";
+import airbnb1 from "../../public/airbnb1.svg";
 import buy from "../../public/buy.svg";
+import buy1 from "../../public/buy1.svg";
 import rent from "../../public/rent.svg";
+import rent1 from "../../public/rent1.svg";
+import rent2 from "../../public/rent2.svg";
+import rent3 from "../../public/rent3.svg";
 import hotel from "../../public/hotel.svg";
+import hotel1 from "../../public/hotel1.svg";
 import student from "../../public/studentresidency.svg";
+import student1 from "../../public/student1.svg";
+import student2 from "../../public/student2.svg";
+import student3 from "../../public/student3.svg";
 import loanbroker from "../../public/loanbroker.svg";
+import loanbroker1 from "../../public/loanbroker1.svg";
 import commercial from "../../public/commercial.svg";
-import flatmate from "../../public/flatmate.svg"
+import flatmate from "../../public/flatmate.svg";
+import flatmate1 from "../../public/flatmate1.svg";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const Features = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const agents = [
-    { img: buy, href: "/propertyListingpage" },
-    { img: rent, href: "/rent" },
-    { img: agent, href: "" },
-    { img: loanbroker, href: "" },
-    { img: commercial, href: "" },
-    { img: hotel, href: "" },
-    { img: airbnb, href: "" },
-    { img: student, href: "/studentResidency" },
-    { img: flatmate, href : "/flatmate"}
+    { imgs: [buy, buy1], href: "/propertyListingpage" },
+    { imgs: [rent, rent1, rent2, rent3], href: "/rent" },
+    { imgs: [agent, agent1], href: "" },
+    { imgs: [loanbroker, loanbroker1], href: "" },
+    { imgs: [commercial], href: "" },
+    { imgs: [hotel, hotel1], href: "" },
+    { imgs: [airbnb, airbnb1], href: "" },
+    {
+      imgs: [student, student1, student2, student3],
+      href: "/studentResidency",
+    },
+    { imgs: [flatmate, flatmate1], href: "/flatmate" },
   ];
+  const [currentIndexes, setCurrentIndexes] = useState(agents.map(() => 0));
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndexes((prev) =>
+        prev.map((index, i) => {
+          const total = agents[i].imgs.length;
+          return (index + 1) % total;
+        }),
+      );
+    }, 10000); // 10 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
       const scrollAmount = 300;
@@ -56,20 +85,28 @@ const Features = () => {
         {/* Scrollable Container */}
         <div
           ref={scrollContainerRef}
-        className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth 
+          className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth 
            md:grid md:grid-cols-9 md:overflow-visible"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {agents.map((item, idx) =>
             item.href ? (
               <Link key={idx} href={item.href} className="shrink-0">
-                <Image src={item.img} alt="category" className="size-36" />
+                <Image
+                  src={item.imgs[currentIndexes[idx]]}
+                  alt="category"
+                  className="size-36"
+                />
               </Link>
             ) : (
               <button key={idx} className="shrink-0">
-                <Image src={item.img} alt="category" className="size-36" />
+                <Image
+                  src={item.imgs[currentIndexes[idx]]}
+                  alt="category"
+                  className="size-36"
+                />
               </button>
-            )
+            ),
           )}
         </div>
 

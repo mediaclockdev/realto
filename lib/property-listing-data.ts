@@ -18,11 +18,15 @@ import type {
 import eddy from "../public/eddyjones.svg";
 import facebook from "../public/logos_facebook.svg";
 import instagram from "../public/logos_instagram.svg";
-import whatsapp from "../public/whatsapp.svg"
-import message from "../public/smslogo.svg"
+import whatsapp from "../public/whatsapp.svg";
+import message from "../public/smslogo.svg";
+import phone from "../public/phone.svg";
+import mail from "../public/mail.svg";
 import house4 from "../public/house4.svg";
-import ana from "../public/anajonesagent.svg"
-
+import ana from "../public/anajonesagent.svg";
+import french from "../public/Franceflag.svg";
+import china from "../public/chinaflag.svg";
+import spanish from "../public/spain.svg";
 
 const PROPERTIES_PER_PAGE = 12;
 const TOTAL_PROPERTIES = 876;
@@ -39,14 +43,26 @@ const BASE_PROPERTY: Omit<ListingProperty, "id"> = {
   propertyType: "Apartment",
   agentName: "Anna Johns",
   agentCompany: elder,
+  agentCompanyName: "Parker Realestate",
   agentLocation: "Austin, Australia",
   agentPhone: "+9999999999",
   agentEmail: "exampleemail.com",
-  socials:[whatsapp,instagram,facebook,message],
+  socials: [whatsapp, instagram, facebook, message, phone, mail],
+  flags: [french, china, spanish],
   agentImage: ana,
-  agentImageCard:eddy,
+  agentImageCard: eddy,
   iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
-  thumbnail: [thumbnail1, thumbnail2, thumbnail3, thumbnail4, thumbnail5, thumbnail6, thumbnail7, thumbnail8, thumbnail9],
+  thumbnail: [
+    thumbnail1,
+    thumbnail2,
+    thumbnail3,
+    thumbnail4,
+    thumbnail5,
+    thumbnail6,
+    thumbnail7,
+    thumbnail8,
+    thumbnail9,
+  ],
 };
 
 const properties: ListingProperty[] = Array.from(
@@ -176,9 +192,7 @@ export function getRelatedProperties(id: string, limit = 4) {
     .slice(0, limit);
 }
 
-export function getPropertyListingMeta(
-  listingVariant: ListingVariant = "buy",
-) {
+export function getPropertyListingMeta(listingVariant: ListingVariant = "buy") {
   return {
     listingVariant,
     location: DEFAULT_LOCATION,

@@ -8,6 +8,7 @@ import house3 from "../../public/house3.svg";
 import house4 from "../../public/house4.svg";
 import elder from "../../public/elderrealestate.svg";
 import ana from "../../public/anajonesagent.svg";
+import RealEstateAgents from "./RealEstateAgents";
 
 export default function PropertyListing() {
   const newlyListedProperties: PropertyData[] = [
@@ -94,7 +95,7 @@ export default function PropertyListing() {
       agentPhone: "+9999999999",
       agentEmail: "exampleemail.com",
       agentImage: ana,
-      iconImages: ["/bath.png", "/bedroom.jpg","/car.jpg", ],
+      iconImages: ["/bath.png", "/bedroom.jpg", "/car.jpg"],
     },
   ];
 
@@ -106,12 +107,12 @@ export default function PropertyListing() {
     <div className="max-w-screen-2xl mx-auto py-5">
       <div className="px-5">
         {/* Newly Listed Section */}
-        <NewListing title="Newly Listed" icon="clock"/>
+        <NewListing title="Newly Listed" icon="clock" />
         <PropertySlider
           properties={newlyListedProperties}
           onPropertyClick={handlePropertyClick}
         />
-
+        <RealEstateAgents />
         {/* You can reuse the same components for other sections */}
         <div className="mt-5">
           <NewListing title="Trending" icon="magic" />

@@ -1,29 +1,39 @@
+"use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import locationIcon from "@/public/location.svg";
 import type { ListingProperty } from "./types";
-import airconditioner from "../../public/airconditioner.svg"
-import Wifi from "../../public/wifi.svg"
-import alarmsystem from "../../public/alarmsystem.svg"
-import dishwasher from "../../public/dishwasher.svg"
-import builtInRobes from "../../public/buildinrobes.svg"
-import balcony from "../../public/balcony.svg"
-import garage from "../../public/garage.svg"
-import fullyfenced from "../../public/fullyfenced.svg"
-import swimmingpool from "../../public/swimmingpool.svg"
+import airconditioner from "../../public/airconditioner.svg";
+import Wifi from "../../public/wifi.svg";
+import alarmsystem from "../../public/alarmsystem.svg";
+import dishwasher from "../../public/dishwasher.svg";
+import builtInRobes from "../../public/buildinrobes.svg";
+import balcony from "../../public/balcony.svg";
+import garage from "../../public/garage.svg";
+import fullyfenced from "../../public/fullyfenced.svg";
+import swimmingpool from "../../public/swimmingpool.svg";
 import clock from "../../public/clock.svg";
 import money from "../../public/money.svg";
 import calender from "../../public/calender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
 import star from "../../public/star.svg";
+import inqury from "../../public/inqurylogo.svg";
+import GetMatchedNow from "./GetMatchedNow";
 
 interface PropertyDetailViewProps {
   property: ListingProperty;
   onBack?: () => void;
 }
-
-const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBack }) => {
+interface GetMatchedNowProps {
+  open: boolean;
+  onClose: () => void;
+}
+const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
+  property,
+  onBack,
+}) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -31,19 +41,23 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
   };
 
   const prevImage = () => {
-    setActiveImageIndex((prev) => (prev - 1 + property.thumbnail.length) % property.thumbnail.length);
+    setActiveImageIndex(
+      (prev) =>
+        (prev - 1 + property.thumbnail.length) % property.thumbnail.length,
+    );
   };
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
 
   const amenities = [
-    { name: "Air Conditioner", icon: airconditioner,  },
-    { name: "Wi-fi", icon: Wifi,  },
-    { name: "Alarm System", icon: alarmsystem,  },
-    { name: "Dishwasher", icon: dishwasher,  },
-    { name: "Built-in robes", icon: builtInRobes,  },
-    { name: "Balcony", icon: balcony,  },
-    { name: "Garage", icon: garage,  },
-    { name: "Fully fenced", icon: fullyfenced,  },
-    { name: "Swimming pool", icon: swimmingpool,  },
+    { name: "Air Conditioner", icon: airconditioner },
+    { name: "Wi-fi", icon: Wifi },
+    { name: "Alarm System", icon: alarmsystem },
+    { name: "Dishwasher", icon: dishwasher },
+    { name: "Built-in robes", icon: builtInRobes },
+    { name: "Balcony", icon: balcony },
+    { name: "Garage", icon: garage },
+    { name: "Fully fenced", icon: fullyfenced },
+    { name: "Swimming pool", icon: swimmingpool },
   ];
 
   return (
@@ -51,7 +65,10 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
       {/* Back Button */}
       {onBack && (
         <div className="p-4 bg-white sticky top-0 z-50 shadow-sm border-b">
-          <button onClick={onBack} className="flex items-center text-gray-700 font-medium hover:text-red-500 transition-colors">
+          <button
+            onClick={onBack}
+            className="flex items-center text-gray-700 font-medium hover:text-red-500 transition-colors"
+          >
             <ChevronLeft className="w-5 h-5 mr-1" />
             Back to listings
           </button>
@@ -88,145 +105,246 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
       <div className="bg-white px-4 py-3 border-b border-gray-100">
         <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
           {(property.thumbnail || property.images).map((img, idx) => (
-
             <button
               key={idx}
               onClick={() => setActiveImageIndex(idx)}
               className={`relative w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
-                activeImageIndex === idx ? "border-red-500 opacity-100" : "border-transparent opacity-70 hover:opacity-100"
+                activeImageIndex === idx
+                  ? "border-red-500 opacity-100"
+                  : "border-transparent opacity-70 hover:opacity-100"
               }`}
             >
-              <Image src={img} alt={`Thumbnail ${idx + 1}`} fill className="object-cover" />
+              <Image
+                src={img}
+                alt={`Thumbnail ${idx + 1}`}
+                fill
+                className="object-cover"
+              />
             </button>
           ))}
         </div>
       </div>
 
       <div className="max-w-screen-2xl lg:max-w-10xl mx-auto px-0 lg:px-4 py-4 space-y-8">
-        
         {/* Main Info & Agent Card Grid */}
-      <div className="flex flex-col lg:flex-row justify-between gap-8 bg-white rounded-[10px] shadow-sm  p-6 sm:p-8">
-          
-  {/* Left Column: Property Highlights */}
-  <div className=" space-y-3 lg:space-y-6   ">
-    {/* Features Icons */}
-    {property.iconImages && (
-      <div className="flex items-center gap-2">
-        {property.iconImages.map((icon, i) => (
-          <div key={i} className="flex items-center gap-2">
-            <div className="w-10 h-10">
-              <Image src={icon} alt="Feature" width={20} height={20} className="w-full h-full object-cover" />
+        <div className="flex flex-col lg:flex-row justify-between gap-8 bg-white rounded-[10px] shadow-sm  p-6 sm:p-8">
+          {/* Left Column: Property Highlights */}
+          <div className=" space-y-3 lg:space-y-6   ">
+            {/* Features Icons */}
+            {property.iconImages && (
+              <div className="flex items-center gap-2">
+                {property.iconImages.map((icon, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className="w-10 h-10">
+                      <Image
+                        src={icon}
+                        alt="Feature"
+                        width={20}
+                        height={20}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <span className="text-sm font-bold text-gray-800">
+                      {property.iconLabels?.[i] ?? "1"}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Location & Size */}
+            <div className="flex flex-col sm:flex-row sm:items-center">
+              <div className="flex items-start sm:items-center gap-2">
+                <Image
+                  src={locationIcon}
+                  alt="Location"
+                  className="w-6 h-6 shrink-0 mt-0.5 sm:mt-0"
+                />
+                <h1 className="text-base lg:text-xl font-bold text-gray-900">
+                  {property.location}
+                </h1>
+              </div>
             </div>
-            <span className="text-sm font-bold text-gray-800">
-              {property.iconLabels?.[i] ?? "1"}
-            </span>
-          </div>
-        ))}
-      </div>
-    )}
 
-    {/* Location & Size */}
-    <div className="flex flex-col sm:flex-row sm:items-center">
-      <div className="flex items-start sm:items-center gap-2">
-        <Image src={locationIcon} alt="Location" className="w-6 h-6 shrink-0 mt-0.5 sm:mt-0" />
-        <h1 className="text-base lg:text-xl font-bold text-gray-900">{property.location}</h1>
-      </div>
-    </div>
-
-    {/* Date & Time */}
-   <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-1  text-gray-600">
-          <div className="flex items-center ">
-            <Image src={calender} alt="calendericon" className="w-6 h-6  shrink-0" />
-            <span className="text-[#343434] font-semibold text-base lg:text-xl">{property.date}</span>
-          </div>
-          <div className="flex items-center ">
-            <Image src={clock} alt="clockicon" className="w-6 h-6  shrink-0" />
-            <span className="text-[#343434] font-semibold text-base lg:text-xl">{property.time}</span>
+            {/* Date & Time */}
+            <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-1  text-gray-600">
+              <div className="flex items-center ">
+                <Image
+                  src={calender}
+                  alt="calendericon"
+                  className="w-6 h-6  shrink-0"
+                />
+                <span className="text-[#343434] font-semibold text-base lg:text-xl">
+                  {property.date}
+                </span>
               </div>
-               <div className="flex items-center gap-1 ml-2 shrink-0">
-              <Image src={squaremetericon} alt="location" className="w-6 h-6 shrink-0" />
-            <p className="text-[#343434] font-semibold text-base lg:text-xl">
-              {property.size}
-            </p>
-          </div>
-        </div>
-
-    {/* Price & Type */}
-    <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-2">
-          <div className="flex items-center gap-1">
-          <Image src={money} alt="money icon"/>
-          <p className="text-[#343434] font-semibold text-base lg:text-xl">
-            {property.priceRange}
-          </p>
-          </div>
-          <p className="text-[#343434] font-semibold text-base lg:text-xl">
-            • {property.propertyType}
-          </p>
-        </div>
-  </div>
-
-  {/* Right Column: Agent Card */}
-  <div className="lg:col-span-1">
-    <div className="bg-[#EDEDED] p-4 rounded-[10px] shadow-sm  sticky top-6">
-      <div className="flex items-center gap-4">
-
-        {/* Left: Avatar + Name */}
-        <div className="flex flex-col items-center gap-2 min-w-[90px]">
-          <Image
-            src={property.agentImageCard}
-            alt={property.agentName}
-            width={80}
-            height={80}
-            className="rounded-full border-2 border-gray-200 object-cover w-10 lg:w-20 h-10 lg:h-20 shadow"
-          />
-          <h3 className="font-bold text-sm text-gray-900 text-center">{property.agentName}</h3>
-        </div>
-
-        {/* Divider */}
-        <div className="w-px bg-gray-200 self-stretch" />
-
-        {/* Right: Company, License, Stars, Socials */}
-        <div className="flex flex-col gap-2 flex-1">
-          {/* <h2 className="font-bold text-base text-gray-900 leading-tight">{property.agentCompany}</h2> */}
-          <p className="text-xs text-gray-400">License# 12345678</p>
-
-          {/* 5 Stars */}
-          <div className="">
-           <Image src={star} alt="star icons" className="size-1/2 lg:size-auto" />
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex items-center gap-2">
-            {property.socials.map((icon, i) => (
-              <div key={i} className="w-4 lg:w-8 h-4 lg:h-8 rounded-full overflow-hidden">
-                <Image src={icon} alt="icon" width={32} height={32} className="w-full h-full object-contain" />
+              <div className="flex items-center ">
+                <Image
+                  src={clock}
+                  alt="clockicon"
+                  className="w-6 h-6  shrink-0"
+                />
+                <span className="text-[#343434] font-semibold text-base lg:text-xl">
+                  {property.time}
+                </span>
               </div>
-            ))}
+              <div className="flex items-center gap-1 ml-2 shrink-0">
+                <Image
+                  src={squaremetericon}
+                  alt="location"
+                  className="w-6 h-6 shrink-0"
+                />
+                <p className="text-[#343434] font-semibold text-base lg:text-xl">
+                  {property.size}
+                </p>
+              </div>
+            </div>
+
+            {/* Price & Type */}
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-2">
+              <div className="flex items-center gap-1">
+                <Image src={money} alt="money icon" />
+                <p className="text-[#343434] font-semibold text-base lg:text-xl">
+                  {property.priceRange}
+                </p>
+              </div>
+              <p className="text-[#343434] font-semibold text-base lg:text-xl">
+                • {property.propertyType}
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column: Agent Card */}
+          <div className="w-full lg:max-w-md ">
+            {/* Card */}
+            <div className="bg-[#EDEDED] rounded-2xl shadow-md p-2 lg:p-5 sticky top-6">
+              <div className="flex items-center gap-2 lg:gap-6">
+                {/* LEFT SECTION */}
+                <div className="flex flex-col items-center gap-2 lg:gap-3 min-w-[100px]">
+                  <Image
+                    src={property.agentImageCard}
+                    alt={property.agentName}
+                    width={120}
+                    height={120}
+                    className="rounded-full object-cover w-18 h-18 lg:w-32 lg:h-32 "
+                  />
+
+                  {/* Flags */}
+                  <div className="flex gap-2">
+                    {property.flags.map((flag, idx) => (
+                      <Image
+                        key={idx}
+                        src={flag}
+                        alt="flag"
+                        width={24}
+                        height={24}
+                        className="w-4 h-4 lg:w-6 lg:h-6 "
+                      />
+                    ))}
+                  </div>
+
+                  {/* Name */}
+                  <h3 className="font-semibold text-sm lg:text-base text-[#343434] lg:text-center">
+                    {property.agentName}
+                  </h3>
+                </div>
+
+                {/* Divider */}
+                <div className="w-[1px] bg-gray-300 h-full" />
+
+                {/* RIGHT SECTION */}
+                <div className="flex flex-col justify-center gap-1 lg:gap-2 flex-1">
+                  {/* Company */}
+                  <h2 className="text-base lg:text-xl font-bold text-[#343434]">
+                    {property.agentCompanyName}
+                  </h2>
+
+                  {/* License */}
+                  <p className="text-sm text-gray-500">License #12345678</p>
+
+                  {/* Stars */}
+                  <div className="">
+                    {" "}
+                    <Image
+                      src={star}
+                      alt="star icons"
+                      className="size-1/2 lg:size-auto"
+                    />{" "}
+                  </div>
+
+                  {/* Social Icons */}
+                  <div className="flex items-center gap-2.5 mt-2">
+                    {property.socials.map((icon, i) => (
+                      <div
+                        key={i}
+                        className="w-4 lg:w-8 h-4 lg:h-8  flex items-center justify-center "
+                      >
+                        <Image
+                          src={icon}
+                          alt="icon"
+                          width={24}
+                          height={24}
+                          className="object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <GetMatchedNow
+              open={isInquiryOpen}
+              onClose={() => setIsInquiryOpen(false)}
+            />
+
+            {/* Enquiry Button */}
+            <button
+              type="button"
+              onClick={() => setIsInquiryOpen(true)}
+              className="bg-[#EDEDED] mt-3 rounded-2xl shadow-md flex items-center justify-center gap-3 py-3 lg:py-4 w-full hover:bg-gray-200 transition"
+            >
+              <Image src={inqury} alt="enquiry" width={28} height={28} />
+              <span className="text-base lg:text-lg font-semibold text-[#343434]">
+                Send an inquiry
+              </span>
+            </button>
           </div>
         </div>
-
-      </div>
-    </div>
-  </div>
-
-</div>
 
         {/* Property Description */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Property description</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">
+            Property description
+          </h2>
           <p className="text-gray-600 leading-relaxed">
-            This architecturally designed development offers an sophisticated retreat, just 5km from the Sydney CBD. Bathed in natural light, the spacious open-plan living and dining areas flow effortlessly onto a private balcony with city views. Featuring a gourmet Caesarstone kitchen with Smeg appliances, and a luxurious master suite, this property is the epitome of comfort and style.
+            This architecturally designed development offers an sophisticated
+            retreat, just 5km from the Sydney CBD. Bathed in natural light, the
+            spacious open-plan living and dining areas flow effortlessly onto a
+            private balcony with city views. Featuring a gourmet Caesarstone
+            kitchen with Smeg appliances, and a luxurious master suite, this
+            property is the epitome of comfort and style.
           </p>
         </div>
 
         {/* Amenities & Facilities */}
         <div className="bg-white px-3 py-4 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Amenities & Facilities</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-6">
+            Amenities & Facilities
+          </h2>
           <div className="flex flex-wrap items-center justify-between md:justify-start gap-2 lg:gap-4">
             {amenities.map((item, idx) => (
-              <div key={idx} className="rounded-xl p-4 flex flex-col items-center justify-center gap-3 text-center transition-transform hover:scale-105 cursor-default">
-                <Image src={item.icon} alt="amenity" width={40} height={40} className="w-full h-full" />
-               
+              <div
+                key={idx}
+                className="rounded-xl p-4 flex flex-col items-center justify-center gap-3 text-center transition-transform hover:scale-105 cursor-default"
+              >
+                <Image
+                  src={item.icon}
+                  alt="amenity"
+                  width={40}
+                  height={40}
+                  className="w-full h-full"
+                />
               </div>
             ))}
           </div>
@@ -245,10 +363,12 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
                 className="border-0 w-full h-full pointer-events-none"
               />
             </div>
-            <h3 className="text-center font-bold text-lg text-gray-900">Map view of property</h3>
+            <h3 className="text-center font-bold text-lg text-gray-900">
+              Map view of property
+            </h3>
           </div>
           <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100">
-             <div className="w-full h-[300px] bg-gray-200 rounded-xl overflow-hidden relative mb-4">
+            <div className="w-full h-75 bg-gray-200 rounded-xl overflow-hidden relative mb-4">
               {/* Fake satellite view using a different openstreetmap tile layer or just placeholder */}
               <iframe
                 title="Satellite view"
@@ -259,38 +379,47 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({ property, onBac
                 className="border-0 w-full h-full pointer-events-none"
               />
             </div>
-            <h3 className="text-center font-bold text-lg text-gray-900">Satellite view of property</h3>
+            <h3 className="text-center font-bold text-lg text-gray-900">
+              Satellite view of property
+            </h3>
           </div>
         </div>
 
         {/* Property History */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Property History</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">
+            Property History
+          </h2>
           <div className="text-gray-600 leading-relaxed">
             <p>
-           This provides a typical localized sales and construction history for an apartment complex in this area.
+              This provides a typical localized sales and construction history
+              for an apartment complex in this area.
             </p>
             <p>
-            Mar 2026: Property listed on REALTO by Peter Nikolatos (LJ Hooker).
+              Mar 2026: Property listed on REALTO by Peter Nikolatos (LJ
+              Hooker).
             </p>
             <p>
-            Nov 2025: Construction completion certificate issued for 'A' Block development.
+              Nov 2025: Construction completion certificate issued for
+              &apos;A&apos; Block development.
             </p>
             <p>
-              Jun 2024: Construction commenced for the 'A' Block modern complex.
-              </p>
-            <p>
-            Jan 2024: DA Approval granted by City of Sydney Council for development (DA/2023/1234).
+              Jun 2024: Construction commenced for the &apos;A&apos; Block
+              modern complex.
             </p>
             <p>
-            Oct 2023: Site acquisition and DA submission for a new residential development.
+              Jan 2024: DA Approval granted by City of Sydney Council for
+              development (DA/2023/1234).
             </p>
             <p>
-            Sep 2023: Vacant site listed for sale by Expressions of Interest.
+              Oct 2023: Site acquisition and DA submission for a new residential
+              development.
+            </p>
+            <p>
+              Sep 2023: Vacant site listed for sale by Expressions of Interest.
             </p>
           </div>
         </div>
-
       </div>
     </div>
   );

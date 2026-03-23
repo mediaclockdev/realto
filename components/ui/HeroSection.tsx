@@ -6,12 +6,12 @@ import { StaticImageData } from "next/image";
 import { useState, useEffect } from "react";
 
 type HeroSectionProps = {
-   image?: StaticImageData | string;
+  image?: StaticImageData | string;
   images?: (StaticImageData | string)[];
   interval?: number; // ms, default 5000
 };
 
-const HeroSection = ({ image, images, interval = 5000 }: HeroSectionProps) => {
+const HeroSection = ({ image, images, interval = 10000 }: HeroSectionProps) => {
   const finalImages = images ?? (image ? [image] : []);
 
   const [current, setCurrent] = useState(0);
@@ -36,7 +36,7 @@ const HeroSection = ({ image, images, interval = 5000 }: HeroSectionProps) => {
     const t = setTimeout(() => {
       setTransitioning(false);
       setPrev(null);
-    }, 1000); // match CSS transition duration
+    }, 1000);
     return () => clearTimeout(t);
   }, [transitioning]);
 
@@ -46,7 +46,7 @@ const HeroSection = ({ image, images, interval = 5000 }: HeroSectionProps) => {
       {prev !== null && transitioning && (
         <Image
           key={`prev-${prev}`}
-src={finalImages[prev]}
+          src={finalImages[prev]}
           alt="hero background"
           fill
           priority
@@ -59,7 +59,7 @@ src={finalImages[prev]}
       {/* Current image (fades in) */}
       <Image
         key={`current-${current}`}
-    src={finalImages[current]}
+        src={finalImages[current]}
         alt="hero background"
         fill
         priority

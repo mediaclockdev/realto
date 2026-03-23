@@ -11,10 +11,9 @@ import Image from "next/image";
 const page = () => {
   return (
     <div>
-      <Hero/>
+      <Hero />
       <Category />
       <LanguageSelection />
-      <RealEstateAgents />
       <PropertyListing />
       <LuxuryProperties />
       <Contact />
