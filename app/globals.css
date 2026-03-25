@@ -57,6 +57,23 @@ body {
   .border-gold-gradient {
     padding: 2px;
     border-radius: 12px;
-    background: linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225);
+    background: linear-gradient(
+      90deg,
+      #cb9e33,
+      #edd06a,
+      #fcea94,
+      #fade7b,
+      #fdee9d,
+      #c29225
+    );
   }
+}
+/* Hide scrollbar but allow scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }

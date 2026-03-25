@@ -41,7 +41,7 @@ const HeroSection = ({ image, images, interval = 10000 }: HeroSectionProps) => {
   }, [transitioning]);
 
   return (
-    <div className="relative w-full h-[50vh] md:h-[85vh] min-h-[400px] max-h-[900px] overflow-hidden">
+    <div className="relative w-full h-[50vh] md:h-[85vh] min-h-[400px] max-h-[900px] overflow-visible">
       {/* Previous image (fades out) */}
       {prev !== null && transitioning && (
         <Image

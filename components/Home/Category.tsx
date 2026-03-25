@@ -35,7 +35,7 @@ const Features = () => {
     { imgs: [loanbroker, loanbroker1], href: "" },
     { imgs: [commercial], href: "" },
     { imgs: [hotel, hotel1], href: "" },
-    { imgs: [airbnb, airbnb1], href: "" },
+    { imgs: [airbnb, airbnb1], href: "https://www.airbnb.com.au/" },
     {
       imgs: [student, student1, student2, student3],
       href: "/studentResidency",

@@ -5,12 +5,14 @@ import location from "@/public/location.svg";
 import type { ListingProperty } from "./types";
 import share from "../../public/share.svg";
 import home from "../../public/home.svg";
+import buylikeicon from "../../public/buylikeicon.svg";
 import mobile from "../../public/mobileicon.svg";
 import mail from "../../public/mailicon.svg";
 import clock from "../../public/clock.svg";
 import money from "../../public/money.svg";
 import calender from "../../public/calender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
+import rentshare from "../../public/rentshareicon.svg";
 import type { ListingVariant } from "./types";
 
 interface PropertyListingCardProps {
@@ -114,7 +116,6 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 </button>
               </>
             )}
-            <div className="absolute bottom-0 inset-x-0 h-[5px] bg-[#8f00ff]" />
           </div>
 
           <div className="px-4 pt-3 pb-4">
@@ -183,12 +184,12 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   {property.agentPhone}
                 </p>
               </div>
-              <div className="flex gap-1">
+              <div className="flex">
                 <button
                   className="p-1.5 hover:bg-blue-50 rounded-lg transition-colors"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Image src={share} alt="Share" width={36} height={36} />
+                  <Image src={rentshare} alt="Share" width={36} height={36} />
                 </button>
                 <button
                   className="p-1.5 hover:bg-red-50 rounded-lg transition-colors"
@@ -383,7 +384,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   className="flex items-center gap-1 px-2 py-1.5 hover:bg-red-50 rounded-lg transition-colors text-xs text-red-500 font-medium"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Image src={home} alt="Home" width={20} height={20} />
+                  <Image src={buylikeicon} alt="Home" width={20} height={20} />
                 </button>
               </div>
             </div>

@@ -5,7 +5,7 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import location from "../../public/location.svg";
 import Image from "next/image";
 import share from "../../public/share.svg";
-import home from "../../public/home.svg";
+import home from "../../public/buylikeicon.svg";
 import mobile from "../../public/mobileicon.svg";
 import mail from "../../public/mailicon.svg";
 import clock from "../../public/clock.svg";
@@ -114,28 +114,27 @@ const PropertyCard: React.FC<{
   const handlePrevImage = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentImageIndex(
-      (prev) => (prev - 1 + property.images.length) % property.images.length
+      (prev) => (prev - 1 + property.images.length) % property.images.length,
     );
   };
 
   return (
-   <div
-    ref={outerRef}
-    className="shrink-0 w-[340px] rounded-xl cursor-pointer transition-all duration-300 hover:scale-105 p-[2px]"
-    style={{ background: "transparent" }}
-    onMouseEnter={() => {
-    if (outerRef.current) outerRef.current.style.background = GOLD_GRADIENT;
-         }}
+    <div
+      ref={outerRef}
+      className="shrink-0 w-[340px] rounded-xl  transition-all duration-300 hover:scale-105 p-[2px]"
+      style={{ background: "transparent" }}
+      onMouseEnter={() => {
+        if (outerRef.current) outerRef.current.style.background = GOLD_GRADIENT;
+      }}
       onMouseLeave={() => {
-      if (outerRef.current) outerRef.current.style.background = "transparent";
+        if (outerRef.current) outerRef.current.style.background = "transparent";
       }}
       onClick={() => onCardClick?.(property)}
-        > 
+    >
       {/* Inner: white card */}
       <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 w-full h-full">
-
         {/* Image Section */}
-        <div className="relative h-40 bg-gray-200 group/image">
+        <div className="relative h-40 bg-gray-200 group/image cursor-pointer">
           <Image
             src={property.images[currentImageIndex]}
             alt={`Property in ${property.location}`}
@@ -176,7 +175,6 @@ const PropertyCard: React.FC<{
 
         {/* Content Section */}
         <div className="px-4 pt-3 pb-4">
-
           {/* Icon Preview Images */}
           {property.iconImages && property.iconImages.length > 0 && (
             <div className="flex items-center gap-3 mb-1 pb-2">
@@ -202,13 +200,21 @@ const PropertyCard: React.FC<{
           {/* Location and Size */}
           <div className="flex items-center justify-between mb-1">
             <div className="flex items-center gap-0.5 min-w-0">
-              <Image src={location} alt="location" className="w-5 h-5 lg:w-7 lg:h-7 shrink-0" />
+              <Image
+                src={location}
+                alt="location"
+                className="w-5 h-5 lg:w-7 lg:h-7 shrink-0"
+              />
               <span className="font-semibold text-gray-800 text-sm truncate font-poppins">
                 {property.location}
               </span>
             </div>
             <div className="flex items-center gap-1 ml-2 shrink-0">
-              <Image src={squaremetericon} alt="size" className="w-5 h-5 lg:w-7 lg:h-7 shrink-0" />
+              <Image
+                src={squaremetericon}
+                alt="size"
+                className="w-5 h-5 lg:w-7 lg:h-7 shrink-0"
+              />
               <p className="text-[#343434] font-semibold text-base font-poppins">
                 {property.size}
               </p>
@@ -218,13 +224,21 @@ const PropertyCard: React.FC<{
           {/* Date and Time */}
           <div className="flex items-center gap-1 mb-1 text-gray-600">
             <div className="flex items-center">
-              <Image src={calender} alt="calendericon" className="w-4 h-4 lg:w-7 lg:h-7 shrink-0" />
+              <Image
+                src={calender}
+                alt="calendericon"
+                className="w-4 h-4 lg:w-7 lg:h-7 shrink-0"
+              />
               <span className="text-[#343434] font-semibold font-poppins text-base">
                 {property.date}
               </span>
             </div>
             <div className="flex items-center">
-              <Image src={clock} alt="clockicon" className="w-4 h-4 lg:w-7 lg:h-7 shrink-0" />
+              <Image
+                src={clock}
+                alt="clockicon"
+                className="w-4 h-4 lg:w-7 lg:h-7 shrink-0"
+              />
               <span className="text-[#343434] font-semibold font-poppins text-base">
                 {property.time}
               </span>
@@ -246,7 +260,6 @@ const PropertyCard: React.FC<{
 
           {/* Lower content */}
           <div className="flex items-center justify-between">
-
             {/* Agent Info */}
             <div>
               <div className="flex gap-1">
@@ -287,22 +300,21 @@ const PropertyCard: React.FC<{
               <div className="text-xs text-[#FA2F2F] font-medium font-poppins">
                 <p>{property.agentLocation}</p>
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center">
                 <button
-                  className="flex items-center gap-1 px-2 py-1.5 hover:bg-blue-50 rounded-lg transition-colors text-xs text-blue-600 font-poppins font-medium"
+                  className="flex items-center gap-1 px-2 py-1.5 cursor-pointer hover:bg-blue-50 rounded-lg transition-colors text-xs text-blue-600 font-poppins font-medium"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Image src={share} alt="Share" width={20} height={20} />
+                  <Image src={share} alt="Share" width={28} height={28} />
                 </button>
                 <button
-                  className="flex items-center gap-1 px-2 py-1.5 hover:bg-red-50 rounded-lg transition-colors text-xs text-red-500 font-poppins font-medium"
+                  className="flex items-center gap-1 px-2 py-1.5 cursor-pointer hover:bg-red-50 rounded-lg transition-colors text-xs text-red-500 font-poppins font-medium"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Image src={home} alt="Home" width={20} height={20} />
+                  <Image src={home} alt="Home" width={32} height={32} />
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </div>

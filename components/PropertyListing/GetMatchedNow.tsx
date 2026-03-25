@@ -113,7 +113,7 @@ const GetMatchedNow: React.FC<GetMatchedNowProps> = ({ open, onClose }) => {
                   } bg-white px-4 pt-2.5 pb-2.5`}
                 >
                   {/* Label inside box */}
-                  <label className="block text-[13px] text-gray-500 leading-tight mb-0.5">
+                  <label className="block text-sm text-[#334155] leading-tight mb-0.5 font-poppins font-medium">
                     {field.label}
                   </label>
 
@@ -124,7 +124,7 @@ const GetMatchedNow: React.FC<GetMatchedNowProps> = ({ open, onClose }) => {
                     onChange={(e) =>
                       setForm({ ...form, [field.key]: e.target.value })
                     }
-                    className="w-full text-black font-semibold text-[15px] bg-transparent focus:outline-none pr-8"
+                    className="w-full text-[#0F172A] font-bold text-[15px] bg-transparent focus:outline-none pr-8"
                     placeholder=""
                   />
 
@@ -174,7 +174,7 @@ const GetMatchedNow: React.FC<GetMatchedNowProps> = ({ open, onClose }) => {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 active:scale-[0.98] transition-all text-white py-4 rounded-2xl flex items-center justify-center gap-2 text-lg font-semibold shadow-md mt-2"
+            className="w-full bg-blue-500 hover:bg-blue-600 active:scale-[0.98] transition-all text-white py-4 rounded-2xl flex items-center justify-center gap-2 text-lg font-bold shadow-md mt-2"
           >
             Send <ArrowRight className="w-5 h-5" />
           </button>

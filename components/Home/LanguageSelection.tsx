@@ -68,6 +68,7 @@ const LanguageSelection = () => {
       setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 10);
     }
   };
+
   const selectedLang = languages.find((l) => l.id === selectedLanguage);
 
   const scroll = (direction: "left" | "right") => {
@@ -111,62 +112,64 @@ const LanguageSelection = () => {
       </div>
 
       <div className="relative group flex items-center gap-3">
-        {/* World Globe Icon */}
-
-        {/* Vertical Divider */}
-        {/* <div className="shrink-0 w-px h-8 bg-gray-300 mt-8" /> */}
-
-        {/* Left Arrow — only show after scrolling right */}
         {scrollLeft > 10 && (
           <button
             onClick={() => scroll("left")}
             className="absolute left-14 mt-3 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300"
-            aria-label="Scroll left"
           >
             <ChevronLeft className="w-5 h-5 text-gray-800" />
           </button>
         )}
 
-        {/* Scrollable Flags */}
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
           className="flex items-center gap-5 overflow-x-auto scrollbar-hide scroll-smooth pt-8 pb-1 flex-1"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {languages.map((lang) => (
-            <div
-              key={lang.id}
-              className="relative shrink-0 flex flex-col items-center"
-              onMouseEnter={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                setTooltipInfo({
-                  name: lang.name,
-                  nativeName: lang.nativeName,
-                  rect,
-                });
-              }}
-              onMouseLeave={() => setTooltipInfo(null)}
-            >
-              {/* Flag Button */}
-              <button
-                onClick={() => setSelectedLanguage(lang.id)}
-                className="hover:scale-105 transition-transform duration-200 rounded-full cursor-pointer"
-                title={lang.name}
+          {languages.map((lang) => {
+            const isSelected = selectedLanguage === lang.id;
+
+            return (
+              <div
+                key={lang.id}
+                className="relative shrink-0 flex flex-col items-center"
+                onMouseEnter={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  setTooltipInfo({
+                    name: lang.name,
+                    nativeName: lang.nativeName,
+                    rect,
+                  });
+                }}
+                onMouseLeave={() => setTooltipInfo(null)}
               >
-                <Image
-                  src={lang.icon}
-                  alt={lang.name}
-                  width={44}
-                  height={44}
-                  className="rounded-full"
-                />
-              </button>
-            </div>
-          ))}
+              
+
+                <button
+                  onClick={() => setSelectedLanguage(lang.id)}
+                  className={`rounded-full cursor-pointer transition-all duration-200 border-[3px] ${
+                    selectedLanguage === lang.id
+                      ? "bg-[linear-gradient(135deg,#FFD700,#FFC107,#FFB300)] bg-origin-border bg-clip-border border-transparent"
+                      : "border-transparent"
+                  }`}
+                  title={lang.name}
+                >
+                  <div className="bg-white rounded-full">
+                    <Image
+                      src={lang.icon}
+                      alt={lang.name}
+                      width={44}
+                      height={44}
+                      className="rounded-full object-cover"
+                    />
+                  </div>
+                </button>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Fixed tooltip — rendered outside scroll container to avoid clipping */}
         {tooltipInfo && (
           <div
             className="fixed z-9999 pointer-events-none"
@@ -183,12 +186,10 @@ const LanguageSelection = () => {
           </div>
         )}
 
-        {/* Right Arrow — only show when not at the end */}
         {!isAtEnd && (
           <button
             onClick={() => scroll("right")}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 -mr-4 mt-3"
-            aria-label="Scroll right"
           >
             <ChevronRight className="w-5 h-5 text-gray-800" />
           </button>

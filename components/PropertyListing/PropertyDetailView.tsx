@@ -302,7 +302,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
             <button
               type="button"
               onClick={() => setIsInquiryOpen(true)}
-              className="bg-[#EDEDED] mt-3 rounded-2xl shadow-md flex items-center justify-center gap-3 py-3 lg:py-4 w-full hover:bg-gray-200 transition"
+              className="bg-[#EDEDED] mt-3 rounded-2xl shadow-md flex items-center justify-center gap-3 py-3 lg:py-4 w-full hover:bg-gray-200 transition cursor-pointer"
             >
               <Image src={inqury} alt="enquiry" width={28} height={28} />
               <span className="text-base lg:text-lg font-semibold text-[#343434]">

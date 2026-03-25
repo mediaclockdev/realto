@@ -1,4 +1,5 @@
-import { Star } from "lucide-react";
+import Image from "next/image";
+import star from "../../public/starsingle.svg";
 import React from "react";
 
 const offers = [
@@ -34,24 +35,23 @@ export default function OffersAndReferrals() {
           {offers.map((offer, idx) => (
             <div
               key={idx}
-              className="group relative rounded-2xl p-6 min-h-[100px] lg:min-h-[180px]  max-w-[450px] flex flex-col justify-end overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer"
+              className="group relative rounded-[20px] border border-black p-6 min-h-[100px] lg:min-h-[180px]  max-w-[450px] flex flex-col justify-end overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer"
               style={{
-                backgroundImage: `url('${offer.bgImage}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
             >
-              <Star
+              <Image
+                src={star}
+                alt="star"
                 className="absolute top-5 right-5 text-black group-hover:text-white transition-colors duration-300 size-5 lg:size-6"
-                fill="currentColor"
-
               />
 
               <div className="relative z-10 pt-10 ">
-                <h3 className="text-base lg:text-xl font-semibold text-black group-hover:text-white transition-colors duration-300 mb-[6px] leading-tight max-w-[365px] ">
+                <h3 className="text-base lg:text-xl font-semibold text-black  transition-colors duration-300 mb-[6px] leading-tight max-w-[365px] ">
                   {offer.title}
                 </h3>
-                <p className="text-[#343434] text-sm lg:text-base leading-snug whitespace-pre-wrap group-hover:text-white transition-colors duration-300">
+                <p className="text-[#343434] text-sm lg:text-base leading-snug whitespace-pre-wrap  transition-colors duration-300">
                   {offer.description}
                 </p>
               </div>
