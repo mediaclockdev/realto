@@ -127,7 +127,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
             <button
               key={idx}
               onClick={() => setActiveImageIndex(idx)}
-              className={`relative w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
+              className={`relative w-20 h-20 md:w-32 md:h-28 shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
                 activeImageIndex === idx
                   ? "border-red-500 opacity-100"
                   : "border-transparent opacity-70 hover:opacity-100"
@@ -137,7 +137,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                 src={img}
                 alt={`Thumbnail ${idx + 1}`}
                 fill
-                className="object-cover"
+                className="object-cover "
               />
             </button>
           ))}
@@ -148,13 +148,13 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
         {/* Main Info & Agent Card Grid */}
         <div className="flex flex-col lg:flex-row justify-between gap-8 bg-white rounded-[10px] shadow-sm  p-6 sm:p-8">
           {/* Left Column: Property Highlights */}
-          <div className=" space-y-3 lg:space-y-6   ">
+          <div className=" space-y-3 lg:space-y-3   ">
             {/* Features Icons */}
             {property.iconImages && (
               <div className="flex items-center gap-2">
                 {property.iconImages.map((icon, i) => (
                   <div key={i} className="flex items-center gap-1">
-                    <div className="w-18 h-12">
+                    <div className="w-[95px] h-[65px]">
                       <Image
                         src={icon}
                         alt="Feature"
@@ -177,9 +177,9 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                 <Image
                   src={locationIcon}
                   alt="Location"
-                  className="w-6 h-6 shrink-0 mt-0.5 sm:mt-0"
+                  className="w-10 h-10 shrink-0 mt-0.5 sm:mt-0"
                 />
-                <h1 className="text-base lg:text-xl font-bold text-gray-900">
+                <h1 className="text-base lg:text-xl font-semibold text-[#343434]">
                   {property.location}
                 </h1>
               </div>
@@ -187,11 +187,11 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
 
             {/* Date & Time */}
             <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-1  text-gray-600">
-              <div className="flex items-center ">
+              <div className="flex items-center gap-1 ">
                 <Image
                   src={calender}
                   alt="calendericon"
-                  className="w-6 h-6  shrink-0"
+                  className="w-10 h-10  shrink-0"
                 />
                 <span className="text-[#343434] font-semibold text-base lg:text-xl">
                   {property.date}
@@ -201,7 +201,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                 <Image
                   src={clock}
                   alt="clockicon"
-                  className="w-6 h-6  shrink-0"
+                  className="w-10 h-10  shrink-0"
                 />
                 <span className="text-[#343434] font-semibold text-base lg:text-xl">
                   {property.time}
@@ -222,7 +222,11 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
             {/* Price & Type */}
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-2">
               <div className="flex items-center gap-1">
-                <Image src={money} alt="money icon" />
+                <Image
+                  src={money}
+                  alt="money icon"
+                  className="w-10 h-10  shrink-0"
+                />
                 <p className="text-[#343434] font-semibold text-base lg:text-xl">
                   {property.priceRange}
                 </p>
@@ -245,7 +249,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                     alt={property.agentName}
                     width={120}
                     height={120}
-                    className="rounded-full object-cover w-18 h-18 lg:w-32 lg:h-32 "
+                    className="rounded-full object-cover w-18 h-18 lg:w-18 lg:h-18 "
                   />
 
                   {/* Flags */}
@@ -257,7 +261,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                         alt="flag"
                         width={24}
                         height={24}
-                        className="w-4 h-4 lg:w-6 lg:h-6 "
+                        className="w-4 h-4 lg:w-4 lg:h-4 "
                       />
                     ))}
                   </div>
@@ -272,9 +276,9 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                 <div className="w-[1px] bg-gray-300 h-full" />
 
                 {/* RIGHT SECTION */}
-                <div className="flex flex-col justify-center gap-1 lg:gap-2 flex-1">
+                <div className="flex flex-col justify-center gap-1 flex-1">
                   {/* Company */}
-                  <h2 className="text-base lg:text-xl font-bold text-[#343434]">
+                  <h2 className="text-base  font-bold text-[#343434]">
                     {property.agentCompanyName}
                   </h2>
 

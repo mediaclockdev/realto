@@ -25,6 +25,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
+import land from "../../public/land.svg";
 
 const Features = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -41,13 +42,14 @@ const Features = () => {
       href: "/studentResidency",
     },
     { imgs: [flatmate, flatmate1], href: "/flatmate" },
+    { imgs: [land, land], href: "" },
   ];
   const [currentIndexes, setCurrentIndexes] = useState(agents.map(() => 0));
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndexes((prev) =>
         prev.map((index, i) => {
-          const total = agents[i].imgs.length;
+          const total = agents[i].imgs?.length;
           return (index + 1) % total;
         }),
       );
@@ -85,8 +87,7 @@ const Features = () => {
         {/* Scrollable Container */}
         <div
           ref={scrollContainerRef}
-          className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth 
-           md:grid md:grid-cols-9 md:overflow-visible"
+          className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {agents.map((item, idx) =>
@@ -96,6 +97,7 @@ const Features = () => {
                   src={item.imgs[currentIndexes[idx]]}
                   alt="category"
                   className="size-36"
+                  unoptimized
                 />
               </Link>
             ) : (
@@ -104,6 +106,7 @@ const Features = () => {
                   src={item.imgs[currentIndexes[idx]]}
                   alt="category"
                   className="size-36"
+                  unoptimized
                 />
               </button>
             ),

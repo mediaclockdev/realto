@@ -264,13 +264,13 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
             <div className="flex items-center gap-2.5 ">
               {property.iconImages.map((icon, i) => (
                 <div key={i} className="flex items-center gap-1">
-                  <div className="w-8 h-8 rounded overflow-hidden border border-gray-200">
+                  <div className="w-15 h-10 rounded overflow-hidden">
                     <Image
                       src={icon}
                       alt=""
-                      width={32}
-                      height={32}
-                      className="object-cover w-full h-full"
+                      width={60}
+                      height={40}
+                      className="w-full h-full"
                     />
                   </div>
                   <span className="text-xs font-semibold text-gray-700">
@@ -283,11 +283,11 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
 
           {/* Location + size */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5 min-w-0">
+            <div className="flex items-center gap-1.5 min-w-0 my-2">
               <Image
                 src={location}
                 alt="location"
-                className="w-5 h-5 shrink-0"
+                className="w-8 h-8 shrink-0"
               />
               <span className="font-semibold text-gray-800 text-sm truncate">
                 {property.location}
@@ -297,7 +297,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               <Image
                 src={squaremetericon}
                 alt="location"
-                className="w-5 h-5 shrink-0"
+                className="w-6 h-6 shrink-0"
               />
               <span className="text-[#343434] font-semibold text-base">
                 {property.size}
@@ -308,13 +308,13 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           {/* Date + time */}
           <div className="flex items-center gap-3 mb-1.5 text-gray-500">
             <div className="flex items-center gap-1">
-              <Image src={calender} alt="" className="w-4 h-4 shrink-0" />
+              <Image src={calender} alt="" className="w-8 h-8 shrink-0" />
               <p className="text-[#343434] font-semibold text-base">
                 {property.date}
               </p>
             </div>
             <div className="flex items-center gap-1">
-              <Image src={clock} alt="" className="w-4 h-4 shrink-0" />
+              <Image src={clock} alt="" className="w-8 h-8 shrink-0" />
               <p className="text-[#343434] font-semibold text-base">
                 {property.time}
               </p>
@@ -324,7 +324,11 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           {/* Price + type */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">
-              <Image src={money} alt="money icon" />
+              <Image
+                src={money}
+                alt="money icon"
+                className="w-8 h-8 shrink-0"
+              />
               <p className="text-[#343434] font-semibold text-base">
                 {property.priceRange}
               </p>
@@ -378,13 +382,13 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   className="flex items-center gap-1 px-2 py-1.5 hover:bg-blue-50 rounded-lg transition-colors text-xs text-blue-600 font-medium"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Image src={share} alt="Share" width={20} height={20} />
+                  <Image src={share} alt="Share" width={28} height={28} />
                 </button>
                 <button
                   className="flex items-center gap-1 px-2 py-1.5 hover:bg-red-50 rounded-lg transition-colors text-xs text-red-500 font-medium"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Image src={buylikeicon} alt="Home" width={20} height={20} />
+                  <Image src={buylikeicon} alt="Home" width={34} height={34} />
                 </button>
               </div>
             </div>

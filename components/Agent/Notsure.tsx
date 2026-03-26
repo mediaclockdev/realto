@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import waves from "../../public/waves.svg";
+import GetMatchedAgents from "./GetMatchedAgents";
 
 const Notsure = () => {
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
       <div className="relative bg-[#0284C7] rounded-2xl overflow-hidden min-h-[180px] flex items-center justify-center">
@@ -26,7 +30,15 @@ const Notsure = () => {
             Answer a few quick questions and we&apos;ll match you with the best
             agent in your area.
           </p>
-          <button className="mt-2 bg-white text-[#0284C7] font-semibold font-poppins text-sm px-6 py-2.5 rounded-full hover:bg-blue-50 transition-colors">
+          <GetMatchedAgents
+            open={isInquiryOpen}
+            onClose={() => setIsInquiryOpen(false)}
+          />
+          <button
+            type="button"
+            onClick={() => setIsInquiryOpen(true)}
+            className="cursor-pointer mt-2 bg-white text-[#0284C7] font-semibold font-poppins text-sm px-6 py-2.5 rounded-full hover:bg-blue-50 transition-colors"
+          >
             Get Matched Now
           </button>
         </div>
