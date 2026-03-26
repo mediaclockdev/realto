@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import type { ListingSortOption } from "./types";
+import type { ListingSortOption } from "@/lib/listings/types";
 
 interface ListingMetaProps {
   location: string;

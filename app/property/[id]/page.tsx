@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import PropertyDetailPage from "@/components/PropertyListing/PropertyDetailPage";
+import { getPropertyListingMeta } from "@/lib/listings/repository";
 import {
   getPropertyById,
-  getPropertyListingMeta,
   getRelatedProperties,
-} from "@/lib/property-listing-data";
-import type { ListingVariant } from "@/components/PropertyListing/types";
+} from "@/lib/properties/repository";
+import type { ListingVariant } from "@/lib/listings/types";
 
 type PageProps = {
   params: Promise<{ id: string }>;

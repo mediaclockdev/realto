@@ -1,9 +1,9 @@
 import PropertyListingPage from "@/components/PropertyListing/PropertyListingPage";
-import { getPropertyListingPageData } from "@/lib/property-listing-data";
+import { getPropertyListingPageData } from "@/lib/listings/repository";
 import type {
   ListingSortOption,
   PropertyListingQueryState,
-} from "@/components/PropertyListing/types";
+} from "@/lib/listings/types";
 
 const validSortOptions: ListingSortOption[] = [
   "Relevant listings",

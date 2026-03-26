@@ -2,8 +2,9 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import type { ListingSortOption, ListingVariant } from "@/lib/listings/types";
+import type { ListingProperty } from "@/lib/properties/types";
 import { getListingVariantConfig } from "./config";
-import type { ListingSortOption, ListingProperty } from "./types";
 import ListingMeta from "./ListingMeta";
 import PropertyDetailView from "./PropertyDetailView";
 import PropertyListingCard from "./PropertyListingCard";
@@ -13,7 +14,7 @@ interface PropertyDetailPageProps {
   property: ListingProperty;
   relatedProperties: ListingProperty[];
   listingMeta: {
-    listingVariant: "buy" | "rent";
+    listingVariant: ListingVariant;
     location: string;
     suburb: string;
     totalProperties: number;

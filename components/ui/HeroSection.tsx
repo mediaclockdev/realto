@@ -9,9 +9,17 @@ type HeroSectionProps = {
   image?: StaticImageData | string;
   images?: (StaticImageData | string)[];
   interval?: number; // ms, default 5000
+  title?: string;
+  description?: string;
 };
 
-const HeroSection = ({ image, images, interval = 10000 }: HeroSectionProps) => {
+const HeroSection = ({
+  image,
+  images,
+  title,
+  description,
+  interval = 10000,
+}: HeroSectionProps) => {
   const finalImages = images ?? (image ? [image] : []);
 
   const [current, setCurrent] = useState(0);
@@ -49,8 +57,7 @@ const HeroSection = ({ image, images, interval = 10000 }: HeroSectionProps) => {
           src={finalImages[prev]}
           alt="hero background"
           fill
-          priority
-          quality={100}
+          quality={80}
           sizes="100vw"
           className="object-cover object-top md:object-center absolute inset-0 transition-opacity duration-1000 opacity-0"
         />
@@ -63,7 +70,7 @@ const HeroSection = ({ image, images, interval = 10000 }: HeroSectionProps) => {
         alt="hero background"
         fill
         priority
-        quality={100}
+        quality={85}
         sizes="100vw"
         className={`object-cover object-top md:object-center absolute inset-0 transition-opacity duration-1000 ${
           transitioning ? "opacity-100" : "opacity-100"
@@ -72,7 +79,11 @@ const HeroSection = ({ image, images, interval = 10000 }: HeroSectionProps) => {
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/80 pointer-events-none z-10" />
-
+      {/* Text content */}
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-40 z-20 flex flex-col items-center justify-center text-center px-4">
+        <h2 className="text-white text-2xl md:text-4xl font-bold">{title}</h2>
+        <p className="text-white mt-2 text-sm md:text-lg">{description}</p>
+      </div>
       <Searchbar />
     </div>
   );

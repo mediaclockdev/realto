@@ -2,7 +2,8 @@ import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import location from "@/public/location.svg";
-import type { ListingProperty } from "./types";
+import type { ListingVariant } from "@/lib/listings/types";
+import type { ListingProperty } from "@/lib/properties/types";
 import share from "../../public/share.svg";
 import home from "../../public/home.svg";
 import buylikeicon from "../../public/buylikeicon.svg";
@@ -13,7 +14,6 @@ import money from "../../public/money.svg";
 import calender from "../../public/calender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
 import rentshare from "../../public/rentshareicon.svg";
-import type { ListingVariant } from "./types";
 
 interface PropertyListingCardProps {
   property: ListingProperty;

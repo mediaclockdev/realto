@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import listicon from "../../public/listToggleicon.svg";
 import mapicon from "../../public/mapToggleicon.svg";
 import Image from "next/image";
-import type { ListingVariant } from "./types";
+import type { ListingVariant } from "@/lib/listings/types";
 
 const filters = ["Property type", "Price", "Rooms", "More"];
 

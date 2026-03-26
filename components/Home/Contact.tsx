@@ -48,7 +48,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
                 alt={`Contact visual ${i + 1}`}
                 fill
                 priority={i === 0}
-                quality={100}
+                quality={80}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className={`object-cover rounded-2xl absolute inset-0 transition-opacity duration-700 ease-in-out ${
                   i === current ? "opacity-100" : "opacity-0"

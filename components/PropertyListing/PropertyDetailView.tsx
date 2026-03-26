@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import locationIcon from "@/public/location.svg";
-import type { ListingProperty } from "./types";
+import type { ListingProperty } from "@/lib/properties/types";
 import airconditioner from "../../public/airconditioner.svg";
 import Wifi from "../../public/wifi.svg";
 import alarmsystem from "../../public/alarmsystem.svg";
@@ -26,10 +26,7 @@ interface PropertyDetailViewProps {
   property: ListingProperty;
   onBack?: () => void;
 }
-interface GetMatchedNowProps {
-  open: boolean;
-  onClose: () => void;
-}
+
 const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
   property,
   onBack,
@@ -46,7 +43,11 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
         (prev - 1 + property.thumbnail.length) % property.thumbnail.length,
     );
   };
+  const scrollRef = useRef<HTMLDivElement | null>(null);
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
+  const [showLeft, setShowLeft] = useState(false);
+  const [showRight, setShowRight] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
   const amenities = [
     { name: "Air Conditioner", icon: airconditioner },
@@ -59,6 +60,24 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
     { name: "Fully fenced", icon: fullyfenced },
     { name: "Swimming pool", icon: swimmingpool },
   ];
+  const checkScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    setShowLeft(el.scrollLeft > 0);
+    setShowRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 5);
+  };
+
+  const scroll = (dir: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const scrollAmount = 200;
+    el.scrollBy({
+      left: dir === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className="bg-gray-50 flex-1 overflow-y-auto">
@@ -76,12 +95,12 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
       )}
 
       {/* Hero Image Section */}
-      <div className="relative w-full h-[300px] md:h-[450px] lg:h-[550px] bg-gray-200">
+      <div className="relative w-full h-[300px] md:h-[450px] lg:h-[310px] bg-gray-200">
         <Image
           src={property.thumbnail[activeImageIndex]}
           alt={`Property view ${activeImageIndex + 1}`}
           fill
-          className=""
+          className="w-full h-full"
         />
         {property.thumbnail.length > 1 && (
           <>
@@ -134,14 +153,14 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
             {property.iconImages && (
               <div className="flex items-center gap-2">
                 {property.iconImages.map((icon, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <div className="w-10 h-10">
+                  <div key={i} className="flex items-center gap-1">
+                    <div className="w-18 h-12">
                       <Image
                         src={icon}
                         alt="Feature"
-                        width={20}
-                        height={20}
-                        className="w-full h-full object-cover"
+                        width={100}
+                        height={60}
+                        className="w-full h-full"
                       />
                     </div>
                     <span className="text-sm font-bold text-gray-800">
@@ -328,22 +347,52 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
         </div>
 
         {/* Amenities & Facilities */}
-        <div className="bg-white px-3 py-4 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">
+        <div
+          className="bg-white px-6 py-5 rounded-2xl shadow-sm border border-gray-100 relative group overflow-hidden"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <h2 className="text-xl font-semibold text-[#343434] mb-3">
             Amenities & Facilities
           </h2>
-          <div className="flex flex-wrap items-center justify-between md:justify-start gap-2 lg:gap-4">
+
+          {/* LEFT BUTTON */}
+          {isHovered && showLeft && (
+            <button
+              onClick={() => scroll("left")}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black shadow-md rounded-full p-2 mt-2"
+            >
+              ←
+            </button>
+          )}
+
+          {/* RIGHT BUTTON */}
+          {isHovered && showRight && (
+            <button
+              onClick={() => scroll("right")}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black shadow-md rounded-full p-2 mt-2"
+            >
+              →
+            </button>
+          )}
+
+          {/* SCROLL CONTAINER */}
+          <div
+            ref={scrollRef}
+            onScroll={checkScroll}
+            className="flex gap-2 overflow-x-auto overflow-y-hidden scrollbar-hide items-center"
+          >
             {amenities.map((item, idx) => (
               <div
                 key={idx}
-                className="rounded-xl p-4 flex flex-col items-center justify-center gap-3 text-center transition-transform hover:scale-105 cursor-default"
+                className="rounded-xl shrink-0 flex flex-col items-center justify-center gap-3 text-center transition-transform hover:scale-105 cursor-default"
               >
                 <Image
                   src={item.icon}
                   alt="amenity"
-                  width={40}
-                  height={40}
-                  className="w-full h-full"
+                  width={120}
+                  height={120}
+                  className="w-32 h-32"
                 />
               </div>
             ))}

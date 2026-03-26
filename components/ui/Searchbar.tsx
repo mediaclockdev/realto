@@ -40,7 +40,7 @@ const Searchbar = () => {
             />
           </div>
           {isCountriesOpen && (
-            <div className="fixed left-1/2 -translate-x-1/2 bottom-[110%] w-[85%] max-w-4xl bg-[#6b6b6b] rounded-xl p-3 z-[9999] shadow-2xl">
+            <div className="fixed left-1/2 -translate-x-1/2 bottom-[110%] w-[85%] max-w-4xl bg-[#6b6b6b] rounded-xl p-2 z-[9999] shadow-2xl">
               <Counteries />
             </div>
           )}

@@ -1,0 +1,25 @@
+import type { ImageSource } from "@/lib/shared/types";
+
+export interface ListingProperty {
+  id: string;
+  images: ImageSource[];
+  location: string;
+  size: string;
+  date: string;
+  time: string;
+  priceRange: string;
+  propertyType: string;
+  agentName: string;
+  agentCompany: ImageSource;
+  agentLocation: string;
+  agentPhone: string;
+  agentEmail: string;
+  agentCompanyName: string;
+  agentImage: ImageSource;
+  agentImageCard: ImageSource;
+  iconImages?: ImageSource[];
+  iconLabels?: string[];
+  thumbnail: ImageSource[];
+  socials: ImageSource[];
+  flags: ImageSource[];
+}

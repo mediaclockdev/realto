@@ -2,11 +2,8 @@
 
 import React from "react";
 import PropertyListingCard from "./PropertyListingCard";
-import type {
-  ListingProperty,
-  ListingVariant,
-  PropertyMapMarker,
-} from "./types";
+import type { ListingVariant, PropertyMapMarker } from "@/lib/listings/types";
+import type { ListingProperty } from "@/lib/properties/types";
 
 interface PropertyListingMapPaneProps {
   properties: ListingProperty[];

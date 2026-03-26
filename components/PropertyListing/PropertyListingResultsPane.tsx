@@ -3,11 +3,8 @@
 import React from "react";
 import ListingMeta from "./ListingMeta";
 import PropertyListingCard from "./PropertyListingCard";
-import type {
-  ListingProperty,
-  ListingSortOption,
-  ListingVariant,
-} from "./types";
+import type { ListingSortOption, ListingVariant } from "@/lib/listings/types";
+import type { ListingProperty } from "@/lib/properties/types";
 
 interface PropertyListingResultsPaneProps {
   properties: ListingProperty[];

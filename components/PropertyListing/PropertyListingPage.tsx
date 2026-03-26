@@ -15,8 +15,9 @@ import type {
   ListingSortOption,
   PropertyListingPageData,
   PropertyListingQueryState,
-} from "./types";
+} from "@/lib/listings/types";
 import eddy from "../../public/eddyjones.svg";
+import eddy1 from "../../public/eddy1.png";
 
 interface PropertyListingPageProps {
   data: PropertyListingPageData;
@@ -55,7 +56,7 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
     selectedMapPropId &&
     data.properties.some((property) => property.id === selectedMapPropId)
       ? selectedMapPropId
-      : data.properties[0]?.id ?? null;
+      : (data.properties[0]?.id ?? null);
   const isMapView = query.view === "map";
 
   const navigateWithQuery = (partial: Partial<PropertyListingQueryState>) => {
@@ -102,7 +103,9 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
   };
 
   const openPropertyDetail = (propertyId: string) => {
-    router.push(`/property/${propertyId}?listingVariant=${data.listingVariant}`);
+    router.push(
+      `/property/${propertyId}?listingVariant=${data.listingVariant}`,
+    );
   };
 
   const desktopContainerClassName =
@@ -212,11 +215,41 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
               <aside className="hidden lg:block w-64 xl:w-72 shrink-0">
                 <div className="sticky top-6 space-y-4">
                   <AgentCard
-                    name="Eddie Jones"
-                    company="Parker Realestate"
-                    experience={9}
-                    sales={18}
-                    agentImage={eddy}
+                    agents={[
+                      {
+                        name: "Eddie Jones",
+                        company: "Parker Realestate",
+                        license: "12345678",
+                        experience: 9,
+                        sales: 18,
+                        agentImage: eddy,
+                      },
+                      {
+                        name: "Anna Jones",
+                        company: "Parker Realestate",
+                        license: "12345678",
+                        experience: 9,
+                        sales: 18,
+                        agentImage: eddy1,
+                      },
+                      {
+                        name: "Brook Jones",
+                        company: "Parker Realestate",
+                        license: "12345678",
+                        experience: 9,
+                        sales: 18,
+                        agentImage: eddy,
+                      },
+                      {
+                        name: "Ash Jones",
+                        company: "Parker Realestate",
+                        license: "12345678",
+                        experience: 9,
+                        sales: 18,
+                        agentImage: eddy1,
+                      },
+                      // ...more agents
+                    ]}
                   />
                   <MapWidget suburb={data.suburb} />
                 </div>

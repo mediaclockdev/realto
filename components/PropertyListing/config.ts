@@ -1,4 +1,4 @@
-import type { ListingVariant } from "./types";
+import type { ListingVariant } from "@/lib/listings/types";
 
 export interface ListingVariantConfig {
   variant: ListingVariant;

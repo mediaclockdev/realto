@@ -1,77 +1,15 @@
-import house from "@/public/propertyhouse.svg";
-import elder from "@/public/elderrealestate.svg";
-import thumbnail1 from "@/public/thumbnail1.svg";
-import thumbnail2 from "@/public/thumbnail2.svg";
-import thumbnail3 from "@/public/thumbnail3.svg";
-import thumbnail4 from "@/public/thumbnail4.svg";
-import thumbnail5 from "@/public/thumbnail5.svg";
-import thumbnail6 from "@/public/thumbnail6.svg";
-import thumbnail7 from "@/public/thumbnail7.svg";
-import thumbnail8 from "@/public/thumbnail8.svg";
-import thumbnail9 from "@/public/thumbnail9.svg";
 import type {
-  ListingProperty,
   ListingSortOption,
   ListingVariant,
   PropertyListingPageData,
-} from "@/components/PropertyListing/types";
-import eddy from "../public/eddyjones.svg";
-import facebook from "../public/logos_facebook.svg";
-import instagram from "../public/logos_instagram.svg";
-import whatsapp from "../public/whatsapp.svg";
-import message from "../public/smslogo.svg";
-import phone from "../public/phone.svg";
-import mail from "../public/mail.svg";
-import house4 from "../public/house4.svg";
-import ana from "../public/anajonesagent.svg";
-import french from "../public/Franceflag.svg";
-import china from "../public/chinaflag.svg";
-import spanish from "../public/spain.svg";
+} from "@/lib/listings/types";
+import type { ListingProperty } from "@/lib/properties/types";
+import { getAllProperties } from "@/lib/properties/repository";
+import { TOTAL_PROPERTIES } from "@/lib/properties/mock-data";
 
 const PROPERTIES_PER_PAGE = 12;
-const TOTAL_PROPERTIES = 876;
 const DEFAULT_LOCATION = "NSW";
 const DEFAULT_SUBURB = "Sans Souci, NSW 2219";
-
-const BASE_PROPERTY: Omit<ListingProperty, "id"> = {
-  images: [house, house4],
-  location: "Austin, Australia",
-  size: "8,235sqft",
-  date: "12-02-2026",
-  time: "10:00AM",
-  priceRange: "$1,00,000-$2,00,000",
-  propertyType: "Apartment",
-  agentName: "Anna Johns",
-  agentCompany: elder,
-  agentCompanyName: "Parker Realestate",
-  agentLocation: "Austin, Australia",
-  agentPhone: "+9999999999",
-  agentEmail: "exampleemail.com",
-  socials: [whatsapp, instagram, facebook, message, phone, mail],
-  flags: [french, china, spanish],
-  agentImage: ana,
-  agentImageCard: eddy,
-  iconImages: ["/bath.png", "/car.jpg", "/bedroom.jpg"],
-  thumbnail: [
-    thumbnail1,
-    thumbnail2,
-    thumbnail3,
-    thumbnail4,
-    thumbnail5,
-    thumbnail6,
-    thumbnail7,
-    thumbnail8,
-    thumbnail9,
-  ],
-};
-
-const properties: ListingProperty[] = Array.from(
-  { length: TOTAL_PROPERTIES },
-  (_, index) => ({
-    ...BASE_PROPERTY,
-    id: String(index + 1),
-  }),
-);
 
 export interface PropertyListingsQuery {
   listingVariant?: ListingVariant;
@@ -142,7 +80,7 @@ export function getListings(
   const listingVariant = query.listingVariant ?? "buy";
   const pageSize = query.pageSize ?? PROPERTIES_PER_PAGE;
   const filteredAndSorted = sortProperties(
-    filterProperties(properties, query.search),
+    filterProperties(getAllProperties(), query.search),
     query.sort,
   );
   const totalProperties = filteredAndSorted.length;
@@ -165,31 +103,6 @@ export function getPropertyListingPageData(
   query: PropertyListingsQuery = {},
 ): PropertyListingsResult {
   return getListings(query);
-}
-
-export function getAllProperties() {
-  return properties;
-}
-
-export function getPropertyById(id: string) {
-  return properties.find((property) => property.id === id) ?? null;
-}
-
-export function getRelatedProperties(id: string, limit = 4) {
-  const property = getPropertyById(id);
-
-  if (!property) {
-    return [];
-  }
-
-  return properties
-    .filter((item) => item.id !== id)
-    .filter(
-      (item) =>
-        item.location === property.location ||
-        item.propertyType === property.propertyType,
-    )
-    .slice(0, limit);
 }
 
 export function getPropertyListingMeta(listingVariant: ListingVariant = "buy") {
