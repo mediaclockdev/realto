@@ -370,7 +370,7 @@ const PropertyCard: React.FC<{
                     className="absolute bottom-full right-1 mb-2 flex items-center justify-center z-20 animate-fade-in-up "
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <div className="bg-black/90  px-2 py-2.5 flex gap-2 items-center">
+                    <div className="bg-black/70  px-2 py-2.5 flex gap-2 items-center">
                       <button className="hover:scale-110 transition-transform cursor-pointer">
                         <Image
                           src={whatsapp}
