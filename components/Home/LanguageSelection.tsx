@@ -23,27 +23,25 @@ import burmese from "../../public/burmese.svg";
 import cambodia from "../../public/cambodia.svg";
 import croatian from "../../public/croatian.svg";
 import denmark from "../../public/denmark.svg";
-import fijian from "../../public/fijian.svg"
-import finnish from "../../public/finnish.svg"
-import georgian from "../../public/georgian.svg"
-import hongkong from "../../public/hongkong.svg"
-import italy from "../../public/italy.svg"
-import japan from "../../public/japan.svg"
-import kurdistan from "../../public/kurdistan.svg"
+import fijian from "../../public/fijian.svg";
+import finnish from "../../public/finnish.svg";
+import georgian from "../../public/georgian.svg";
+import hongkong from "../../public/hongkong.svg";
+import italy from "../../public/italy.svg";
+import japan from "../../public/japan.svg";
+import kurdistan from "../../public/kurdistan.svg";
 import lebanese from "../../public/lebanese.svg";
 import macedonian from "../../public/macedonian.svg";
 import nepal from "../../public/nepal.svg";
 import netherlands from "../../public/netherlands.svg";
 import polish from "../../public/polish.svg";
 import portuguese from "../../public/portuguese.svg";
-import romanian from "../../public/romanian.svg"
-import somali from "../../public/somali.svg"
-import tagalog from "../../public/tagalog.svg"
-import tongon from "../../public/tongan.svg"
-import turkish from "../../public/turkish.svg"
-import ukrainian from "../../public/ukrainian.svg"
-
-
+import romanian from "../../public/romanian.svg";
+import somali from "../../public/somali.svg";
+import tagalog from "../../public/tagalog.svg";
+import tongon from "../../public/tongan.svg";
+import turkish from "../../public/turkish.svg";
+import ukrainian from "../../public/ukrainian.svg";
 
 const LanguageSelection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -94,17 +92,37 @@ const LanguageSelection = () => {
     { name: "Japanese", nativeName: "日本語", icon: japan, code: "ja" },
     { name: "Kurdish", nativeName: "Kurdî", icon: kurdistan, code: "ku" },
     { name: "Lebanese", nativeName: "لبناني", icon: lebanese, code: "lb" },
-    { name: "Macedonian", nativeName: "Македонски", icon: macedonian, code: "mk" },
+    {
+      name: "Macedonian",
+      nativeName: "Македонски",
+      icon: macedonian,
+      code: "mk",
+    },
     { name: "Nepali", nativeName: "नेपाली", icon: nepal, code: "ne" },
-    { name: "Netherlands", nativeName: "Nederlands", icon: netherlands, code: "nl" },
+    {
+      name: "Netherlands",
+      nativeName: "Nederlands",
+      icon: netherlands,
+      code: "nl",
+    },
     { name: "Polish", nativeName: "Polski", icon: polish, code: "pl" },
-    { name: "Portuguese", nativeName: "Português", icon: portuguese, code: "pt" },
+    {
+      name: "Portuguese",
+      nativeName: "Português",
+      icon: portuguese,
+      code: "pt",
+    },
     { name: "Romanian", nativeName: "Română", icon: romanian, code: "ro" },
     { name: "Somali", nativeName: "Soomaali", icon: somali, code: "so" },
     { name: "Tagalog", nativeName: "Tagalog", icon: tagalog, code: "tl" },
     { name: "Tongan", nativeName: "Tongan", icon: tongon, code: "to" },
     { name: "Turkish", nativeName: "Türkçe", icon: turkish, code: "tr" },
-    { name: "Ukrainian", nativeName: "Українська", icon: ukrainian, code: "uk" },
+    {
+      name: "Ukrainian",
+      nativeName: "Українська",
+      icon: ukrainian,
+      code: "uk",
+    },
   ];
 
   const languages = Array.from({ length: 30 }, (_, i) => ({
@@ -167,7 +185,7 @@ const LanguageSelection = () => {
         {scrollLeft > 10 && (
           <button
             onClick={() => scroll("left")}
-            className="absolute left-14 mt-3 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300"
+            className="absolute left-0 mt-3 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300"
           >
             <ChevronLeft className="w-5 h-5 text-gray-800" />
           </button>
@@ -196,8 +214,6 @@ const LanguageSelection = () => {
                 }}
                 onMouseLeave={() => setTooltipInfo(null)}
               >
-              
-
                 <button
                   onClick={() => setSelectedLanguage(lang.id)}
                   className={`rounded-full cursor-pointer transition-all duration-200 border-[3px] ${

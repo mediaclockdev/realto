@@ -2,6 +2,7 @@
 import React from "react";
 import agent from "../../public/agent.svg";
 import agent1 from "../../public/agent1.svg";
+import agent2 from "../../public/agent2.svg";
 import airbnb from "../../public/airbnb.svg";
 import airbnb1 from "../../public/airbnb1.svg";
 import buy from "../../public/buy.svg";
@@ -32,7 +33,7 @@ const Features = () => {
   const agents = [
     { imgs: [buy, buy1], href: "/propertyListingpage" },
     { imgs: [rent, rent1, rent2, rent3], href: "/rent" },
-    { imgs: [agent, agent1], href: "/agentspage" },
+    { imgs: [agent, agent1, agent2], href: "/agentspage" },
     { imgs: [loanbroker, loanbroker1], href: "" },
     { imgs: [commercial], href: "" },
     { imgs: [hotel, hotel1], href: "" },

@@ -1,18 +1,23 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import location from "../../public/location.svg";
+import locationIcon from "../../public/location.svg";
 import Image from "next/image";
 import share from "../../public/share.svg";
 import home from "../../public/buylikeicon.svg";
+import homeliked from "../../public/homelike.svg";
 import mobile from "../../public/mobileicon.svg";
 import mail from "../../public/mailicon.svg";
 import clock from "../../public/clock.svg";
 import money from "../../public/money.svg";
-import calender from "../../public/calender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
 import { ImageSource } from "@/lib/shared/types";
+import whatsapp from "@/public/whatsapp.svg";
+import instagram from "@/public/logos_instagram.svg";
+import facebook from "../../public/logos_facebook.svg";
+import message from "../../public/mailicon.svg";
+import sharegold from "../../public/sharegold.svg";
 
 export interface PropertyData {
   id: string;
@@ -105,8 +110,11 @@ const PropertyCard: React.FC<{
   property: PropertyData;
   onCardClick?: (property: PropertyData) => void;
 }> = ({ property, onCardClick }) => {
-  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
-  const outerRef = useRef<HTMLDivElement>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [liked, setLiked] = useState(false);
+  const [isShared, setIsShared] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleNextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -122,15 +130,10 @@ const PropertyCard: React.FC<{
 
   return (
     <div
-      ref={outerRef}
-      className="shrink-0 w-[340px] rounded-xl  transition-all duration-300 hover:scale-105 p-[2px]"
-      style={{ background: "transparent" }}
-      onMouseEnter={() => {
-        if (outerRef.current) outerRef.current.style.background = GOLD_GRADIENT;
-      }}
-      onMouseLeave={() => {
-        if (outerRef.current) outerRef.current.style.background = "transparent";
-      }}
+      className="shrink-0 w-[340px] rounded-xl transition-all duration-300 hover:scale-105 p-[2px] cursor-pointer relative"
+      style={{ background: isHovered ? GOLD_GRADIENT : "transparent" }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       onClick={() => onCardClick?.(property)}
     >
       {/* Inner: white card */}
@@ -188,7 +191,7 @@ const PropertyCard: React.FC<{
                       alt={`Feature ${index + 1}`}
                       width={48}
                       height={40}
-                      className="w-full h-full"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   <span className="text-sm font-semibold text-gray-700 font-poppins">
@@ -203,11 +206,13 @@ const PropertyCard: React.FC<{
           <div className="flex items-center justify-between mb-1">
             <div className="flex items-center gap-0.5 min-w-0">
               <Image
-                src={location}
+                src={locationIcon}
                 alt="location"
-                className="w-5 h-5 lg:w-7 lg:h-7 shrink-0"
+                width={28}
+                height={28}
+                className="w-5 h-5 lg:w-7 lg:h-7 shrink-0 object-contain"
               />
-              <span className="font-semibold text-gray-800 text-sm truncate font-poppins">
+              <span className="font-semibold text-gray-800 text-sm truncate font-poppins ml-0.5">
                 {property.location}
               </span>
             </div>
@@ -215,9 +220,11 @@ const PropertyCard: React.FC<{
               <Image
                 src={squaremetericon}
                 alt="size"
-                className="w-5 h-5 lg:w-7 lg:h-7 shrink-0"
+                width={28}
+                height={28}
+                className="w-5 h-5 lg:w-7 lg:h-7 shrink-0 object-contain"
               />
-              <p className="text-[#343434] font-semibold text-base font-poppins">
+              <p className="text-[#343434] font-semibold text-base font-poppins ml-1">
                 {property.size}
               </p>
             </div>
@@ -229,19 +236,23 @@ const PropertyCard: React.FC<{
               <Image
                 src={property.dateicon}
                 alt="calendericon"
-                className="w-4 h-4 lg:w-7 lg:h-7 shrink-0"
+                width={28}
+                height={28}
+                className="w-4 h-4 lg:w-7 lg:h-7 shrink-0 object-contain"
               />
-              <span className="text-[#343434] font-semibold font-poppins text-base">
+              <span className="text-[#343434] font-semibold font-poppins text-base ml-1">
                 {property.date}
               </span>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center ml-2">
               <Image
                 src={clock}
                 alt="clockicon"
-                className="w-4 h-4 lg:w-7 lg:h-7 shrink-0"
+                width={28}
+                height={28}
+                className="w-4 h-4 lg:w-7 lg:h-7 shrink-0 object-contain"
               />
-              <span className="text-[#343434] font-semibold font-poppins text-base">
+              <span className="text-[#343434] font-semibold font-poppins text-base ml-1">
                 {property.time}
               </span>
             </div>
@@ -250,7 +261,13 @@ const PropertyCard: React.FC<{
           {/* Price and Property Type */}
           <div className="flex items-center justify-between mb-1">
             <div className="flex items-center gap-1">
-              <Image src={money} alt="money icon" className="w-7 h-7" />
+              <Image
+                src={money}
+                alt="money icon"
+                width={28}
+                height={28}
+                className="w-7 h-7 object-contain"
+              />
               <p className="text-[#343434] font-semibold font-poppins text-base">
                 {property.priceRange}
               </p>
@@ -264,7 +281,7 @@ const PropertyCard: React.FC<{
           <div className="flex items-center justify-between">
             {/* Agent Info */}
             <div>
-              <div className="flex gap-1">
+              <div className="flex gap-1 items-center">
                 <Image
                   src={property.agentImage}
                   alt={property.agentName}
@@ -277,13 +294,25 @@ const PropertyCard: React.FC<{
                 </p>
               </div>
               <div className="flex items-center gap-1 mt-1">
-                <Image src={mobile} alt="" width={20} height={20} />
+                <Image
+                  src={mobile}
+                  alt=""
+                  width={20}
+                  height={20}
+                  className="object-contain"
+                />
                 <p className="font-semibold font-poppins text-[#FA2F2F] text-xs">
                   {property.agentPhone}
                 </p>
               </div>
               <div className="flex items-center gap-1 mt-1">
-                <Image src={mail} alt="" width={20} height={20} />
+                <Image
+                  src={mail}
+                  alt=""
+                  width={20}
+                  height={20}
+                  className="object-contain"
+                />
                 <p className="truncate font-semibold font-poppins text-[#FA2F2F] text-xs">
                   {property.agentEmail}
                 </p>
@@ -297,24 +326,87 @@ const PropertyCard: React.FC<{
                 alt="Company logo"
                 width={80}
                 height={36}
-                className="object-contain"
+                className="object-contain block mx-auto mb-1"
               />
-              <div className="text-xs text-[#FA2F2F] font-medium font-poppins">
+              <div className="text-xs text-[#FA2F2F] font-medium font-poppins mb-1 text-right">
                 <p>{property.agentLocation}</p>
               </div>
-              <div className="flex items-center">
+
+              <div className="flex items-center justify-end relative">
                 <button
-                  className="flex items-center gap-1 px-2 py-1.5 cursor-pointer hover:bg-blue-50 rounded-lg transition-colors text-xs text-blue-600 font-poppins font-medium"
-                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center gap-1 px-2 py-1.5 hover:bg-blue-50 rounded-lg transition-colors z-10"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowShareModal(!showShareModal);
+                    setIsShared(!isShared);
+                  }}
                 >
-                  <Image src={share} alt="Share" width={28} height={28} />
+                  <Image
+                    src={isShared ? sharegold : share}
+                    alt="Share"
+                    width={28}
+                    height={28}
+                    className="transition-all duration-200 object-contain"
+                  />
                 </button>
                 <button
-                  className="flex items-center gap-1 px-2 py-1.5 cursor-pointer hover:bg-red-50 rounded-lg transition-colors text-xs text-red-500 font-poppins font-medium"
-                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center gap-1 px-2 py-1.5 cursor-pointer hover:bg-red-50 rounded-lg transition-colors z-10"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLiked(!liked);
+                  }}
                 >
-                  <Image src={home} alt="Home" width={32} height={32} />
+                  <Image
+                    src={liked ? homeliked : home}
+                    alt="Home"
+                    width={32}
+                    height={32}
+                    className="transition-all duration-200 object-contain"
+                  />
                 </button>
+
+                {showShareModal && (
+                  <div
+                    className="absolute bottom-full right-1 mb-2 flex items-center justify-center z-20 animate-fade-in-up "
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className="bg-black/90  px-2 py-2.5 flex gap-2 items-center">
+                      <button className="hover:scale-110 transition-transform cursor-pointer">
+                        <Image
+                          src={whatsapp}
+                          alt="whatsapp"
+                          width={80}
+                          height={80}
+                        />
+                      </button>
+                      <button className="hover:scale-110 transition-transform">
+                        <Image
+                          src={instagram}
+                          alt="instagram"
+                          width={80}
+                          height={80}
+                        />
+                      </button>
+                      <button className="hover:scale-110 transition-transform">
+                        <Image
+                          src={facebook}
+                          alt="facebook"
+                          width={80}
+                          height={80}
+                        />
+                      </button>
+                      <button className="hover:scale-110 transition-transform">
+                        <Image
+                          src={message}
+                          alt="message"
+                          width={80}
+                          height={80}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                )}
+                {/* ---------------------------------------------------- */}
               </div>
             </div>
           </div>

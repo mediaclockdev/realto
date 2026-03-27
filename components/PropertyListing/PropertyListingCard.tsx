@@ -16,6 +16,7 @@ import money from "../../public/money.svg";
 import calender from "../../public/calender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
 import rentshare from "../../public/rentshareicon.svg";
+import homeliked from "../../public/homelike.svg";
 
 interface PropertyListingCardProps {
   property: ListingProperty;
@@ -31,6 +32,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   listingVariant = "buy",
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
+  const [liked, setLiked] = useState(false);
   const outerRef = useRef<HTMLDivElement>(null);
   const hoverBorder = "linear-gradient(135deg, #f6d365 0%, #fda085 100%)";
 
@@ -388,9 +390,18 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 </button>
                 <button
                   className="flex items-center gap-1 px-2 py-1.5 hover:bg-red-50 rounded-lg transition-colors text-xs text-red-500 font-medium"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLiked((prev) => !prev);
+                  }}
                 >
-                  <Image src={buylikeicon} alt="Home" width={34} height={34} />
+                  <Image
+                    src={liked ? homeliked : buylikeicon}
+                    alt="Home"
+                    width={32}
+                    height={32}
+                    className="transition-all duration-200"
+                  />
                 </button>
               </div>
             </div>
