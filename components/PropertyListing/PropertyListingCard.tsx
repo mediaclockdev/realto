@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronRight, ChevronLeft } from "lucide-react";
@@ -118,21 +120,21 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
             )}
           </div>
 
-          <div className="px-4 pt-3 pb-4">
+          <div className="px-4 pt-2 pb-2">
             {property.iconImages && (
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-4 mb-2">
                 {property.iconImages.map((icon, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <div className="w-[46px] h-[46px] rounded-xl overflow-hidden border border-[#d8d8d8]">
+                    <div className="w-14 h-10 rounded-xl overflow-hidden ">
                       <Image
                         src={icon}
                         alt=""
-                        width={46}
-                        height={46}
-                        className="object-cover w-full h-full"
+                        width={48}
+                        height={40}
+                        className="w-full h-full"
                       />
                     </div>
-                    <span className="text-base font-bold text-[#343434]">
+                    <span className="text-base font-semibold text-[#343434]">
                       {property.iconLabels?.[i] ?? "1"}
                     </span>
                   </div>
@@ -140,7 +142,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               </div>
             )}
 
-            <div className="flex items-center justify-between gap-4 mb-2">
+            <div className="flex items-center justify-between gap-2 mb-1">
               <div className="flex items-center gap-2 min-w-0">
                 <Image
                   src={location}
@@ -163,7 +165,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               </div>
             </div>
 
-            <div className="flex items-end justify-between gap-4 ">
+            <div className="flex items-end justify-between gap-2 ">
               <div className="flex items-center gap-2 min-w-0">
                 <Image src={money} alt="money" className="w-8 h-8 shrink-0" />
                 <p className="text-base font-semibold text-[#343434] font-poppins truncate">
@@ -264,11 +266,11 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
             <div className="flex items-center gap-2.5 ">
               {property.iconImages.map((icon, i) => (
                 <div key={i} className="flex items-center gap-1">
-                  <div className="w-15 h-10 rounded overflow-hidden">
+                  <div className="w-14 h-10 rounded-xl overflow-hidden ">
                     <Image
                       src={icon}
                       alt=""
-                      width={60}
+                      width={48}
                       height={40}
                       className="w-full h-full"
                     />
@@ -283,7 +285,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
 
           {/* Location + size */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5 min-w-0 my-2">
+            <div className="flex items-center gap-1.5 min-w-0 my-1">
               <Image
                 src={location}
                 alt="location"
@@ -306,7 +308,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           </div>
 
           {/* Date + time */}
-          <div className="flex items-center gap-3 mb-1.5 text-gray-500">
+          <div className="flex items-center gap-3 mb-1 text-gray-500">
             <div className="flex items-center gap-1">
               <Image src={calender} alt="" className="w-8 h-8 shrink-0" />
               <p className="text-[#343434] font-semibold text-base">

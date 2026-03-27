@@ -6,6 +6,7 @@ export interface ListingProperty {
   location: string;
   size: string;
   date: string;
+  dateicon?: ImageSource[];
   time: string;
   priceRange: string;
   propertyType: string;

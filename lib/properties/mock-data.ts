@@ -11,7 +11,7 @@ import thumbnail8 from "@/public/thumbnail8.svg";
 import thumbnail9 from "@/public/thumbnail9.svg";
 import type { ListingProperty } from "@/lib/properties/types";
 import eddy from "@/public/eddyjones.svg";
-import eddy1 from "@/public/eddy1.png";
+
 import facebook from "@/public/logos_facebook.svg";
 import instagram from "@/public/logos_instagram.svg";
 import whatsapp from "@/public/whatsapp.svg";

@@ -8,6 +8,8 @@ import house4 from "../../public/house4.svg";
 import elder from "../../public/elderrealestate.svg";
 import ana from "../../public/anajonesagent.svg";
 import RealEstateAgents from "./RealEstateAgents";
+import calender from "../../public/calender.svg";
+import hammer from "../../public/hammer.svg";
 
 const newlyListedProperties: PropertyData[] = [
   {
@@ -16,6 +18,7 @@ const newlyListedProperties: PropertyData[] = [
     location: "Austin, Australia",
     size: "8,235sqft",
     date: "12-02-2026",
+    dateicon: calender,
     time: "10:00AM",
     priceRange: "$1,00,000-$2,00,000",
     propertyType: "Apartment",
@@ -25,7 +28,7 @@ const newlyListedProperties: PropertyData[] = [
     agentPhone: "+9999999999",
     agentEmail: "exampleemail.com",
     agentImage: ana,
-    iconImages: ["/bath.png", "/bedroom.jpg", "/car.jpg"],
+    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
   },
   {
     id: "2",
@@ -33,6 +36,7 @@ const newlyListedProperties: PropertyData[] = [
     location: "Austin, Australia",
     size: "8,235sqft",
     date: "12-02-2026",
+    dateicon: hammer,
     time: "10:00AM",
     priceRange: "$1,00,000-$2,00,000",
     propertyType: "Apartment",
@@ -42,7 +46,7 @@ const newlyListedProperties: PropertyData[] = [
     agentPhone: "+9999999999",
     agentEmail: "exampleemail.com",
     agentImage: ana,
-    iconImages: ["/bath.png", "/bedroom.jpg", "/car.jpg"],
+    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
   },
   {
     id: "3",
@@ -50,6 +54,7 @@ const newlyListedProperties: PropertyData[] = [
     location: "Austin, Australia",
     size: "8,235sqft",
     date: "12-02-2026",
+    dateicon: calender,
     time: "10:00AM",
     priceRange: "$1,00,000-$2,00,000",
     propertyType: "Apartment",
@@ -59,7 +64,7 @@ const newlyListedProperties: PropertyData[] = [
     agentPhone: "+9999999999",
     agentEmail: "exampleemail.com",
     agentImage: ana,
-    iconImages: ["/bath.png", "/bedroom.jpg", "/car.jpg"],
+    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
   },
   {
     id: "4",
@@ -67,6 +72,7 @@ const newlyListedProperties: PropertyData[] = [
     location: "Austin, Australia",
     size: "8,235sqft",
     date: "12-02-2026",
+    dateicon: hammer,
     time: "10:00AM",
     priceRange: "$1,00,000-$2,00,000",
     propertyType: "Apartment",
@@ -76,7 +82,7 @@ const newlyListedProperties: PropertyData[] = [
     agentPhone: "+9999999999",
     agentEmail: "exampleemail.com",
     agentImage: ana,
-    iconImages: ["/bath.png", "/bedroom.jpg", "/car.jpg"],
+    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
   },
   {
     id: "5",
@@ -84,6 +90,7 @@ const newlyListedProperties: PropertyData[] = [
     location: "Austin, Australia",
     size: "8,235sqft",
     date: "12-02-2026",
+    dateicon: calender,
     time: "10:00AM",
     priceRange: "$1,00,000-$2,00,000",
     propertyType: "Apartment",
@@ -93,7 +100,7 @@ const newlyListedProperties: PropertyData[] = [
     agentPhone: "+9999999999",
     agentEmail: "exampleemail.com",
     agentImage: ana,
-    iconImages: ["/bath.png", "/bedroom.jpg", "/car.jpg"],
+    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
   },
 ];
 

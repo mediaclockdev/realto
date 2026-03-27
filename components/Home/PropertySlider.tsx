@@ -12,6 +12,7 @@ import clock from "../../public/clock.svg";
 import money from "../../public/money.svg";
 import calender from "../../public/calender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
+import { ImageSource } from "@/lib/shared/types";
 
 export interface PropertyData {
   id: string;
@@ -19,6 +20,7 @@ export interface PropertyData {
   location: string;
   size: string;
   date: string;
+  dateicon: ImageSource;
   time: string;
   priceRange: string;
   propertyType: string;
@@ -180,13 +182,13 @@ const PropertyCard: React.FC<{
             <div className="flex items-center gap-3 mb-1 pb-2">
               {property.iconImages.map((icon, index) => (
                 <div key={index} className="flex items-center gap-1.5">
-                  <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0">
+                  <div className="w-14 h-10 rounded-lg overflow-hidden shrink-0">
                     <Image
                       src={icon}
                       alt={`Feature ${index + 1}`}
-                      width={40}
+                      width={48}
                       height={40}
-                      className="object-cover w-full h-full"
+                      className="w-full h-full"
                     />
                   </div>
                   <span className="text-sm font-semibold text-gray-700 font-poppins">
@@ -225,7 +227,7 @@ const PropertyCard: React.FC<{
           <div className="flex items-center gap-1 mb-1 text-gray-600">
             <div className="flex items-center">
               <Image
-                src={calender}
+                src={property.dateicon}
                 alt="calendericon"
                 className="w-4 h-4 lg:w-7 lg:h-7 shrink-0"
               />
