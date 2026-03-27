@@ -1,13 +1,12 @@
 import HeroAgentSection from "@/components/Agent/HeroAgentSection";
 import Notsure from "@/components/Agent/Notsure";
-import Recommended from "@/components/Agent/Recommended ";
+import Recommended from "@/components/Agent/Recommended";
 import Tipsforselling from "@/components/Agent/Tipsforselling";
 import TopRealEstateAgencies from "@/components/Agent/TopRealEstateAgencies";
 import { getRecommendedAgents } from "@/lib/agents/repository";
-import React from "react";
 
-const page = () => {
-  const recommendedAgents = getRecommendedAgents();
+export default async function Page() {
+  const recommendedAgents = await getRecommendedAgents();
 
   return (
     <div>
@@ -18,6 +17,4 @@ const page = () => {
       <Notsure />
     </div>
   );
-};
-
-export default page;
+}
