@@ -1,4 +1,5 @@
 import type { ImageSource } from "@/lib/shared/types";
+import { StaticImageData } from "next/image";
 
 export type AgentCardVariant = "angled" | "framed";
 export type AgentCardAccent = "red" | "gold" | "blue";
@@ -54,6 +55,14 @@ export interface AgentPerformance {
   responseTime: string;
 }
 
+export interface CareerHighlight {
+  title: string;
+  company: string;
+  duration: string;
+  description: string;
+  careericons: StaticImageData;
+}
+
 export interface AgentDetail extends AgentSummary {
   officeAddress: string;
   agencyPhone: string;
@@ -65,7 +74,7 @@ export interface AgentDetail extends AgentSummary {
   performance: AgentPerformance;
   socialLinks: AgentSocialLinks;
   certifications: string[];
-  careerHighlights: string[];
+  careerHighlights: CareerHighlight[];
   currentListingIds: string[];
   soldListingIds: string[];
 }

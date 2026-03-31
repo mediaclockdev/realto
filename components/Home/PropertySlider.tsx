@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import locationIcon from "../../public/location.svg";
 import Image from "next/image";
@@ -406,7 +406,7 @@ const PropertyCard: React.FC<{
                     </div>
                   </div>
                 )}
-                {/* ---------------------------------------------------- */}
+                
               </div>
             </div>
           </div>

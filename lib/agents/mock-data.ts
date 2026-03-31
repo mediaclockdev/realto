@@ -1,8 +1,10 @@
 import type { AgentDetail } from "@/lib/agents/types";
 import agencyLogo from "@/public/elderrealestate.svg";
-import recommendAgent1 from "@/public/recommendagent1.svg";
-import recommendAgent2 from "@/public/recommendagent2.svg";
+import recommendAgent1 from "@/public/recommendagent1.jpg";
+import recommendAgent2 from "@/public/recommendagent2.png";
 import roomBg from "@/public/roombgimg.svg";
+import breifcase from "@/public/breifcase.svg";
+import building from "@/public/building.svg";
 
 const baseBio =
   "Lorem ipsum dolor sit amet consectetur. Enim dolor est adipiscing consequat. Diam id auctor nunc sed id. Consectetur id risus tellus sed sed mi. Risus pretium proin nibh condimentum dui non. Lorem ipsum dolor sit amet consectetur. Elit adipiscing consequat. Diam id auctor nunc sed id. Consectetur id risus tellus est sed mi. Risus pretium proin nibh condimentum dui non.";
@@ -33,7 +35,13 @@ export const agentsCatalog: AgentDetail[] = [
     bio: baseBio,
     totalSalesValue: "$11M",
     clientSatisfaction: "98%",
-    serviceAreas: ["Beverly Hills", "West Hollywood", "Bel Air", "Santa Monica", "Malibu"],
+    serviceAreas: [
+      "Beverly Hills",
+      "West Hollywood",
+      "Bel Air",
+      "Santa Monica",
+      "Malibu",
+    ],
     languages: [
       { name: "English", proficiency: "Native" },
       { name: "Spanish", proficiency: "Fluent" },
@@ -57,8 +65,22 @@ export const agentsCatalog: AgentDetail[] = [
       "Top 100 Agents in California (2021, 2022)",
     ],
     careerHighlights: [
-      "Senior Real Estate Agent at Elders Real Estate | 2018 - Present",
-      "Regional Estate Agent at Premier Properties Group | 2011 - 2018",
+      {
+        title: "Senior Real Estate Agent",
+        careericons: breifcase,
+        company: "EstatePrime Realty",
+        duration: "• 2018 - Present",
+        description:
+          "Leading luxury property sales division, consistently ranking in top 5% of agents nationwide. Specialized in high-value residential transactions and investment properties.",
+      },
+      {
+        title: "Real Estate Agent",
+        careericons: building,
+        company: "Premier Properties Group",
+        duration: "• 2011 - 2018",
+        description:
+          "Built strong client base through exceptional service and market expertise. Achieved top producer status for 5 consecutive years.",
+      },
     ],
     currentListingIds: ["1", "2", "3", "4"],
     soldListingIds: ["5", "6", "7", "8"],
@@ -100,13 +122,24 @@ export const agentsCatalog: AgentDetail[] = [
       responseTime: "< 1 hour",
     },
     socialLinks: { whatsapp: "#", instagram: "#", facebook: "#" },
-    certifications: [
-      "Luxury Home Specialist",
-      "Top Producer Award 2024",
-    ],
+    certifications: ["Luxury Home Specialist", "Top Producer Award 2024"],
     careerHighlights: [
-      "Luxury Property Specialist at Elders Real Estate | 2020 - Present",
-      "Senior Sales Consultant at Harbour Realty | 2014 - 2020",
+      {
+        title: "Senior Real Estate Agent",
+        careericons: breifcase,
+        company: "EstatePrime Realty",
+        duration: "• 2018 - Present",
+        description:
+          "Leading luxury property sales division, consistently ranking in top 5% of agents nationwide. Specialized in high-value residential transactions and investment properties.",
+      },
+      {
+        title: "Real Estate Agent",
+        careericons: building,
+        company: "Premier Properties Group",
+        duration: "• 2011 - 2018",
+        description:
+          "Built strong client base through exceptional service and market expertise. Achieved top producer status for 5 consecutive years.",
+      },
     ],
     currentListingIds: ["9", "10", "11", "12"],
     soldListingIds: ["13", "14", "15", "16"],
@@ -147,7 +180,22 @@ export const agentsCatalog: AgentDetail[] = [
     socialLinks: { whatsapp: "#", instagram: "#", facebook: "#" },
     certifications: ["Commercial Negotiation Expert"],
     careerHighlights: [
-      "Commercial & Residential Advisor at Elders Real Estate | 2019 - Present",
+      {
+        title: "Senior Real Estate Agent",
+        careericons: breifcase,
+        company: "EstatePrime Realty",
+        duration: "• 2018 - Present",
+        description:
+          "Leading luxury property sales division, consistently ranking in top 5% of agents nationwide. Specialized in high-value residential transactions and investment properties.",
+      },
+      {
+        title: "Real Estate Agent",
+        careericons: building,
+        company: "Premier Properties Group",
+        duration: "• 2011 - 2018",
+        description:
+          "Built strong client base through exceptional service and market expertise. Achieved top producer status for 5 consecutive years.",
+      },
     ],
     currentListingIds: ["17", "18", "19", "20"],
     soldListingIds: ["21", "22", "23", "24"],
@@ -188,7 +236,22 @@ export const agentsCatalog: AgentDetail[] = [
     socialLinks: { whatsapp: "#", instagram: "#", facebook: "#", sms: "#" },
     certifications: ["Certified Property Investment Advisor"],
     careerHighlights: [
-      "Rental & Investment Consultant at Elders Real Estate | 2017 - Present",
+      {
+        title: "Senior Real Estate Agent",
+        careericons: breifcase,
+        company: "EstatePrime Realty",
+        duration: "• 2018 - Present",
+        description:
+          "Leading luxury property sales division, consistently ranking in top 5% of agents nationwide. Specialized in high-value residential transactions and investment properties.",
+      },
+      {
+        title: "Real Estate Agent",
+        careericons: building,
+        company: "Premier Properties Group",
+        duration: "• 2011 - 2018",
+        description:
+          "Built strong client base through exceptional service and market expertise. Achieved top producer status for 5 consecutive years.",
+      },
     ],
     currentListingIds: ["25", "26", "27", "28"],
     soldListingIds: ["29", "30", "31", "32"],
@@ -228,7 +291,24 @@ export const agentsCatalog: AgentDetail[] = [
     },
     socialLinks: { whatsapp: "#", facebook: "#" },
     certifications: ["National Sales Excellence Award"],
-    careerHighlights: ["Residential Sales Expert at Elders Real Estate | 2018 - Present"],
+    careerHighlights: [
+      {
+        title: "Senior Real Estate Agent",
+        careericons: breifcase,
+        company: "EstatePrime Realty",
+        duration: "• 2018 - Present",
+        description:
+          "Leading luxury property sales division, consistently ranking in top 5% of agents nationwide. Specialized in high-value residential transactions and investment properties.",
+      },
+      {
+        title: "Real Estate Agent",
+        careericons: building,
+        company: "Premier Properties Group",
+        duration: "• 2011 - 2018",
+        description:
+          "Built strong client base through exceptional service and market expertise. Achieved top producer status for 5 consecutive years.",
+      },
+    ],
     currentListingIds: ["33", "34", "35", "36"],
     soldListingIds: ["37", "38", "39", "40"],
   },
@@ -270,7 +350,25 @@ export const agentsCatalog: AgentDetail[] = [
     },
     socialLinks: { whatsapp: "#", instagram: "#", facebook: "#" },
     certifications: ["First Home Buyer Specialist"],
-    careerHighlights: ["Luxury & First Home Advisor at Elders Real Estate | 2016 - Present"],
+    careerHighlights: [
+      {
+        title: "Senior Real Estate Agent",
+        careericons: breifcase,
+        company: "EstatePrime Realty",
+        duration: "• 2018 - Present",
+        description:
+          "Leading luxury property sales division, consistently ranking in top 5% of agents nationwide. Specialized in high-value residential transactions and investment properties.",
+      },
+      {
+        title: "Real Estate Agent",
+        careericons: building,
+        company: "Premier Properties Group",
+        duration: "• 2011 - 2018",
+        description:
+          "Built strong client base through exceptional service and market expertise. Achieved top producer status for 5 consecutive years.",
+      },
+    ],
+
     currentListingIds: ["41", "42", "43", "44"],
     soldListingIds: ["45", "46", "47", "48"],
   },
