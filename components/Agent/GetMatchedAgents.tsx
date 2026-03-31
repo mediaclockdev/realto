@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import logo from "../../public/logo.svg";
 import { ArrowRight, User } from "lucide-react";
 import toast from "react-hot-toast";
@@ -47,6 +47,8 @@ const GetMatchedAgents: React.FC<GetMatchedNowProps> = ({ open, onClose }) => {
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
+
+  const selectRef = useRef<HTMLSelectElement | null>(null);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -184,47 +186,52 @@ const GetMatchedAgents: React.FC<GetMatchedNowProps> = ({ open, onClose }) => {
             })}
 
             {/* Country dropdown */}
-            <div>
+            <div onClick={() => selectRef.current?.focus()}>
               <div
-                className={`relative rounded-2xl border ${
+                className={`rounded-2xl border ${
                   errors.country ? "border-red-400" : "border-gray-300"
-                } bg-white px-4 pt-2 pb-2`}
+                } bg-white px-4 py-3`}
               >
-                <label className="block text-sm text-[#64748B] leading-tight mb-0.5 font-medium">
-                  Country
-                </label>
-                <div className="relative">
-                  <select
-                    value={form.country}
-                    onChange={(e) =>
-                      setForm({ ...form, country: e.target.value })
-                    }
-                    className="w-full text-[#0F172A] font-bold text-[15px] bg-transparent focus:outline-none appearance-none pr-8 cursor-pointer"
+                {/* Top Row → Label + Arrow */}
+                <div className="flex items-center justify-between">
+                  <label className="text-sm text-[#64748B] font-medium">
+                    Country
+                  </label>
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5 text-gray-400"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
                   >
-                    <option value="" disabled />
-                    {COUNTRIES.map((c) => (
-                      <option key={c.code} value={c.code}>
-                        {c.code}
-                      </option>
-                    ))}
-                  </select>
-                  {/* chevron */}
-                  <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 text-gray-400"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                 </div>
+
+                {/* Bottom Row → Selected Value */}
+                <select
+                  ref={selectRef}
+                  value={form.country}
+                  onChange={(e) =>
+                    setForm({ ...form, country: e.target.value })
+                  }
+                  className="w-full mt-1 text-[#0F172A] font-bold text-[16px] bg-transparent focus:outline-none appearance-none cursor-pointer"
+                >
+                  <option value="" disabled>
+                    Select country
+                  </option>
+                  {COUNTRIES.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.code}
+                    </option>
+                  ))}
+                </select>
               </div>
+
               {errors.country && (
                 <p className="text-red-500 text-xs mt-1 ml-1">
                   {errors.country}
