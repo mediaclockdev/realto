@@ -30,9 +30,13 @@ const socialIcons = {
 
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl bg-[#f3f4f6] px-5 py-4 text-center">
-      <p className="text-xl font-bold text-[#1f2937]">{value}</p>
-      <p className="mt-1 text-xs text-[#6b7280]">{label}</p>
+    <div className="w-full bg-[#ECECEC] rounded-[10px] px-[30px] py-[15px] flex flex-col items-center justify-center gap-[6px]">
+      <p className="text-[26px] font-semibold text-[#343434] leading-none">
+        {value}
+      </p>
+      <p className="text-[16px] leading-[24px] text-[#909090] whitespace-nowrap">
+        {label}
+      </p>
     </div>
   );
 }
@@ -74,7 +78,7 @@ export default function AgentProfilePage({
 
       <section className="max-w-7xl mx-auto px-5 py-6 space-y-8">
         {/* Agent Card */}
-        <section>
+        <section className="">
           <div className="grid grid-cols-1 gap-8 p-6 lg:grid-cols-[220px_1fr_280px]">
             <div>
               <div className="relative mx-auto h-55 w-45 overflow-hidden rounded-2xl">
@@ -106,7 +110,7 @@ export default function AgentProfilePage({
                       href={href}
                       className="transition-transform hover:scale-110"
                     >
-                      <Image src={icon} alt={key} width={24} height={24} />
+                      <Image src={icon} alt={key} width={30} height={30} />
                     </Link>
                   );
                 })}
@@ -128,7 +132,7 @@ export default function AgentProfilePage({
                 <span>({agent.reviewCount} reviews)</span>
               </div>
 
-              <div className="mt-6 grid grid-cols-2 gap-3 xl:grid-cols-4">
+              <div className="mt-6 flex gap-5 items-center w-full">
                 <StatCard
                   label="Years Experience"
                   value={`${agent.yearsExperience}+`}
@@ -166,30 +170,32 @@ export default function AgentProfilePage({
                     <Image
                       src={locationIcon}
                       alt="location"
-                      width={18}
-                      height={18}
+                      width={40}
+                      height={40}
                     />
                     <div>
-                      <p className="text-xs text-[#9ca3af]">Service Area</p>
-                      <p className="font-medium">{agent.officeAddress}</p>
+                      <p className="text-xs text-[#909090]">Service Area</p>
+                      <p className="font-semibold font-poppins text-[#343434]">
+                        {agent.officeAddress}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Image src={phoneIcon} alt="phone" width={18} height={18} />
+                    <Image src={phoneIcon} alt="phone" width={40} height={40} />
                     <div>
                       <p className="text-xs text-[#9ca3af]">Phone</p>
                       <p className="font-medium">{agent.agencyPhone}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Image src={mailIcon} alt="email" width={18} height={18} />
+                    <Image src={mailIcon} alt="email" width={40} height={40} />
                     <div>
                       <p className="text-xs text-[#9ca3af]">Email</p>
                       <p className="font-medium">{agent.email}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Image src={license} alt="license" width={18} height={18} />
+                    <Image src={license} alt="license" width={40} height={40} />
                     <div>
                       <p className="text-xs text-[#9ca3af]">License</p>
                       <p className="font-medium">DC MARVEL</p>

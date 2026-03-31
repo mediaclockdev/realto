@@ -1,10 +1,10 @@
 import type { AgentDetail } from "@/lib/agents/types";
-import agencyLogo from "@/public/elderrealestate.svg";
 import recommendAgent1 from "@/public/recommendagent1.jpg";
 import recommendAgent2 from "@/public/recommendagent2.png";
 import roomBg from "@/public/roombgimg.svg";
 import breifcase from "@/public/breifcase.svg";
 import building from "@/public/building.svg";
+import agencylogo1 from "@/public/elderrealestate.svg";
 
 const baseBio =
   "Lorem ipsum dolor sit amet consectetur. Enim dolor est adipiscing consequat. Diam id auctor nunc sed id. Consectetur id risus tellus sed sed mi. Risus pretium proin nibh condimentum dui non. Lorem ipsum dolor sit amet consectetur. Elit adipiscing consequat. Diam id auctor nunc sed id. Consectetur id risus tellus est sed mi. Risus pretium proin nibh condimentum dui non.";
@@ -16,7 +16,7 @@ export const agentsCatalog: AgentDetail[] = [
     name: "Katherine Fernandes",
     title: "Senior Real Estate Agent",
     agencyName: "Elders Real Estate",
-    agencyLogo,
+    agencyLogo: agencylogo1,
     phone: "+9999999999",
     email: "exampleemail.com",
     location: "Austin, Australia",
@@ -91,7 +91,7 @@ export const agentsCatalog: AgentDetail[] = [
     name: "Anna Johnson",
     title: "Luxury Property Specialist",
     agencyName: "Elders Real Estate",
-    agencyLogo,
+    agencyLogo: agencylogo1,
     phone: "+9999999998",
     email: "annajohnson@email.com",
     location: "Austin, Australia",
@@ -150,7 +150,7 @@ export const agentsCatalog: AgentDetail[] = [
     name: "Michael Carter",
     title: "Commercial & Residential Advisor",
     agencyName: "Elders Real Estate",
-    agencyLogo,
+    agencyLogo: agencylogo1,
     phone: "+9999999997",
     email: "michaelcarter@email.com",
     location: "Austin, Australia",
@@ -206,7 +206,7 @@ export const agentsCatalog: AgentDetail[] = [
     name: "Brook Jones",
     title: "Rental & Investment Consultant",
     agencyName: "Elders Real Estate",
-    agencyLogo,
+    agencyLogo: agencylogo1,
     phone: "+9999999996",
     email: "brookjones@email.com",
     location: "Austin, Australia",
@@ -262,7 +262,7 @@ export const agentsCatalog: AgentDetail[] = [
     name: "Ash Fernando",
     title: "Residential Sales Expert",
     agencyName: "Elders Real Estate",
-    agencyLogo,
+    agencyLogo: agencylogo1,
     phone: "+9999999995",
     email: "ash@email.com",
     location: "Austin, Australia",
@@ -318,7 +318,7 @@ export const agentsCatalog: AgentDetail[] = [
     name: "Sophia Lee",
     title: "Luxury & First Home Advisor",
     agencyName: "Elders Real Estate",
-    agencyLogo,
+    agencyLogo: agencylogo1,
     phone: "+9999999994",
     email: "sophialee@email.com",
     location: "Austin, Australia",
