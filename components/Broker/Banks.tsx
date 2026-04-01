@@ -9,33 +9,56 @@ import ramsbank from "../../public/ramsbank.svg";
 import athenabank from "../../public/athenabank.svg";
 import commonwealthbank from "../../public/commonwealthbank.svg";
 import westpacbank from "../../public/westpacbank.svg";
+import amobank from "../../public/amobank.svg";
 
 const Banks = () => {
   const bank = [
-    anzbank,
-    aussiebank,
-    nabbank,
-    mortgagechoicebank,
-    stgeorgebank,
-    ramsbank,
-    athenabank,
-    commonwealthbank,
-    westpacbank,
+    { name: "Aussie", icon: aussiebank, interest: "6.94% p.a.%" },
+    { name: "Nab bank", icon: nabbank, interest: "6.94% p.a.%" },
+    {
+      name: "Mortgage Choice",
+      icon: mortgagechoicebank,
+      interest: "6.94% p.a.%",
+    },
+    {
+      name: "Australian Mortgage Options",
+      icon: amobank,
+      interest: "6.94% p.a.%",
+    },
+    { name: "ANZ bank", icon: anzbank, interest: "6.94% p.a.%" },
+    { name: "St George bank", icon: stgeorgebank, interest: "6.94% p.a.%" },
+    { name: "RAMS", icon: ramsbank, interest: "6.94% p.a.%" },
+    { name: "ATHENA", icon: athenabank, interest: "6.94% p.a.%" },
+    {
+      name: "Commonwealth bank",
+      icon: commonwealthbank,
+      interest: "6.94% p.a.%",
+    },
+    { name: "Westpac bank", icon: westpacbank, interest: "6.94% p.a.%" },
   ];
 
   return (
-    <div className="max-w-screen-2xl mx-auto py-5">
+    <div className="max-w-screen-2xl mx-auto py-5 overflow-hidden">
       <div className="marquee-wrapper">
         <div className="marquee-track">
           {[...bank, ...bank, ...bank].map((logo, i) => (
-            <div key={i} className="logo-item flex items-center justify-center">
-              <Image
-                src={logo}
-                alt="partner logo"
-                width={130}
-                height={70}
-                className="object-cover opacity-100 transition duration-300"
-              />
+            <div
+              key={i}
+              className="logo-item flex flex-col items-center justify-between gap-3 px-6"
+            >
+              <div className="flex items-center justify-center w-[160px] h-[80px] relative">
+                <Image
+                  src={logo.icon}
+                  alt={logo.name}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              <p className="text-sm text-black font-poppins font-normal whitespace-nowrap text-center">
+                {logo.name}&nbsp;
+                <span className="font-bold text-black">{logo.interest}</span>
+              </p>
             </div>
           ))}
         </div>

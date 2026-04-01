@@ -32,7 +32,7 @@ const categoryItems = [
   { imgs: [buy, buy1], href: "/propertyListingpage" },
   { imgs: [rent, rent1, rent2, rent3], href: "/rent" },
   { imgs: [agent, agent1, agent2], href: "/agentspage" },
-  { imgs: [loanbroker, loanbroker1], href: "" },
+  { imgs: [loanbroker, loanbroker1], href: "/broker" },
   { imgs: [commercial], href: "" },
   { imgs: [hotel, hotel1], href: "" },
   { imgs: [airbnb, airbnb1], href: "https://www.airbnb.com.au/" },

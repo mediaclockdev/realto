@@ -116,6 +116,7 @@ const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
           <section className="order-1 lg:order-2 min-w-0">
             <PropertyDetailView
               property={property}
+              listingVariant={listingMeta.listingVariant}
               onBack={() =>
                 router.push(
                   listingMeta.listingVariant === "rent"

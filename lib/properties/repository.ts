@@ -1,7 +1,16 @@
 import type { ListingVariant } from "@/lib/listings/types";
 import type { ListingProperty } from "@/lib/properties/types";
-import land from "@/public/land.svg";
-import land1 from "@/public/land1.svg";
+import landthumbnail from "@/public/landthumbnail.svg";
+import landthumbnail2 from "@/public/landthumbnail2.svg";
+import landthumbnail3 from "@/public/landthumbnail3.svg";
+import landthumbnail4 from "@/public/landthumbnail4.svg";
+import landthumbnail5 from "@/public/landthumbnail5.svg";
+import landthumbnail6 from "@/public/landthumbnail6.svg";
+import landthumbnail7 from "@/public/landthumbnail7.svg";
+import landthumbnail8 from "@/public/landthumbnail8.svg";
+import landthumbnail9 from "@/public/landthumbnail9.svg";
+import landmainimg from "@/public/landmainimg.svg";
+import landbuyimg from "@/public/landbuyimg.svg";
 import { propertyCatalog } from "./mock-data";
 
 function mapPropertyForVariant(
@@ -14,8 +23,19 @@ function mapPropertyForVariant(
 
   return {
     ...property,
-    images: [land1, land],
-    thumbnail: [land1, land, land1, land, land1, land, land1, land],
+    images: [landbuyimg],
+    thumbnail: [
+      landmainimg,
+      landthumbnail,
+      landthumbnail2,
+      landthumbnail3,
+      landthumbnail4,
+      landthumbnail5,
+      landthumbnail6,
+      landthumbnail7,
+      landthumbnail8,
+      landthumbnail9,
+    ],
     location: "6 Vickery Place, Mittagong",
     size: "730msq",
     priceRange: "$6,50,000",

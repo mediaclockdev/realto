@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { ListingVariant } from "@/lib/listings/types";
 import locationIcon from "@/public/location.svg";
 import type { ListingProperty } from "@/lib/properties/types";
 import airconditioner from "../../public/airconditioner.svg";
@@ -21,15 +22,21 @@ import squaremetericon from "../../public/squaremetericon.svg";
 import star from "../../public/star.svg";
 import inqury from "../../public/inqurylogo.svg";
 import GetMatchedNow from "./GetMatchedNow";
+import well from "../../public/well.svg";
+import electricity from "../../public/electricity.svg";
+import councilapproval from "../../public/councilapproval.svg";
+import neartransport from "../../public/neartransport.svg";
 
 interface PropertyDetailViewProps {
   property: ListingProperty;
   onBack?: () => void;
+  listingVariant?: ListingVariant;
 }
 
 const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
   property,
   onBack,
+  listingVariant = "buy",
 }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
@@ -49,7 +56,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
   const [showRight, setShowRight] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
 
-  const amenities = [
+  const residentialAmenities = [
     { name: "Air Conditioner", icon: airconditioner },
     { name: "Wi-fi", icon: Wifi },
     { name: "Alarm System", icon: alarmsystem },
@@ -60,6 +67,29 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
     { name: "Fully fenced", icon: fullyfenced },
     { name: "Swimming pool", icon: swimmingpool },
   ];
+
+  const landFeatures = [
+    {
+      name: "Well",
+      icon: well,
+    },
+    {
+      name: "electricity",
+      icon: electricity,
+    },
+    {
+      name: "Council Approval",
+      icon: councilapproval,
+    },
+    {
+      name: "Near Transport",
+      icon: neartransport,
+    },
+  ];
+
+  const amenities =
+    listingVariant === "land" ? landFeatures : residentialAmenities;
+
   const checkScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
@@ -137,7 +167,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                 src={img}
                 alt={`Thumbnail ${idx + 1}`}
                 fill
-                className="object-cover "
+                className="object-cover cursor-pointer"
               />
             </button>
           ))}
@@ -185,28 +215,31 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
               </div>
             </div>
 
-            {/* Date & Time */}
-            <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-1  text-gray-600">
-              <div className="flex items-center gap-1 ">
-                <Image
-                  src={calender}
-                  alt="calendericon"
-                  className="w-10 h-10  shrink-0"
-                />
-                <span className="text-[#343434] font-semibold text-base lg:text-xl">
-                  {property.date}
-                </span>
-              </div>
-              <div className="flex items-center ">
-                <Image
-                  src={clock}
-                  alt="clockicon"
-                  className="w-10 h-10  shrink-0"
-                />
-                <span className="text-[#343434] font-semibold text-base lg:text-xl">
-                  {property.time}
-                </span>
-              </div>
+            <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-1 text-gray-600">
+              {listingVariant !== "land" && (
+                <>
+                  <div className="flex items-center gap-1 ">
+                    <Image
+                      src={calender}
+                      alt="calendericon"
+                      className="w-10 h-10  shrink-0"
+                    />
+                    <span className="text-[#343434] font-semibold text-base lg:text-xl">
+                      {property.date}
+                    </span>
+                  </div>
+                  <div className="flex items-center ">
+                    <Image
+                      src={clock}
+                      alt="clockicon"
+                      className="w-10 h-10  shrink-0"
+                    />
+                    <span className="text-[#343434] font-semibold text-base lg:text-xl">
+                      {property.time}
+                    </span>
+                  </div>
+                </>
+              )}
               <div className="flex items-center gap-1 ml-2 shrink-0">
                 <Image
                   src={squaremetericon}

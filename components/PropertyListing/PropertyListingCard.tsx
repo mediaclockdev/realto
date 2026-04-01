@@ -309,21 +309,22 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
             </div>
           </div>
 
-          {/* Date + time */}
-          <div className="flex items-center gap-3 mb-1 text-gray-500">
-            <div className="flex items-center gap-1">
-              <Image src={calender} alt="" className="w-8 h-8 shrink-0" />
-              <p className="text-[#343434] font-semibold text-base">
-                {property.date}
-              </p>
+          {listingVariant !== "land" && (
+            <div className="flex items-center gap-3 mb-1 text-gray-500">
+              <div className="flex items-center gap-1">
+                <Image src={calender} alt="" className="w-8 h-8 shrink-0" />
+                <p className="text-[#343434] font-semibold text-base">
+                  {property.date}
+                </p>
+              </div>
+              <div className="flex items-center gap-1">
+                <Image src={clock} alt="" className="w-8 h-8 shrink-0" />
+                <p className="text-[#343434] font-semibold text-base">
+                  {property.time}
+                </p>
+              </div>
             </div>
-            <div className="flex items-center gap-1">
-              <Image src={clock} alt="" className="w-8 h-8 shrink-0" />
-              <p className="text-[#343434] font-semibold text-base">
-                {property.time}
-              </p>
-            </div>
-          </div>
+          )}
 
           {/* Price + type */}
           <div className="flex items-center justify-between">
