@@ -8,6 +8,7 @@ import { getAllProperties } from "@/lib/properties/repository";
 import { TOTAL_PROPERTIES } from "@/lib/properties/mock-data";
 
 const PROPERTIES_PER_PAGE = 12;
+const LAND_TOTAL_PROPERTIES = 445;
 const DEFAULT_LOCATION = "NSW";
 const DEFAULT_SUBURB = "Sans Souci, NSW 2219";
 
@@ -79,8 +80,12 @@ export function getListings(
 ): PropertyListingsResult {
   const listingVariant = query.listingVariant ?? "buy";
   const pageSize = query.pageSize ?? PROPERTIES_PER_PAGE;
+  const sourceProperties =
+    listingVariant === "land"
+      ? getAllProperties(listingVariant).slice(0, LAND_TOTAL_PROPERTIES)
+      : getAllProperties(listingVariant);
   const filteredAndSorted = sortProperties(
-    filterProperties(getAllProperties(), query.search),
+    filterProperties(sourceProperties, query.search),
     query.sort,
   );
   const totalProperties = filteredAndSorted.length;
@@ -110,6 +115,7 @@ export function getPropertyListingMeta(listingVariant: ListingVariant = "buy") {
     listingVariant,
     location: DEFAULT_LOCATION,
     suburb: DEFAULT_SUBURB,
-    totalProperties: TOTAL_PROPERTIES,
+    totalProperties:
+      listingVariant === "land" ? LAND_TOTAL_PROPERTIES : TOTAL_PROPERTIES,
   };
 }

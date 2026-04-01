@@ -16,14 +16,22 @@ const page = async ({ params, searchParams }: PageProps) => {
   const { id } = await params;
   const resolvedSearchParams = (await searchParams) ?? {};
   const listingVariant =
-    resolvedSearchParams.listingVariant === "rent" ? "rent" : "buy";
-  const property = getPropertyById(id);
+    resolvedSearchParams.listingVariant === "rent"
+      ? "rent"
+      : resolvedSearchParams.listingVariant === "land"
+        ? "land"
+        : "buy";
+  const property = getPropertyById(id, listingVariant as ListingVariant);
 
   if (!property) {
     notFound();
   }
 
-  const relatedProperties = getRelatedProperties(id);
+  const relatedProperties = getRelatedProperties(
+    id,
+    4,
+    listingVariant as ListingVariant,
+  );
   const listingMeta = getPropertyListingMeta(listingVariant as ListingVariant);
 
   return (

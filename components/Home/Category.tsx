@@ -28,29 +28,32 @@ import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import land from "../../public/land.svg";
 
+const categoryItems = [
+  { imgs: [buy, buy1], href: "/propertyListingpage" },
+  { imgs: [rent, rent1, rent2, rent3], href: "/rent" },
+  { imgs: [agent, agent1, agent2], href: "/agentspage" },
+  { imgs: [loanbroker, loanbroker1], href: "" },
+  { imgs: [commercial], href: "" },
+  { imgs: [hotel, hotel1], href: "" },
+  { imgs: [airbnb, airbnb1], href: "https://www.airbnb.com.au/" },
+  {
+    imgs: [student, student1, student2, student3],
+    href: "/studentResidency",
+  },
+  { imgs: [flatmate, flatmate1], href: "/flatmate" },
+  { imgs: [land, land], href: "/land" },
+];
+
 const Features = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const agents = [
-    { imgs: [buy, buy1], href: "/propertyListingpage" },
-    { imgs: [rent, rent1, rent2, rent3], href: "/rent" },
-    { imgs: [agent, agent1, agent2], href: "/agentspage" },
-    { imgs: [loanbroker, loanbroker1], href: "" },
-    { imgs: [commercial], href: "" },
-    { imgs: [hotel, hotel1], href: "" },
-    { imgs: [airbnb, airbnb1], href: "https://www.airbnb.com.au/" },
-    {
-      imgs: [student, student1, student2, student3],
-      href: "/studentResidency",
-    },
-    { imgs: [flatmate, flatmate1], href: "/flatmate" },
-    { imgs: [land, land], href: "" },
-  ];
-  const [currentIndexes, setCurrentIndexes] = useState(agents.map(() => 0));
+  const [currentIndexes, setCurrentIndexes] = useState(
+    categoryItems.map(() => 0),
+  );
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndexes((prev) =>
         prev.map((index, i) => {
-          const total = agents[i].imgs?.length;
+          const total = categoryItems[i].imgs?.length;
           return (index + 1) % total;
         }),
       );
@@ -91,7 +94,7 @@ const Features = () => {
           className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {agents.map((item, idx) =>
+          {categoryItems.map((item, idx) =>
             item.href ? (
               <Link key={idx} href={item.href} className="shrink-0">
                 <Image

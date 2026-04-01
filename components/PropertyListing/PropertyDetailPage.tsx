@@ -39,8 +39,20 @@ const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
     const query = params.toString();
     router.push(
       query
-        ? `/${listingMeta.listingVariant === "rent" ? "rent" : "propertyListingpage"}?${query}`
-        : `/${listingMeta.listingVariant === "rent" ? "rent" : "propertyListingpage"}`,
+        ? `/${
+            listingMeta.listingVariant === "rent"
+              ? "rent"
+              : listingMeta.listingVariant === "land"
+                ? "land"
+                : "propertyListingpage"
+          }?${query}`
+        : `/${
+            listingMeta.listingVariant === "rent"
+              ? "rent"
+              : listingMeta.listingVariant === "land"
+                ? "land"
+                : "propertyListingpage"
+          }`,
     );
   };
 
@@ -48,7 +60,13 @@ const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
     const params = new URLSearchParams();
     params.set("sort", sort);
     router.push(
-      `/${listingMeta.listingVariant === "rent" ? "rent" : "propertyListingpage"}?${params.toString()}`,
+      `/${
+        listingMeta.listingVariant === "rent"
+          ? "rent"
+          : listingMeta.listingVariant === "land"
+            ? "land"
+            : "propertyListingpage"
+      }?${params.toString()}`,
     );
   };
 
@@ -102,7 +120,9 @@ const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
                 router.push(
                   listingMeta.listingVariant === "rent"
                     ? "/rent"
-                    : "/propertyListingpage",
+                    : listingMeta.listingVariant === "land"
+                      ? "/land"
+                      : "/propertyListingpage",
                 )
               }
             />

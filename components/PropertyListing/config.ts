@@ -32,6 +32,16 @@ export const listingVariantConfig: Record<ListingVariant, ListingVariantConfig> 
     mapHeaderVariant: "map",
     showRentRibbon: true,
   },
+  land: {
+    variant: "land",
+    listingLabel: "Land properties for sale in",
+    detailBasePath: "/property",
+    accentColorClassName: "bg-[#0284C7]",
+    filterBarClassName: "bg-[#0284C7]",
+    listPanelBorderClassName: "border-[#0284C7]",
+    mapHeaderVariant: "map",
+    showRentRibbon: false,
+  },
 };
 
 export function getListingVariantConfig(variant: ListingVariant) {

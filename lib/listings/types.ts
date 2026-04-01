@@ -1,6 +1,6 @@
 import type { ListingProperty } from "@/lib/properties/types";
 
-export type ListingVariant = "buy" | "rent";
+export type ListingVariant = "buy" | "rent" | "land";
 export type ListingSortOption =
   | "Relevant listings"
   | "Newest first"
