@@ -48,13 +48,12 @@ const FindYourBroker = () => {
   };
 
   const inputClass =
-    "w-full bg-gray-50 border border-[#E2E8F0] rounded-[5px] px-4 py-3 text-[#D9D9D9] placeholder-[#D9D9D9] focus:outline-none focus:border-blue-400 text-base";
+    "w-full bg-gray-50 border border-[#E2E8F0] rounded-[5px] px-4 py-2 text-[#D9D9D9] placeholder-[#D9D9D9] focus:outline-none focus:border-blue-400 text-base";
 
-  const labelClass =
-    "block font-semibold text-black text-xl lg:text-[30px] mb-2";
+  const labelClass = "block font-semibold text-black text-xl lg:text-2xl mb-2";
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-3xl mx-auto">
       <div className="bg-white border border-gray-200 rounded-2xl shadow-md px-12 py-10 text-black">
         {/* ✅ Success banner */}
         {success && (
