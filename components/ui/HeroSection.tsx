@@ -11,6 +11,7 @@ type HeroSectionProps = {
   interval?: number; // ms, default 5000
   title?: string;
   description?: string;
+  showSearch?: boolean;
 };
 
 const HeroSection = ({
@@ -19,6 +20,7 @@ const HeroSection = ({
   title,
   description,
   interval = 10000,
+  showSearch = true,
 }: HeroSectionProps) => {
   const finalImages = images ?? (image ? [image] : []);
 
@@ -80,11 +82,11 @@ const HeroSection = ({
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/80 pointer-events-none z-10" />
       {/* Text content */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-40 z-20 flex flex-col items-center justify-center text-center px-4">
-        <h2 className="text-white text-2xl md:text-4xl font-bold">{title}</h2>
+      <div className="absolute left-8 lg:left-1/2 lg:-translate-x-1/2 bottom-20 lg:bottom-40 z-20 flex flex-col items-start lg:items-center justify-start lg:justify-center text-left lg:text-center px-4">
+        <h2 className="text-white text-xl md:text-4xl font-bold">{title}</h2>
         <p className="text-white mt-2 text-sm md:text-lg">{description}</p>
       </div>
-      <Searchbar />
+      {showSearch && <Searchbar />}
     </div>
   );
 };

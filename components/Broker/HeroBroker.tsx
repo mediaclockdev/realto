@@ -10,6 +10,7 @@ const HeroBroker = () => {
         title="Find Your Perfect Loan Broker For You "
         description="Connect with experienced real estate professionals who will guide you through
 every step of your property journey."
+        showSearch={false}
       />
     </div>
   );

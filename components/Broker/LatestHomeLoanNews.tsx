@@ -32,10 +32,10 @@ const LatestHomeLoanNews = () => {
     <div className="max-w-screen-2xl mx-auto px-6 py-8">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="font-semibold text-2xl text-black">
+        <h2 className="font-semibold text-lg lg:text-2xl text-black">
           Latest Home Loan News
         </h2>
-        <p className="text-base underline cursor-pointer text-black">
+        <p className="text-xs lg:text-base underline cursor-pointer text-black">
           View All News
         </p>
       </div>
@@ -48,7 +48,7 @@ const LatestHomeLoanNews = () => {
             className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm"
           >
             {/* Image */}
-            <div className="w-full h-[420px] relative">
+            <div className="w-full h-[210px] lg:h-[420px] relative">
               <Image src={item.img} alt="news" fill className="object-cover" />
             </div>
 
@@ -57,21 +57,21 @@ const LatestHomeLoanNews = () => {
               {/* Badge — always reserve height */}
               <div className="h-7">
                 {item.age && (
-                  <span className="inline-block bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-md">
+                  <span className="inline-block bg-gray-200 text-gray-700 text-xs lg:text-sm px-3 py-1 rounded-md ">
                     {item.age}
                   </span>
                 )}
               </div>
 
               {/* Title */}
-              <p className="text-lg font-medium text-black leading-relaxed">
+              <p className="text-sm lg:text-lg font-medium text-black leading-relaxed">
                 {item.content}
               </p>
 
               {/* Date — always reserve height */}
               <div className="h-5">
                 {item.date && (
-                  <p className="text-sm text-gray-500 font-medium">
+                  <p className="text-xs lg:text-sm text-gray-500 font-medium">
                     {item.date}
                   </p>
                 )}

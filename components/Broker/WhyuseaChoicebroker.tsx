@@ -45,7 +45,7 @@ const WhyuseaChoicebroker = () => {
               they discuss with you before proceeding.
             </p>
           </div>
-          <div className="bg-[#0284C7] border border-[#E2E8F0] w-1/2 mx-auto text-center">
+          <div className="bg-[#0284C7] border border-[#E2E8F0] w-full lg:w-1/2 mx-auto text-center">
             <button className="text-white font-poppins font-semibold text-xl px-10 py-2 ">
               Find Your Broker
             </button>

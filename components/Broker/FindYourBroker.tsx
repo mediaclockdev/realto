@@ -50,7 +50,8 @@ const FindYourBroker = () => {
   const inputClass =
     "w-full bg-gray-50 border border-[#E2E8F0] rounded-[5px] px-4 py-3 text-[#D9D9D9] placeholder-[#D9D9D9] focus:outline-none focus:border-blue-400 text-base";
 
-  const labelClass = "block font-semibold text-black text-[30px] mb-2";
+  const labelClass =
+    "block font-semibold text-black text-xl lg:text-[30px] mb-2";
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -71,7 +72,7 @@ const FindYourBroker = () => {
 
         <div>
           {/* Row 1 */}
-          <div className="grid grid-cols-2 gap-8 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-6">
             <div>
               <label className={labelClass}>Give Name</label>
               <input
@@ -103,7 +104,7 @@ const FindYourBroker = () => {
           </div>
 
           {/* Row 2 */}
-          <div className="grid grid-cols-2 gap-8 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-6">
             <div>
               <label className={labelClass}>Phone</label>
               <input
@@ -162,7 +163,7 @@ const FindYourBroker = () => {
           </div>
 
           {/* Row 4 - Submit */}
-          <div className="flex items-center gap-8 mt-6">
+          <div className="flex flex-col lg:flex-row items-center gap-8 mt-6">
             <button
               type="button"
               //   onClick={handleSubmit(onSubmit)}
