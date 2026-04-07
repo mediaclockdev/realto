@@ -1,13 +1,12 @@
 "use client";
 
-import Image from "next/image";
-
 import century from "../../public/century21.svg";
 import raywhite from "../../public/raywhite.svg";
 import elder from "../../public/elderrealestate.svg";
 import ljhooker from "../../public/ljhooker.svg";
 import wiseberry from "../../public/wiseberry.svg";
 import combined from "../../public/combinedCommercial.svg";
+import MarqueeCards from "../ui/MarqueeCards";
 
 const partners = [century, raywhite, elder, ljhooker, wiseberry, combined];
 
@@ -19,21 +18,7 @@ export default function RealEstateAgents() {
           Real Estate Agents :
         </p>
       </div>
-      <div className="marquee-wrapper">
-        <div className="marquee-track">
-          {[...partners, ...partners, ...partners].map((logo, i) => (
-            <div key={i} className="logo-item flex items-center justify-center">
-              <Image
-                src={logo}
-                alt="partner logo"
-                width={130}
-                height={70}
-                className="object-cover opacity-100 transition duration-300"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+      <MarqueeCards items={partners} speed="fast" />;
     </div>
   );
 }

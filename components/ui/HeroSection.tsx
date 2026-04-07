@@ -9,7 +9,7 @@ type HeroSectionProps = {
   image?: StaticImageData | string;
   images?: (StaticImageData | string)[];
   interval?: number; // ms, default 5000
-  title?: string;
+  title?: string | React.ReactNode;
   description?: string;
   showSearch?: boolean;
 };

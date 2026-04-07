@@ -47,12 +47,7 @@ const Banks = () => {
               className="logo-item flex flex-col items-center justify-between gap-3 px-6"
             >
               <div className="flex items-center justify-center w-[160px] h-[80px] relative">
-                <Image
-                  src={logo.icon}
-                  alt={logo.name}
-                  fill
-                  className="object-contain"
-                />
+                <Image src={logo.icon} alt={logo.name} fill className="" />
               </div>
 
               <p className="text-sm text-black font-poppins font-normal whitespace-nowrap text-center">

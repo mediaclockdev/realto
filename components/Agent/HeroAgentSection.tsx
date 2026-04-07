@@ -10,6 +10,7 @@ const HeroAgentSection = () => {
         title="Find Your Perfect Agent"
         description="Connect with experienced real estate professionals who will guide you through
 every step of your property journey."
+        showSearch={false}
       />
     </div>
   );

@@ -31,10 +31,10 @@ const socialIcons = {
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="w-full bg-[#ECECEC] rounded-[10px] px-[30px] py-[15px] flex flex-col items-center justify-center gap-[6px]">
-      <p className="text-[26px] font-semibold text-[#343434] leading-none">
+      <p className="text-xl lg:text-[26px] font-semibold text-[#343434] leading-none">
         {value}
       </p>
-      <p className="text-[16px] leading-[24px] text-[#909090] whitespace-nowrap">
+      <p className="text-sm lg:text-[16px] leading-[24px] text-[#909090] whitespace-nowrap">
         {label}
       </p>
     </div>
@@ -132,7 +132,7 @@ export default function AgentProfilePage({
                 <span>({agent.reviewCount} reviews)</span>
               </div>
 
-              <div className="mt-6 flex gap-5 items-center w-full">
+              <div className="mt-6 flex flex-col lg:flex-row gap-5 items-center w-full">
                 <StatCard
                   label="Years Experience"
                   value={`${agent.yearsExperience}+`}
@@ -210,36 +210,41 @@ export default function AgentProfilePage({
         {/* About Agent */}
         <section className="grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_1fr] ">
           <div className="rounded-2xl border border-gray-200 p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-[#1f2937]">About Me</h2>
+            <h2 className="text-base lg:text-xl font-semibold text-[#1f2937]">
+              About Me
+            </h2>
             <p className="mt-4 text-sm leading-7 text-[#4b5563]">{agent.bio}</p>
 
-            <h3 className="mt-8 text-lg font-semibold text-[#1f2937]">
+            <h3 className="mt-6 lg:mt-8 text-lg font-semibold text-[#1f2937]">
               Experience & Credentials
             </h3>
             <div className="mt-6 space-y-6">
               {agent.careerHighlights.map((item, index) => (
                 <div key={index} className="flex gap-4 items-start">
                   {/* Icon */}
-                  <div className="bg-[#F3F4F6] p-3 rounded-lg">
+                  <div className="bg-[#F3F4F6] p-2 lg:p-3 rounded-lg shrink-0 w-8 h-8 lg:w-10 lg:h-10 flex items-center justify-center">
                     <Image
                       src={item.careericons}
                       alt="icon"
                       width={20}
                       height={20}
+                      className="w-full h-full"
                     />
                   </div>
 
                   {/* Content */}
                   <div>
-                    <h3 className="text-lg font-semibold text-[#111827]">
+                    <h3 className="text-base lg:text-lg font-semibold text-[#111827]">
                       {item.title}
                     </h3>
 
-                    <p className="text-blue-600">
+                    <p className="text-sm lg:text-base text-blue-600">
                       {item.company} {item.duration}
                     </p>
 
-                    <p className="text-[#6B7280] mt-1">{item.description}</p>
+                    <p className="text-sm lg:text-base text-[#6B7280] mt-1">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -343,7 +348,7 @@ export default function AgentProfilePage({
           </div>
           <Link
             href="/propertyListingpage"
-            className="text-sm font-medium text-[#0284C7] hover:underline"
+            className="text-sm font-medium text-[#0284C7] hover:underline whitespace-nowrap"
           >
             View All
           </Link>
