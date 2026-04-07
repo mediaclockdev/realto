@@ -30,7 +30,7 @@ const RealEstateFranchise = () => {
         RealEstateFranchise
       </h2>
 
-      <MarqueeCards items={franchise} />
+      <MarqueeCards items={franchise} speed="fast" />
     </div>
   );
 };
