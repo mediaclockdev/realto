@@ -18,7 +18,7 @@ export default function RealEstateAgents() {
           Real Estate Agents :
         </p>
       </div>
-      <MarqueeCards items={partners} speed="fast" />;
+      <MarqueeCards items={partners} speed="fast" />
     </div>
   );
 }
