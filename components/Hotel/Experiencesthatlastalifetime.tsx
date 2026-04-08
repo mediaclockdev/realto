@@ -62,7 +62,7 @@ const Experiencesthatlastalifetime = () => {
             />
 
             {/* Outline Heart Icon */}
-            <div className="absolute top-3 right-4 md:right-8 lg:right-15 bg-white/60 backdrop-blur-sm p-2 rounded-full">
+            <div className="absolute top-3 right-4 md:right-8 lg:right-2 xl:right-4 bg-white/60 backdrop-blur-sm p-2 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-5 h-5 text-gray-700"

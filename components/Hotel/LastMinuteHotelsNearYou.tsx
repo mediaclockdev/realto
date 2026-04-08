@@ -63,66 +63,71 @@ const StarRating = ({ count }: { count: number }) => (
 );
 
 const HotelCard = ({ hotel }: { hotel: (typeof hotels)[0] }) => (
-  <div className="bg-white rounded-2xl p-4 flex flex-col lg:flex-row gap-4 shadow-sm border border-gray-100">
-    {/* Image */}
-    <div className="relative w-[220px] min-w-[220px] h-[200px] rounded-xl overflow-hidden shrink-0">
-      <Image src={hotelImg} alt={hotel.name} fill className="object-cover" />
-    </div>
-
-    {/* Content */}
-    <div className="flex flex-col flex-1 py-1">
-      {/* Stars + Rating */}
-      <div className="flex items-start justify-between">
-        <StarRating count={hotel.stars} />
-        <div className="flex flex-col">
-          <p className="bg-[#E7F2FD] text-[#4197EF] text-sm lg:text-base font-semibold px-2 py-1 rounded-lg leading-tight">
-            {hotel.rating}
-          </p>
-          <span className="font-poppins font-normal text-[10px] text-[#909090] text-right">
-            {hotel.reviews}
-          </span>
-        </div>
+  <div
+    className="group rounded-2xl p-[2px] transition 
+hover:bg-[linear-gradient(90deg,#CB9E33,#EDD06A,#FCEA94,#FADE7B,#FDEE9D,#C29225)]"
+  >
+    <div className="bg-white rounded-2xl p-4 flex flex-col lg:flex-row gap-4 shadow-sm">
+      {/* Image */}
+      <div className="relative w-[220px] min-w-[220px] h-[200px] rounded-xl overflow-hidden shrink-0">
+        <Image src={hotelImg} alt={hotel.name} fill className="object-cover" />
       </div>
 
-      {/* Hotel Name */}
-      <h3 className="text-2xl lg:text-[32px] font-semibold font-poppins text-black">
-        {hotel.name}
-      </h3>
-
-      {/* Amenity Pills */}
-      <div className="flex flex-wrap gap-2 mt-2">
-        {hotel.amenities.map((a) => (
-          <span
-            key={a}
-            className="border border-gray-300 text-gray-600 text-xs px-3 py-1 rounded-full"
-          >
-            {a}
-          </span>
-        ))}
-      </div>
-
-      {/* Price + CTA */}
-      <div className="flex justify-between mt-1">
-        <div>
-          <p className="text-[#7ECC9B] font-semibold text-base font-poppins">
-            {hotel.cancellation}
-          </p>
-          <p className="text-[#909090] text-xs lg:text-base font-normal font-poppins">
-            Total {hotel.total}
-          </p>
-        </div>
-        <div className="">
-          <div className="text-right">
-            <p className="text-xl lg:text-[32px] font-semibold text-black font-poppins">
-              {hotel.price}
+      {/* Content */}
+      <div className="flex flex-col flex-1 py-1">
+        {/* Stars + Rating */}
+        <div className="flex items-start justify-between">
+          <StarRating count={hotel.stars} />
+          <div className="flex flex-col">
+            <p className="bg-[#E7F2FD] text-[#4197EF] text-sm lg:text-base font-semibold px-2 py-1 rounded-lg leading-tight">
+              {hotel.rating}
             </p>
-            <span className="text-[#909090] font-semibold font-poppins text-sm">
-              /night
+            <span className="font-poppins font-normal text-[10px] text-[#909090] text-right">
+              {hotel.reviews}
             </span>
           </div>
-          <button className="bg-[#4189DD] hover:bg-[#3298DF] text-white text-sm lg:text-base font-normal font-poppins px-3 lg:px-5 py-1 rounded-[10px] transition">
-            View Detail
-          </button>
+        </div>
+
+        {/* Hotel Name */}
+        <h3 className="text-2xl lg:text-[32px] font-semibold font-poppins text-black">
+          {hotel.name}
+        </h3>
+
+        {/* Amenity Pills */}
+        <div className="flex flex-wrap gap-2 mt-2">
+          {hotel.amenities.map((a) => (
+            <span
+              key={a}
+              className="border border-gray-300 text-gray-600 text-xs px-3 py-1 rounded-full"
+            >
+              {a}
+            </span>
+          ))}
+        </div>
+
+        {/* Price + CTA */}
+        <div className="flex justify-between mt-1">
+          <div>
+            <p className="text-[#7ECC9B] font-semibold text-base font-poppins">
+              {hotel.cancellation}
+            </p>
+            <p className="text-[#909090] text-xs lg:text-base font-normal font-poppins">
+              Total {hotel.total}
+            </p>
+          </div>
+          <div className="">
+            <div className="text-right">
+              <p className="text-xl lg:text-[32px] font-semibold text-black font-poppins">
+                {hotel.price}
+                <span className="text-[#909090] font-semibold font-poppins text-sm">
+                  /night
+                </span>
+              </p>
+            </div>
+            <button className="bg-[#4189DD] hover:bg-[#3298DF] cursor-pointer text-white text-sm lg:text-base font-normal font-poppins px-3 lg:px-5 py-1 rounded-[10px] transition">
+              View Detail
+            </button>
+          </div>
         </div>
       </div>
     </div>

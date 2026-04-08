@@ -4,6 +4,8 @@ import Image from "next/image";
 import Searchbar from "./Searchbar";
 import { StaticImageData } from "next/image";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import SearchBarHotel from "./SearchbarHotel";
 
 type HeroSectionProps = {
   image?: StaticImageData | string;
@@ -27,6 +29,9 @@ const HeroSection = ({
   const [current, setCurrent] = useState(0);
   const [prev, setPrev] = useState<number | null>(null);
   const [transitioning, setTransitioning] = useState(false);
+  const pathname = usePathname();
+
+  const isHotelPage = pathname.includes("/hotel");
 
   useEffect(() => {
     if (finalImages.length <= 1) return;
@@ -86,7 +91,7 @@ const HeroSection = ({
         <h2 className="text-white text-xl md:text-4xl font-bold">{title}</h2>
         <p className="text-white mt-2 text-sm md:text-lg">{description}</p>
       </div>
-      {showSearch && <Searchbar />}
+      {showSearch && (isHotelPage ? <SearchBarHotel /> : <Searchbar />)}
     </div>
   );
 };

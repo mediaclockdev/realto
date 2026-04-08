@@ -61,7 +61,7 @@ const TrendingHotelDestinations = () => {
     <div className="max-w-screen-2xl mx-auto px-5 py-12">
       <div className="mb-8">
         <h2 className="text-2xl md:text-[32px] font-semibold text-black">
-          Explore by property type
+          Trending Hotel Destinations
         </h2>
       </div>
 
