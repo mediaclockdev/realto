@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 type HeroSectionProps = {
   image?: StaticImageData | string;
   images?: (StaticImageData | string)[];
-  interval?: number; // ms, default 5000
+  interval?: number;
   title?: string | React.ReactNode;
   description?: string;
   showSearch?: boolean;

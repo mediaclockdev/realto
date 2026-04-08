@@ -20,7 +20,7 @@ const Counteries = () => {
         <div
           key={idx}
           onClick={() => setSelected(idx)}
-          className={` flex items-center rounded-lg cursor-pointer transition-all flex-shrink-0 
+          className={` flex items-center rounded-lg cursor-pointer transition-all shrink-0 
             ${selected === idx}`}
         >
           <Image

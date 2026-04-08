@@ -34,7 +34,7 @@ const categoryItems = [
   { imgs: [agent, agent1, agent2], href: "/agentspage" },
   { imgs: [loanbroker, loanbroker1], href: "/broker" },
   { imgs: [commercial], href: "/commercial" },
-  { imgs: [hotel, hotel1], href: "" },
+  { imgs: [hotel, hotel1], href: "/hotel" },
   { imgs: [airbnb, airbnb1], href: "https://www.airbnb.com.au/" },
   {
     imgs: [student, student1, student2, student3],

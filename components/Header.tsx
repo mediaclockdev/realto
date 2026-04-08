@@ -16,6 +16,7 @@ const Header = () => {
     pathname === "/broker" ||
     pathname === "/agents" ||
     pathname === "/commercial" ||
+    pathname === "/hotel" ||
     pathname.startsWith("/agents/");
   const isHome = pathname === "/homepage";
 
