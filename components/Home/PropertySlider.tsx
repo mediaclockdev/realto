@@ -164,7 +164,7 @@ const PropertyCard: React.FC<{
             </>
           )}
 
-          {property.images.length > 1 && (
+          {/* {property.images.length > 1 && (
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
               {property.images.map((_, idx) => (
                 <span
@@ -175,26 +175,26 @@ const PropertyCard: React.FC<{
                 />
               ))}
             </div>
-          )}
+          )} */}
         </div>
 
         {/* Content Section */}
-        <div className="px-4 pt-3 pb-4">
+        <div className="px-2 pt-2 pb-1">
           {/* Icon Preview Images */}
           {property.iconImages && property.iconImages.length > 0 && (
-            <div className="flex items-center gap-3 mb-1 pb-2">
+            <div className="flex items-center justify-center gap-3 mb-1 pb-2">
               {property.iconImages.map((icon, index) => (
-                <div key={index} className="flex items-center gap-1.5">
-                  <div className="w-14 h-10 rounded-lg overflow-hidden shrink-0">
+                <div key={index} className="flex items-center  gap-1.5">
+                  <div className="w-17 h-12 rounded-lg overflow-hidden shrink-0">
                     <Image
                       src={icon}
-                      alt={`Feature ${index + 1}`}
+                      alt=""
                       width={48}
                       height={40}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full"
                     />
                   </div>
-                  <span className="text-sm font-semibold text-gray-700 font-poppins">
+                  <span className="text-[15px] font-semibold text-gray-700 font-">
                     {property.iconLabels?.[index] ?? "1"}
                   </span>
                 </div>
@@ -259,7 +259,7 @@ const PropertyCard: React.FC<{
           </div>
 
           {/* Price and Property Type */}
-          <div className="flex items-center justify-between mb-1">
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">
               <Image
                 src={money}
@@ -281,7 +281,7 @@ const PropertyCard: React.FC<{
           <div className="flex items-center justify-between">
             {/* Agent Info */}
             <div>
-              <div className="flex gap-1 items-center">
+              <div className="flex gap-1 items-center mb-2">
                 <Image
                   src={property.agentImage}
                   alt={property.agentName}
@@ -293,7 +293,7 @@ const PropertyCard: React.FC<{
                   {property.agentName}
                 </p>
               </div>
-              <div className="flex items-center gap-1 mt-1">
+              <div className="flex items-center gap-1 mt-2 mb-2 ">
                 <Image
                   src={mobile}
                   alt=""
@@ -305,7 +305,7 @@ const PropertyCard: React.FC<{
                   {property.agentPhone}
                 </p>
               </div>
-              <div className="flex items-center gap-1 mt-1">
+              {/* <div className="flex items-center gap-1 mt-1">
                 <Image
                   src={mail}
                   alt=""
@@ -316,7 +316,7 @@ const PropertyCard: React.FC<{
                 <p className="truncate font-semibold font-poppins text-[#FA2F2F] text-xs">
                   {property.agentEmail}
                 </p>
-              </div>
+              </div> */}
             </div>
 
             {/* Company + Actions */}
@@ -326,9 +326,9 @@ const PropertyCard: React.FC<{
                 alt="Company logo"
                 width={80}
                 height={36}
-                className="object-contain block mx-auto mb-1"
+                className="object-contain block mx-auto"
               />
-              <div className="text-xs text-[#FA2F2F] font-medium font-poppins mb-1 text-right">
+              <div className="text-xs text-[#FA2F2F] font-medium font-poppins text-right">
                 <p>{property.agentLocation}</p>
               </div>
 
@@ -406,7 +406,6 @@ const PropertyCard: React.FC<{
                     </div>
                   </div>
                 )}
-                
               </div>
             </div>
           </div>

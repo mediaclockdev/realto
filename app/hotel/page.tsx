@@ -5,9 +5,7 @@ import HeroHotel from "@/components/Hotel/HeroHotel";
 import LastMinuteHotels from "@/components/Hotel/LastMinuteHotelsNearYou";
 import ReadyForYourRainforestRetreat from "@/components/Hotel/ReadyForYourRainforestRetreat";
 import TrendingHotelDestinations from "@/components/Hotel/TrendingHotelDestinations";
-import React from "react";
-
-const page = () => {
+export default function Page() {
   return (
     <div>
       <HeroHotel />
@@ -19,6 +17,4 @@ const page = () => {
       <ReadyForYourRainforestRetreat />
     </div>
   );
-};
-
-export default page;
+}

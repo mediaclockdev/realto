@@ -1,12 +1,10 @@
-
 import FreeListingpage from "@/components/Flatmate/FreeListingpage";
 import HeroFlatmate from "@/components/Flatmate/HeroFlatmate";
-
 const page = () => {
   return (
     <div>
-          <HeroFlatmate />
-            <FreeListingpage/>
+      <HeroFlatmate />
+      <FreeListingpage />
     </div>
   );
 };

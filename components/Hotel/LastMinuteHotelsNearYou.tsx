@@ -1,50 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import hotelImg from "../../public/hotelimg.png";
 import star from "../../public/starsingle.svg";
+import { getHotelListings } from "@/lib/hotel/repository";
+import type { HotelListing } from "@/lib/hotel/types";
 
-const hotels = [
-  {
-    name: "park hyatt sydney",
-    stars: 5,
-    rating: "9.2 Excellent",
-    reviews: "525 reviews",
-    amenities: ["Free wi-Fi", "Infinity Pool", "Breakfast Included"],
-    cancellation: "Free Cancellation",
-    total: "$4250 (3 nights)",
-    price: "$850",
-  },
-  {
-    name: "park hyatt sydney",
-    stars: 5,
-    rating: "9.2 Excellent",
-    reviews: "525 reviews",
-    amenities: ["Free wi-Fi", "Infinity Pool", "Breakfast Included"],
-    cancellation: "Free Cancellation",
-    total: "$4250 (3 nights)",
-    price: "$850",
-  },
-  {
-    name: "park hyatt sydney",
-    stars: 5,
-    rating: "9.2 Excellent",
-    reviews: "525 reviews",
-    amenities: ["Free wi-Fi", "Infinity Pool", "Breakfast Included"],
-    cancellation: "Free Cancellation",
-    total: "$4250 (3 nights)",
-    price: "$850",
-  },
-  {
-    name: "park hyatt sydney",
-    stars: 5,
-    rating: "9.2 Excellent",
-    reviews: "525 reviews",
-    amenities: ["Free wi-Fi", "Infinity Pool", "Breakfast Included"],
-    cancellation: "Free Cancellation",
-    total: "$4250 (3 nights)",
-    price: "$850",
-  },
-];
+const hotels = getHotelListings();
 
 const StarRating = ({ count }: { count: number }) => (
   <div className="flex gap-0.5">
@@ -62,45 +24,46 @@ const StarRating = ({ count }: { count: number }) => (
   </div>
 );
 
-const HotelCard = ({ hotel }: { hotel: (typeof hotels)[0] }) => (
-  <div
+const HotelCard = ({ hotel }: { hotel: HotelListing }) => (
+  <Link
+    href={`/hotel/${hotel.slug}`}
     className="group rounded-2xl p-[2px] transition 
-hover:bg-[linear-gradient(90deg,#CB9E33,#EDD06A,#FCEA94,#FADE7B,#FDEE9D,#C29225)]"
+  hover:bg-[linear-gradient(90deg,#CB9E33,#EDD06A,#FCEA94,#FADE7B,#FDEE9D,#C29225)]"
   >
     <div className="bg-white rounded-2xl p-4 flex flex-col lg:flex-row gap-4 shadow-sm">
       {/* Image */}
       <div className="relative w-[220px] min-w-[220px] h-[200px] rounded-xl overflow-hidden shrink-0">
-        <Image src={hotelImg} alt={hotel.name} fill className="object-cover" />
+        <Image src={hotelImg} alt={hotel.title} fill className="object-cover" />
       </div>
 
       {/* Content */}
       <div className="flex flex-col flex-1 py-1">
         {/* Stars + Rating */}
         <div className="flex items-start justify-between">
-          <StarRating count={hotel.stars} />
+          <StarRating count={hotel.rating} />
           <div className="flex flex-col">
             <p className="bg-[#E7F2FD] text-[#4197EF] text-sm lg:text-base font-semibold px-2 py-1 rounded-lg leading-tight">
-              {hotel.rating}
+              {hotel.badge}
             </p>
             <span className="font-poppins font-normal text-[10px] text-[#909090] text-right">
-              {hotel.reviews}
+              525 reviews
             </span>
           </div>
         </div>
 
         {/* Hotel Name */}
         <h3 className="text-2xl lg:text-[32px] font-semibold font-poppins text-black">
-          {hotel.name}
+          {hotel.title.toLowerCase()}
         </h3>
 
         {/* Amenity Pills */}
         <div className="flex flex-wrap gap-2 mt-2">
-          {hotel.amenities.map((a) => (
+          {hotel.amenities.slice(0, 3).map((item) => (
             <span
-              key={a}
+              key={item.label}
               className="border border-gray-300 text-gray-600 text-xs px-3 py-1 rounded-full"
             >
-              {a}
+              {item.label}
             </span>
           ))}
         </div>
@@ -109,29 +72,29 @@ hover:bg-[linear-gradient(90deg,#CB9E33,#EDD06A,#FCEA94,#FADE7B,#FDEE9D,#C29225)
         <div className="flex justify-between mt-1">
           <div>
             <p className="text-[#7ECC9B] font-semibold text-base font-poppins">
-              {hotel.cancellation}
+              Free Cancellation
             </p>
             <p className="text-[#909090] text-xs lg:text-base font-normal font-poppins">
-              Total {hotel.total}
+              {hotel.totalLabel}
             </p>
           </div>
           <div className="">
             <div className="text-right">
               <p className="text-xl lg:text-[32px] font-semibold text-black font-poppins">
-                {hotel.price}
+                {hotel.priceLabel}
                 <span className="text-[#909090] font-semibold font-poppins text-sm">
                   /night
                 </span>
               </p>
             </div>
-            <button className="bg-[#4189DD] hover:bg-[#3298DF] cursor-pointer text-white text-sm lg:text-base font-normal font-poppins px-3 lg:px-5 py-1 rounded-[10px] transition">
+            <span className="inline-block bg-[#4189DD] hover:bg-[#3298DF] cursor-pointer text-white text-sm lg:text-base font-normal font-poppins px-3 lg:px-5 py-1 rounded-[10px] transition">
               View Detail
-            </button>
+            </span>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 const LastMinuteHotels = () => {
@@ -159,8 +122,8 @@ const LastMinuteHotels = () => {
 
       {/* 2x2 Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {hotels.map((hotel, idx) => (
-          <HotelCard key={idx} hotel={hotel} />
+        {hotels.map((hotel) => (
+          <HotelCard key={hotel.id} hotel={hotel} />
         ))}
       </div>
     </div>

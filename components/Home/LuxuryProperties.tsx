@@ -62,7 +62,7 @@ const LuxuryProperties = () => {
         {/* Left text section */}
         <div className="lg:w-1/4 w-full space-y-5 shrink-0">
           <div className="flex items-center gap-2">
-            <p className="text-[#343434] font-bold text-xl sm:text-2xl font-poppins">
+            <p className="text-[#926F34] font-bold text-xl sm:text-2xl font-poppins">
               Luxury Properties
             </p>
             <Image src={building} alt="icon" width={28} height={28} />
