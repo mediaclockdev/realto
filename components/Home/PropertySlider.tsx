@@ -203,14 +203,14 @@ const PropertyCard: React.FC<{
           )}
 
           {/* Location and Size */}
-          <div className="flex items-center justify-between mb-1">
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-0.5 min-w-0">
               <Image
                 src={locationIcon}
                 alt="location"
-                width={28}
-                height={28}
-                className="w-5 h-5 lg:w-7 lg:h-7 shrink-0 object-contain"
+                width={40}
+                height={40}
+                className="w-5 h-5 lg:w-10 lg:h-10 shrink-0 object-contain"
               />
               <span className="font-semibold text-gray-800 text-sm truncate font-poppins ml-0.5">
                 {property.location}
@@ -236,9 +236,9 @@ const PropertyCard: React.FC<{
               <Image
                 src={property.dateicon}
                 alt="calendericon"
-                width={28}
-                height={28}
-                className="w-4 h-4 lg:w-7 lg:h-7 shrink-0 object-contain"
+                width={40}
+                height={40}
+                className="w-4 h-4 lg:w-10 lg:h-10 shrink-0 object-contain"
               />
               <span className="text-[#343434] font-semibold font-poppins text-base ml-1">
                 {property.date}
@@ -248,9 +248,9 @@ const PropertyCard: React.FC<{
               <Image
                 src={clock}
                 alt="clockicon"
-                width={28}
-                height={28}
-                className="w-4 h-4 lg:w-7 lg:h-7 shrink-0 object-contain"
+                width={40}
+                height={40}
+                className="w-4 h-4 lg:w-10 lg:h-10 shrink-0 object-contain"
               />
               <span className="text-[#343434] font-semibold font-poppins text-base ml-1">
                 {property.time}
@@ -264,9 +264,9 @@ const PropertyCard: React.FC<{
               <Image
                 src={money}
                 alt="money icon"
-                width={28}
-                height={28}
-                className="w-7 h-7 object-contain"
+                width={40}
+                height={40}
+                className="w-10 h-10 object-contain"
               />
               <p className="text-[#343434] font-semibold font-poppins text-base">
                 {property.priceRange}
@@ -344,8 +344,8 @@ const PropertyCard: React.FC<{
                   <Image
                     src={isShared ? sharegold : share}
                     alt="Share"
-                    width={28}
-                    height={28}
+                    width={32}
+                    height={32}
                     className="transition-all duration-200 object-contain"
                   />
                 </button>
@@ -359,8 +359,8 @@ const PropertyCard: React.FC<{
                   <Image
                     src={liked ? homeliked : home}
                     alt="Home"
-                    width={32}
-                    height={32}
+                    width={36}
+                    height={36}
                     className="transition-all duration-200 object-contain"
                   />
                 </button>
