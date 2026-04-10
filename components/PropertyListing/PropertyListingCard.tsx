@@ -34,7 +34,8 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   const [imgIndex, setImgIndex] = useState(0);
   const [liked, setLiked] = useState(false);
   const outerRef = useRef<HTMLDivElement>(null);
-  const hoverBorder = "linear-gradient(135deg, #f6d365 0%, #fda085 100%)";
+  const hoverBorderRent = "linear-gradient(135deg, #808588 0%, #808677 100%)";
+  const hoverBorderBuy = "linear-gradient(135deg, #f6d365 0%, #fda085 100%)";
 
   const next = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -56,7 +57,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
         style={{ background: "transparent" }}
         onMouseEnter={() => {
           if (outerRef.current) {
-            outerRef.current.style.background = hoverBorder;
+            outerRef.current.style.background = hoverBorderRent;
           }
         }}
         onMouseLeave={() => {
@@ -217,7 +218,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
       style={{ background: "transparent" }}
       onMouseEnter={() => {
         if (outerRef.current) {
-          outerRef.current.style.background = hoverBorder;
+          outerRef.current.style.background = hoverBorderBuy;
         }
       }}
       onMouseLeave={() => {

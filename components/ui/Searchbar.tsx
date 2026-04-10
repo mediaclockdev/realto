@@ -41,28 +41,26 @@ const Searchbar = () => {
         onClose={() => setIsFilterModalOpen(false)}
       />
 
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 w-[85%] sm:w-[80%] max-w-4xl z-10">
-        <div className="relative flex items-center rounded-xl backdrop-blur-xs bg-white/50 border border-white/30 shadow-lg overflow-visible">
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 w-[85%] sm:w-[90%] max-w-6xl z-10">
+        <div className="relative h-12 md:h-16 flex items-center rounded-xl bg-white/20 border border-white/30 shadow-lg overflow-visible">
           {/* Left icon */}
-          <Tooltip text="Countries">
+          <Tooltip text="States">
             <div
               onClick={() => {
                 console.log("clicked");
                 setIsCountriesOpen(!isCountriesOpen);
               }}
-              className="flex items-center justify-center  rounded-xl p-0.5 shrink-0 mt-1 ml-1.5 cursor-pointer"
+              className="flex items-center justify-center  h-full  rounded-xl shrink-0 ml-0.5 cursor-pointer"
             >
               <Image
                 src={searchbar}
                 alt="location"
-                width={44}
-                height={44}
-                className="w-9 h-9 md:w-11 md:h-11"
+                className="h-[60%] w-auto"
               />
             </div>
           </Tooltip>
           {isCountriesOpen && (
-            <div className="fixed left-1/2 -translate-x-1/2 bottom-[110%] w-[100%] max-w-3xl bg-[#6b6b6b] rounded-xl p-2 z-[9999] shadow-2xl lg:ml-[-50px]">
+            <div className="fixed left-1/2 -translate-x-1/2 bottom-[110%] w-[100%] max-w-[820px] bg-[#6b6b6b] rounded-xl p-2 z-[9999] shadow-2xl lg:ml-[-50px]">
               <Counteries />
             </div>
           )}
@@ -75,61 +73,37 @@ const Searchbar = () => {
           />
 
           {/* Right icons */}
-          <div className="flex items-center gap-3 sm:gap-4 shrink-0 px-3">
+          <div className="flex items-center h-full gap-0 shrink-0">
             {/* Filter */}
             <Tooltip text="Filters">
               <button
                 type="button"
                 onClick={() => setIsFilterModalOpen(true)}
-                className="flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer"
+                className="flex h-full items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer"
               >
-                <Image
-                  src={fliter}
-                  alt="filter"
-                  width={44}
-                  height={44}
-                  className="w-6 h-6 md:w-11 md:h-11"
-                />
+                <Image src={fliter} alt="filter" className="h-[60%] w-auto" />
               </button>
             </Tooltip>
 
             {/* Voice */}
             <Tooltip text="Microphone">
-              <button className="flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
-                <Image
-                  src={voice}
-                  alt="voice"
-                  width={40}
-                  height={40}
-                  className="w-6 h-6 md:w-10 md:h-10"
-                />
+              <button className="h-full flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+                <Image src={voice} alt="voice" className="h-[60%] w-auto" />
               </button>
             </Tooltip>
 
             {/* Google Lens */}
             <Tooltip text="Camera">
-              <button className="flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
-                <Image
-                  src={googlelens}
-                  alt="lens"
-                  width={40}
-                  height={40}
-                  className="w-6 h-6 md:w-10 md:h-10"
-                />
+              <button className="h-full flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+                <Image src={googlelens} alt="lens" className="h-[60%] w-auto" />
               </button>
             </Tooltip>
           </div>
 
           {/* Search button — fills full height */}
           <Tooltip text="Search">
-            <button className="flex items-center justify-center bg-white/50 hover:bg-white/40 transition-colors cursor-pointer  self-stretch  py-1 lg:py-0  lg:pl-1 rounded-r-[10px]">
-              <Image
-                src={searchwhite}
-                alt="search"
-                width={56}
-                height={56}
-                className="lg:w-14 h-10 lg:h-14"
-              />
+            <button className="h-full flex items-center justify-center bg-white/50 hover:bg-white/40 transition-colors cursor-pointer  self-stretch  py-1 lg:py-0  lg:pl-1 rounded-r-[10px]">
+              <Image src={searchwhite} alt="search" className="h-full w-auto" />
             </button>
           </Tooltip>
         </div>

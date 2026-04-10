@@ -157,7 +157,7 @@ const LanguageSelection = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-5 py-5">
+    <div className="max-w-screen-2xl mx-auto px-5 py-2">
       <div className="flex items-center gap-3">
         <p className="text-black font-semibold text-xl font-poppins">
           Language selection :

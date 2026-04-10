@@ -8,7 +8,7 @@ import share from "../../public/share.svg";
 import home from "../../public/buylikeicon.svg";
 import homeliked from "../../public/homelike.svg";
 import mobile from "../../public/mobileicon.svg";
-import mail from "../../public/mailicon.svg";
+
 import clock from "../../public/clock.svg";
 import money from "../../public/money.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
@@ -79,7 +79,7 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
       {/* Scrollable Container */}
       <div
         ref={scrollContainerRef}
-        className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-0 lg:py-4 px-0 lg:px-2"
+        className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-0 lg:py-6 px-0 lg:px-2"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {properties.map((property) => (
@@ -130,16 +130,16 @@ const PropertyCard: React.FC<{
 
   return (
     <div
-      className="shrink-0 w-[340px] rounded-xl transition-all duration-300 hover:scale-105 p-[2px] cursor-pointer relative"
+      className="shrink-0 w-[340px] rounded-xl transition-all duration-300 hover:scale-110 p-[2px] cursor-pointer relative ml-5"
       style={{ background: isHovered ? GOLD_GRADIENT : "transparent" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onCardClick?.(property)}
     >
       {/* Inner: white card */}
-      <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 w-full h-full">
+      <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300 w-full h-full">
         {/* Image Section */}
-        <div className="relative h-40 bg-gray-200 group/image cursor-pointer">
+        <div className="relative h-52 bg-gray-200 group/image cursor-pointer">
           <Image
             src={property.images[currentImageIndex]}
             alt={`Property in ${property.location}`}
@@ -194,7 +194,7 @@ const PropertyCard: React.FC<{
                       className="w-full h-full"
                     />
                   </div>
-                  <span className="text-[15px] font-semibold text-gray-700 font-">
+                  <span className="text-[15px] font-semibold text-[#FA2F2F] font-">
                     {property.iconLabels?.[index] ?? "1"}
                   </span>
                 </div>
@@ -231,7 +231,7 @@ const PropertyCard: React.FC<{
           </div>
 
           {/* Date and Time */}
-          <div className="flex items-center gap-1 mb-1 text-gray-600">
+          <div className="flex items-center gap-1 text-gray-600">
             <div className="flex items-center">
               <Image
                 src={property.dateicon}
@@ -278,32 +278,48 @@ const PropertyCard: React.FC<{
           </div>
 
           {/* Lower content */}
-          <div className="flex items-center justify-between">
+          <div className="flex  flex-col justify-between border-t">
             {/* Agent Info */}
             <div>
-              <div className="flex gap-1 items-center mb-2">
-                <Image
-                  src={property.agentImage}
-                  alt={property.agentName}
-                  width={30}
-                  height={30}
-                  className="rounded-full shrink-0 border-2 border-red-100 object-cover"
-                />
-                <p className="font-semibold font-poppins text-[#FA2F2F] text-base truncate">
-                  {property.agentName}
-                </p>
+              <div className="flex gap-1 items-center justify-between ">
+                <div className="flex gap-1 items-center">
+                  <Image
+                    src={property.agentImage}
+                    alt={property.agentName}
+                    width={30}
+                    height={30}
+                    className="rounded-full shrink-0 border-2 border-red-100 object-cover"
+                  />
+                  <p className="font-semibold font-poppins text-[#FA2F2F] text-base truncate">
+                    {property.agentName}
+                  </p>
+                </div>
+                <div>
+                  <Image
+                    src={property.agentCompany}
+                    alt="Company logo"
+                    width={84}
+                    height={40}
+                    className="object-contain block"
+                  />
+                </div>
               </div>
-              <div className="flex items-center gap-1 mt-2 mb-2 ">
-                <Image
-                  src={mobile}
-                  alt=""
-                  width={20}
-                  height={20}
-                  className="object-contain"
-                />
-                <p className="font-semibold font-poppins text-[#FA2F2F] text-xs">
-                  {property.agentPhone}
-                </p>
+              <div className="flex items-center justify-between gap-1  ">
+                <div className="flex items-center gap-1">
+                  <Image
+                    src={mobile}
+                    alt=""
+                    width={32}
+                    height={32}
+                    className="object-contain"
+                  />
+                  <p className="font-semibold font-poppins text-[#FA2F2F] text-xs">
+                    {property.agentPhone}
+                  </p>
+                </div>
+                <div className="text-xs text-[#FA2F2F] font-medium font-poppins text-right">
+                  <p>{property.agentLocation}</p>
+                </div>
               </div>
               {/* <div className="flex items-center gap-1 mt-1">
                 <Image
@@ -321,16 +337,16 @@ const PropertyCard: React.FC<{
 
             {/* Company + Actions */}
             <div>
-              <Image
+              {/* <Image
                 src={property.agentCompany}
                 alt="Company logo"
                 width={80}
                 height={36}
                 className="object-contain block mx-auto"
-              />
-              <div className="text-xs text-[#FA2F2F] font-medium font-poppins text-right">
+              /> */}
+              {/* <div className="text-xs text-[#FA2F2F] font-medium font-poppins text-right">
                 <p>{property.agentLocation}</p>
-              </div>
+              </div> */}
 
               <div className="flex items-center justify-end relative">
                 <button

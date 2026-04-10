@@ -22,11 +22,11 @@ const NewListing = ({
 }: NewListingProps) => {
   return (
     <div>
-      <div className={`flex items-center gap-2 mb-6 font-poppins ${className}`}>
-        <h2 className="text-3xl font-semibold text-black font-poppins">{title}</h2>
-        {icon && (
-          <Image src={icons[icon]} alt={icon} className="w-7 h-7" />
-        )}
+      <div className={`flex items-center gap-2 mb-2 font-poppins ${className}`}>
+        <h2 className="text-3xl font-semibold text-black font-poppins">
+          {title}
+        </h2>
+        {icon && <Image src={icons[icon]} alt={icon} className="w-7 h-7" />}
       </div>
     </div>
   );

@@ -14,7 +14,6 @@ import squaremetericon from "@/public/squaremetericon.svg";
 import GetMatchedNow from "../PropertyListing/GetMatchedNow";
 import inqury from "../../public/inqurylogo.svg";
 import star from "../../public/star.svg";
-import PropertyDetailView from "../PropertyListing/PropertyDetailView";
 
 interface HotelDetailPageProps {
   hotel: HotelListing;
