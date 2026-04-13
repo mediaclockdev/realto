@@ -23,7 +23,7 @@ const NewListing = ({
   return (
     <div>
       <div className={`flex items-center gap-2 mb-2 font-poppins ${className}`}>
-        <h2 className="text-3xl font-extrabold  font-poppins reel-text">
+        <h2 className="text-3xl font-extrabold  font-poppins reel-text-heading">
           {title}
         </h2>
         {icon && <Image src={icons[icon]} alt={icon} className="w-7 h-7" />}

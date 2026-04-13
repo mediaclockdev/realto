@@ -59,7 +59,7 @@ const LuxuryProperties = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 py-5 ">
       <div className="flex items-center gap-2 mb-1">
-        <h2 className="text-[#926F34] font-bold text-xl sm:text-[32px] font-poppins">
+        <h2 className=" font-extrabold text-xl sm:text-[32px] font-poppins reel-text-black">
           Luxury Properties
         </h2>
         <Image src={building} alt="icon" width={28} height={28} />
