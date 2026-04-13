@@ -60,7 +60,7 @@ const Searchbar = () => {
             </div>
           </Tooltip>
           {isCountriesOpen && (
-            <div className="fixed left-1/2 -translate-x-1/2 bottom-[110%] w-[100%] max-w-[820px] bg-[#6b6b6b] rounded-xl p-2 z-[9999] shadow-2xl lg:ml-[-50px]">
+            <div className="fixed left-2/5 -translate-x-1/2 bottom-[110%] w-[100%] max-w-[820px] bg-[#6b6b6b] rounded-xl p-2 z-[9999] shadow-2xl lg:ml-[-50px]">
               <Counteries />
             </div>
           )}

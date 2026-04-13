@@ -284,7 +284,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 </div>
               ))}
             </div>
-          )}
+          )}₹
 
           {/* Location + size */}
           <div className="flex items-center justify-between">

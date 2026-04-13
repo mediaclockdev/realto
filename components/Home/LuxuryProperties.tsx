@@ -57,7 +57,7 @@ const LuxuryProperties = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 py-6 ">
+    <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 py-5 ">
       <div className="flex items-center gap-2 mb-1">
         <h2 className="text-[#926F34] font-bold text-xl sm:text-[32px] font-poppins">
           Luxury Properties
