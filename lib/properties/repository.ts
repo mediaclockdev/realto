@@ -17,15 +17,21 @@ function mapPropertyForVariant(
   property: ListingProperty,
   listingVariant: ListingVariant = "buy",
 ): ListingProperty {
-  if (listingVariant !== "land") {
-    return property;
+  if (listingVariant === "rent") {
+    // Generate a reasonable weekly rent based on the property ID or index
+    const idNum = parseInt(property.id);
+    const rentMin = 400 + (idNum % 20) * 50;
+    const rentMax = rentMin + 100;
+
+    return {
+      ...property,
+      priceRange: `$${rentMin}-$${rentMax}`,
+      // Rent specific labels or icons if needed
+    };
   }
 
-  return {
-    ...property,
-    images: [landbuyimg],
-    thumbnail: [
-      landmainimg,
+  if (listingVariant === "land") {
+    const landThumbnails = [
       landthumbnail,
       landthumbnail2,
       landthumbnail3,
@@ -35,17 +41,28 @@ function mapPropertyForVariant(
       landthumbnail7,
       landthumbnail8,
       landthumbnail9,
-    ],
-    location: "6 Vickery Place, Mittagong",
-    size: "730msq",
-    priceRange: "$6,50,000",
-    propertyType: "Residential Land",
-    agentName: "Anita Roelvink",
-    agentLocation: "Austin,Australia",
-    iconImages: undefined,
-    iconLabels: undefined,
-  };
+    ];
+    const idNum = parseInt(property.id);
+    const mainImg = landThumbnails[idNum % landThumbnails.length];
+
+    return {
+      ...property,
+      images: [landbuyimg],
+      thumbnail: [landmainimg, ...landThumbnails],
+      location: property.location, // Keep the generated location
+      size: `${200 + (idNum % 10) * 100}msq`,
+      priceRange: `$${(200000 + (idNum % 30) * 20000).toLocaleString()}`,
+      propertyType: "Residential Land",
+      agentName: property.agentName,
+      agentLocation: property.agentLocation,
+      iconImages: undefined,
+      iconLabels: undefined,
+    };
+  }
+
+  return property;
 }
+
 
 export function getPropertyById(
   id: string,

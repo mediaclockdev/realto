@@ -57,10 +57,37 @@ const BASE_PROPERTY: Omit<ListingProperty, "id"> = {
   ],
 };
 
+const locations = [
+  "Sans Souci, NSW 2219",
+  "Cronulla, NSW 2230",
+  "Bondi Beach, NSW 2026",
+  "Mittagong, NSW 2575",
+  "Austin, Australia",
+  "Sydney, Australia",
+  "Melbourne, Australia",
+  "Brisbane, Australia",
+];
+
+const propertyTypes = ["Apartment", "House", "Townhouse", "Villa", "Studio"];
+const agentNames = ["Anna Johns", "Eddie Jones", "Anita Roelvink", "Brook Jones"];
+
 export const propertyCatalog: ListingProperty[] = Array.from(
   { length: TOTAL_PROPERTIES },
-  (_, index) => ({
-    ...BASE_PROPERTY,
-    id: String(index + 1),
-  }),
+  (_, index) => {
+    const location = locations[index % locations.length];
+    const propertyType = propertyTypes[index % propertyTypes.length];
+    const agentName = agentNames[index % agentNames.length];
+    const priceMin = 500000 + (index % 50) * 100000;
+    const priceMax = priceMin + 200000;
+
+    return {
+      ...BASE_PROPERTY,
+      id: String(index + 1),
+      location,
+      propertyType,
+      agentName,
+      priceRange: `$${priceMin.toLocaleString()}-$${priceMax.toLocaleString()}`,
+    };
+  },
 );
+
