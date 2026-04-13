@@ -1,27 +1,29 @@
 "use client";
 import React from "react";
-import agent from "../../public/agent.svg";
-import agent1 from "../../public/agent1.svg";
-import agent2 from "../../public/agent2.svg";
-import airbnb from "../../public/airbnb.svg";
-import airbnb1 from "../../public/airbnb1.svg";
-import buy from "../../public/buy.svg";
-import buy1 from "../../public/buy1.svg";
-import rent from "../../public/rent.svg";
-import rent1 from "../../public/rent1.svg";
-import rent2 from "../../public/rent2.svg";
-import rent3 from "../../public/rent3.svg";
-import hotel from "../../public/hotel.svg";
-import hotel1 from "../../public/hotel1.svg";
-import student from "../../public/studentresidency.svg";
-import student1 from "../../public/student1.svg";
-import student2 from "../../public/student2.svg";
-import student3 from "../../public/student3.svg";
-import loanbroker from "../../public/loanbroker.svg";
-import loanbroker1 from "../../public/loanbroker1.svg";
-import commercial from "../../public/commercial.svg";
-import flatmate from "../../public/flatmate.svg";
-import flatmate1 from "../../public/flatmate1.svg";
+import agent from "../../public/agentimg1.jpg";
+import agent1 from "../../public/agentimg2.jpg";
+import agent2 from "../../public/agentimg3.jpg";
+import airbnb from "../../public/airbnbimg1.jpg";
+import airbnb1 from "../../public/airbnbimg2.jpg";
+
+import buy from "../../public/buyimg1.jpg";
+import buy1 from "../../public/buyimg2.png";
+
+import rent from "../../public/rentimg1.jpg";
+import rent1 from "../../public/rentimg2.jpg";
+import rent2 from "../../public/rentimg3.jpg";
+import rent3 from "../../public/rentimg4.jpg";
+import hotel from "../../public/hotelimg1.jpg";
+import hotel1 from "../../public/hotelimg2.jpg";
+import student from "../../public/studentresidencyimg1.jpg";
+import student1 from "../../public/studentresidencyimg2.jpg";
+import student2 from "../../public/studentresidencyimg3.jpg";
+import student3 from "../../public/studentresidencyimg4.jpg";
+import loanbroker from "../../public/loanbrokerimg1.jpg";
+import loanbroker1 from "../../public/loanbrokerimg2.jpg";
+import commercial from "../../public/commercialimg1.jpg";
+import flatmate from "../../public/flatmateimg1.png";
+import flatmate1 from "../../public/flatmateimg2.jpg";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
@@ -29,19 +31,24 @@ import { useRef, useState, useEffect } from "react";
 import land from "../../public/land.svg";
 
 const categoryItems = [
-  { imgs: [buy, buy1], href: "/propertyListingpage" },
-  { imgs: [rent, rent1, rent2, rent3], href: "/rent" },
-  { imgs: [agent, agent1, agent2], href: "/agentspage" },
-  { imgs: [loanbroker, loanbroker1], href: "/broker" },
-  { imgs: [commercial], href: "/commercial" },
-  { imgs: [hotel, hotel1], href: "/hotel" },
-  { imgs: [airbnb, airbnb1], href: "https://www.airbnb.com.au/" },
+  { imgs: [buy, buy1], href: "/propertyListingpage", title: "Buy" },
+  { imgs: [rent, rent1, rent2, rent3], href: "/rent", title: "Rent" },
+  { imgs: [agent, agent1, agent2], href: "/agentspage", title: "Agent" },
+  { imgs: [loanbroker, loanbroker1], href: "/broker", title: "Loan Broker" },
+  { imgs: [commercial], href: "/commercial", title: "Commercial" },
+  { imgs: [hotel, hotel1], href: "/hotel", title: "Hotel" },
+  {
+    imgs: [airbnb, airbnb1],
+    href: "https://www.airbnb.com.au/",
+    title: "Airbnb",
+  },
   {
     imgs: [student, student1, student2, student3],
     href: "/studentResidency",
+    title: "Student Residency",
   },
-  { imgs: [flatmate, flatmate1], href: "/flatmate" },
-  { imgs: [land, land], href: "/land" },
+  { imgs: [flatmate, flatmate1], href: "/flatmate", title: "Flatmate" },
+  { imgs: [land, land], href: "/land", title: "Land" },
 ];
 
 const Features = () => {
@@ -97,21 +104,42 @@ const Features = () => {
           {categoryItems.map((item, idx) =>
             item.href ? (
               <Link key={idx} href={item.href} className="shrink-0">
-                <Image
-                  src={item.imgs[currentIndexes[idx]]}
-                  alt="category"
-                  className="size-36"
-                  unoptimized
-                />
+                <div className="relative size-40 rounded-[12px] overflow-hidden">
+                  {/* Image */}
+                  <Image
+                    src={item.imgs[currentIndexes[idx]]}
+                    alt="category"
+                    fill
+                    className="object-cover object-top"
+                    unoptimized
+                  />
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                  {/* Text */}
+                  <p className="absolute bottom-2 left-2 right-2 text-white font-semibold text-sm text-center">
+                    {item.title}
+                  </p>
+                </div>
               </Link>
             ) : (
               <button key={idx} className="shrink-0">
-                <Image
-                  src={item.imgs[currentIndexes[idx]]}
-                  alt="category"
-                  className="size-36"
-                  unoptimized
-                />
+                <div className="relative size-40 rounded-[12px] overflow-hidden">
+                  <Image
+                    src={item.imgs[currentIndexes[idx]]}
+                    alt="category"
+                    fill
+                    className="object-cover object-top"
+                    unoptimized
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                  <p className="absolute bottom-2 left-2 right-2 text-white font-semibold text-sm text-center">
+                    {item.title}
+                  </p>
+                </div>
               </button>
             ),
           )}
