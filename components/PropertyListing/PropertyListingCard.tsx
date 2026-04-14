@@ -45,6 +45,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   const [isRentLiked, setIsRentLiked] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [isActionAreaHovered, setIsActionAreaHovered] = useState(false);
+  const [isAgentAreaHovered, setIsAgentAreaHovered] = useState(false);
   const outerRef = useRef<HTMLDivElement>(null);
   const hoverBorderRent = "linear-gradient(135deg, #808588 0%, #808677 100%)";
   const hoverBorderBuy = "linear-gradient(135deg, #f6d365 0%, #fda085 100%)";
@@ -92,7 +93,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   if (listingVariant === "rent") {
     return (
       <FollowCursorTooltip
-        disabled={isActionAreaHovered || showShareModal}
+        disabled={isActionAreaHovered || isAgentAreaHovered || showShareModal}
         text={
           <PropertySummaryTooltipContent
             location={property.location}
@@ -117,7 +118,11 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           }}
         >
           <div className="bg-white rounded-[22px] overflow-visible shadow-[0_12px_30px_rgba(0,0,0,0.16)] border border-[#e7e7e7] transition-shadow duration-200">
-            <div className="bg-[#ED1C24] px-3 py-2.5 rounded-t-[22px] overflow-hidden">
+            <div
+              className="bg-[#ED1C24] px-3 py-2.5 rounded-t-[22px] overflow-hidden"
+              onMouseEnter={() => setIsAgentAreaHovered(true)}
+              onMouseLeave={() => setIsAgentAreaHovered(false)}
+            >
               <div className="flex items-center justify-between gap-3">
                 <div className="min-w-0">
                   <div className="">
