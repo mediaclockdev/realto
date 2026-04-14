@@ -58,7 +58,7 @@ const Searchbar = () => {
             </div>
           </Tooltip>
           {isCountriesOpen && (
-            <div className="fixed left-2/5 -translate-x-1/2 bottom-[110%] w-[100%] max-w-[820px] bg-[#6b6b6b] rounded-xl p-2 z-[9999] shadow-2xl lg:ml-[-50px]">
+            <div className="fixed left-2/5 -translate-x-1/2 bottom-[-120%] w-[100%] max-w-[820px] bg-[#6b6b6b] rounded-xl p-2 z-[9999] shadow-2xl lg:ml-[-50px]">
               <Counteries />
             </div>
           )}
@@ -71,7 +71,7 @@ const Searchbar = () => {
           />
 
           {/* Right icons */}
-          <div className="flex items-center h-full gap-0 shrink-0">
+          <div className="flex items-center h-full gap-2 shrink-0">
             {/* Filter */}
             <Tooltip text="Filters">
               <button
@@ -89,8 +89,9 @@ const Searchbar = () => {
             </Tooltip>
 
             {/* Voice */}
+
             <Tooltip text="Microphone">
-              <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+              <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer  bg-white/50">
                 <Image
                   src={voice}
                   alt="voice"
@@ -102,7 +103,7 @@ const Searchbar = () => {
 
             {/* Google Lens */}
             <Tooltip text="Camera">
-              <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+              <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer bg-white/50">
                 <Image
                   src={googlelens}
                   alt="lens"
@@ -115,7 +116,7 @@ const Searchbar = () => {
 
           {/* Search button — fills full height */}
           <Tooltip text="Search">
-            <button className="relative h-12 md:h-16 w-12 md:w-16 shrink-0 flex items-center justify-center bg-white/50 hover:bg-white/40 transition-colors cursor-pointer rounded-r-[10px]">
+            <button className="relative ml-2 h-12 md:h-16 w-12 md:w-16 shrink-0 flex items-center justify-center bg-white/50 hover:bg-white/40 transition-colors cursor-pointer rounded-r-[10px]">
               <Image
                 src={searchwhite}
                 alt="search"

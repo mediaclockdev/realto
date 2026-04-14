@@ -29,6 +29,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import land from "../../public/land.svg";
+import land1 from "../../public/landimg1.jpg";
+import land2 from "../../public/landimg2.jpg";
+import land3 from "../../public/landimg3.jpg";
+import land4 from "../../public/landimg4.jpg";
+import land5 from "../../public/landimg5.jpg";
+import land6 from "../../public/landimg6.jpg";
 
 const categoryItems = [
   { imgs: [buy, buy1], href: "/propertyListingpage", title: "Buy" },
@@ -48,7 +54,11 @@ const categoryItems = [
     title: "Student Residency",
   },
   { imgs: [flatmate, flatmate1], href: "/flatmate", title: "Flatmate" },
-  { imgs: [land, land], href: "/land", title: "Land" },
+  {
+    imgs: [land, land1, land2, land3, land4, land5, land6],
+    href: "/land",
+    title: "Land",
+  },
 ];
 
 const Features = () => {
@@ -118,7 +128,7 @@ const Features = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
                   {/* Text */}
-                  <p className="absolute bottom-2 left-2 right-2 font-extrabold text-xl text-center reel-text">
+                  <p className="absolute bottom-2 left-2 right-2 font-extrabold font-amasis text-xl text-center reel-text">
                     {item.title}
                   </p>
                 </div>
