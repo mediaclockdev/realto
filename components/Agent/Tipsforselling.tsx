@@ -31,7 +31,7 @@ const blogs = [
 const Tipsforselling = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 space-y-5">
-      <h2 className="font-semibold font-poppins text-[32px] text-black">
+      <h2 className="font-semibold font-poppins text-2xl lg:text-[32px] text-black">
         Tips for selling
       </h2>
 
@@ -50,7 +50,7 @@ const Tipsforselling = () => {
             </div>
 
             {/* Title */}
-            <p className="font-semibold font-poppins text-black text-base leading-snug">
+            <p className="font-semibold font-poppins text-black text-sm lg:text-base leading-snug">
               {item.title}
             </p>
 
@@ -62,7 +62,7 @@ const Tipsforselling = () => {
         ))}
       </div>
       <div className="flex items-center justify-center">
-        <p className="text-[#0284C7] font-poppins font-semibold text-lg cursor-pointer hover:underline">
+        <p className="text-[#0284C7] font-poppins font-semibold text-base lg:text-lg cursor-pointer hover:underline ">
           Explore more articles for selling your property{" >"}
         </p>
       </div>

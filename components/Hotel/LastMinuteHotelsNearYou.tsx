@@ -27,12 +27,11 @@ const StarRating = ({ count }: { count: number }) => (
 const HotelCard = ({ hotel }: { hotel: HotelListing }) => (
   <Link
     href={`/hotel/${hotel.slug}`}
-    className="group rounded-2xl p-[2px] transition 
-  hover:bg-[linear-gradient(90deg,#CB9E33,#EDD06A,#FCEA94,#FADE7B,#FDEE9D,#C29225)]"
+    className="group rounded-2xl p-[2px] transition hover:bg-[linear-gradient(90deg,#CB9E33,#EDD06A,#FCEA94,#FADE7B,#FDEE9D,#C29225)]"
   >
     <div className="bg-white rounded-2xl p-4 flex flex-col lg:flex-row gap-4 shadow-sm">
       {/* Image */}
-      <div className="relative w-[220px] min-w-[220px] h-[200px] rounded-xl overflow-hidden shrink-0">
+      <div className="relative w-[220px] min-w-[300px] lg:min-w-[220px] h-[200px] rounded-xl overflow-hidden shrink-0">
         <Image src={hotelImg} alt={hotel.title} fill className="object-cover" />
       </div>
 
@@ -121,7 +120,7 @@ const LastMinuteHotels = () => {
       </div>
 
       {/* 2x2 Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {hotels.map((hotel) => (
           <HotelCard key={hotel.id} hotel={hotel} />
         ))}

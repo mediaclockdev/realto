@@ -39,7 +39,7 @@ const Guidestohelpyoubuysmarter = () => {
         ))}
       </div>
       <div className="mt-6 ">
-        <button className="bg-[#0284C7] text-white px-6 text-xl ] rounded-md font-semibold hover:bg-[#0369a1] transition ">
+        <button className="bg-[#0284C7] text-white px-6 text-xl ] rounded-md font-semibold hover:bg-[#0369a1] transition cursor-pointer">
           View All
         </button>
       </div>

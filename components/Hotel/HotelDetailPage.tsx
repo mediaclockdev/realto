@@ -60,7 +60,7 @@ export default function HotelDetailPage({ hotel }: HotelDetailPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="max-w-screen-2xl mx-auto  min-h-screen bg-gray-50">
       <SearchFilterBar
         isMapView={false}
         onToggleView={() => router.push(`/hotel/map?id=${hotel.slug}`)}

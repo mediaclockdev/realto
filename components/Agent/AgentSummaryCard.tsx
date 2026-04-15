@@ -55,7 +55,7 @@ export default function AgentSummaryCard({
           />
         </div>
 
-        <div className="relative h-full w-[200px] group">
+        <div className="relative h-full w-[45%] lg:w-[200px] group">
           <svg
             viewBox="0 0 200 190"
             className="h-full w-full"
@@ -115,27 +115,27 @@ export default function AgentSummaryCard({
           </svg>
         </div>
 
-        <div className="absolute left-[48%] top-0 z-10 flex h-full w-[calc(100%-200px)] flex-col justify-center px-6 text-[#343434]">
-          <h3 className="font-poppins text-lg font-semibold italic">
+        <div className="absolute left-[45%] lg:left-[48%] top-0 z-10 flex h-full w-[55%] lg:w-[calc(100%-200px)] flex-col justify-center px-6 text-[#343434]">
+          <h3 className="font-poppins text-sm lg:text-lg font-semibold italic">
             {agent.name}
           </h3>
 
-          <div className="mt-3 space-y-1.5 text-xs">
+          <div className="mt-3 space-y-0.5 lg:space-y-1.5 text-xs">
             <div className="flex items-center gap-2">
               <Image src={phoneIcon} alt="" width={20} height={20} />
-              <span>{agent.phone}</span>
+              <span className="truncate">{agent.phone}</span>
             </div>
             <div className="flex items-center gap-2">
               <Image src={mailIcon} alt="" width={20} height={20} />
-              <span>{agent.email}</span>
+              <span className="truncate">{agent.email}</span>
             </div>
             <div className="flex items-center gap-2">
               <Image src={locationIcon} alt="" width={20} height={20} />
-              <span>{agent.location}</span>
+              <span className="truncate">{agent.location}</span>
             </div>
           </div>
 
-          <p className="mt-3 text-xs font-semibold">
+          <p className="mt-3 text-xs font-semibold truncate">
             License No. - {agent.licenseNumber}
           </p>
           <div className="mt-2 flex items-center gap-1 text-[14px]">
@@ -212,25 +212,25 @@ export default function AgentSummaryCard({
         </svg>
       </div>
 
-      <div className="relative z-10 ml-[50%] flex h-full flex-col justify-center px-4 py-5 text-[#2f2f2f]">
-        <h3 className="font-poppins text-lg font-semibold italic">
+      <div className="relative z-10 ml-[45%] lg:ml-[50%] flex h-full flex-col justify-center px-4 py-5 text-[#2f2f2f]">
+        <h3 className="font-poppins text-sm lg:text-lg font-semibold italic">
           {agent.name}
         </h3>
-        <div className="mt-3 space-y-1.5 text-xs">
-          <div className="flex items-center gap-2">
+        <div className="mt-3 space-y-0.5 lg:space-y-1.5 text-xs">
+          <div className="flex items-center gap-1 lg:gap-2">
             <Image src={phoneIcon} alt="" width={20} height={20} />
             <span>{agent.phone}</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 lg:gap-2">
             <Image src={mailIcon} alt="" width={20} height={20} />
             <span>{agent.email}</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 lg:gap-2">
             <Image src={locationIcon} alt="" width={20} height={20} />
             <span>{agent.location}</span>
           </div>
         </div>
-        <p className="mt-3 text-xs font-semibold">
+        <p className="mt-3 text-xs font-semibold truncate">
           License No. - {agent.licenseNumber}
         </p>
         <div className="mt-1.5 flex items-center gap-1.5 text-xs">

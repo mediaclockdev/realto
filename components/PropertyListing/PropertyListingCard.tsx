@@ -280,7 +280,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   </Tooltip>
                   {showShareModal && (
                     <div
-                      className="absolute bottom-10 right-0 z-[100] flex items-center justify-center animate-fade-in-up bg-white p-2 rounded-xl shadow-lg border border-gray-100"
+                      className="absolute bottom-10 right-0 z-[100] flex items-center gap-1 justify-center animate-fade-in-up bg-white px-1 py-1 rounded-xl shadow-lg border border-gray-100"
                       onClick={(e) => e.stopPropagation()}
                     >
                       <ShareMenuActionStrip iconSize={24} />
@@ -299,7 +299,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
     <FollowCursorTooltip
       disabled={isActionAreaHovered || showShareModal}
       text={
-        <PropertySummaryTooltipContent
+        <PropertySummaryTooltipContent  
           location={property.location}
           priceRange={property.priceRange}
         />

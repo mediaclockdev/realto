@@ -25,12 +25,12 @@ export default function Recommended({ agents }: RecommendedProps) {
         </Link>
       </div>
 
-      <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide lg:gap-6">
+      <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory lg:snap-none lg:gap-6">
         {agents.map((agent) => (
           <AgentSummaryCard
             key={agent.id}
             agent={agent}
-            className="min-w-[300px] shrink-0 sm:min-w-[380px] lg:min-w-[460px]"
+            className="w-[85vw] min-w-[85vw] shrink-0 snap-start sm:w-[420px] sm:min-w-[420px] lg:min-w-[460px] lg:w-[460px]"
           />
         ))}
       </div>
