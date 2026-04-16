@@ -53,6 +53,7 @@ body {
 @theme {
   --font-poppins: var(--font-poppins);
   --font-amasis: "Amasis", serif;
+  --font-Aptos: "Aptos", serif;
 }
 @layer utilities {
   .border-gold-gradient {
@@ -128,3 +129,37 @@ body {
   font-weight: 900;
   font-style: normal;
 }
+@font-face {
+  font-family: "Aptos";
+  src: url("/fonts/Aptos/Aptos-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @font-face {
+  font-family: "Amasis";
+  src: url("/fonts/amasis/Amasis-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Amasis";
+  src: url("/fonts/amasis/Amasis-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Amasis";
+  src: url("/fonts/amasis/Amasis-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Amasis";
+  src: url("/fonts/amasis/Amasis-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+} */

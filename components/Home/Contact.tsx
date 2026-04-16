@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { StaticImageData } from "next/image";
 import email from "../../public/formemailicon.svg";
 import phone from "../../public/formphoneicon.svg";
+import phone2 from "../../public/formphoneicon2.svg";
 import dl from "../../public/formnameicon.svg";
 import submitbtn from "../../public/submitbtnicon.svg";
 
@@ -39,7 +40,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
       <div className="flex flex-col lg:flex-row w-full gap-4 lg:gap-8 items-stretch">
         {/* Left: Image Carousel */}
 
-        <div className="w-full lg:w-2/3 shrink-0 relative min-h-[220px] sm:min-h-[300px] rounded-2xl overflow-hidden">
+        <div className="w-full lg:w-2/3 shrink-0 relative min-h-55 ʼsm:min-h-75 rounded-2xl overflow-hidden">
           {/* Slides */}
           {images.map((img, i) => (
             <Image
@@ -72,7 +73,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
           {/* Fields */}
           <div className="flex flex-col gap-4">
             {/* Full Name */}
-            <div className="bg-white border border-[#BFDBFE] shadow-[0_0_0_4px_rgba(191,219,254,0.6)]   rounded-3xl pl-5 h-16 transition-all flex items-stretch justify-between ">
+            <div className="bg-white border border-[#BFDBFE] shadow-[0_0_0_2px_rgba(191,219,254,0.9),0_10px_25px_rgba(59,130,246,0.25)]  rounded-3xl pl-5 h-16 transition-all flex items-stretch justify-between ">
               <div className="flex flex-col justify-center h-full">
                 <label className="text-xs text-gray-500">Full Name</label>
                 <input
@@ -80,15 +81,17 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
                   className="w-full bg-transparent outline-none text-sm text-black font-medium mt-1"
                 />
               </div>
-              <Image
-                src={dl}
-                alt="name icon"
-                className="w-auto h-full object-contain"
-              />
+              <div className="w-14 h-14 flex items-center justify-center">
+                <Image
+                  src={dl}
+                  alt="name icon"
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
             </div>
 
             {/* Phone */}
-            <div className="bg-white border  border-[#BFDBFE] shadow-[0_0_0_4px_rgba(191,219,254,0.6)]  rounded-3xl pl-5 h-16 transition-all flex items-stretch justify-between">
+            <div className="bg-white border  border-[#BFDBFE] shadow-[0_0_0_2px_rgba(191,219,254,0.9),0_10px_25px_rgba(59,130,246,0.25)]  rounded-3xl pl-5 h-16 transition-all flex items-stretch justify-between">
               <div className="flex flex-col justify-center h-full">
                 <label className="text-xs text-gray-500">Phone Number</label>
                 <input
@@ -96,15 +99,22 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
                   className="w-full bg-transparent outline-none text-sm text-gray-800 mt-1"
                 />
               </div>
-              <Image
-                src={phone}
-                alt="phone icon"
-                className="w-auto h-full object-contain"
-              />
+              <div className="w-16 h-16 flex items-center justify-center">
+                <Image
+                  src={phone}
+                  alt="phone icon"
+                  className="max-w-full max-h-full object-contain"
+                />
+                <Image
+                  src={phone2}
+                  alt="phone icon"
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
             </div>
 
             {/* Email */}
-            <div className="bg-white border  border-[#BFDBFE] shadow-[0_0_0_4px_rgba(191,219,254,0.6)] rounded-3xl pl-5 h-16  transition-all flex items-stretch justify-between">
+            <div className="bg-white border  border-[#BFDBFE] shadow-[0_0_0_2px_rgba(191,219,254,0.9),0_10px_25px_rgba(59,130,246,0.25)] rounded-3xl pl-5 h-16  transition-all flex items-stretch justify-between">
               <div className="flex flex-col justify-center h-full">
                 <label className="text-xs text-gray-500">
                   Email Address
@@ -115,15 +125,17 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
                 </label>
               </div>
 
-              <Image
-                src={email}
-                alt="email icon"
-                className="w-auto h-full object-contain"
-              />
+              <div className="w-14 h-14 flex items-center justify-center">
+                <Image
+                  src={email}
+                  alt="email icon"
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
             </div>
 
             {/* Message */}
-            <div className="bg-white border  border-[#BFDBFE] shadow-[0_0_0_4px_rgba(191,219,254,0.6)]  rounded-3xl px-5 py-2 focus-within:border-blue-400 transition-all">
+            <div className="bg-white border  border-[#BFDBFE] shadow-[0_0_0_2px_rgba(191,219,254,0.9),0_10px_25px_rgba(59,130,246,0.25)]  rounded-3xl px-5 py-2 focus-within:border-blue-400 transition-all">
               <label className="text-xs text-gray-500">Message</label>
 
               <textarea
@@ -136,7 +148,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
           {/* Submit Button */}
           <button
             type="button"
-            className="mt-5 w-full bg-[#0284C7] hover:bg-blue-600 text-white text-base font-semibold py-4 rounded-2xl transition-colors cursor-pointer flex items-center  justify-center gap-1"
+            className="mt-5 w-full font-Aptos  bg-[#0284C7] hover:bg-blue-600 text-white text-xl font-semibold py-4 rounded-2xl transition-colors cursor-pointer flex items-center  justify-center gap-1"
           >
             <Image src={submitbtn} alt="submit btn icon" />
             Submit
