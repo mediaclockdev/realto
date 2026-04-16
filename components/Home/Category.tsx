@@ -144,7 +144,7 @@ const Features = () => {
                     unoptimized
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" /> */}
 
                   <p className="absolute bottom-2 left-2 right-2 text-white font-semibold text-sm text-center">
                     {item.title}
