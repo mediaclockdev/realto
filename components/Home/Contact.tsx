@@ -81,11 +81,11 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
                   className="w-full bg-transparent outline-none text-sm text-black font-medium mt-1"
                 />
               </div>
-              <div className="w-14 h-14 flex items-center justify-center">
+              <div className="h-full overflow-hidden rounded-r-3xl">
                 <Image
                   src={dl}
                   alt="name icon"
-                  className="max-w-full max-h-full object-contain"
+                  className="h-full w-auto object-cover"
                 />
               </div>
             </div>
@@ -99,16 +99,16 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
                   className="w-full bg-transparent outline-none text-sm text-gray-800 mt-1"
                 />
               </div>
-              <div className="w-16 h-16 flex items-center justify-center">
+              <div className="h-full overflow-hidden rounded-r-3xl pr-2 flex">
                 <Image
                   src={phone}
                   alt="phone icon"
-                  className="max-w-full max-h-full object-contain"
+                  className="h-full w-auto object-cover"
                 />
                 <Image
                   src={phone2}
                   alt="phone icon"
-                  className="max-w-full max-h-full object-contain"
+                  className="h-full w-auto object-cover"
                 />
               </div>
             </div>
@@ -125,11 +125,11 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
                 </label>
               </div>
 
-              <div className="w-14 h-14 flex items-center justify-center">
+              <div className="h-full overflow-hidden rounded-r-3xl pr-2">
                 <Image
                   src={email}
                   alt="email icon"
-                  className="max-w-full max-h-full object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
