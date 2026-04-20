@@ -396,33 +396,26 @@ const LanguageSelection = () => {
               <div
                 key={lang.id}
                 className="relative shrink-0 flex flex-col items-center"
-                onMouseEnter={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  setTooltipInfo({
-                    name: lang.name,
-                    nativeName: lang.nativeName,
-                    rect,
-                  });
-                }}
-                onMouseLeave={() => setTooltipInfo(null)}
               >
-                <button
-                  onClick={() => setSelectedLanguage(lang.id)}
-                  className={`rounded-full cursor-pointer transition-all duration-200 border-[3px] ${
-                    selectedLanguage === lang.id
-                      ? "bg-[linear-gradient(135deg,#FFD700,#FFC107,#FFB300)] bg-origin-border bg-clip-border border-transparent"
-                      : "border-transparent"
-                  }`}
-                  title={lang.name}
-                >
+                <button>
                   <div className="flex flex-col items-center justify-center">
-                    <Image
-                      src={lang.icon}
-                      alt={lang.name}
-                      width={50}
-                      height={50}
-                      className="rounded-full object-cover"
-                    />
+                    <div
+                      onClick={() => setSelectedLanguage(lang.id)}
+                      className={`rounded-full cursor-pointer transition-all duration-200 border-[3px] ${
+                        selectedLanguage === lang.id
+                          ? "bg-[linear-gradient(135deg,#FFD700,#FFC107,#FFB300)] bg-origin-border bg-clip-border border-transparent"
+                          : "border-transparent"
+                      }`}
+                      title={lang.name}
+                    >
+                      <Image
+                        src={lang.icon}
+                        alt={lang.name}
+                        width={50}
+                        height={50}
+                        className="rounded-full object-cover"
+                      />
+                    </div>
                     <p className="text-black text-xs font-medium">
                       {lang.country}
                     </p>
