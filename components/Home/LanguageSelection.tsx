@@ -55,70 +55,262 @@ const LanguageSelection = () => {
   const [isAtEnd, setIsAtEnd] = useState(false);
 
   const flags = [
-    { name: "French", nativeName: "Français", icon: franceflag, code: "fr" },
-    { name: "Chinese", nativeName: "中文", icon: chinaflag, code: "ch" },
-    { name: "Hindi", nativeName: "हिन्दी", icon: indianflag, code: "hi" },
-    { name: "Israeli", nativeName: "עברית", icon: israelflag, code: "is" },
-    { name: "Korean", nativeName: "한국어", icon: koreanflag, code: "ko" },
-    { name: "Greek", nativeName: "Ελληνικά", icon: greek, code: "gr" },
-    { name: "Urdu", nativeName: "اردو", icon: pakistan, code: "ur" },
-    { name: "Serbia", nativeName: "Српски", icon: serbia, code: "sr" },
-    { name: "Persian(Farsi)", nativeName: "فارسی", icon: Iran, code: "fa" },
-    { name: "Bengali", nativeName: "বাংলা", icon: bangladesh, code: "bn" },
+    {
+      name: "French",
+      country: "Frances",
+      nativeName: "Français",
+      icon: franceflag,
+      code: "fr",
+    },
+    {
+      name: "Chinese",
+      country: "China",
+      nativeName: "中文",
+      icon: chinaflag,
+      code: "ch",
+    },
+    {
+      name: "Hindi",
+      country: "India",
+      nativeName: "हिन्दी",
+      icon: indianflag,
+      code: "hi",
+    },
+    {
+      name: "Israeli",
+      country: "Israel",
+      nativeName: "עברית",
+      icon: israelflag,
+      code: "is",
+    },
+    {
+      name: "Korean",
+      country: "Korea",
+      nativeName: "한국어",
+      icon: koreanflag,
+      code: "ko",
+    },
+    {
+      name: "Greek",
+      country: "Greek",
+      nativeName: "Ελληνικά",
+      icon: greek,
+      code: "gr",
+    },
+    {
+      name: "Urdu",
+      country: "Pakistan",
+      nativeName: "اردو",
+      icon: pakistan,
+      code: "ur",
+    },
+    {
+      name: "Serbia",
+      country: "Serbia",
+      nativeName: "Српски",
+      icon: serbia,
+      code: "sr",
+    },
+    {
+      name: "Persian(Farsi)",
+      country: "Iran",
+      nativeName: "فارسی",
+      icon: Iran,
+      code: "fa",
+    },
+    {
+      name: "Bengali",
+      country: "Bangladesh",
+      nativeName: "বাংলা",
+      icon: bangladesh,
+      code: "bn",
+    },
     {
       name: "Indonesian",
+      country: "Indonesia",
       nativeName: "Bahasa Indonesia",
       icon: indonesia,
       code: "id",
     },
     {
       name: "Malaysian",
+      country: "Malaysia",
       nativeName: "Bahasa Malaysia",
       icon: malasyia,
       code: "ms",
     },
-    { name: "Samoan", nativeName: "Samoan", icon: samoan, code: "sm" },
-    { name: "Spanish", nativeName: "Español", icon: spanish, code: "es" },
-    { name: "Armenian", nativeName: "Հայերեն", icon: armenia, code: "hy" },
-    { name: "Burmese", nativeName: "မြန်မာဘာသာ", icon: burmese, code: "my" },
-    { name: "Cambodian", nativeName: "ខ្មែរ", icon: cambodia, code: "km" },
-    { name: "Croatian", nativeName: "Hrvatski", icon: croatian, code: "hr" },
-    { name: "Danish", nativeName: "Dansk", icon: denmark, code: "da" },
-    { name: "Fijian", nativeName: "Vosa Viti", icon: fijian, code: "fj" },
-    { name: "Finnish", nativeName: "Suomi", icon: finnish, code: "fi" },
-    { name: "Georgian", nativeName: "ქართული", icon: georgian, code: "ka" },
-    { name: "Hong Kong", nativeName: "香港", icon: hongkong, code: "hk" },
-    { name: "Italian", nativeName: "Italiano", icon: italy, code: "it" },
-    { name: "Japanese", nativeName: "日本語", icon: japan, code: "ja" },
-    { name: "Kurdish", nativeName: "Kurdî", icon: kurdistan, code: "ku" },
-    { name: "Lebanese", nativeName: "لبناني", icon: lebanese, code: "lb" },
+    {
+      name: "Samoan",
+      country: "Somoan",
+      nativeName: "Samoan",
+      icon: samoan,
+      code: "sm",
+    },
+    {
+      name: "Spanish",
+      country: "Spain",
+      nativeName: "Español",
+      icon: spanish,
+      code: "es",
+    },
+    {
+      name: "Armenian",
+      country: "Armenia",
+      nativeName: "Հայերեն",
+      icon: armenia,
+      code: "hy",
+    },
+    {
+      name: "Burmese",
+      country: "Burmese",
+      nativeName: "မြန်မာဘာသာ",
+      icon: burmese,
+      code: "my",
+    },
+    {
+      name: "Cambodian",
+      country: "Cambodia",
+      nativeName: "ខ្មែរ",
+      icon: cambodia,
+      code: "km",
+    },
+    {
+      name: "Croatian",
+      country: "Croatia",
+      nativeName: "Hrvatski",
+      icon: croatian,
+      code: "hr",
+    },
+    {
+      name: "Danish",
+      country: "Denmark",
+      nativeName: "Dansk",
+      icon: denmark,
+      code: "da",
+    },
+    {
+      name: "Fijian",
+      country: "Fiji",
+      nativeName: "Vosa Viti",
+      icon: fijian,
+      code: "fj",
+    },
+    {
+      name: "Finnish",
+      country: "Finland",
+      nativeName: "Suomi",
+      icon: finnish,
+      code: "fi",
+    },
+    {
+      name: "Georgian",
+      country: "Georgia",
+      nativeName: "ქართული",
+      icon: georgian,
+      code: "ka",
+    },
+    {
+      name: "Hong Kong",
+      country: "HongKong",
+      nativeName: "香港",
+      icon: hongkong,
+      code: "hk",
+    },
+    {
+      name: "Italian",
+      country: "Italy",
+      nativeName: "Italiano",
+      icon: italy,
+      code: "it",
+    },
+    {
+      name: "Japanese",
+      country: "Japan",
+      nativeName: "日本語",
+      icon: japan,
+      code: "ja",
+    },
+    {
+      name: "Kurdish",
+      country: "Kurdistan",
+      nativeName: "Kurdî",
+      icon: kurdistan,
+      code: "ku",
+    },
+    {
+      name: "Lebanese",
+      country: "Lebanon",
+      nativeName: "لبناني",
+      icon: lebanese,
+      code: "lb",
+    },
     {
       name: "Macedonian",
+      counter: "Macedonia",
       nativeName: "Македонски",
       icon: macedonian,
       code: "mk",
     },
-    { name: "Nepali", nativeName: "नेपाली", icon: nepal, code: "ne" },
+    {
+      name: "Nepali",
+      counter: "Nepal",
+      nativeName: "नेपाली",
+      icon: nepal,
+      code: "ne",
+    },
     {
       name: "Netherlands",
+      counter: "Nederlands",
       nativeName: "Nederlands",
       icon: netherlands,
       code: "nl",
     },
-    { name: "Polish", nativeName: "Polski", icon: polish, code: "pl" },
+    {
+      name: "Polish",
+      counter: "Poland ",
+      nativeName: "Polski",
+      icon: polish,
+      code: "pl",
+    },
     {
       name: "Portuguese",
+      counter: "Portuguese",
       nativeName: "Português",
       icon: portuguese,
       code: "pt",
     },
-    { name: "Romanian", nativeName: "Română", icon: romanian, code: "ro" },
-    { name: "Somali", nativeName: "Soomaali", icon: somali, code: "so" },
-    { name: "Tagalog", nativeName: "Tagalog", icon: tagalog, code: "tl" },
-    { name: "Tongan", nativeName: "Tongan", icon: tongon, code: "to" },
+    {
+      name: "Romanian",
+      counter: "Romania",
+      nativeName: "Română",
+      icon: romanian,
+      code: "ro",
+    },
+    {
+      name: "Somali",
+      counter: "Somalia",
+      nativeName: "Soomaali",
+      icon: somali,
+      code: "so",
+    },
+    {
+      name: "Tagalog",
+      counter: "Philippines",
+      nativeName: "Tagalog",
+      icon: tagalog,
+      code: "tl",
+    },
+    {
+      name: "Tongan",
+      counter: "Tonga",
+      nativeName: "Tongan",
+      icon: tongon,
+      code: "to",
+    },
     { name: "Turkish", nativeName: "Türkçe", icon: turkish, code: "tr" },
     {
       name: "Ukrainian",
+      counter: "Ukrain",
       nativeName: "Українська",
       icon: ukrainian,
       code: "uk",
@@ -185,7 +377,7 @@ const LanguageSelection = () => {
         {scrollLeft > 10 && (
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 mt-3 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 mt-[-16] -ml-4"
           >
             <ChevronLeft className="w-5 h-5 text-gray-800" />
           </button>
@@ -194,7 +386,7 @@ const LanguageSelection = () => {
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
-          className="flex items-center gap-5 overflow-x-auto scrollbar-hide scroll-smooth pt-8 pb-1 flex-1"
+          className="flex items-center gap-5 overflow-x-auto scrollbar-hide scroll-smooth pt-1 pb-1 flex-1"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {languages.map((lang) => {
@@ -223,14 +415,20 @@ const LanguageSelection = () => {
                   }`}
                   title={lang.name}
                 >
-                  <div className="bg-white rounded-full">
+                  <div className="flex flex-col items-center justify-center">
                     <Image
                       src={lang.icon}
                       alt={lang.name}
-                      width={44}
-                      height={44}
+                      width={50}
+                      height={50}
                       className="rounded-full object-cover"
                     />
+                    <p className="text-black text-xs font-medium">
+                      {lang.country}
+                    </p>
+                    <p className="text-gray-500 text-xs font-light font-poppins">
+                      ({lang.nativeName})
+                    </p>
                   </div>
                 </button>
               </div>
@@ -238,7 +436,7 @@ const LanguageSelection = () => {
           })}
         </div>
 
-        {tooltipInfo && (
+        {/* {tooltipInfo && (
           <div
             className="fixed z-9999 pointer-events-none"
             style={{
@@ -252,12 +450,12 @@ const LanguageSelection = () => {
             </div>
             <div className="w-3 h-3 bg-gray-900 rotate-45 -mt-1.5 mx-auto" />
           </div>
-        )}
+        )} */}
 
         {!isAtEnd && (
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 -mr-4 mt-3"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 -mr-4 mt-[-16]"
           >
             <ChevronRight className="w-5 h-5 text-gray-800" />
           </button>

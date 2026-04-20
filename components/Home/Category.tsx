@@ -114,13 +114,13 @@ const Features = () => {
           {categoryItems.map((item, idx) =>
             item.href ? (
               <Link key={idx} href={item.href} className="shrink-0">
-                <div className="relative size-40 rounded-[12px] overflow-hidden">
+                <div className="relative w-52 h-40 rounded-[12px] overflow-hidden">
                   {/* Image */}
                   <Image
                     src={item.imgs[currentIndexes[idx]]}
                     alt="category"
                     fill
-                    className="object-cover object-top"
+                    className="object-cover object-top w-full h-full "
                     unoptimized
                   />
 
@@ -135,12 +135,12 @@ const Features = () => {
               </Link>
             ) : (
               <button key={idx} className="shrink-0">
-                <div className="relative size-40 rounded-[12px] overflow-hidden">
+                <div className="relative w-52 h-40 rounded-full overflow-hidden">
                   <Image
                     src={item.imgs[currentIndexes[idx]]}
                     alt="category"
                     fill
-                    className="object-cover object-top"
+                    className="object-cover  w-full h-full"
                     unoptimized
                   />
 

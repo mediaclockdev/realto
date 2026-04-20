@@ -47,7 +47,7 @@ const Header = () => {
           </Link>
         </div>
 
-        <button className="bg-[#343434] text-white text-sm sm:text-base font-medium px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-colors duration-200 flex-shrink-0">
+        <button className="bg-[#009ffd] text-white text-sm sm:text-base font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-colors duration-200 flex-shrink-0">
           Sign In
         </button>
       </div>

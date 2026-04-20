@@ -4,8 +4,11 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { StaticImageData } from "next/image";
 import email from "../../public/formemailicon.svg";
+import email2 from "../../public/formmailicon2.svg";
+
 import phone from "../../public/formphoneicon.svg";
 import phone2 from "../../public/formphoneicon2.svg";
+import phone3 from "../../public/formphoneicon3.svg";
 import dl from "../../public/formnameicon.svg";
 import submitbtn from "../../public/submitbtnicon.svg";
 
@@ -99,7 +102,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
                   className="w-full bg-transparent outline-none text-sm text-gray-800 mt-1"
                 />
               </div>
-              <div className="h-full overflow-hidden flex gap-2 pr-2">
+              <div className="h-full overflow-hidden flex">
                 <Image
                   src={phone}
                   alt="phone icon"
@@ -107,6 +110,11 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
                 />
                 <Image
                   src={phone2}
+                  alt="phone icon"
+                  className="h-full w-auto object-cover"
+                />
+                <Image
+                  src={phone3}
                   alt="phone icon"
                   className="h-full w-auto object-cover"
                 />
@@ -125,11 +133,16 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
                 </label>
               </div>
 
-              <div className="h-full overflow-hidden pr-2">
+              <div className="h-full overflow-hidden flex">
                 <Image
                   src={email}
                   alt="email icon"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover "
+                />
+                <Image
+                  src={email2}
+                  alt="email icon"
+                  className="w-full h-full object-cover "
                 />
               </div>
             </div>
@@ -148,15 +161,15 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
           {/* Submit Button */}
           <button
             type="button"
-            className="mt-5 w-full font-Aptos bg-[#0284C7] hover:bg-[#0277C9] text-white text-xl font-semibold rounded-2xl transition-colors cursor-pointer py-3 flex items-end justify-center gap-2 overflow-visible"
+            className="mt-5 w-full font-Aptos bg-[#0284C7] hover:bg-[#0277C9] text-white text-xl font-semibold rounded-2xl transition-colors cursor-pointer py-3 flex items-center justify-center relative overflow-visible"
           >
-            Submit/send
+            Submit/Send
             <Image
               src={submitbtn}
               alt="submit btn icon"
               width={60}
               height={60}
-              className="h-16 w-auto object-contain mb-[-1rem] mt-[-2rem]"
+              className="h-16 w-auto object-contain absolute right-9 lg:right-20 bottom-[-4]"
             />
           </button>
 
