@@ -377,7 +377,7 @@ const LanguageSelection = () => {
         {scrollLeft > 10 && (
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 mt-[-16] -ml-4"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 mt-[-12] -ml-4"
           >
             <ChevronLeft className="w-5 h-5 text-gray-800" />
           </button>
@@ -416,12 +416,14 @@ const LanguageSelection = () => {
                         className="rounded-full object-cover"
                       />
                     </div>
-                    <p className="text-black text-xs font-medium">
-                      {lang.country}
-                    </p>
-                    <p className="text-gray-500 text-xs font-light font-poppins">
-                      ({lang.nativeName})
-                    </p>
+                    <div>
+                      <p className="text-black text-xs font-medium w-full text-center break-words leading-tight">
+                        {lang.country}
+                      </p>
+                      <p className="text-gray-500 text-xs font-light font-poppins w-full text-center break-words leading-tight">
+                        ({lang.nativeName})
+                      </p>
+                    </div>
                   </div>
                 </button>
               </div>
@@ -448,7 +450,7 @@ const LanguageSelection = () => {
         {!isAtEnd && (
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 -mr-4 mt-[-16]"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 -mr-4 mt-[-12]"
           >
             <ChevronRight className="w-5 h-5 text-gray-800" />
           </button>
