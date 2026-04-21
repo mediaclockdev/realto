@@ -299,7 +299,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
     <FollowCursorTooltip
       disabled={isActionAreaHovered || showShareModal}
       text={
-        <PropertySummaryTooltipContent  
+        <PropertySummaryTooltipContent
           location={property.location}
           priceRange={property.priceRange}
         />

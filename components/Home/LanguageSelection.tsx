@@ -46,11 +46,11 @@ import ukrainian from "../../public/ukrainian.svg";
 const LanguageSelection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [selectedLanguage, setSelectedLanguage] = useState<number | null>(null);
-  const [tooltipInfo, setTooltipInfo] = useState<{
-    name: string;
-    nativeName: string;
-    rect: DOMRect;
-  } | null>(null);
+    const [tooltipInfo, setTooltipInfo] = useState<{
+      name: string;
+      nativeName: string;
+      rect: DOMRect;
+    } | null>(null);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isAtEnd, setIsAtEnd] = useState(false);
 

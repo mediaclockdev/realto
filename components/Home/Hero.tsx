@@ -8,6 +8,11 @@ import herobg4 from "../../public/herobg4.svg";
 import herobg5 from "../../public/herobg5.svg";
 import herobg6 from "../../public/herobg6.svg";
 import herobg7 from "../../public/herobg7.svg";
+import herobg8 from "../../public/herobg8.svg";
+import herobg9 from "../../public/herobg9.svg";
+import herobg10 from "../../public/herobg10.svg";
+import herobg11 from "../../public/herobg11.svg";
+import herobg12 from "../../public/herobg12.svg";
 import HeroSection from "../ui/HeroSection";
 
 const Hero = () => {
@@ -22,6 +27,11 @@ const Hero = () => {
         herobg5,
         herobg6,
         herobg7,
+        herobg8,
+        herobg9,
+        herobg10,
+        herobg11,
+        herobg12,
       ]}
     />
   );
