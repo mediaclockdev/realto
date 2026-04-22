@@ -42,7 +42,6 @@ const GetMatchedNow: React.FC<GetMatchedNowProps> = ({ open, onClose }) => {
 
   const [errors, setErrors] = useState<FormErrors>({});
 
-  // ✅ ESC key close
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -53,7 +52,6 @@ const GetMatchedNow: React.FC<GetMatchedNowProps> = ({ open, onClose }) => {
 
   if (!open) return null;
 
-  // ✅ Validation
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
     if (!form.name.trim()) newErrors.name = "Name required";
@@ -65,7 +63,6 @@ const GetMatchedNow: React.FC<GetMatchedNowProps> = ({ open, onClose }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // ✅ Submit
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validate()) return;
