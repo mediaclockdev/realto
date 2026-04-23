@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { ImageSource } from "@/lib/shared/types";
@@ -8,11 +8,11 @@ import locationIcon from "@/public/location.svg";
 import share from "@/public/share.svg";
 import home from "@/public/buylikeicon.svg";
 import homeliked from "@/public/homelike.svg";
-import mobile from "@/public/mobileicon.svg";
-import clock from "@/public/clock.svg";
+// import mobile from "@/public/mobileicon.svg";
+import clock from "@/public/buyclock.svg";
 import money from "@/public/money.svg";
 import squaremetericon from "@/public/squaremetericon.svg";
-import calender from "@/public/calender.svg";
+import calender from "@/public/buycalender.svg";
 import {
   Tooltip,
   FollowCursorTooltip,
@@ -36,7 +36,7 @@ export interface BuyPropertyCardData {
   agentPhone: string;
   agentEmail: string;
   agentImage: ImageSource;
-  iconImages?: ImageSource[];
+  buyiconImages?: ImageSource[];
   iconLabels?: string[];
 }
 
@@ -60,6 +60,17 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
   const [showShareModal, setShowShareModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  useEffect(() => {
+    if (!property?.images?.length) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) =>
+        prev === property.images.length - 1 ? 0 : prev + 1,
+      );
+    }, 3000); // ⏱ 3 seconds (change if needed)
+
+    return () => clearInterval(interval);
+  }, [property.images]);
   const handleNextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
@@ -83,7 +94,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
       }
     >
       <div
-        className={`relative overflow-visible rounded-xl p-0.5 transition-all duration-300 cursor-pointer ${
+        className={`relative overflow-visible rounded-xl p-1 transition-all duration-300 cursor-pointer ${
           sliderMode
             ? "ml-0 lg:ml-5 w-[340px] shrink-0 hover:scale-105"
             : "w-full"
@@ -99,7 +110,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
               src={property.images[currentImageIndex]}
               alt={`Property in ${property.location}`}
               fill
-              className="object-cover"
+              className="object-cover transition-opacity duration-700"
             />
 
             {property.images.length > 1 && (
@@ -121,10 +132,10 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
           </div>
 
           <div className="px-2 pt-2 pb-1">
-            {property.iconImages && property.iconImages.length > 0 && (
-              <div className="mb-1 flex items-center justify-between gap-3 pb-2">
-                {property.iconImages.map((icon, index) => (
-                  <div key={index} className="flex items-center gap-1.5">
+            {property.buyiconImages && property.buyiconImages.length > 0 && (
+              <div className="mb-1 flex items-center justify-between gap-3 px-8">
+                {property.buyiconImages.map((icon, index) => (
+                  <div key={index} className="flex items-center gap-0.5">
                     <div className="h-12 w-17 shrink-0 overflow-hidden rounded-lg">
                       <Image
                         src={icon}
@@ -134,7 +145,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                         className="h-full w-full"
                       />
                     </div>
-                    <span className="text-[15px] font-semibold text-[#FA2F2F]">
+                    <span className="text-[15px] font-bold text-[#FA2F2F]">
                       {property.iconLabels?.[index] ?? "1"}
                     </span>
                   </div>
@@ -213,91 +224,92 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                 • {property.propertyType}
               </span>
             </div>
-
-            <div
-              className="flex flex-col justify-between border-t"
-              onMouseEnter={() => setIsLowerHovered(true)}
-              onMouseLeave={() => setIsLowerHovered(false)}
-            >
-              <div>
-                <div className="flex items-center justify-between gap-1">
-                  <div className="flex items-center gap-1 mt-1">
-                    <Image
-                      src={property.agentImage}
-                      alt={property.agentName}
-                      width={52}
-                      height={52}
-                      className="shrink-0 rounded-full border-2 border-red-100 object-cover"
-                    />
-                    <div className="space-y-1">
-                      <p className="truncate font-poppins text-base font-semibold text-[#FA2F2F]">
-                        {property.agentName}
-                      </p>
-                      <p className="font-poppins text-xs font-semibold text-[#FA2F2F]">
-                        {property.agentPhone}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <Image
-                      src={property.agentCompany}
-                      alt="Company logo"
-                      width={80}
-                      height={40}
-                      className="block object-contain"
-                    />
-
-                    <p className="text-right font-poppins text-xs font-medium text-[#FA2F2F]">
-                      {property.agentLocation}
+          </div>
+        </div>
+        <div
+          className="flex flex-col justify-between border-t shadow-md rounded-xl bg-white hover:shadow-2xl"
+          onMouseEnter={() => setIsLowerHovered(true)}
+          onMouseLeave={() => setIsLowerHovered(false)}
+        >
+          <div className="">
+            <div>
+              <div className="flex items-center justify-between gap-1">
+                <div className="flex items-center gap-1 mt-1">
+                  <Image
+                    src={property.agentImage}
+                    alt={property.agentName}
+                    width={52}
+                    height={52}
+                    className="shrink-0 rounded-full border-2 border-red-100 object-cover"
+                  />
+                  <div className="space-y-1">
+                    <p className="truncate font-poppins text-base font-semibold text-[#FA2F2F]">
+                      {property.agentName}
+                    </p>
+                    <p className="font-poppins text-xs font-semibold text-[#FA2F2F]">
+                      {property.agentPhone}
                     </p>
                   </div>
                 </div>
+                <div className="flex flex-col items-center">
+                  <Image
+                    src={property.agentCompany}
+                    alt="Company logo"
+                    width={80}
+                    height={40}
+                    className="block object-contain"
+                  />
+
+                  <p className="text-right font-poppins text-xs font-medium text-[#FA2F2F]">
+                    {property.agentLocation}
+                  </p>
+                </div>
               </div>
+            </div>
 
-              <div>
-                <div className="relative flex items-center justify-end">
-                  <Tooltip text="Share">
-                    <button
-                      className="z-10 flex items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:bg-blue-50"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowShareModal((prev) => !prev);
-                      }}
-                    >
-                      <Image
-                        src={share}
-                        alt="Share"
-                        width={40}
-                        height={40}
-                        className="cursor-pointer object-contain transition-all duration-200"
-                      />
-                    </button>
-                  </Tooltip>
-
-                  <Tooltip text="Like">
-                    <button
-                      className="z-10 flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:bg-red-50"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setLiked((prev) => !prev);
-                      }}
-                    >
-                      <Image
-                        src={liked ? homeliked : home}
-                        alt="Home"
-                        width={40}
-                        height={40}
-                        className="object-contain transition-all duration-200"
-                      />
-                    </button>
-                  </Tooltip>
-
-                  <div
-                    className="absolute bottom-3 right-28 z-20 flex items-center justify-center animate-fade-in-up"
-                    onClick={(e) => e.stopPropagation()}
+            <div>
+              <div className="relative flex items-center justify-end">
+                <Tooltip text="Share">
+                  <button
+                    className="z-10 flex items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:bg-blue-50"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowShareModal((prev) => !prev);
+                    }}
                   >
-                    <ShareMenuActionStrip iconSize={32} />
-                  </div>
+                    <Image
+                      src={share}
+                      alt="Share"
+                      width={40}
+                      height={40}
+                      className="cursor-pointer object-contain transition-all duration-200"
+                    />
+                  </button>
+                </Tooltip>
+
+                <Tooltip text="Like">
+                  <button
+                    className="z-10 flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:bg-red-50"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLiked((prev) => !prev);
+                    }}
+                  >
+                    <Image
+                      src={liked ? homeliked : home}
+                      alt="Home"
+                      width={40}
+                      height={40}
+                      className="object-contain transition-all duration-200"
+                    />
+                  </button>
+                </Tooltip>
+
+                <div
+                  className="absolute bottom-3 right-28 z-20 flex items-center justify-center animate-fade-in-up"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <ShareMenuActionStrip iconSize={32} />
                 </div>
               </div>
             </div>

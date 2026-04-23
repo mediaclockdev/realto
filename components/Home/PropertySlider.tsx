@@ -86,7 +86,7 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
               agentPhone: property.agentPhone,
               agentEmail: property.agentEmail,
               agentImage: property.agentImage,
-              iconImages: property.iconImages,
+              buyiconImages: property.iconImages,
               iconLabels: property.iconLabels,
             }}
             onClick={() => onPropertyClick?.(property)}
