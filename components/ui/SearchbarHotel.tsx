@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import locationIcon from "../../public/location.svg";
-import calendarIcon from "../../public/calender.svg";
+import calendarIcon from "../../public/buycalender.svg";
 import searchIcon from "../../public/iconsearchwhite.svg";
 import Counteries from "./Counteries";
 

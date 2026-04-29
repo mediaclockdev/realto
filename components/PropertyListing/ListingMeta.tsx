@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import type { ListingSortOption } from "@/lib/listings/types";
+import { LISTING_SORT_OPTIONS, type ListingSortOption } from "@/lib/listings/types";
 
 interface ListingMetaProps {
   location: string;
@@ -12,13 +12,6 @@ interface ListingMetaProps {
   variant?: "default" | "map";
   listingLabel?: string;
 }
-
-const sortOptions: ListingSortOption[] = [
-  "Relevant listings",
-  "Newest first",
-  "Price (low to high)",
-  "Price (high to low)",
-];
 
 const ListingMeta: React.FC<ListingMetaProps> = ({
   location,
@@ -81,7 +74,7 @@ const ListingMeta: React.FC<ListingMetaProps> = ({
 
             {open && (
               <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-20 min-w-48">
-                {sortOptions.map((opt) => (
+                {LISTING_SORT_OPTIONS.map((opt) => (
                   <button
                     key={opt}
                     onClick={() => handleSortChange(opt)}

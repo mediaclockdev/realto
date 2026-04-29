@@ -8,7 +8,7 @@ import house4 from "../../public/house4.svg";
 import elder from "../../public/elderrealestate.svg";
 import ana from "../../public/anajonesagent.svg";
 import RealEstateAgents from "./RealEstateAgents";
-import calender from "../../public/calender.svg";
+import calender from "../../public/buycalender.svg";
 import hammer from "../../public/hammer.svg";
 
 const newlyListedProperties: PropertyData[] = [

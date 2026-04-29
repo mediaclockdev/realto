@@ -22,6 +22,9 @@ import ana from "@/public/anajonesagent.svg";
 import french from "@/public/Franceflag.svg";
 import china from "@/public/chinaflag.svg";
 import spanish from "@/public/spain.svg";
+import rentbathroom from "../../public/rentbathroom.svg";
+import rentcar from "../../public/rentcar.svg";
+import rentbedroom from "../../public/rentbedroom.svg";
 
 export const TOTAL_PROPERTIES = 876;
 
@@ -43,7 +46,8 @@ const BASE_PROPERTY: Omit<ListingProperty, "id"> = {
   flags: [french, china, spanish],
   agentImage: ana,
   agentImageCard: eddy,
-  iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
+  buyiconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
+  renticonImages: [rentbedroom, rentbathroom, rentcar],
   thumbnail: [
     thumbnail1,
     thumbnail2,
@@ -69,7 +73,12 @@ const locations = [
 ];
 
 const propertyTypes = ["Apartment", "House", "Townhouse", "Villa", "Studio"];
-const agentNames = ["Anna Johns", "Eddie Jones", "Anita Roelvink", "Brook Jones"];
+const agentNames = [
+  "Anna Johns",
+  "Eddie Jones",
+  "Anita Roelvink",
+  "Brook Jones",
+];
 
 export const propertyCatalog: ListingProperty[] = Array.from(
   { length: TOTAL_PROPERTIES },
@@ -90,4 +99,3 @@ export const propertyCatalog: ListingProperty[] = Array.from(
     };
   },
 );
-

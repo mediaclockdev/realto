@@ -18,7 +18,8 @@ export interface ListingProperty {
   agentCompanyName: string;
   agentImage: ImageSource;
   agentImageCard: ImageSource;
-  iconImages?: ImageSource[];
+  buyiconImages?: ImageSource[];
+  renticonImages?: ImageSource[];
   iconLabels?: string[];
   thumbnail: ImageSource[];
   socials: ImageSource[];

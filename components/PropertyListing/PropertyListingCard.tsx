@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import location from "@/public/location.svg";
+import location from "@/public/rentlocation.svg";
 import type { ListingVariant } from "@/lib/listings/types";
 import type { ListingProperty } from "@/lib/properties/types";
 import share from "../../public/share.svg";
@@ -11,9 +11,9 @@ import rentlike from "../../public/rentlike.svg";
 import buylikeicon from "../../public/buylikeicon.svg";
 import mobile from "../../public/mobileicon.svg";
 import mail from "../../public/mailicon.svg";
-import clock from "../../public/clock.svg";
+import clock from "../../public/rentclock.svg";
 import money from "../../public/money.svg";
-import calender from "../../public/calender.svg";
+import calender from "../../public/rentcalender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
 import rentshare from "../../public/share.svg";
 import rentlikedicon from "../../public/rentlikedicon.svg";
@@ -47,7 +47,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   const [isActionAreaHovered, setIsActionAreaHovered] = useState(false);
   const [isAgentAreaHovered, setIsAgentAreaHovered] = useState(false);
   const outerRef = useRef<HTMLDivElement>(null);
-  const hoverBorderRent = "linear-gradient(135deg, #808588 0%, #808677 100%)";
+  const hoverBorderRent = "linear-gradient(135deg, #C0C0C0 0%, #D1D5DB 100%)";
   const hoverBorderBuy = "linear-gradient(135deg, #f6d365 0%, #fda085 100%)";
 
   const next = (e: React.MouseEvent) => {
@@ -82,7 +82,8 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           agentPhone: property.agentPhone,
           agentEmail: property.agentEmail,
           agentImage: property.agentImage,
-          iconImages: property.iconImages,
+          buyiconImages: property.buyiconImages,
+
           iconLabels: property.iconLabels,
         }}
         onClick={onClick}
@@ -104,7 +105,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
         <div
           ref={outerRef}
           onClick={onClick}
-          className={`rounded-[24px] cursor-pointer transition-all duration-300 hover:scale-[1.02] p-[2px] ${showShareModal ? "relative z-50" : ""}`}
+          className={`rounded-[24px] cursor-pointer transition-all duration-300 hover:scale-[1.02] p-[4px] ${showShareModal ? "relative z-50" : ""}`}
           style={{ background: "transparent" }}
           onMouseEnter={() => {
             if (outerRef.current) {
@@ -119,7 +120,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
         >
           <div className="bg-white rounded-[22px] overflow-visible shadow-[0_12px_30px_rgba(0,0,0,0.16)] border border-[#e7e7e7] transition-shadow duration-200">
             <div
-              className="bg-[#ED1C24] px-3 py-2.5 rounded-t-[22px] overflow-hidden"
+              className="bg-[#ED1C24] px-3 py-0.5 rounded-t-[22px] overflow-hidden"
               onMouseEnter={() => setIsAgentAreaHovered(true)}
               onMouseLeave={() => setIsAgentAreaHovered(false)}
             >
@@ -179,10 +180,13 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
             </div>
 
             <div className="px-4 pt-2 pb-2">
-              {property.iconImages && (
-                <div className="flex items-center gap-4 mb-2">
-                  {property.iconImages.map((icon, i) => (
-                    <div key={i} className="flex items-center gap-2">
+              {property.renticonImages && (
+                <div className="flex items-center justify-between gap-4 mb-2">
+                  {property.renticonImages.map((icon, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center justify-between gap-2"
+                    >
                       <div className="w-14 h-10 rounded-xl overflow-hidden ">
                         <Image
                           src={icon}
@@ -222,8 +226,17 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   </span>
                 </div>
               </div>
-
-              <div className="flex items-end justify-between gap-2 ">
+              <div className="flex items-center gap-2 min-w-0">
+                <Image
+                  src={calender}
+                  alt="money"
+                  className="w-8 h-8 shrink-0"
+                />
+                <p className="text-base font-semibold text-[#343434] font-poppins truncate">
+                  {property.date}
+                </p>
+              </div>
+              <div className="flex items-center justify-between gap-2 ">
                 <div className="flex items-center gap-2 min-w-0">
                   <Image src={money} alt="money" className="w-8 h-8 shrink-0" />
                   <p className="text-base font-semibold text-[#343434] font-poppins truncate">
@@ -234,6 +247,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   • {property.propertyType}
                 </p>
               </div>
+
               <div
                 className="flex justify-between items-center"
                 onMouseEnter={() => setIsActionAreaHovered(true)}
@@ -361,9 +375,9 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           {/* Content */}
           <div className="px-3 pt-2 pb-3 flex flex-col flex-1">
             {/* Icons row */}
-            {property.iconImages && (
+            {property.renticonImages && (
               <div className="flex items-center gap-2.5 ">
-                {property.iconImages.map((icon, i) => (
+                {property.renticonImages.map((icon, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <div className="w-14 h-10 rounded-xl overflow-hidden ">
                       <Image

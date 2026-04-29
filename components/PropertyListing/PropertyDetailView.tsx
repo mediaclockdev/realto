@@ -15,9 +15,11 @@ import balcony from "../../public/balcony.svg";
 import garage from "../../public/garage.svg";
 import fullyfenced from "../../public/fullyfenced.svg";
 import swimmingpool from "../../public/swimmingpool.svg";
-import clock from "../../public/clock.svg";
+import clock from "../../public/buyclock.svg";
+import rentclock from "../../public/rentclock.svg";
 import money from "../../public/money.svg";
-import calender from "../../public/calender.svg";
+import calender from "../../public/buycalender.svg";
+import rentcalender from "../../public/rentcalender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
 import star from "../../public/star.svg";
 import inqury from "../../public/inqurylogo.svg";
@@ -180,9 +182,9 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
           {/* Left Column: Property Highlights */}
           <div className=" space-y-3 lg:space-y-3   ">
             {/* Features Icons */}
-            {property.iconImages && (
+            {property.buyiconImages && (
               <div className="flex items-center gap-2">
-                {property.iconImages.map((icon, i) => (
+                {property.buyiconImages.map((icon, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <div className="w-[95px] h-[65px]">
                       <Image
