@@ -56,13 +56,6 @@ const LanguageSelection = () => {
 
   const flags = [
     {
-      name: "French",
-      country: "Frances",
-      nativeName: "Français",
-      icon: franceflag,
-      code: "fr",
-    },
-    {
       name: "Chinese",
       country: "China",
       nativeName: "中文",
@@ -70,11 +63,25 @@ const LanguageSelection = () => {
       code: "ch",
     },
     {
+      name: "French",
+      country: "Frances",
+      nativeName: "Français",
+      icon: franceflag,
+      code: "fr",
+    },
+    {
       name: "Hindi",
       country: "India",
       nativeName: "हिन्दी",
       icon: indianflag,
       code: "hi",
+    },
+    {
+      name: "Lebanese",
+      country: "Lebanon",
+      nativeName: "لبناني",
+      icon: lebanese,
+      code: "lb",
     },
     {
       name: "Israeli",
@@ -236,13 +243,6 @@ const LanguageSelection = () => {
       nativeName: "Kurdî",
       icon: kurdistan,
       code: "ku",
-    },
-    {
-      name: "Lebanese",
-      country: "Lebanon",
-      nativeName: "لبناني",
-      icon: lebanese,
-      code: "lb",
     },
     {
       name: "Macedonian",
