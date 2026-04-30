@@ -30,7 +30,8 @@ export default function ListingCard({ listing }: any) {
         <Image
           src={listing.img}
           alt={listing.title}
-          fill
+            fill
+            unoptimized
           className="object-cover"
         />
 
@@ -62,6 +63,7 @@ export default function ListingCard({ listing }: any) {
                     src={icon}
                     alt="amenity"
                     fill
+                    unoptimized
                     className="object-contain rounded-sm"
                   />
                 </div>

@@ -14,7 +14,7 @@ const CreateFreeListing = ({ setMode }: CreateFreeListingProps) => {
           <div className='flex flex-col lg:flex-row items-center gap-7.5 w-full'>
               
           <div className='flex items-center gap-3 lg:gap-6.5 bg-white w-full lg:w-1/2 rounded-[10px]'>
-                  <Image src={propertylisting} alt='propertylisting' className='size-1/2 lg:size-auto'/>   
+                  <Image src={propertylisting} alt='propertylisting' unoptimized  className='size-1/2 lg:size-auto'/>   
                   <div className='flex flex-col items-center gap-4 lg:gap-10'>
         <p className='text-black font-semibold text-xl lg:text-[32px] lg:max-w-[285px]'>Create a free property listing</p>
                       <button
@@ -23,7 +23,7 @@ const CreateFreeListing = ({ setMode }: CreateFreeListingProps) => {
                   </div>         
           </div>
           <div className='flex items-center gap-3 lg:gap-6.5 bg-white w-full lg:w-1/2 rounded-[10px]'>
-         <Image src={seekerlisting} alt='seekerlisting' className='size-1/2 lg:size-auto'/>      
+         <Image src={seekerlisting} alt='seekerlisting' unoptimized className='size-1/2 lg:size-auto'/>      
         <div className='flex flex-col items-center gap-4 lg:gap-10'>
         <p className='text-black font-semibold text-xl lg:text-[32px] lg:max-w-[285px]'>Create a free seeker listing</p>
                       <button

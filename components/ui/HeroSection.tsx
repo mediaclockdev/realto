@@ -64,6 +64,7 @@ const HeroSection = ({
           src={finalImages[prev]}
           alt="hero background"
           fill
+          unoptimized
           quality={80}
           sizes="100vw"
           className="object-cover object-top md:object-center absolute inset-0 transition-opacity duration-1000 opacity-0"
@@ -77,6 +78,7 @@ const HeroSection = ({
         alt="hero background"
         fill
         priority
+        unoptimized
         quality={85}
         sizes="100vw"
         className={`object-cover object-top md:object-center absolute inset-0 transition-opacity duration-1000 ${

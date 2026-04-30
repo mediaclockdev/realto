@@ -6,6 +6,7 @@ export default function HeroFlatmate() {
   return (
     <HeroSection
       image={flatmateHero}
+
     />
   );
 }
