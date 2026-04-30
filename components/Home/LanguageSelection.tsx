@@ -13,35 +13,41 @@ import greek from "../../public/greek.svg";
 import pakistan from "../../public/pakistan.svg";
 import serbia from "../../public/serbia.svg";
 import Iran from "../../public/iranflag.svg";
-import bangladesh from "../../public/bangladesh.svg";
-import indonesia from "../../public/indonesianflag.svg";
-import malasyia from "../../public/malasyianflag.svg";
-import samoan from "../../public/samoan.svg";
 import spanish from "../../public/spain.svg";
-import armenia from "../../public/armenia.svg";
-import burmese from "../../public/burmese.svg";
-import cambodia from "../../public/cambodia.svg";
-import croatian from "../../public/croatian.svg";
-import denmark from "../../public/denmark.svg";
 import fijian from "../../public/fijian.svg";
-import finnish from "../../public/finnish.svg";
-import georgian from "../../public/georgian.svg";
-import hongkong from "../../public/hongkong.svg";
+import indonesia from "../../public/indonesianflag.svg";
 import italy from "../../public/italy.svg";
 import japan from "../../public/japan.svg";
-import kurdistan from "../../public/kurdistan.svg";
+import russia from "../../public/russianflag.svg";
+import vietnam from "../../public/vietnam.svg";
 import lebanese from "../../public/lebanese.svg";
-import macedonian from "../../public/macedonian.svg";
-import nepal from "../../public/nepal.svg";
 import netherlands from "../../public/netherlands.svg";
-import polish from "../../public/polish.svg";
-import portuguese from "../../public/portuguese.svg";
-import romanian from "../../public/romanian.svg";
-import somali from "../../public/somali.svg";
-import tagalog from "../../public/tagalog.svg";
-import tongon from "../../public/tongan.svg";
 import turkish from "../../public/turkish.svg";
-import ukrainian from "../../public/ukrainian.svg";
+import australia from "../../public/austrilaflag.svg";
+import thailand from "../../public/thailandflag.svg";
+import germany from "../../public/germanyflag.svg";
+import philippines from "../../public/Philippineflag.svg";
+// import bangladesh from "../../public/bangladesh.svg";
+// import malasyia from "../../public/malasyianflag.svg";
+// import samoan from "../../public/samoan.svg";
+// import armenia from "../../public/armenia.svg";
+// import burmese from "../../public/burmese.svg";
+// import cambodia from "../../public/cambodia.svg";
+// import croatian from "../../public/croatian.svg";
+// import denmark from "../../public/denmark.svg";
+// import finnish from "../../public/finnish.svg";
+// import georgian from "../../public/georgian.svg";
+// import hongkong from "../../public/hongkong.svg";
+// import kurdistan from "../../public/kurdistan.svg";
+// import macedonian from "../../public/macedonian.svg";
+// import nepal from "../../public/nepal.svg";
+// import polish from "../../public/polish.svg";
+// import portuguese from "../../public/portuguese.svg";
+// import romanian from "../../public/romanian.svg";
+// import somali from "../../public/somali.svg";
+// import tagalog from "../../public/tagalog.svg";
+// import tongon from "../../public/tongan.svg";
+// import ukrainian from "../../public/ukrainian.svg";
 
 const LanguageSelection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -55,6 +61,13 @@ const LanguageSelection = () => {
   const [isAtEnd, setIsAtEnd] = useState(false);
 
   const flags = [
+    {
+      name: "Australian",
+      country: "Australia",
+      nativeName: "English",
+      icon: australia,
+      code: "au",
+    },
     {
       name: "Chinese",
       country: "China",
@@ -84,25 +97,18 @@ const LanguageSelection = () => {
       code: "lb",
     },
     {
-      name: "Israeli",
-      country: "Israel",
-      nativeName: "עברית",
-      icon: israelflag,
-      code: "is",
+      name: "Vietnamese",
+      country: "Vietnam",
+      nativeName: "Tiếng Việt",
+      icon: vietnam,
+      code: "vi",
     },
     {
-      name: "Korean",
-      country: "Korea",
-      nativeName: "한국어",
-      icon: koreanflag,
-      code: "ko",
-    },
-    {
-      name: "Greek",
-      country: "Greek",
-      nativeName: "Ελληνικά",
-      icon: greek,
-      code: "gr",
+      name: "Spanish",
+      country: "Spain",
+      nativeName: "Español",
+      icon: spanish,
+      code: "es",
     },
     {
       name: "Urdu",
@@ -119,6 +125,21 @@ const LanguageSelection = () => {
       code: "sr",
     },
     {
+      name: "Indonesian",
+      country: "Indonesia",
+      nativeName: "Bahasa Indonesia",
+      icon: indonesia,
+      code: "id",
+    },
+    { name: "Turkish", nativeName: "Türkçe", icon: turkish, code: "tr" },
+    {
+      name: "Korean",
+      country: "Korea",
+      nativeName: "한국어",
+      icon: koreanflag,
+      code: "ko",
+    },
+    {
       name: "Persian(Farsi)",
       country: "Iran",
       nativeName: "فارسی",
@@ -126,74 +147,33 @@ const LanguageSelection = () => {
       code: "fa",
     },
     {
-      name: "Bengali",
-      country: "Bangladesh",
-      nativeName: "বাংলা",
-      icon: bangladesh,
-      code: "bn",
+      name: "Greek",
+      country: "Greek",
+      nativeName: "Ελληνικά",
+      icon: greek,
+      code: "gr",
+    },
+
+    {
+      name: "Thailand",
+      country: "Thailand",
+      nativeName: "Prathet Thai",
+      icon: thailand,
+      code: "th",
     },
     {
-      name: "Indonesian",
-      country: "Indonesia",
-      nativeName: "Bahasa Indonesia",
-      icon: indonesia,
-      code: "id",
+      name: "German",
+      country: "Germany",
+      nativeName: "Deutsch",
+      icon: germany,
+      code: "de",
     },
     {
-      name: "Malaysian",
-      country: "Malaysia",
-      nativeName: "Bahasa Malaysia",
-      icon: malasyia,
-      code: "ms",
-    },
-    {
-      name: "Samoan",
-      country: "Somoan",
-      nativeName: "Samoan",
-      icon: samoan,
-      code: "sm",
-    },
-    {
-      name: "Spanish",
-      country: "Spain",
-      nativeName: "Español",
-      icon: spanish,
-      code: "es",
-    },
-    {
-      name: "Armenian",
-      country: "Armenia",
-      nativeName: "Հայերեն",
-      icon: armenia,
-      code: "hy",
-    },
-    {
-      name: "Burmese",
-      country: "Burmese",
-      nativeName: "မြန်မာဘာသာ",
-      icon: burmese,
-      code: "my",
-    },
-    {
-      name: "Cambodian",
-      country: "Cambodia",
-      nativeName: "ខ្មែរ",
-      icon: cambodia,
-      code: "km",
-    },
-    {
-      name: "Croatian",
-      country: "Croatia",
-      nativeName: "Hrvatski",
-      icon: croatian,
-      code: "hr",
-    },
-    {
-      name: "Danish",
-      country: "Denmark",
-      nativeName: "Dansk",
-      icon: denmark,
-      code: "da",
+      name: "Philippines",
+      country: "Philippines",
+      nativeName: "Filipino",
+      icon: philippines,
+      code: "ph",
     },
     {
       name: "Fijian",
@@ -201,27 +181,6 @@ const LanguageSelection = () => {
       nativeName: "Vosa Viti",
       icon: fijian,
       code: "fj",
-    },
-    {
-      name: "Finnish",
-      country: "Finland",
-      nativeName: "Suomi",
-      icon: finnish,
-      code: "fi",
-    },
-    {
-      name: "Georgian",
-      country: "Georgia",
-      nativeName: "ქართული",
-      icon: georgian,
-      code: "ka",
-    },
-    {
-      name: "Hong Kong",
-      country: "HongKong",
-      nativeName: "香港",
-      icon: hongkong,
-      code: "hk",
     },
     {
       name: "Italian",
@@ -238,27 +197,6 @@ const LanguageSelection = () => {
       code: "ja",
     },
     {
-      name: "Kurdish",
-      country: "Kurdistan",
-      nativeName: "Kurdî",
-      icon: kurdistan,
-      code: "ku",
-    },
-    {
-      name: "Macedonian",
-      counter: "Macedonia",
-      nativeName: "Македонски",
-      icon: macedonian,
-      code: "mk",
-    },
-    {
-      name: "Nepali",
-      counter: "Nepal",
-      nativeName: "नेपाली",
-      icon: nepal,
-      code: "ne",
-    },
-    {
       name: "Netherlands",
       counter: "Nederlands",
       nativeName: "Nederlands",
@@ -266,55 +204,173 @@ const LanguageSelection = () => {
       code: "nl",
     },
     {
-      name: "Polish",
-      counter: "Poland ",
-      nativeName: "Polski",
-      icon: polish,
-      code: "pl",
+      name: "Russia",
+      counter: "Russia",
+      nativeName: "Русский",
+      icon: russia,
+      code: "ru",
     },
     {
-      name: "Portuguese",
-      counter: "Portuguese",
-      nativeName: "Português",
-      icon: portuguese,
-      code: "pt",
+      name: "Israeli",
+      country: "Israel",
+      nativeName: "עברית",
+      icon: israelflag,
+      code: "is",
     },
-    {
-      name: "Romanian",
-      counter: "Romania",
-      nativeName: "Română",
-      icon: romanian,
-      code: "ro",
-    },
-    {
-      name: "Somali",
-      counter: "Somalia",
-      nativeName: "Soomaali",
-      icon: somali,
-      code: "so",
-    },
-    {
-      name: "Tagalog",
-      counter: "Philippines",
-      nativeName: "Tagalog",
-      icon: tagalog,
-      code: "tl",
-    },
-    {
-      name: "Tongan",
-      counter: "Tonga",
-      nativeName: "Tongan",
-      icon: tongon,
-      code: "to",
-    },
-    { name: "Turkish", nativeName: "Türkçe", icon: turkish, code: "tr" },
-    {
-      name: "Ukrainian",
-      counter: "Ukrain",
-      nativeName: "Українська",
-      icon: ukrainian,
-      code: "uk",
-    },
+
+    // {
+    //   name: "Bengali",
+    //   country: "Bangladesh",
+    //   nativeName: "বাংলা",
+    //   icon: bangladesh,
+    //   code: "bn",
+    // },
+
+    // {
+    //   name: "Malaysian",
+    //   country: "Malaysia",
+    //   nativeName: "Bahasa Malaysia",
+    //   icon: malasyia,
+    //   code: "ms",
+    // },
+    // {
+    //   name: "Samoan",
+    //   country: "Somoan",
+    //   nativeName: "Samoan",
+    //   icon: samoan,
+    //   code: "sm",
+    // },
+
+    // {
+    //   name: "Armenian",
+    //   country: "Armenia",
+    //   nativeName: "Հայերեն",
+    //   icon: armenia,
+    //   code: "hy",
+    // },
+    // {
+    //   name: "Burmese",
+    //   country: "Burmese",
+    //   nativeName: "မြန်မာဘာသာ",
+    //   icon: burmese,
+    //   code: "my",
+    // },
+    // {
+    //   name: "Cambodian",
+    //   country: "Cambodia",
+    //   nativeName: "ខ្មែរ",
+    //   icon: cambodia,
+    //   code: "km",
+    // },
+    // {
+    //   name: "Croatian",
+    //   country: "Croatia",
+    //   nativeName: "Hrvatski",
+    //   icon: croatian,
+    //   code: "hr",
+    // },
+    // {
+    //   name: "Danish",
+    //   country: "Denmark",
+    //   nativeName: "Dansk",
+    //   icon: denmark,
+    //   code: "da",
+    // },
+
+    // {
+    //   name: "Finnish",
+    //   country: "Finland",
+    //   nativeName: "Suomi",
+    //   icon: finnish,
+    //   code: "fi",
+    // },
+    // {
+    //   name: "Georgian",
+    //   country: "Georgia",
+    //   nativeName: "ქართული",
+    //   icon: georgian,
+    //   code: "ka",
+    // },
+    // {
+    //   name: "Hong Kong",
+    //   country: "HongKong",
+    //   nativeName: "香港",
+    //   icon: hongkong,
+    //   code: "hk",
+    // },
+
+    // {
+    //   name: "Kurdish",
+    //   country: "Kurdistan",
+    //   nativeName: "Kurdî",
+    //   icon: kurdistan,
+    //   code: "ku",
+    // },
+    // {
+    //   name: "Macedonian",
+    //   counter: "Macedonia",
+    //   nativeName: "Македонски",
+    //   icon: macedonian,
+    //   code: "mk",
+    // },
+    // {
+    //   name: "Nepali",
+    //   counter: "Nepal",
+    //   nativeName: "नेपाली",
+    //   icon: nepal,
+    //   code: "ne",
+    // },
+
+    // {
+    //   name: "Polish",
+    //   counter: "Poland ",
+    //   nativeName: "Polski",
+    //   icon: polish,
+    //   code: "pl",
+    // },
+    // {
+    //   name: "Portuguese",
+    //   counter: "Portuguese",
+    //   nativeName: "Português",
+    //   icon: portuguese,
+    //   code: "pt",
+    // },
+    // {
+    //   name: "Romanian",
+    //   counter: "Romania",
+    //   nativeName: "Română",
+    //   icon: romanian,
+    //   code: "ro",
+    // },
+    // {
+    //   name: "Somali",
+    //   counter: "Somalia",
+    //   nativeName: "Soomaali",
+    //   icon: somali,
+    //   code: "so",
+    // },
+    // {
+    //   name: "Tagalog",
+    //   counter: "Philippines",
+    //   nativeName: "Tagalog",
+    //   icon: tagalog,
+    //   code: "tl",
+    // },
+    // {
+    //   name: "Tongan",
+    //   counter: "Tonga",
+    //   nativeName: "Tongan",
+    //   icon: tongon,
+    //   code: "to",
+    // },
+
+    // {
+    //   name: "Ukrainian",
+    //   counter: "Ukrain",
+    //   nativeName: "Українська",
+    //   icon: ukrainian,
+    //   code: "uk",
+    // },
   ];
 
   const languages = Array.from({ length: 30 }, (_, i) => ({
@@ -395,37 +451,36 @@ const LanguageSelection = () => {
             return (
               <div
                 key={lang.id}
-                className="relative shrink-0 flex flex-col items-center"
+                className="relative shrink-0 flex flex-col items-center w-[60px]"
               >
-                <button>
-                  <div className="flex flex-col items-center justify-center">
-                    <div
-                      onClick={() => setSelectedLanguage(lang.id)}
-                      className={`rounded-full cursor-pointer transition-all duration-200 border-[3px] ${
-                        selectedLanguage === lang.id
-                          ? "bg-[linear-gradient(135deg,#FFD700,#FFC107,#FFB300)] bg-origin-border bg-clip-border border-transparent"
-                          : "border-transparent"
-                      }`}
-                      title={lang.name}
-                    >
-                      <Image
-                        src={lang.icon}
-                        alt={lang.name}
-                        width={50}
-                        height={50}
-                        className="rounded-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <p className="text-black text-xs font-medium w-full text-center break-words leading-tight">
-                        {lang.country}
-                      </p>
-                      <p className="text-gray-500 text-xs font-light font-poppins w-full text-center break-words leading-tight">
-                        ({lang.nativeName})
-                      </p>
-                    </div>
+                <div className="flex flex-col items-center justify-center">
+                  <div
+                    onClick={() => setSelectedLanguage(lang.id)}
+                    className={`rounded-full cursor-pointer transition-all duration-200 border-[3px] ${
+                      selectedLanguage === lang.id
+                        ? "bg-[linear-gradient(135deg,#FFD700,#FFC107,#FFB300)] bg-origin-border bg-clip-border border-transparent"
+                        : "border-transparent"
+                    }`}
+                    title={lang.name}
+                  >
+                    <Image
+                      src={lang.icon}
+                      alt={lang.name}
+                      width={50}
+                      height={50}
+                      className="rounded-full object-cover"
+                    />
                   </div>
-                </button>
+
+                  <div className="flex flex-col items-center mt-1 w-[60px]">
+                    <p className="text-black text-xs font-medium w-full text-center leading-tight truncate">
+                      {lang.country ?? lang.name}
+                    </p>
+                    <p className="text-gray-500 text-xs font-light font-poppins w-full text-center leading-tight truncate">
+                      ({lang.nativeName})
+                    </p>
+                  </div>
+                </div>
               </div>
             );
           })}

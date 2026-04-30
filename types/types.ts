@@ -6,6 +6,7 @@ export interface Property {
   rating: number;
   reviews: number;
   img: string;
+  detailHref?: string;
 }
 
 export interface CityTabsProps {

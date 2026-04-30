@@ -1,13 +1,15 @@
 "use client";
 
-import { useState,useRef } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { PropertyCardProps } from "../../types/types";
 
 export default function PropertyCard({ property }: PropertyCardProps) {
+  const router = useRouter();
   const [liked, setLiked] = useState<boolean>(false);
   const GOLD_GRADIENT =
-  "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
+    "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
   const outerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -15,6 +17,22 @@ export default function PropertyCard({ property }: PropertyCardProps) {
       ref={outerRef}
       className="rounded-2xl cursor-pointer transition-all duration-300 hover:scale-[1.02] p-[2px]"
       style={{ background: "transparent" }}
+      role={property.detailHref ? "link" : undefined}
+      tabIndex={property.detailHref ? 0 : undefined}
+      onClick={() => {
+        if (property.detailHref) {
+          router.push(property.detailHref);
+        }
+      }}
+      onKeyDown={(event) => {
+        if (
+          property.detailHref &&
+          (event.key === "Enter" || event.key === " ")
+        ) {
+          event.preventDefault();
+          router.push(property.detailHref);
+        }
+      }}
       onMouseEnter={() => {
         if (outerRef.current) outerRef.current.style.background = GOLD_GRADIENT;
       }}
@@ -33,7 +51,10 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           sizes="(max-width: 768px) 100vw, 25vw"
         />
         <button
-          onClick={() => setLiked((prev) => !prev)}
+          onClick={(event) => {
+            event.stopPropagation();
+            setLiked((prev) => !prev);
+          }}
           className="absolute top-2.5 right-2.5 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md hover:scale-110 transition-transform duration-150"
         >
           <svg

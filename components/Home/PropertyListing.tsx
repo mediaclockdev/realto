@@ -1,122 +1,82 @@
 import React from "react";
-import NewListing from "./NewListing";
-import { PropertySlider, PropertyData } from "./PropertySlider";
-import house from "../../public/propertyhouse.svg";
-import house2 from "../../public/house2.svg";
-import house3 from "../../public/house3.svg";
-import house4 from "../../public/house4.svg";
-import elder from "../../public/elderrealestate.svg";
-import ana from "../../public/anajonesagent.svg";
+import Image from "next/image";
+import { PropertySlider } from "./PropertySlider";
+import PropertyListingCardSlider from "./PropertyListingCardSlider";
 import RealEstateAgents from "./RealEstateAgents";
-import calender from "../../public/buycalender.svg";
-import hammer from "../../public/hammer.svg";
+import newclockicon from "../../public/newclockicon.svg";
+import magic from "../../public/magic.svg";
+import {
+  newlyListedBuyPropertyCards,
+  trendingBuyPropertyCards,
+} from "@/lib/property-cards/buy";
+import {
+  newlyListedRentPropertyCards,
+  trendingRentPropertyCards,
+} from "@/lib/property-cards/rent";
 
-const newlyListedProperties: PropertyData[] = [
-  {
-    id: "1",
-    images: [house, house2],
-    location: "Austin, Australia",
-    size: "8,235sqft",
-    date: "12-02-2026",
-    dateicon: calender,
-    time: "10:00AM",
-    priceRange: "$1,00,000-$2,00,000",
-    propertyType: "Apartment",
-    agentName: "Anna Johns",
-    agentCompany: elder,
-    agentLocation: "Austin, Australia",
-    agentPhone: "+9999999999",
-    agentEmail: "exampleemail.com",
-    agentImage: ana,
-    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
-  },
-  {
-    id: "2",
-    images: [house4, house3],
-    location: "Austin, Australia",
-    size: "8,235sqft",
-    date: "12-02-2026",
-    dateicon: hammer,
-    time: "10:00AM",
-    priceRange: "$1,00,000-$2,00,000",
-    propertyType: "Apartment",
-    agentName: "Anna Johns",
-    agentCompany: elder,
-    agentLocation: "Austin, Australia",
-    agentPhone: "+9999999999",
-    agentEmail: "exampleemail.com",
-    agentImage: ana,
-    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
-  },
-  {
-    id: "3",
-    images: [house4, house],
-    location: "Austin, Australia",
-    size: "8,235sqft",
-    date: "12-02-2026",
-    dateicon: calender,
-    time: "10:00AM",
-    priceRange: "$1,00,000-$2,00,000",
-    propertyType: "Apartment",
-    agentName: "Anna Johns",
-    agentCompany: elder,
-    agentLocation: "Austin, Australia",
-    agentPhone: "+9999999999",
-    agentEmail: "exampleemail.com",
-    agentImage: ana,
-    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
-  },
-  {
-    id: "4",
-    images: [house3, house2],
-    location: "Austin, Australia",
-    size: "8,235sqft",
-    date: "12-02-2026",
-    dateicon: hammer,
-    time: "10:00AM",
-    priceRange: "$1,00,000-$2,00,000",
-    propertyType: "Apartment",
-    agentName: "Anna Johns",
-    agentCompany: elder,
-    agentLocation: "Austin, Australia",
-    agentPhone: "+9999999999",
-    agentEmail: "exampleemail.com",
-    agentImage: ana,
-    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
-  },
-  {
-    id: "5",
-    images: [house2, house3],
-    location: "Austin, Australia",
-    size: "8,235sqft",
-    date: "12-02-2026",
-    dateicon: calender,
-    time: "10:00AM",
-    priceRange: "$1,00,000-$2,00,000",
-    propertyType: "Apartment",
-    agentName: "Anna Johns",
-    agentCompany: elder,
-    agentLocation: "Austin, Australia",
-    agentPhone: "+9999999999",
-    agentEmail: "exampleemail.com",
-    agentImage: ana,
-    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
-  },
-];
+const SectionHeading = ({
+  title,
+  variant,
+  icon,
+}: {
+  title: string;
+  variant?: "BUY" | "RENT";
+  icon?: "clock" | "magic";
+}) => (
+  <div className="mb-2 flex items-center gap-2 px-1 font-poppins">
+    <h2 className="text-2xl font-semibold text-black lg:text-[32px]">
+      {title}
+    </h2>
+    {variant && (
+      <span className="text-xl font-medium text-[#0D9B34] lg:text-[24px]">
+        {variant}
+      </span>
+    )}
+    {icon && (
+      <Image
+        src={icon === "clock" ? newclockicon : magic}
+        alt={icon}
+        className="h-7 w-7"
+      />
+    )}
+  </div>
+);
 
 export default function PropertyListing() {
   return (
     <div className="max-w-screen-2xl mx-auto py-5">
       <div className="px-5 ">
-        {/* Newly Listed Section */}
-        <NewListing title="Newly Listed" icon="clock" />
-        <PropertySlider properties={newlyListedProperties} />
+        <SectionHeading title="Newly Listed" variant="BUY" icon="clock" />
+        <PropertySlider
+          properties={newlyListedBuyPropertyCards}
+          listingVariant="buy"
+        />
+
+        <SectionHeading title="Newly Listed" variant="RENT" icon="clock" />
+        <PropertyListingCardSlider
+          properties={newlyListedRentPropertyCards}
+          listingVariant="rent"
+          scrollLabel="newly listed rent properties"
+        />
+
         <RealEstateAgents />
-        {/* You can reuse the same components for other sections */}
-        <div className="">
-          <NewListing title="Trending" icon="magic" />
-          <PropertySlider properties={newlyListedProperties} />
-        </div>
+
+        <SectionHeading title="Trending Properties" variant="BUY" icon="magic" />
+        <PropertySlider
+          properties={trendingBuyPropertyCards}
+          listingVariant="buy"
+        />
+
+        <SectionHeading
+          title="Trending Properties"
+          variant="RENT"
+          icon="magic"
+        />
+        <PropertyListingCardSlider
+          properties={trendingRentPropertyCards}
+          listingVariant="rent"
+          scrollLabel="trending rent properties"
+        />
       </div>
     </div>
   );

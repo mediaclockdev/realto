@@ -2,38 +2,25 @@
 
 import React, { useRef } from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import type { ImageSource } from "@/lib/shared/types";
+import { useRouter } from "next/navigation";
+import type { ListingVariant } from "@/lib/listings/types";
+import type { BuyPropertyCardItem } from "@/lib/property-cards/types";
 import BuyPropertyCard from "@/components/PropertyListing/BuyPropertyCard";
 
-export interface PropertyData {
-  id: string;
-  images: ImageSource[];
-  location: string;
-  size: string;
-  date: string;
-  dateicon: ImageSource;
-  time: string;
-  priceRange: string;
-  propertyType: string;
-  agentName: string;
-  agentCompany: ImageSource;
-  agentLocation: string;
-  agentPhone: string;
-  agentEmail: string;
-  agentImage: ImageSource;
-  iconImages?: ImageSource[];
-  iconLabels?: string[];
-}
+export type PropertyData = BuyPropertyCardItem;
 
 interface PropertySliderProps {
   properties: PropertyData[];
   onPropertyClick?: (property: PropertyData) => void;
+  listingVariant?: ListingVariant;
 }
 
 export const PropertySlider: React.FC<PropertySliderProps> = ({
   properties,
   onPropertyClick,
+  listingVariant = "buy",
 }) => {
+  const router = useRouter();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -89,7 +76,17 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
               buyiconImages: property.iconImages,
               iconLabels: property.iconLabels,
             }}
-            onClick={() => onPropertyClick?.(property)}
+            onClick={() => {
+              if (onPropertyClick) {
+                onPropertyClick(property);
+                return;
+              }
+
+              router.push(
+                property.detailHref ??
+                  `/property/${property.id}?listingVariant=${listingVariant}`,
+              );
+            }}
           />
         ))}
       </div>
