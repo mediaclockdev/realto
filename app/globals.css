@@ -54,6 +54,7 @@ body {
   --font-poppins: var(--font-poppins);
   --font-amasis: "Amasis", serif;
   --font-Aptos: "Aptos", serif;
+    --font-arial: "Arial Black", sans-serif;
 }
 @layer utilities {
   .border-gold-gradient {
@@ -79,7 +80,9 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
-
+.labeltext {
+  font-family: "Arial Black", "Arial Bold", Gadget, sans-serif !important;
+}
 .reel-text {
   color: white;
   -webkit-text-stroke: 1px #787878;
@@ -136,30 +139,4 @@ body {
   font-style: normal;
 }
 
-/* @font-face {
-  font-family: "Amasis";
-  src: url("/fonts/amasis/Amasis-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
 
-@font-face {
-  font-family: "Amasis";
-  src: url("/fonts/amasis/Amasis-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Amasis";
-  src: url("/fonts/amasis/Amasis-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Amasis";
-  src: url("/fonts/amasis/Amasis-Black.woff2") format("woff2");
-  font-weight: 900;
-  font-style: normal;
-} */

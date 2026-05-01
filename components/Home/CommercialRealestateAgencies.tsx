@@ -25,7 +25,7 @@ const CommercialRealestateAgencies = () => {
     belle,
   ];
   return (
-    <div className="max-w-screen-2xl mx-auto px-5 py-5 ">
+    <div className="max-w-screen-2xl mx-auto px-5 py-5 mt-2" >
       <h2 className="font-poppins font-semibold text-xl  text-black mb-1">
         Commercial Realestate Agencies
       </h2>

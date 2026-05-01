@@ -67,7 +67,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
       setCurrentImageIndex((prev) =>
         prev === property.images.length - 1 ? 0 : prev + 1,
       );
-    }, 3000); // ⏱ 3 seconds (change if needed)
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [property.images]);
@@ -145,7 +145,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                         className="h-full w-full"
                       />
                     </div>
-                    <span className="text-[15px] font-bold text-[#FA2F2F]">
+                    <span className="text-[15px] font-bold labeltext text-[#FA2F2F]">
                       {property.iconLabels?.[index] ?? "1"}
                     </span>
                   </div>
@@ -162,7 +162,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   height={40}
                   className="shrink-0 object-contain h-10 w-10"
                 />
-                <span className="ml-0.5 truncate font-poppins text-sm font-semibold text-gray-800">
+                <span className="ml-0.5 truncate font-amasis text-sm font-semibold text-gray-800">
                   {property.location}
                 </span>
               </div>
@@ -174,7 +174,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   height={28}
                   className="shrink-0 object-contain h-7 w-7"
                 />
-                <p className="ml-1 font-poppins text-base font-semibold text-[#343434]">
+                <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
                   {property.size}
                 </p>
               </div>
@@ -189,7 +189,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   height={40}
                   className="h-10 w-10 object-contain"
                 />
-                <span className="ml-1 font-poppins text-base font-semibold text-[#343434]">
+                <span className="ml-1 font-amasis text-base font-semibold text-[#343434]">
                   {property.date}
                 </span>
               </div>
@@ -201,7 +201,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   height={40}
                   className="h-10 w-10 object-contain"
                 />
-                <span className="ml-1 font-poppins text-base font-semibold text-[#343434]">
+                <span className="ml-1 font-amasis text-base font-semibold text-[#343434]">
                   {property.time}
                 </span>
               </div>
@@ -216,11 +216,11 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   height={40}
                   className="h-10 w-10 object-contain"
                 />
-                <p className="font-poppins text-base font-semibold text-[#343434]">
+                <p className="font-amasis text-base font-semibold text-[#343434]">
                   {property.priceRange}
                 </p>
               </div>
-              <span className="font-poppins text-base font-semibold text-[#343434]">
+              <span className="font-amasis text-base font-semibold text-[#343434]">
                 • {property.propertyType}
               </span>
             </div>
@@ -243,10 +243,10 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     className="shrink-0 rounded-full border-2 border-red-100 object-cover"
                   />
                   <div className="space-y-1">
-                    <p className="truncate font-poppins text-base font-semibold text-[#FA2F2F]">
+                    <p className="truncate font-amasis text-base font-semibold text-[#FA2F2F]">
                       {property.agentName}
                     </p>
-                    <p className="font-poppins text-xs font-semibold text-[#FA2F2F]">
+                    <p className="font-amasis text-xs font-semibold text-[#FA2F2F]">
                       {property.agentPhone}
                     </p>
                   </div>
@@ -260,7 +260,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     className="block object-contain"
                   />
 
-                  <p className="text-right font-poppins text-xs font-medium text-[#FA2F2F]">
+                  <p className="text-right font-amasis text-xs font-medium text-[#FA2F2F]">
                     {property.agentLocation}
                   </p>
                 </div>

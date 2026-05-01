@@ -139,7 +139,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
 
                 <div className="flex items-center gap-3 shrink-0">
                   <div className="text-right">
-                    <p className="text-base font-semibold leading-none font-poppins">
+                    <p className="text-base font-semibold leading-none font-amasis">
                       {property.agentName}
                     </p>
                   </div>
@@ -196,7 +196,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                           className="w-full h-full"
                         />
                       </div>
-                      <span className="text-base font-semibold text-[#343434]">
+                      <span className="text-base font-semibold labeltext text-[#343434]">
                         {property.iconLabels?.[i] ?? "1"}
                       </span>
                     </div>
@@ -211,7 +211,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     alt="location"
                     className="w-7 h-7 shrink-0"
                   />
-                  <span className="text-base font-semibold text-[#343434] truncate">
+                  <span className="text-base font-semibold font-amasis text-[#343434] truncate">
                     {property.location}
                   </span>
                 </div>
@@ -221,7 +221,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     alt="size"
                     className="w-7 h-7 shrink-0"
                   />
-                  <span className="text-base font-semibold text-[#343434]">
+                  <span className="text-base font-semibold font-amasis text-[#343434]">
                     {property.size}
                   </span>
                 </div>
@@ -232,18 +232,18 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   alt="money"
                   className="w-8 h-8 shrink-0"
                 />
-                <p className="text-base font-semibold text-[#343434] font-poppins truncate">
+                <p className="text-base font-semibold text-[#343434] font-amasis truncate">
                   {property.date}
                 </p>
               </div>
               <div className="flex items-center justify-between gap-2 ">
                 <div className="flex items-center gap-2 min-w-0">
                   <Image src={money} alt="money" className="w-8 h-8 shrink-0" />
-                  <p className="text-base font-semibold text-[#343434] font-poppins truncate">
+                  <p className="text-base font-semibold text-[#343434] font-amasis truncate">
                     {property.priceRange}
                   </p>
                 </div>
-                <p className="text-base font-semibold text-[#343434] shrink-0">
+                <p className="text-base font-semibold  font-amasis text-[#343434] shrink-0">
                   • {property.propertyType}
                 </p>
               </div>
@@ -255,7 +255,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               >
                 <div className="flex items-center">
                   <Image src={mobile} alt="mobile icon" />
-                  <p className=" text-base font-semibold leading-none text-[#343434] font-poppins">
+                  <p className=" text-base font-semibold leading-none text-[#343434] font-amasis">
                     {property.agentPhone}
                   </p>
                 </div>
@@ -388,7 +388,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                         className="w-full h-full"
                       />
                     </div>
-                    <span className="text-xs font-semibold text-gray-700">
+                    <span className="text-xs font-semibold labeltext text-gray-700">
                       {property.iconLabels?.[i] ?? "1"}
                     </span>
                   </div>
@@ -404,7 +404,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   alt="location"
                   className="w-8 h-8 shrink-0"
                 />
-                <span className="font-semibold text-gray-800 text-sm truncate">
+                <span className="font-semibold font-amasis text-gray-800 text-sm truncate">
                   {property.location}
                 </span>
               </div>
@@ -414,7 +414,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   alt="location"
                   className="w-6 h-6 shrink-0"
                 />
-                <span className="text-[#343434] font-semibold text-base">
+                <span className="text-[#343434] font-semibold  font-amasis text-base">
                   {property.size}
                 </span>
               </div>
@@ -424,13 +424,13 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               <div className="flex items-center gap-3 mb-1 text-gray-500">
                 <div className="flex items-center gap-1">
                   <Image src={calender} alt="" className="w-8 h-8 shrink-0" />
-                  <p className="text-[#343434] font-semibold text-base">
+                  <p className="text-[#343434] font-semibold font-amasis text-base">
                     {property.date}
                   </p>
                 </div>
                 <div className="flex items-center gap-1">
                   <Image src={clock} alt="" className="w-8 h-8 shrink-0" />
-                  <p className="text-[#343434] font-semibold text-base">
+                  <p className="text-[#343434] font-semibold font-amasis text-base">
                     {property.time}
                   </p>
                 </div>
@@ -445,11 +445,11 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   alt="money icon"
                   className="w-8 h-8 shrink-0"
                 />
-                <p className="text-[#343434] font-semibold text-base">
+                <p className="text-[#343434] font-semibold font-amasis text-base">
                   {property.priceRange}
                 </p>
               </div>
-              <span className="text-[#343434] font-semibold text-base">
+              <span className="text-[#343434] font-semibold font-amasis text-base">
                 • {property.propertyType}
               </span>
             </div>
@@ -470,7 +470,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     height={30}
                     className="rounded-full shrink-0 border-2 border-red-100 object-cover"
                   />
-                  <p className="font-bold text-red-500 text-base truncate">
+                  <p className="font-bold font-amasis text-red-500 text-base truncate">
                     {property.agentName}
                   </p>
                 </div>
@@ -480,7 +480,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 </div>
                 <div className="flex items-center gap-1 text-xs text-blue-600 mt-1">
                   <Image src={mail} alt="" width={20} height={20} />
-                  <span className="truncate">{property.agentEmail}</span>
+                  <span className="truncate font-amasis">{property.agentEmail}</span>
                 </div>
               </div>
 
@@ -494,13 +494,13 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   className="object-contain"
                 />
 
-                <div className="text-xs text-red-600 font-medium ">
+                <div className="text-xs text-red-600 font-medium font-amasis">
                   <p>{property.agentLocation}</p>
                 </div>
                 <div className="relative flex items-center gap-1">
                   <Tooltip text="Share">
                     <button
-                      className="flex items-center gap-1 px-2 py-1.5 hover:bg-blue-50 rounded-lg transition-colors text-xs text-blue-600 font-medium"
+                      className="flex items-center gap-1 px-2 py-1.5 hover:bg-blue-50 rounded-lg transition-colors text-xs text-blue-600 font-medium font-amasis"
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowShareModal((prev) => !prev);
@@ -511,7 +511,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   </Tooltip>
                   <Tooltip text="Like">
                     <button
-                      className="flex items-center gap-1 px-2 py-1.5 hover:bg-red-50 rounded-lg transition-colors text-xs text-red-500 font-medium"
+                      className="flex items-center gap-1 px-2 py-1.5 hover:bg-red-50 rounded-lg transition-colors text-xs text-red-500 font-medium font-amasis"
                       onClick={(e) => {
                         e.stopPropagation();
                         setLiked((prev) => !prev);

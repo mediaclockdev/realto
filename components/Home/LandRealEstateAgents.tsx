@@ -13,7 +13,7 @@ const LandRealEstateAgents = () => {
   return (
     <div>
       <AgentCarousel
-        variant="Land Real Estate Agents"
+        variant="Land Real Estate"
         heading="Agents"
         agents={agents}
       />

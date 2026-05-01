@@ -49,7 +49,7 @@ export default function AgentCarousel({
   return (
     <div className=" max-w-screen-2xl mx-auto px-5 py-6">
       {/* Heading */}
-      <div className="flex items-baseline gap-2 mb-6">
+      <div className="flex items-baseline gap-2 ">
         {variant && (
           <h2
             className="font-poppins text-2xl font-semibold lg:text-[32px]"
