@@ -95,7 +95,8 @@ export default function AgentCarousel({
                   src={agent.image}
                   alt={agent.name}
                   width={90}
-                  height={90}
+                          height={90}
+                          unoptimized
                   className="object-cover w-full h-full object-top"
                 />
               </div>

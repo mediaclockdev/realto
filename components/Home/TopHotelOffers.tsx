@@ -56,6 +56,7 @@ const HotelOfferCard = ({ hotel }: { hotel: HotelListing }) => {
             src={hotel.heroImage}
             alt={hotel.title}
             fill
+            unoptimized
             className="object-cover"
             sizes="250px"
           />
