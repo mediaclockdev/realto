@@ -373,7 +373,7 @@ const LanguageSelection = () => {
     // },
   ];
 
-  const languages = Array.from({ length: 30 }, (_, i) => ({
+  const languages = Array.from({ length: 23 }, (_, i) => ({
     id: i + 1,
     ...flags[i % flags.length],
   }));

@@ -29,6 +29,7 @@ const partners = [
   },
 ];
 
+
 export default function OurPartners() {
   return (
     <div className="bg-white">

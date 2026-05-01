@@ -2,22 +2,34 @@
 
 import React from "react";
 import Image from "next/image";
-import building from "../../public/luxurybuildingicon.svg";
+import building from "../../public/headingbuilding.svg";
 import { PropertySlider } from "./PropertySlider";
 import PropertyListingCardSlider from "./PropertyListingCardSlider";
 import { luxuryBuyPropertyCards } from "@/lib/property-cards/buy";
 import { luxuryRentPropertyCards } from "@/lib/property-cards/rent";
 
 const LuxuryHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
-  <div className="mb-3 flex items-center gap-2 px-1">
-    <h2 className="font-poppins text-xl font-semibold text-[#d4a61f] lg:text-[28px]">
+
+<div className="flex items-center gap-2 px-1">
+  <div className="flex items-baseline gap-2">
+    <h2
+      className="font-poppins text-2xl font-semibold lg:text-[32px]"
+      style={{
+        background: "linear-gradient(180deg, #F5D06A 0%, #B8860B 50%, #8B6914 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        WebkitTextStroke: "1px #8B6914",
+        filter: "drop-shadow(2px 2px 3px rgba(0,0,0,0.4))",
+      }}
+    >
       Luxury properties
     </h2>
-    <span className="font-poppins text-xl font-medium text-[#0D9B34] lg:text-[24px]">
+    <span className="font-amasis text-2xl font-semibold text-[#1FAF38] lg:text-[32px]">
       {variant}
     </span>
-    <Image src={building} alt="luxury properties" width={48} height={48} />
   </div>
+  <Image src={building} alt="luxury properties" width={48} height={48} />
+</div>
 );
 
 const LuxuryProperties = () => {

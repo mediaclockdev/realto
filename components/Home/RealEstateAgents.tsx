@@ -12,7 +12,7 @@ const partners = [century, raywhite, elder, ljhooker, wiseberry, combined];
 
 export default function RealEstateAgents() {
   return (
-    <div className="relative overflow-hidden max-w-screen-2xl mx-auto  py-5">
+    <div className="relative overflow-hidden max-w-screen-2xl mx-auto  py-5 px-5">
       <div>
         <p className="text-[#343434] font-semibold text-xl  font-poppins">
           Real Estate Agents :

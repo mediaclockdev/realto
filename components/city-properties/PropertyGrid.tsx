@@ -1,4 +1,4 @@
-import { PropertyGridProps } from "../../types/types";
+import { PropertyGridProps } from "@/types/types";
 import PropertyCard from "./PropertyCard";
 
 export default function PropertyGrid({ properties }: PropertyGridProps) {
@@ -9,9 +9,9 @@ export default function PropertyGrid({ properties }: PropertyGridProps) {
           key={property.id}
           property={{
             ...property,
-            detailHref:
-              property.detailHref ??
-              `/property/${property.id}?listingVariant=rent`,
+           // detailHref:
+            //  property.detailHref ??
+              // `/property/${property.id}?listingVariant=rent`,
           }}
         />
       ))}

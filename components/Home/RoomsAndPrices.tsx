@@ -1,12 +1,14 @@
 import PopularCityPropertiesSection from "@/components/city-properties/PopularCityPropertiesSection";
 import { studentResidencyCitiesData } from "@/lib/student-residency/popular-cities-data";
 
-export default function PopularCities() {
+const RoomsAndPrices = () => {
   return (
     <PopularCityPropertiesSection
-      title="Popular cities in Australia"
+      title="Rooms and prices"
       citiesData={studentResidencyCitiesData}
       defaultCity="Melbourne"
     />
   );
-}
+};
+
+export default RoomsAndPrices;

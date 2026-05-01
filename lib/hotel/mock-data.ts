@@ -7,7 +7,6 @@ import interior1 from "@/public/contact1.jpeg";
 import interior2 from "@/public/contact2.jpeg";
 import interior3 from "@/public/contact3.jpeg";
 import interior4 from "@/public/contact4.jpeg";
-import wifi from "@/public/wifi.svg";
 import balcony from "@/public/balcony.svg";
 import eddy from "@/public/eddyjones.svg";
 import facebook from "@/public/logos_facebook.svg";

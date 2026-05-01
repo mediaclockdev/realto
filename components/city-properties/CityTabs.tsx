@@ -1,4 +1,4 @@
-import { CityTabsProps } from "../../types/types";
+import { CityTabsProps } from "@/types/types";
 
 export default function CityTabs({
   cities,
