@@ -96,7 +96,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
       <div
         className={`relative overflow-visible rounded-xl p-1 transition-all duration-300 cursor-pointer ${
           sliderMode
-            ? "ml-0 lg:ml-5 w-[340px] shrink-0 hover:scale-105"
+            ? "ml-0 lg:ml-5 w-[340px] shrink-0 hover:scale-100"
             : "w-full"
         }`}
         style={{ background: isHovered ? GOLD_GRADIENT : "transparent" }}
@@ -133,9 +133,9 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
 
           <div className="px-2 pt-2 pb-1">
             {property.buyiconImages && property.buyiconImages.length > 0 && (
-              <div className="mb-1 flex items-center justify-between gap-3 px-8">
+              <div className="mb-1 flex items-center justify-between gap-3">
                 {property.buyiconImages.map((icon, index) => (
-                  <div key={index} className="flex items-center gap-0.5">
+                  <div key={index} className="flex items-center  gap-0.5">
                     <div className="h-12 w-17 shrink-0 overflow-hidden rounded-lg">
                       <Image
                         src={icon}
@@ -175,7 +175,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   className="shrink-0 object-contain h-7 w-7"
                 />
                 <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
-                  {property.size}
+                  {property.size}<span className="text-xs">sqft</span>
                 </p>
               </div>
             </div>
@@ -220,14 +220,15 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   {property.priceRange}
                 </p>
               </div>
-              <span className="font-amasis text-base font-semibold text-[#343434]">
+              <span className="font-amasis text-base font-semibold text-red-500">
                 • {property.propertyType}
               </span>
             </div>
           </div>
         </div>
+        <div className="mt-0.5 h-0.5" ></div>
         <div
-          className="flex flex-col justify-between border-t shadow-md rounded-xl bg-white hover:shadow-2xl"
+          className="flex flex-col justify-between shadow-md rounded-xl bg-white hover:shadow-2xl"
           onMouseEnter={() => setIsLowerHovered(true)}
           onMouseLeave={() => setIsLowerHovered(false)}
         >

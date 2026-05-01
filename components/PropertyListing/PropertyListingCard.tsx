@@ -187,7 +187,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                       key={i}
                       className="flex items-center justify-between gap-2"
                     >
-                      <div className="w-14 h-10 rounded-xl overflow-hidden ">
+                      <div className="h-12 w-17 shrink-0 overflow-hidden rounded-lg">
                         <Image
                           src={icon}
                           alt=""
@@ -221,9 +221,9 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     alt="size"
                     className="w-7 h-7 shrink-0"
                   />
-                  <span className="text-base font-semibold font-amasis text-[#343434]">
-                    {property.size}
-                  </span>
+                  <p className="text-base font-semibold font-amasis text-[#343434]">
+                    {property.size}<span className="text-xs">sqft</span>
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-2 min-w-0">
@@ -243,7 +243,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     {property.priceRange}
                   </p>
                 </div>
-                <p className="text-base font-semibold  font-amasis text-[#343434] shrink-0">
+                <p className="text-base font-semibold  font-amasis text-red-500 shrink-0">
                   • {property.propertyType}
                 </p>
               </div>
@@ -262,7 +262,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 <div className="relative flex">
                   <Tooltip text="Share">
                     <button
-                      className="p-1.5 hover:bg-blue-50 rounded-lg transition-colors"
+                      className="p-1 hover:bg-blue-50 rounded-lg transition-colors"
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowShareModal((prev) => !prev);
@@ -278,7 +278,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   </Tooltip>
                   <Tooltip text="Like">
                     <button
-                      className="p-1.5 hover:bg-red-50 rounded-lg transition-colors"
+                      className="p-1 hover:bg-red-50 rounded-lg transition-colors"
                       onClick={(e) => {
                         e.stopPropagation();
                         setIsRentLiked((prev) => !prev);
@@ -287,8 +287,8 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                       <Image
                         src={isRentLiked ? rentlikedicon : rentlike}
                         alt="Like"
-                        width={48}
-                        height={48}
+                        width={40}
+                        height={40}
                       />
                     </button>
                   </Tooltip>
@@ -449,7 +449,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   {property.priceRange}
                 </p>
               </div>
-              <span className="text-[#343434] font-semibold font-amasis text-base">
+              <span className="text-red-500 font-semibold font-amasis text-base">
                 • {property.propertyType}
               </span>
             </div>
