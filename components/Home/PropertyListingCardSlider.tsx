@@ -60,7 +60,13 @@ const PropertyListingCardSlider = ({
               }
               isLastItem={index === properties.length - 1}
               onSeeMore={() =>
-                router.push(`/properties?listingVariant=${listingVariant}`)
+                router.push(
+                  listingVariant === "rent"
+                    ? "/rent"
+                    : listingVariant === "land"
+                      ? "/land"
+                      : "/propertyListingpage",
+                )
               }
             />
           </div>

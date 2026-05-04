@@ -103,7 +103,12 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   if (listingVariant === "rent") {
     return (
       <FollowCursorTooltip
-        disabled={isActionAreaHovered || isAgentAreaHovered || showShareModal}
+        disabled={
+          isActionAreaHovered ||
+          isAgentAreaHovered ||
+          showShareModal ||
+          isLastItem
+        }
         text={
           <PropertySummaryTooltipContent
             location={property.location}
@@ -360,7 +365,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
 
   return (
     <FollowCursorTooltip
-      disabled={isActionAreaHovered || showShareModal}
+      disabled={isActionAreaHovered || showShareModal || isLastItem}
       text={
         <PropertySummaryTooltipContent
           location={property.location}
