@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { ImageSource } from "@/lib/shared/types";
-import locationIcon from "@/public/location.svg";
+import defaultLocationIcon from "@/public/location.svg";
+
 import share from "@/public/share.svg";
 import home from "@/public/buylikeicon.svg";
 import homeliked from "@/public/homelike.svg";
@@ -36,14 +37,19 @@ export interface BuyPropertyCardData {
   agentPhone: string;
   agentEmail: string;
   agentImage: ImageSource;
+  locationIcon?: ImageSource;
   buyiconImages?: ImageSource[];
   iconLabels?: string[];
+  isLastItem?: boolean;
+  onSeeMore?: () => void;
 }
 
 interface BuyPropertyCardProps {
   property: BuyPropertyCardData;
   onClick?: () => void;
   sliderMode?: boolean;
+  isLastItem?: boolean;
+  onSeeMore?: () => void;
 }
 
 const GOLD_GRADIENT =
@@ -53,6 +59,8 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
   property,
   onClick,
   sliderMode = false,
+  isLastItem = false,
+  onSeeMore,
 }) => {
   const [isLowerHovered, setIsLowerHovered] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -85,7 +93,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
 
   return (
     <FollowCursorTooltip
-      disabled={isLowerHovered || showShareModal}
+      disabled={isLowerHovered || showShareModal || isLastItem}
       text={
         <PropertySummaryTooltipContent
           location={property.location}
@@ -93,229 +101,250 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
         />
       }
     >
-      <div
-        className={`relative overflow-visible rounded-xl p-1 transition-all duration-300 cursor-pointer ${
-          sliderMode
-            ? "ml-0 lg:ml-5 w-[340px] shrink-0 hover:scale-100"
-            : "w-full"
-        }`}
-        style={{ background: isHovered ? GOLD_GRADIENT : "transparent" }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={onClick}
-      >
-        <div className="h-full w-full overflow-visible rounded-xl bg-white shadow-md transition-shadow duration-300 hover:shadow-2xl">
-          <div className="group/image relative h-52 cursor-pointer overflow-hidden rounded-t-xl bg-gray-200">
-            <Image
-              src={property.images[currentImageIndex]}
-              alt={`Property in ${property.location}`}
-              fill
-              className="object-cover transition-opacity duration-700"
-            />
-
-            {property.images.length > 1 && (
-              <>
-                <button
-                  onClick={handlePrevImage}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 opacity-0 transition-opacity group-hover/image:opacity-100 hover:bg-white"
-                >
-                  <ChevronLeft className="h-4 w-4 text-black" />
-                </button>
-                <button
-                  onClick={handleNextImage}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 opacity-0 transition-opacity group-hover/image:opacity-100 hover:bg-white"
-                >
-                  <ChevronRight className="h-4 w-4 text-black" />
-                </button>
-              </>
-            )}
-          </div>
-
-          <div className="px-2 pt-2 pb-1">
-            {property.buyiconImages && property.buyiconImages.length > 0 && (
-              <div className="mb-1 flex items-center justify-between gap-3">
-                {property.buyiconImages.map((icon, index) => (
-                  <div key={index} className="flex items-center  gap-0.5">
-                    <div className="h-12 w-17 shrink-0 overflow-hidden rounded-lg">
-                      <Image
-                        src={icon}
-                        alt=""
-                        width={48}
-                        height={40}
-                        className="h-full w-full"
-                      />
-                    </div>
-                    <span className="text-[15px] font-bold labeltext text-[#FA2F2F]">
-                      {property.iconLabels?.[index] ?? "1"}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            <div className="flex items-center justify-between">
-              <div className="flex min-w-0 items-center gap-0.5">
-                <Image
-                  src={locationIcon}
-                  alt="location"
-                  width={40}
-                  height={40}
-                  className="shrink-0 object-contain h-10 w-10"
-                />
-                <span className="ml-0.5 truncate font-amasis text-sm font-semibold text-gray-800">
-                  {property.location}
-                </span>
-              </div>
-              <div className="ml-2 flex shrink-0 items-center gap-1">
-                <Image
-                  src={squaremetericon}
-                  alt="size"
-                  width={28}
-                  height={28}
-                  className="shrink-0 object-contain h-7 w-7"
-                />
-                <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
-                  {property.size}<span className="text-xs">sqft</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1 text-gray-600">
-              <div className="flex items-center">
-                <Image
-                  src={property.dateIcon ?? calender}
-                  alt="calendericon"
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 object-contain"
-                />
-                <span className="ml-1 font-amasis text-base font-semibold text-[#343434]">
-                  {property.date}
-                </span>
-              </div>
-              <div className="ml-2 flex items-center">
-                <Image
-                  src={clock}
-                  alt="clockicon"
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 object-contain"
-                />
-                <span className="ml-1 font-amasis text-base font-semibold text-[#343434]">
-                  {property.time}
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1">
-                <Image
-                  src={money}
-                  alt="money icon"
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 object-contain"
-                />
-                <p className="font-amasis text-base font-semibold text-[#343434]">
-                  {property.priceRange}
-                </p>
-              </div>
-              <span className="font-amasis text-base font-semibold text-red-500">
-                • {property.propertyType}
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="mt-0.5 h-0.5" ></div>
+      <div className="relative py-2">
         <div
-          className="flex flex-col justify-between shadow-md rounded-xl bg-white hover:shadow-2xl"
-          onMouseEnter={() => setIsLowerHovered(true)}
-          onMouseLeave={() => setIsLowerHovered(false)}
+          className={`relative overflow-visible rounded-xl p-1 transition-all duration-300 cursor-pointer ${
+            sliderMode
+              ? "ml-0 lg:ml-5 w-[340px] shrink-0 hover:scale-105"
+              : "w-full"
+          }`}
+          style={{ background: isHovered ? GOLD_GRADIENT : "transparent" }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={onClick}
         >
-          <div className="">
-            <div>
-              <div className="flex items-center justify-between gap-1">
-                <div className="flex items-center gap-1 mt-1">
-                  <Image
-                    src={property.agentImage}
-                    alt={property.agentName}
-                    width={52}
-                    height={52}
-                    className="shrink-0 rounded-full border-2 border-red-100 object-cover"
-                  />
-                  <div className="space-y-1">
-                    <p className="truncate font-amasis text-base font-semibold text-[#FA2F2F]">
-                      {property.agentName}
-                    </p>
-                    <p className="font-amasis text-xs font-semibold text-[#FA2F2F]">
-                      {property.agentPhone}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center">
-                  <Image
-                    src={property.agentCompany}
-                    alt="Company logo"
-                    width={80}
-                    height={40}
-                    className="block object-contain"
-                  />
+          <div className="h-full w-full overflow-visible rounded-xl bg-white shadow-xl transition-shadow duration-300 hover:shadow-2xl">
+            <div className="group/image relative h-52 cursor-pointer overflow-hidden rounded-t-xl bg-gray-200">
+              <Image
+                src={property.images[currentImageIndex]}
+                alt={`Property in ${property.location}`}
+                fill
+                className="object-cover transition-opacity duration-700"
+              />
 
-                  <p className="text-right font-amasis text-xs font-medium text-[#FA2F2F]">
-                    {property.agentLocation}
+              {property.images.length > 1 && (
+                <>
+                  <button
+                    onClick={handlePrevImage}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 opacity-0 transition-opacity group-hover/image:opacity-100 hover:bg-white"
+                  >
+                    <ChevronLeft className="h-4 w-4 text-black" />
+                  </button>
+                  <button
+                    onClick={handleNextImage}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 opacity-0 transition-opacity group-hover/image:opacity-100 hover:bg-white"
+                  >
+                    <ChevronRight className="h-4 w-4 text-black" />
+                  </button>
+                </>
+              )}
+            </div>
+
+            <div className="px-2 pt-2 pb-1">
+              {property.buyiconImages && property.buyiconImages.length > 0 && (
+                <div className="mb-1 flex items-center justify-between gap-3">
+                  {property.buyiconImages.map((icon, index) => (
+                    <div key={index} className="flex items-center  gap-0.5">
+                      <div className="h-12 w-17 shrink-0 overflow-hidden rounded-lg">
+                        <Image
+                          src={icon}
+                          alt="icons for bed , bath , car"
+                          width={48}
+                          height={40}
+                          className="h-full w-full"
+                        />
+                      </div>
+                      <span className="text-[15px] font-bold labeltext text-[#FA2F2F]">
+                        {property.iconLabels?.[index] ?? "1"}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="flex items-center justify-between">
+                <div className="flex min-w-0 items-center gap-0.5">
+                  <Image
+                    src={property.locationIcon ?? defaultLocationIcon}
+                    alt="location"
+                    width={40}
+                    height={40}
+                    className="shrink-0 object-contain h-10 w-10"
+                  />
+                  <span className="ml-0.5 truncate font-amasis text-sm font-semibold text-gray-800">
+                    {property.location}
+                  </span>
+                </div>
+                <div className="ml-2 flex shrink-0 items-center gap-1">
+                  <Image
+                    src={squaremetericon}
+                    alt="size"
+                    width={28}
+                    height={28}
+                    className="shrink-0 object-contain h-7 w-7"
+                  />
+                  <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
+                    {property.size}
+                    <span className="text-xs">sqft</span>
                   </p>
                 </div>
               </div>
+
+              <div className="flex items-center gap-1 text-gray-600">
+                <div className="flex items-center">
+                  <Image
+                    src={property.dateIcon ?? calender}
+                    alt="calendericon"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 object-contain"
+                  />
+                  <span className="ml-1 font-amasis text-base font-semibold text-[#343434]">
+                    {property.date}
+                  </span>
+                </div>
+                <div className="ml-2 flex items-center">
+                  <Image
+                    src={clock}
+                    alt="clockicon"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 object-contain"
+                  />
+                  <span className="ml-1 font-amasis text-base font-semibold text-[#343434]">
+                    {property.time}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1">
+                  <Image
+                    src={money}
+                    alt="money icon"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 object-contain"
+                  />
+                  <p className="font-amasis text-base font-semibold text-[#343434]">
+                    {property.priceRange}
+                  </p>
+                </div>
+                <span className="font-amasis text-base font-semibold text-red-500">
+                  • {property.propertyType}
+                </span>
+              </div>
             </div>
-
-            <div>
-              <div className="relative flex items-center justify-end">
-                <Tooltip text="Share">
-                  <button
-                    className="z-10 flex items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:bg-blue-50"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setShowShareModal((prev) => !prev);
-                    }}
-                  >
+          </div>
+          <div className="mt-0.5 h-0.5"></div>
+          <div
+            className="flex flex-col justify-between shadow-xl rounded-xl bg-white hover:shadow-2xl"
+            onMouseEnter={() => setIsLowerHovered(true)}
+            onMouseLeave={() => setIsLowerHovered(false)}
+          >
+            <div className="">
+              <div>
+                <div className="flex items-center justify-between gap-1">
+                  <div className="flex items-center gap-1 mt-1">
                     <Image
-                      src={share}
-                      alt="Share"
-                      width={40}
-                      height={40}
-                      className="cursor-pointer object-contain transition-all duration-200"
+                      src={property.agentImage}
+                      alt={property.agentName}
+                      width={52}
+                      height={52}
+                      className="shrink-0 rounded-full border-2 border-red-100 object-cover"
                     />
-                  </button>
-                </Tooltip>
-
-                <Tooltip text="Like">
-                  <button
-                    className="z-10 flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:bg-red-50"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setLiked((prev) => !prev);
-                    }}
-                  >
+                    <div className="space-y-1">
+                      <p className="truncate font-amasis text-base font-semibold text-[#FA2F2F]">
+                        {property.agentName}
+                      </p>
+                      <p className="font-amasis text-xs font-semibold text-[#FA2F2F]">
+                        {property.agentPhone}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center">
                     <Image
-                      src={liked ? homeliked : home}
-                      alt="Home"
-                      width={40}
+                      src={property.agentCompany}
+                      alt="Company logo"
+                      width={80}
                       height={40}
-                      className="object-contain transition-all duration-200"
+                      className="block object-contain"
                     />
-                  </button>
-                </Tooltip>
 
-                <div
-                  className="absolute bottom-3 right-28 z-20 flex items-center justify-center animate-fade-in-up"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <ShareMenuActionStrip iconSize={32} />
+                    <p className="text-right font-amasis text-xs font-medium text-[#FA2F2F]">
+                      {property.agentLocation}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div className="relative flex items-center justify-end">
+                  <Tooltip text="Share">
+                    <button
+                      className="z-10 flex items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:bg-blue-50"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowShareModal((prev) => !prev);
+                      }}
+                    >
+                      <Image
+                        src={share}
+                        alt="Share"
+                        width={40}
+                        height={40}
+                        className="cursor-pointer object-contain transition-all duration-200"
+                      />
+                    </button>
+                  </Tooltip>
+
+                  <Tooltip text="Like">
+                    <button
+                      className="z-10 flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:bg-red-50"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setLiked((prev) => !prev);
+                      }}
+                    >
+                      <Image
+                        src={liked ? homeliked : home}
+                        alt="Home"
+                        width={40}
+                        height={40}
+                        className="object-contain transition-all duration-200"
+                      />
+                    </button>
+                  </Tooltip>
+
+                  <div
+                    className="absolute bottom-3 right-28 z-20 flex items-center justify-center animate-fade-in-up"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <ShareMenuActionStrip iconSize={32} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        {isLastItem && (
+          <div
+            className="absolute inset-0 z-30 flex items-center justify-center rounded-xl cursor-pointer"
+            style={{
+              backdropFilter: "blur(6px)",
+              WebkitBackdropFilter: "blur(6px)",
+              backgroundColor: "rgba(255,255,255,0.3)",
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onSeeMore?.();
+            }}
+          >
+            <span className="font-amasis text-2xl font-bold text-[#1a1a1a] drop-shadow-sm">
+              See More
+            </span>
+          </div>
+        )}
       </div>
     </FollowCursorTooltip>
   );

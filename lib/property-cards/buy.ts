@@ -10,6 +10,10 @@ import ana from "@/public/anajonesagent.svg";
 import calender from "@/public/buycalender.svg";
 import hammer from "@/public/hammer.svg";
 import type { BuyPropertyCardItem } from "@/lib/property-cards/types";
+import {
+  buyPropertyFeatureIcons,
+  luxuryLocationIcon,
+} from "@/lib/properties/property-card-icons";
 
 const baseBuyCards: BuyPropertyCardItem[] = [
   {
@@ -28,7 +32,7 @@ const baseBuyCards: BuyPropertyCardItem[] = [
     agentPhone: "+9999999999",
     agentEmail: "exampleemail.com",
     agentImage: ana,
-    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
+    iconImages: buyPropertyFeatureIcons,
   },
   {
     id: "2",
@@ -46,7 +50,7 @@ const baseBuyCards: BuyPropertyCardItem[] = [
     agentPhone: "+9999999999",
     agentEmail: "exampleemail.com",
     agentImage: ana,
-    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
+    iconImages: buyPropertyFeatureIcons,
   },
   {
     id: "3",
@@ -64,7 +68,7 @@ const baseBuyCards: BuyPropertyCardItem[] = [
     agentPhone: "+9999999999",
     agentEmail: "exampleemail.com",
     agentImage: ana,
-    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
+    iconImages: buyPropertyFeatureIcons,
   },
   {
     id: "4",
@@ -82,7 +86,7 @@ const baseBuyCards: BuyPropertyCardItem[] = [
     agentPhone: "+9999999999",
     agentEmail: "exampleemail.com",
     agentImage: ana,
-    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
+    iconImages: buyPropertyFeatureIcons,
   },
   {
     id: "5",
@@ -100,7 +104,7 @@ const baseBuyCards: BuyPropertyCardItem[] = [
     agentPhone: "+9999999999",
     agentEmail: "exampleemail.com",
     agentImage: ana,
-    iconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
+    iconImages: buyPropertyFeatureIcons,
   },
 ];
 
@@ -110,37 +114,42 @@ export const newlyListedBuyPropertyCards: BuyPropertyCardItem[] =
     detailHref: `/property/${property.id}?listingVariant=buy`,
   }));
 
-export const trendingBuyPropertyCards: BuyPropertyCardItem[] =
-  baseBuyCards.map((property, index) => ({
+export const trendingBuyPropertyCards: BuyPropertyCardItem[] = baseBuyCards.map(
+  (property, index) => ({
     ...property,
     id: String(index + 11),
     images: index % 2 === 0 ? [house4, house] : [house, house3],
     detailHref: `/property/${index + 11}?listingVariant=buy`,
-  }));
+  }),
+);
 
 export const luxuryBuyPropertyCards: BuyPropertyCardItem[] = [
   {
     ...baseBuyCards[0],
     images: [luxury, modern],
     dateicon: hammer,
+    locationIcon: luxuryLocationIcon,
     detailHref: "/property/1?listingVariant=buy",
   },
   {
     ...baseBuyCards[1],
     images: [luxury, villa],
     dateicon: calender,
+    locationIcon: luxuryLocationIcon,
     detailHref: "/property/2?listingVariant=buy",
   },
   {
     ...baseBuyCards[2],
     images: [luxury, modern],
     dateicon: hammer,
+    locationIcon: luxuryLocationIcon,
     detailHref: "/property/3?listingVariant=buy",
   },
   {
     ...baseBuyCards[3],
     images: [luxury, villa],
     dateicon: calender,
+    locationIcon: luxuryLocationIcon,
     detailHref: "/property/4?listingVariant=buy",
   },
 ];

@@ -4,6 +4,7 @@ export interface ListingProperty {
   id: string;
   images: ImageSource[];
   location: string;
+  locationIcon?: ImageSource;
   size: string;
   date: string;
   dateicon?: ImageSource[];

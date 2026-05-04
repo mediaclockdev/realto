@@ -53,7 +53,7 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
         className="scrollbar-hide flex gap-6 overflow-x-auto overflow-y-visible scroll-smooth px-0 py-2 lg:px-2"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {properties.map((property) => (
+        {properties.map((property, index) => (
           <BuyPropertyCard
             key={property.id}
             sliderMode
@@ -75,13 +75,15 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
               agentImage: property.agentImage,
               buyiconImages: property.iconImages,
               iconLabels: property.iconLabels,
+              locationIcon: property.locationIcon,
             }}
+            isLastItem={index === properties.length - 1}
+            onSeeMore={() => router.push(`/propertyListingpage`)}
             onClick={() => {
               if (onPropertyClick) {
                 onPropertyClick(property);
                 return;
               }
-
               router.push(
                 property.detailHref ??
                   `/property/${property.id}?listingVariant=${listingVariant}`,

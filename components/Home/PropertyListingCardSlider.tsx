@@ -48,7 +48,7 @@ const PropertyListingCardSlider = ({
         className="scrollbar-hide flex gap-6 overflow-x-auto overflow-y-visible scroll-smooth px-0 py-2 lg:px-2"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {properties.map((property) => (
+        {properties.map((property, index) => (
           <div key={property.id} className="w-[340px] shrink-0">
             <PropertyListingCard
               property={property}
@@ -57,6 +57,10 @@ const PropertyListingCardSlider = ({
                 router.push(
                   `/property/${property.id}?listingVariant=${listingVariant}`,
                 )
+              }
+              isLastItem={index === properties.length - 1}
+              onSeeMore={() =>
+                router.push(`/properties?listingVariant=${listingVariant}`)
               }
             />
           </div>

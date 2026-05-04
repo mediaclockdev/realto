@@ -1,62 +1,41 @@
-
 "use client";
 
-import React, { useRef, useState } from "react";
+import React from "react";
 import Image, { StaticImageData } from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import phone from "../../public/mobileicon.svg"; 
+import phone from "../../public/mobileicon.svg";
 
 export type Agent = {
   id: string | number;
   name: string;
   phone: string;
   image: StaticImageData | string;
-  href: string; 
+  href: string;
 };
 
 type AgentCarouselProps = {
   heading?: string;
-  variant?: string; 
+  variant?: string;
   agents: Agent[];
+  speed?: "slow" | "normal" | "fast";
 };
 
 export default function AgentCarousel({
   heading = "Agents",
   variant,
   agents,
+  speed = "fast",
 }: AgentCarouselProps) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [isAtEnd, setIsAtEnd] = useState(false);
   const router = useRouter();
 
-  const handleScroll = () => {
-    if (!scrollRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-    setScrollLeft(scrollLeft);
-    setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 10);
-  };
-
-  const scroll = (direction: "left" | "right") => {
-    if (!scrollRef.current) return;
-    scrollRef.current.scrollTo({
-      left: scrollRef.current.scrollLeft + (direction === "left" ? -300 : 300),
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <div className=" max-w-screen-2xl mx-auto px-5 py-6">
+    <div className="max-w-screen-2xl mx-auto px-5 py-6">
       {/* Heading */}
-      <div className="flex items-baseline gap-2 ">
+      <div className="flex items-baseline gap-2">
         {variant && (
           <h2
             className="font-poppins text-2xl font-semibold lg:text-[32px]"
-            style={{
-              color: "transparent",
-              WebkitTextStroke: "1.5px #c0c0c0",
-            }}
+            style={{ color: "transparent", WebkitTextStroke: "1.5px #c0c0c0" }}
           >
             {variant}
           </h2>
@@ -66,28 +45,13 @@ export default function AgentCarousel({
         </h2>
       </div>
 
-      {/* Carousel */}
-      <div className="relative">
-        {scrollLeft > 10 && (
-          <button
-            onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg -ml-4"
-          >
-            <ChevronLeft className="w-5 h-5 text-gray-800" />
-          </button>
-        )}
-
-        <div
-          ref={scrollRef}
-          onScroll={handleScroll}
-          className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-2"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {agents.map((agent) => (
+      {/* Marquee */}
+      <div className="marquee-wrapper overflow-hidden py-2">
+        <div className={`marquee-track ${speed}`}>
+          {[...agents, ...agents, ...agents].map((agent, i) => (
             <div
-              key={agent.id}
-              onClick={() => router.push(agent.href)}
-            className="shrink-0 flex flex-col items-center gap-2 cursor-pointer group px-3"
+              key={i}
+              className="shrink-0 flex flex-col items-center gap-2 cursor-pointer group px-3 mx-4"
             >
               {/* Avatar */}
               <div className="w-[90px] h-[90px] rounded-full overflow-hidden border-2 border-transparent group-hover:border-red-500 transition-all duration-200">
@@ -95,8 +59,8 @@ export default function AgentCarousel({
                   src={agent.image}
                   alt={agent.name}
                   width={90}
-                          height={90}
-                          unoptimized
+                  height={90}
+                  unoptimized
                   className="object-cover w-full h-full object-top"
                 />
               </div>
@@ -116,15 +80,6 @@ export default function AgentCarousel({
             </div>
           ))}
         </div>
-
-        {!isAtEnd && (
-          <button
-            onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg -mr-4"
-          >
-            <ChevronRight className="w-5 h-5 text-gray-800" />
-          </button>
-        )}
       </div>
     </div>
   );

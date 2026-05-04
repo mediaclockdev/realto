@@ -5,6 +5,7 @@ import {
   newlyListedBuyPropertyCards,
   trendingBuyPropertyCards,
 } from "@/lib/property-cards/buy";
+import { rentPropertyFeatureIcons } from "@/lib/properties/property-card-icons";
 
 function toRentPropertyCards(
   properties: BuyPropertyCardItem[],
@@ -27,7 +28,7 @@ function toRentPropertyCards(
     agentEmail: property.agentEmail,
     agentImage: property.agentImage,
     agentImageCard: property.agentImage,
-    renticonImages: property.iconImages,
+    renticonImages: rentPropertyFeatureIcons,
     iconLabels: property.iconLabels ?? ["1", "1", "1"],
     thumbnail: property.images,
     socials: [],

@@ -1,8 +1,10 @@
 import type { ImageSource } from "@/lib/shared/types";
 
 export interface BuyPropertyCardItem {
+  renticonImages?: ImageSource[];
   id: string;
   images: ImageSource[];
+  locationIcon?: ImageSource;
   location: string;
   size: string;
   date: string;

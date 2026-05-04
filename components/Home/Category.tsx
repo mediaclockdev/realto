@@ -15,6 +15,9 @@ import rent2 from "../../public/rentimg3.jpg";
 import rent3 from "../../public/rentimg4.jpg";
 import hotel from "../../public/hotelimg1.jpg";
 import hotel1 from "../../public/hotelimg2.jpg";
+import hotel3 from "../../public/hotel3.jpeg";
+import hotel4 from "../../public/hotel4.jpeg";
+import hotel5 from "../../public/hotel5.jpeg";
 import student from "../../public/studentresidencyimg1.jpg";
 import student1 from "../../public/studentresidencyimg2.jpg";
 import student2 from "../../public/studentresidencyimg3.jpg";
@@ -42,7 +45,11 @@ const categoryItems = [
   { imgs: [agent, agent1, agent2], href: "/agentspage", title: "Agent" },
   { imgs: [loanbroker, loanbroker1], href: "/broker", title: "Loan Broker" },
   { imgs: [commercial], href: "/commercial", title: "Commercial" },
-  { imgs: [hotel, hotel1], href: "/hotel", title: "Hotel" },
+  {
+    imgs: [hotel, hotel1, hotel3, hotel4, hotel5],
+    href: "/hotel",
+    title: "Hotel",
+  },
   {
     imgs: [airbnb, airbnb1],
     href: "https://www.airbnb.com.au/",

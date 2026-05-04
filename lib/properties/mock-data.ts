@@ -22,9 +22,10 @@ import ana from "@/public/anajonesagent.svg";
 import french from "@/public/Franceflag.svg";
 import china from "@/public/chinaflag.svg";
 import spanish from "@/public/spain.svg";
-import rentbathroom from "../../public/rentbathroom.svg";
-import rentcar from "../../public/rentcar.svg";
-import rentbedroom from "../../public/rentbedroom.svg";
+import {
+  buyPropertyFeatureIcons,
+  rentPropertyFeatureIcons,
+} from "@/lib/properties/property-card-icons";
 
 export const TOTAL_PROPERTIES = 876;
 
@@ -46,8 +47,8 @@ const BASE_PROPERTY: Omit<ListingProperty, "id"> = {
   flags: [french, china, spanish],
   agentImage: ana,
   agentImageCard: eddy,
-  buyiconImages: ["/bedroom.jpg", "/bath.png", "/car.jpg"],
-  renticonImages: [rentbedroom, rentbathroom, rentcar],
+  buyiconImages: buyPropertyFeatureIcons,
+  renticonImages: rentPropertyFeatureIcons,
   thumbnail: [
     thumbnail1,
     thumbnail2,
