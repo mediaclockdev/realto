@@ -190,7 +190,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-center gap-1 text-gray-600">
+              <div className="flex items-center justify-between gap-1 text-gray-600">
                 <div className="flex items-center">
                   <Image
                     src={property.dateIcon ?? calender}
@@ -211,9 +211,10 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     height={40}
                     className="h-10 w-10 object-contain"
                   />
-                  <span className="ml-1 font-amasis text-base font-semibold text-[#343434]">
+                  <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
                     {property.time}
-                  </span>
+                    <span className="text-xs"> AM</span>
+                  </p>
                 </div>
               </div>
 
@@ -230,7 +231,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     {property.priceRange}
                   </p>
                 </div>
-                <span className="font-amasis text-base font-semibold text-red-500">
+                <span className="font-amasis text-base font-semibold text-[#007CBE]">
                   • {property.propertyType}
                 </span>
               </div>
@@ -317,7 +318,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   </Tooltip>
 
                   <div
-                    className="absolute bottom-3 right-28 z-20 flex items-center justify-center animate-fade-in-up"
+                    className="absolute bottom-2 right-28 z-20 flex items-center justify-center animate-fade-in-up"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <ShareMenuActionStrip iconSize={32} />

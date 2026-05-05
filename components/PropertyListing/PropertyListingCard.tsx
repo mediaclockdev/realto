@@ -135,7 +135,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           >
             <div className="bg-white rounded-[22px] overflow-visible shadow-[0_12px_30px_rgba(0,0,0,0.16)] border border-[#e7e7e7] transition-shadow duration-200">
               <div
-                className="bg-[#ED1C24] px-3 py-0.5 rounded-t-[22px] overflow-hidden"
+                className="bg-[#ED1C24] px-3 rounded-t-[22px] overflow-hidden"
                 onMouseEnter={() => setIsAgentAreaHovered(true)}
                 onMouseLeave={() => setIsAgentAreaHovered(false)}
               >
@@ -161,15 +161,15 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     <Image
                       src={property.agentImage}
                       alt={property.agentName}
-                      width={54}
-                      height={54}
-                      className="rounded-full object-cover size-13 border-2 border-white/40"
+                      width={40}
+                      height={40}
+                      className="rounded-full object-cover size-10 border-2 border-white/40"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="relative bg-gray-200 group/img shrink-0 h-44  lg:w-full">
+              <div className="relative bg-gray-200 group/img shrink-0 h-44  lg:w-full -mt-1.5">
                 <Image
                   src={property.images[imgIndex]}
                   alt={`Property in ${property.location}`}
@@ -194,7 +194,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 )}
               </div>
 
-              <div className="px-0.5 pt-2 pb-2">
+              <div className="px-2.5 pt-2 pb-2">
                 {property.renticonImages &&
                   property.renticonImages.length > 0 && (
                     <div className="flex items-center justify-between gap-4 mb-2">
@@ -262,9 +262,12 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                       height={36}
                       className="h-9 w-9 object-contain"
                     />
-                    <span className="ml-1 font-amasis text-base font-semibold text-[#343434]">
-                      {property.time}
-                    </span>
+                    <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
+                      {property.time}{" "}
+                      <span className="font-amasis text-xs font-semibold">
+                        AM
+                      </span>
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-2 ">
@@ -278,7 +281,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                       {property.priceRange}
                     </p>
                   </div>
-                  <p className="text-base font-semibold  font-amasis text-red-500 shrink-0">
+                  <p className="text-base font-semibold  font-amasis text-[#007CBE] shrink-0">
                     • {property.propertyType}
                   </p>
                 </div>
@@ -457,7 +460,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   <Image
                     src={location}
                     alt="location"
-                    className="w-8 h-8 shrink-0"
+                    className="w-4 h-6 shrink-0"
                   />
                   <span className="font-semibold font-amasis text-gray-800 text-sm truncate">
                     {property.location}
@@ -504,7 +507,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     {property.priceRange}
                   </p>
                 </div>
-                <span className="text-red-500 font-semibold font-amasis text-base">
+                <span className="text-[#007CBE] font-semibold font-amasis text-base">
                   • {property.propertyType}
                 </span>
               </div>
@@ -577,15 +580,15 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                         <Image
                           src={liked ? homeliked : buylikeicon}
                           alt="Home"
-                          width={32}
-                          height={32}
+                          width={28}
+                          height={28}
                           className="transition-all duration-200"
                         />
                       </button>
                     </Tooltip>
                     {showShareModal && (
                       <div
-                        className="absolute bottom-10 right-0 z-[100] flex items-center justify-center animate-fade-in-up bg-white p-2 rounded-xl shadow-lg border border-gray-100"
+                        className="absolute bottom-20 right-0 z-[100] flex items-center justify-center animate-fade-in-up bg-white p-2 rounded-xl shadow-lg border border-gray-100"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <ShareMenuActionStrip iconSize={28} />

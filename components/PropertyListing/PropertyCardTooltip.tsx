@@ -6,6 +6,10 @@ import locationIcon from "@/public/location.svg";
 import moneyIcon from "@/public/money.svg";
 import whatsapp from "@/public/whatsapp.svg";
 import instagram from "@/public/logos_instagram.svg";
+import linkedin from "@/public/logos_linkedin.svg";
+import tiktok from "@/public/tiktok.svg";
+import wechat from "@/public/wechat.svg";
+import snapchat from "@/public/snapchat.svg";
 import facebook from "@/public/logos_facebook.svg";
 import message from "@/public/mailicon.svg";
 
@@ -87,16 +91,12 @@ export const PropertySummaryTooltipContent = ({
   </div>
 );
 
-export const ShareMenuActionStrip = ({
-  iconSize,
-}: {
-  iconSize: number;
-}) => (
-  <div className="flex items-center gap-2">
+export const ShareMenuActionStrip = ({ iconSize }: { iconSize: number }) => (
+  <div className="flex items-center gap-1">
     <button className="cursor-pointer transition-transform hover:scale-110">
       <Image src={whatsapp} alt="whatsapp" width={iconSize} height={iconSize} />
     </button>
-    <button className="transition-transform hover:scale-110">
+    <button className="cursor-pointer transition-transform hover:scale-110">
       <Image
         src={instagram}
         alt="instagram"
@@ -104,11 +104,20 @@ export const ShareMenuActionStrip = ({
         height={iconSize}
       />
     </button>
-    <button className="transition-transform hover:scale-110">
+    <button className="cursor-pointer transition-transform hover:scale-110">
+      <Image src={tiktok} alt="tiktok" width={iconSize} height={iconSize} />
+    </button>
+    <button className="cursor-pointer transition-transform hover:scale-110">
+      <Image src={wechat} alt="wechat" width={iconSize} height={iconSize} />
+    </button>
+    <button className="cursor-pointer transition-transform hover:scale-110">
+      <Image src={snapchat} alt="snapchat" width={iconSize} height={iconSize} />
+    </button>
+    {/* <button className="transition-transform hover:scale-110">
       <Image src={facebook} alt="facebook" width={iconSize} height={iconSize} />
     </button>
     <button className="transition-transform hover:scale-110">
       <Image src={message} alt="message" width={iconSize} height={iconSize} />
-    </button>
+    </button> */}
   </div>
 );

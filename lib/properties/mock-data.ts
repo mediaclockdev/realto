@@ -34,7 +34,7 @@ const BASE_PROPERTY: Omit<ListingProperty, "id"> = {
   location: "Austin, Australia",
   size: "8,235sqft",
   date: "12-02-2026",
-  time: "10:00AM",
+  time: "10:00",
   priceRange: "$1,00,000-$2,00,000",
   propertyType: "Apartment",
   agentName: "Anna Johns",
