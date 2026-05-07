@@ -39,7 +39,7 @@ function toRentPropertyCards(
 export const newlyListedRentPropertyCards = toRentPropertyCards(
   newlyListedBuyPropertyCards,
   {
-    priceRange: "$700 rent",
+    priceRange: "$700/week",
     propertyType: "Apartment",
   },
 );
