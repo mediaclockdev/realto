@@ -225,7 +225,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     <Image
                       src={location}
                       alt="location"
-                      className="w-7 h-7 shrink-0"
+                      className="w-9 h-9 shrink-0"
                     />
                     <span className="text-base font-semibold font-amasis text-[#343434] truncate">
                       {property.location}
