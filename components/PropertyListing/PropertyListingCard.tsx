@@ -225,7 +225,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     <Image
                       src={location}
                       alt="location"
-                      className="w-9 h-9 shrink-0"
+                      className="w-6 h-9 shrink-0"
                     />
                     <span className="text-base font-semibold font-amasis text-[#343434] truncate">
                       {property.location}
@@ -265,7 +265,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
                       {property.time}{" "}
                       <span className="font-amasis text-xs font-semibold">
-                        AM
+                        am
                       </span>
                     </p>
                   </div>
@@ -316,7 +316,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     </Tooltip>
                     <Tooltip text="Like">
                       <button
-                        className="p-1 hover:bg-red-50 rounded-lg transition-colors"
+                        className="pl-0.5 pt-0.5 pb-0.5 hover:bg-red-50 rounded-lg transition-colors"
                         onClick={(e) => {
                           e.stopPropagation();
                           setIsRentLiked((prev) => !prev);

@@ -154,7 +154,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                           className="h-full w-full"
                         />
                       </div>
-                      <span className="text-[15px] font-bold labeltext text-[#FA2F2F]">
+                      <span className="text-base font-bold font-Aptos text-[#FA2F2F]">
                         {property.iconLabels?.[index] ?? "1"}
                       </span>
                     </div>
@@ -175,7 +175,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     {property.location}
                   </span>
                 </div>
-                <div className="ml-2 flex shrink-0 items-center gap-1">
+                <div className=" flex shrink-0 items-center gap-3">
                   <Image
                     src={squaremetericon}
                     alt="size"
@@ -183,7 +183,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     height={28}
                     className="shrink-0 object-contain h-7 w-7"
                   />
-                  <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
+                  <p className=" font-amasis text-base font-semibold text-[#343434]">
                     {property.size}
                     <span className="text-xs">sqft</span>
                   </p>
@@ -203,7 +203,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     {property.date}
                   </span>
                 </div>
-                <div className="ml-2 flex items-center">
+                <div className=" flex items-center gap-1">
                   <Image
                     src={clock}
                     alt="clockicon"
@@ -213,7 +213,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   />
                   <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
                     {property.time}
-                    <span className="text-xs"> AM</span>
+                    <span className="text-xs"> am</span>
                   </p>
                 </div>
               </div>
@@ -231,7 +231,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     {property.priceRange}
                   </p>
                 </div>
-                <span className="font-amasis text-base font-semibold text-[#007CBE]">
+                <span className="font-amasis text-base font-semibold text-[#007CBE] mr-2">
                   • {property.propertyType}
                 </span>
               </div>
@@ -239,7 +239,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
           </div>
           <div className="mt-0.5 h-0.5"></div>
           <div
-            className="flex flex-col justify-between shadow-xl rounded-xl bg-white hover:shadow-2xl"
+            className="flex flex-col justify-between shadow-xl rounded-xl bg-white hover:shadow-2xl px-2"
             onMouseEnter={() => setIsLowerHovered(true)}
             onMouseLeave={() => setIsLowerHovered(false)}
           >
@@ -283,7 +283,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                 <div className="relative flex items-center justify-end">
                   <Tooltip text="Share">
                     <button
-                      className="z-10 flex items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:bg-blue-50"
+                      className="z-10 flex items-center gap-1 rounded-lg px-0.5 py-0.5 transition-colors hover:bg-blue-50"
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowShareModal((prev) => !prev);
@@ -301,7 +301,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
 
                   <Tooltip text="Like">
                     <button
-                      className="z-10 flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:bg-red-50"
+                      className="z-10 flex cursor-pointer items-center gap-1 rounded-lg px-0.5 py-0.5 transition-colors hover:bg-red-50"
                       onClick={(e) => {
                         e.stopPropagation();
                         setLiked((prev) => !prev);
@@ -318,10 +318,10 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   </Tooltip>
 
                   <div
-                    className="absolute bottom-2 right-28 z-20 flex items-center justify-center animate-fade-in-up"
+                    className="absolute bottom-1 right-24 z-20 flex items-center justify-center animate-fade-in-up"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <ShareMenuActionStrip iconSize={32} />
+                    <ShareMenuActionStrip iconSize={28} />
                   </div>
                 </div>
               </div>

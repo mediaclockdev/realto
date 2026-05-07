@@ -32,7 +32,7 @@ export const TOTAL_PROPERTIES = 876;
 const BASE_PROPERTY: Omit<ListingProperty, "id"> = {
   images: [house, house4],
   location: "Austin, Australia",
-  size: "8,235sqft",
+  size: "8,235",
   date: "12-02-2026",
   time: "10:00",
   priceRange: "$1,00,000-$2,00,000",

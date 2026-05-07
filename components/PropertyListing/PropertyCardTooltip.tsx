@@ -10,8 +10,6 @@ import linkedin from "@/public/logos_linkedin.svg";
 import tiktok from "@/public/tiktok.svg";
 import wechat from "@/public/wechat.svg";
 import snapchat from "@/public/snapchat.svg";
-import facebook from "@/public/logos_facebook.svg";
-import message from "@/public/mailicon.svg";
 
 type TooltipProps = {
   text: ReactNode;
@@ -113,11 +111,8 @@ export const ShareMenuActionStrip = ({ iconSize }: { iconSize: number }) => (
     <button className="cursor-pointer transition-transform hover:scale-110">
       <Image src={snapchat} alt="snapchat" width={iconSize} height={iconSize} />
     </button>
-    {/* <button className="transition-transform hover:scale-110">
-      <Image src={facebook} alt="facebook" width={iconSize} height={iconSize} />
-    </button>
     <button className="transition-transform hover:scale-110">
-      <Image src={message} alt="message" width={iconSize} height={iconSize} />
-    </button> */}
+      <Image src={linkedin} alt="facebook" width={iconSize} height={iconSize} />
+    </button>
   </div>
 );
