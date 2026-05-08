@@ -1,19 +1,44 @@
 import type { ListingVariant } from "@/lib/listings/types";
 import type { ListingProperty } from "@/lib/properties/types";
-import { mapPropertyForListingVariant } from "@/lib/properties/variant-mappers";
-import { propertyCatalog } from "./mock-data";
+import {
+  getAllBuyProperties,
+  getBuyPropertyById,
+} from "@/lib/properties/buy/repository";
+import {
+  getAllLandProperties,
+  getLandPropertyById,
+} from "@/lib/properties/land/repository";
+import {
+  getAllRentProperties,
+  getRentPropertyById,
+} from "@/lib/properties/rent/repository";
+
+function getRepositoryForVariant(listingVariant: ListingVariant) {
+  switch (listingVariant) {
+    case "rent":
+      return {
+        getAll: getAllRentProperties,
+        getById: getRentPropertyById,
+      };
+    case "land":
+      return {
+        getAll: getAllLandProperties,
+        getById: getLandPropertyById,
+      };
+    case "buy":
+    default:
+      return {
+        getAll: getAllBuyProperties,
+        getById: getBuyPropertyById,
+      };
+  }
+}
 
 export function getPropertyById(
   id: string,
   listingVariant: ListingVariant = "buy",
 ): ListingProperty | null {
-  const property = propertyCatalog.find((item) => item.id === id) ?? null;
-
-  if (!property) {
-    return null;
-  }
-
-  return mapPropertyForListingVariant(property, listingVariant);
+  return getRepositoryForVariant(listingVariant).getById(id);
 }
 
 export function getRelatedProperties(
@@ -40,7 +65,5 @@ export function getRelatedProperties(
 export function getAllProperties(
   listingVariant: ListingVariant = "buy",
 ): ListingProperty[] {
-  return propertyCatalog.map((property) =>
-    mapPropertyForListingVariant(property, listingVariant),
-  );
+  return getRepositoryForVariant(listingVariant).getAll();
 }

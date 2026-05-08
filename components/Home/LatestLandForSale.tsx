@@ -1,6 +1,6 @@
 import React from "react";
 import PropertyListingCardSlider from "./PropertyListingCardSlider";
-import { latestLandPropertyCards } from "@/lib/property-cards/land";
+import { latestLandProperties } from "@/lib/properties/land/sections";
 
 const LatestLandForSale = () => {
   return (
@@ -12,7 +12,7 @@ const LatestLandForSale = () => {
       </div>
 
       <PropertyListingCardSlider
-        properties={latestLandPropertyCards}
+        properties={latestLandProperties}
         listingVariant="land"
         scrollLabel="latest land for sale"
       />

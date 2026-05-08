@@ -27,9 +27,9 @@ import {
   rentPropertyFeatureIcons,
 } from "@/lib/properties/property-card-icons";
 
-export const TOTAL_PROPERTIES = 876;
+export const TOTAL_BUY_PROPERTIES = 876;
 
-const BASE_PROPERTY: Omit<ListingProperty, "id"> = {
+const BUY_BASE_PROPERTY: Omit<ListingProperty, "id"> = {
   images: [house, house4],
   location: "Austin, Australia",
   size: "8,235",
@@ -62,7 +62,7 @@ const BASE_PROPERTY: Omit<ListingProperty, "id"> = {
   ],
 };
 
-const locations = [
+const buyLocations = [
   "Sans Souci, NSW 2219",
   "Cronulla, NSW 2230",
   "Bondi Beach, NSW 2026",
@@ -73,25 +73,25 @@ const locations = [
   "Brisbane, Australia",
 ];
 
-const propertyTypes = ["Apartment", "House", "Townhouse", "Villa", "Studio"];
-const agentNames = [
+const buyPropertyTypes = ["Apartment", "House", "Townhouse", "Villa", "Studio"];
+const buyAgentNames = [
   "Anna Johns",
   "Eddie Jones",
   "Anita Roelvink",
   "Brook Jones",
 ];
 
-export const propertyCatalog: ListingProperty[] = Array.from(
-  { length: TOTAL_PROPERTIES },
+export const buyPropertyCatalog: ListingProperty[] = Array.from(
+  { length: TOTAL_BUY_PROPERTIES },
   (_, index) => {
-    const location = locations[index % locations.length];
-    const propertyType = propertyTypes[index % propertyTypes.length];
-    const agentName = agentNames[index % agentNames.length];
+    const location = buyLocations[index % buyLocations.length];
+    const propertyType = buyPropertyTypes[index % buyPropertyTypes.length];
+    const agentName = buyAgentNames[index % buyAgentNames.length];
     const priceMin = 500000 + (index % 50) * 100000;
     const priceMax = priceMin + 200000;
 
     return {
-      ...BASE_PROPERTY,
+      ...BUY_BASE_PROPERTY,
       id: String(index + 1),
       location,
       propertyType,

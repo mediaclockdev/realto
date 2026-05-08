@@ -3,8 +3,8 @@ import Image from "next/image";
 import { PropertySlider } from "./PropertySlider";
 import PropertyListingCardSlider from "./PropertyListingCardSlider";
 import newclockicon from "../../public/newclockicon.svg";
-import { newlyListedBuyPropertyCards } from "@/lib/property-cards/buy";
-import { newlyListedRentPropertyCards } from "@/lib/property-cards/rent";
+import { newlyListedBuyProperties } from "@/lib/properties/buy/sections";
+import { newlyListedRentProperties } from "@/lib/properties/rent/sections";
 
 const SectionHeading = ({
   title,
@@ -44,13 +44,13 @@ export default function PropertyListing() {
       <div className="px-5 ">
         <SectionHeading title="Newly Listed" variant="BUY" />
         <PropertySlider
-          properties={newlyListedBuyPropertyCards}
+          properties={newlyListedBuyProperties}
           listingVariant="buy"
         />
 
         <SectionHeading title="Newly Listed" variant="RENT" />
         <PropertyListingCardSlider
-          properties={newlyListedRentPropertyCards}
+          properties={newlyListedRentProperties}
           listingVariant="rent"
           scrollLabel="newly listed rent properties"
         />

@@ -5,8 +5,8 @@ import Image from "next/image";
 import building from "../../public/headingbuilding.svg";
 import { PropertySlider } from "./PropertySlider";
 import PropertyListingCardSlider from "./PropertyListingCardSlider";
-import { luxuryBuyPropertyCards } from "@/lib/property-cards/buy";
-import { luxuryRentPropertyCards } from "@/lib/property-cards/rent";
+import { luxuryBuyProperties } from "@/lib/properties/buy/sections";
+import { luxuryRentProperties } from "@/lib/properties/rent/sections";
 
 const LuxuryHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
 
@@ -37,13 +37,13 @@ const LuxuryProperties = () => {
     <section className="mx-auto max-w-screen-2xl px-5 py-5">
       <LuxuryHeading variant="BUY" />
       <PropertySlider
-        properties={luxuryBuyPropertyCards}
+        properties={luxuryBuyProperties}
         listingVariant="buy"
       />
 
       <LuxuryHeading variant="RENT" />
       <PropertyListingCardSlider
-        properties={luxuryRentPropertyCards}
+        properties={luxuryRentProperties}
         listingVariant="rent"
         scrollLabel="luxury rent properties"
       />

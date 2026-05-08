@@ -3,8 +3,8 @@ import Image from "next/image";
 import magic from "../../public/magic.svg";
 import { PropertySlider } from "./PropertySlider";
 import PropertyListingCardSlider from "./PropertyListingCardSlider";
-import { trendingBuyPropertyCards } from "@/lib/property-cards/buy";
-import { trendingRentPropertyCards } from "@/lib/property-cards/rent";
+import { trendingBuyProperties } from "@/lib/properties/buy/sections";
+import { trendingRentProperties } from "@/lib/properties/rent/sections";
 
 const TrendingHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
   <div className="mb-2 flex items-center gap-2 px-1">
@@ -29,13 +29,13 @@ const TrendingProperties = () => {
     <section className="mx-auto max-w-screen-2xl px-5 py-5">
       <TrendingHeading variant="BUY" />
       <PropertySlider
-        properties={trendingBuyPropertyCards}
+        properties={trendingBuyProperties}
         listingVariant="buy"
       />
 
       <TrendingHeading variant="RENT" />
       <PropertyListingCardSlider
-        properties={trendingRentPropertyCards}
+        properties={trendingRentProperties}
         listingVariant="rent"
         scrollLabel="trending rent properties"
       />
