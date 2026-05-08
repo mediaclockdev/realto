@@ -203,7 +203,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     {property.date}
                   </span>
                 </div>
-                <div className=" flex items-center gap-1">
+                <div className=" flex items-center">
                   <Image
                     src={clock}
                     alt="clockicon"
@@ -237,7 +237,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
               </div>
             </div>
           </div>
-          <div className="mt-0.5 h-0.5"></div>
+          <div className="mt-[1px] h-[1px]"></div>
           <div
             className="flex flex-col justify-between shadow-xl rounded-xl bg-white hover:shadow-2xl px-2"
             onMouseEnter={() => setIsLowerHovered(true)}
