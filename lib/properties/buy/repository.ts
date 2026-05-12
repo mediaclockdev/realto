@@ -2,7 +2,7 @@ import { buyPropertyCatalog } from "@/lib/properties/buy/mock-data";
 import type { ListingProperty } from "@/lib/properties/types";
 
 export function getAllBuyProperties(): ListingProperty[] {
-  return buyPropertyCatalog;
+  return [...buyPropertyCatalog];
 }
 
 export function getBuyPropertyById(id: string): ListingProperty | null {

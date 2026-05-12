@@ -277,7 +277,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                       alt="money"
                       className="w-8 h-8 shrink-0"
                     />
-                    <p className="text-base font-semibold text-[#343434] font-amasis truncate">
+                    <p className="text-base font-semibold text-[#343434] font-amasis ">
                       {property.priceRange}
                     </p>
                   </div>
