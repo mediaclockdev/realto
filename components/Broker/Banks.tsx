@@ -3,6 +3,7 @@ import Image from "next/image";
 import anzbank from "../../public/anzbank.svg";
 import aussiebank from "../../public/aussieBank.svg";
 import nabbank from "../../public/nabbank.svg";
+import macquirebank from "../../public/macquirebank.svg";
 import mortgagechoicebank from "../../public/mortagagechoicebank.svg";
 import stgeorgebank from "../../public/stgeorgebank.svg";
 import ramsbank from "../../public/ramsbank.svg";
@@ -10,6 +11,15 @@ import athenabank from "../../public/athenabank.svg";
 import commonwealthbank from "../../public/commonwealthbank.svg";
 import westpacbank from "../../public/westpacbank.svg";
 import amobank from "../../public/amobank.svg";
+import austraibank from "../../public/austrailabank.svg";
+import afghomeloans from "../../public/afghomeloans.svg";
+import finspobank from "../../public/finspobank.svg";
+import loanmarket from "../../public/loanmarket.svg";
+import mortgagebroker from "../../public/mortgagebrokermelbourne.svg"
+import adelaidehills from "../../public/adelaidehills.svg"
+import brighten from "../../public/brightenbank.svg"
+import darwinmortgage from "../../public/darwinmortgage.svg"
+import tassie from "../../public/tassiehomeloans.svg"
 
 const Banks = () => {
   const bank = [
@@ -35,6 +45,17 @@ const Banks = () => {
       interest: "6.94% p.a.%",
     },
     { name: "Westpac bank", icon: westpacbank, interest: "6.94% p.a.%" },
+    { name: "Macquire bank", icon: macquirebank, interest: "6.94% p.a.%" },
+    { name: "Australia Bank", icon: austraibank, interest: "6.94% p.a.%" },
+    { name: "Afghome Loans", icon: afghomeloans, interest: "6.94% p.a.%" },
+    { name: "Finspon", icon: finspobank, interest: "6.94% p.a.%" },
+    { name: "Loan Market", icon: loanmarket, interest: "6.94% p.a.%" },
+    { name: "Mortgage Broker Melbourne", icon: mortgagebroker, interest: "6.94% p.a.%" },
+    { name: "Adelaide Hills", icon: adelaidehills, interest: "6.94% p.a.%" },
+    { name: "Brighten Bank", icon: brighten, interest: "6.94% p.a.%" },
+    { name: "Darwin Mortgage Broker", icon: darwinmortgage, interest: "6.94% p.a.%" },
+    { name: "Tassie Home Loans", icon: tassie, interest: "6.94% p.a.%" },
+    
   ];
 
   return (
