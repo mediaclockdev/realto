@@ -9,13 +9,13 @@ import { trendingRentProperties } from "@/lib/properties/rent/sections";
 const TrendingHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
   <div className="mb-2 flex items-center gap-2 px-1">
     <h2
-      className="font-amasis text-2xl text-black font-semibold lg:text-[32px]"
+      className="font-amasis text-2xl text-black font-semibold lg:text-[32px] leading-none m-0"
       
     >
       Trending Properties
     </h2>
     <span
-      className="font-amasis text-2xl font-medium text-[#1FAF38] lg:text-[32px]"
+      className="font-amasis text-2xl font-medium text-[#1FAF38] lg:text-[32px] leading-none"
      
     >
       {variant}

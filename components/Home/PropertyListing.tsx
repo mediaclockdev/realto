@@ -15,7 +15,7 @@ const SectionHeading = ({
 }) => (
   <div className="flex items-center gap-2 px-1">
     <h2
-      className="font-amasis text-2xl font-semibold lg:text-[32px]"
+      className="font-amasis text-2xl font-semibold lg:text-[32px] leading-none m-0"
       style={{
         color: "transparent",
         WebkitTextStroke: "1.5px #c0c0c0",
@@ -25,7 +25,7 @@ const SectionHeading = ({
     </h2>
     {variant && (
       <span
-        className="font-amasis text-xl font-semibold lg:text-[32px]"
+        className="font-amasis text-xl font-semibold lg:text-[32px] leading-none"
         style={{
           color: "black",
           WebkitTextStroke: "1.5px #c0c0c0",
