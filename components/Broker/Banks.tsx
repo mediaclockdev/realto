@@ -61,7 +61,10 @@ const Banks = () => {
   return (
     <div className="max-w-screen-2xl mx-auto py-5 overflow-hidden">
       <div className="marquee-wrapper">
-        <div className="marquee-track">
+        <div 
+          className="marquee-track"
+          style={{ animationDuration: `${bank.length * 3}s` }}
+        >
           {[...bank, ...bank, ...bank].map((logo, i) => (
             <div
               key={i}

@@ -26,7 +26,10 @@ const MarqueeCards: React.FC<MarqueeCardsProps> = ({
 }) => {
   return (
     <div className={`marquee-wrapper overflow-hidden ${className}`}>
-      <div className={`marquee-track ${speed}`}>
+      <div 
+        className={`marquee-track ${speed}`}
+        style={{ animationDuration: `${items.length * 3}s` }}
+      >
         {[...items, ...items, ...items].map((item, i) => (
           <div
             key={i}

@@ -47,7 +47,10 @@ export default function AgentCarousel({
 
       {/* Marquee */}
       <div className="marquee-wrapper overflow-hidden py-2">
-        <div className={`marquee-track ${speed}`}>
+        <div 
+          className={`marquee-track ${speed}`}
+          style={{ animationDuration: `${agents.length * 3}s` }}
+        >
           {[...agents, ...agents, ...agents].map((agent, i) => (
             <div
               key={i}
