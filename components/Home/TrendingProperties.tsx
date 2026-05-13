@@ -7,7 +7,7 @@ import { trendingBuyProperties } from "@/lib/properties/buy/sections";
 import { trendingRentProperties } from "@/lib/properties/rent/sections";
 
 const TrendingHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
-  <div className="mb-0 flex items-center gap-2 px-1">
+  <div className="mt-1 flex items-center gap-2 px-1">
     <h2
       className="font-amasis text-2xl text-black font-semibold lg:text-[32px] leading-none m-0"
       

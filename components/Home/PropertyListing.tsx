@@ -13,7 +13,7 @@ const SectionHeading = ({
   title: string;
   variant?: "BUY" | "RENT";
 }) => (
-  <div className="flex items-center gap-2 px-1">
+  <div className="mt-2 flex items-center gap-2 px-1">
     <h2
       className="font-amasis text-2xl font-semibold lg:text-[32px] leading-none m-0"
       style={{
