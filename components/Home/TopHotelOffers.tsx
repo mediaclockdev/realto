@@ -50,15 +50,15 @@ const HotelOfferCard = ({ hotel }: { hotel: HotelListing }) => {
       href={`/hotel/${hotel.slug}`}
       className="group shrink-0 rounded-xl p-[2px] transition hover:bg-[linear-gradient(90deg,#CB9E33,#EDD06A,#FCEA94,#FADE7B,#FDEE9D,#C29225)]"
     >
-      <article className="flex w-[620px] max-w-[86vw] gap-4 rounded-xl bg-white p-3 shadow-sm transition group-hover:shadow-lg">
-        <div className="relative h-[150px] w-[250px] shrink-0 overflow-hidden rounded-lg">
+      <article className="flex w-[280px] sm:w-[320px] md:w-[620px] max-w-[88vw] flex-col md:flex-row gap-3 md:gap-4 rounded-xl bg-white p-3 shadow-sm transition group-hover:shadow-lg">
+        <div className="relative h-[160px] md:h-[150px] w-full md:w-[250px] shrink-0 overflow-hidden rounded-lg">
           <Image
             src={hotel.heroImage}
             alt={hotel.title}
             fill
             unoptimized
             className="object-cover"
-            sizes="250px"
+            sizes="(max-width: 768px) 320px, 250px"
           />
         </div>
 
@@ -67,22 +67,22 @@ const HotelOfferCard = ({ hotel }: { hotel: HotelListing }) => {
             <div className="flex items-start justify-between gap-3">
               <StarRating rating={hotel.rating} />
               <div className="text-right">
-                <p className="rounded-md bg-[#E7F2FD] px-2 py-0.5 text-xs font-semibold leading-tight text-[#4197EF]">
+                <p className="rounded-md bg-[#E7F2FD] px-2 py-0.5 text-[10px] md:text-xs font-semibold leading-tight text-[#4197EF]">
                   {hotel.badge}
                 </p>
                 <span className="text-[9px] text-[#909090]">525 reviews</span>
               </div>
             </div>
 
-            <h3 className="mt-1 truncate font-poppins text-3xl font-semibold leading-tight text-black">
+            <h3 className="mt-1 truncate font-poppins text-xl md:text-3xl font-semibold leading-tight text-black capitalize">
               {hotel.title.toLowerCase()}
             </h3>
 
-            <div className="mt-2 flex flex-wrap gap-1.5">
+            <div className="mt-1.5 md:mt-2 flex flex-wrap gap-1.5">
               {hotel.amenities.slice(0, 3).map((amenity) => (
                 <span
                   key={amenity.label}
-                  className="rounded-full border border-gray-300 px-2 py-0.5 text-xs text-gray-700"
+                  className="rounded-full border border-gray-300 px-2 py-0.5 text-[10px] md:text-xs text-gray-700"
                 >
                   {amenity.label}
                 </span>
@@ -90,24 +90,24 @@ const HotelOfferCard = ({ hotel }: { hotel: HotelListing }) => {
             </div>
           </div>
 
-          <div className="flex items-end justify-between gap-4">
+          <div className="mt-3 md:mt-0 flex items-end justify-between gap-2 md:gap-4">
             <div>
-              <p className="font-poppins text-sm font-semibold text-[#7ECC9B]">
+              <p className="font-poppins text-[11px] md:text-sm font-semibold text-[#7ECC9B]">
                 Free Cancellation
               </p>
-              <p className="font-poppins text-xs text-[#909090]">
+              <p className="font-poppins text-[9px] md:text-xs text-[#909090]">
                 {hotel.totalLabel}
               </p>
             </div>
 
-            <div className="text-right">
-              <p className="font-poppins text-3xl font-semibold leading-none text-black">
-                {hotel.priceLabel}
-              </p>
-              <p className="font-poppins text-xs font-semibold text-[#909090]">
+            <div className="text-right mt-0 lg:mt-3">
+              <p className="font-poppins text-xl md:text-3xl font-semibold leading-none text-black">
+                {hotel.priceLabel}  <span className="font-poppins text-[10px] md:text-xs font-semibold text-[#909090]">
                 /night
+              </span>
               </p>
-              <span className="mt-2 inline-block rounded-lg bg-[#4189DD] px-6 py-1.5 font-poppins text-sm text-white transition group-hover:bg-[#3298DF]">
+              
+              <span className="mt-1.5 md:mt-2 inline-block rounded-lg bg-[#4189DD] px-3 md:px-6 py-1.5 font-poppins text-[11px] md:text-sm text-white transition group-hover:bg-[#3298DF]">
                 View Detail
               </span>
             </div>

@@ -101,11 +101,10 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
         />
       }
     >
-      <div className="relative py-2">
-        <div
-          className={`relative overflow-visible rounded-xl p-1 transition-all duration-300 cursor-pointer ${
+      <div
+          className={`relative overflow-visible rounded-xl p-0.5 transition-all duration-300 cursor-pointer my-3 ${
             sliderMode
-              ? "ml-0 lg:ml-5 w-[340px] shrink-0 hover:scale-105"
+              ? " w-[340px] shrink-0 hover:scale-105"
               : "w-full"
           }`}
           style={{ background: isHovered ? GOLD_GRADIENT : "transparent" }}
@@ -113,6 +112,8 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
           onMouseLeave={() => setIsHovered(false)}
           onClick={onClick}
         >
+      <div className="relative py-2 px-2 bg-white rounded-xl shadow-2xl">
+        
           <div className="h-full w-full overflow-visible rounded-xl bg-white shadow-xl transition-shadow duration-300 hover:shadow-2xl">
             <div className="group/image relative h-52 cursor-pointer overflow-hidden rounded-t-xl bg-gray-200">
               <Image
@@ -237,9 +238,9 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
               </div>
             </div>
           </div>
-          <div className="mt-[1px] h-[1px]"></div>
+          <div className="mt-[2px] h-[2px]"></div>
           <div
-            className="flex flex-col justify-between shadow-xl rounded-xl bg-white hover:shadow-2xl px-2 pb-1"
+            className="flex flex-col justify-between shadow-sm rounded-xl bg-white hover:shadow-2xl px-2 pb-1"
             onMouseEnter={() => setIsLowerHovered(true)}
             onMouseLeave={() => setIsLowerHovered(false)}
           >

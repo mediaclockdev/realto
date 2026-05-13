@@ -133,44 +133,51 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               }
             }}
           >
-            <div className="bg-white rounded-[22px] overflow-visible shadow-[0_12px_30px_rgba(0,0,0,0.16)] border border-[#e7e7e7] transition-shadow duration-200">
-              <div
-                className="bg-[#ED1C24] px-3 rounded-t-[22px] overflow-hidden"
-                onMouseEnter={() => setIsAgentAreaHovered(true)}
-                onMouseLeave={() => setIsAgentAreaHovered(false)}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <div className="min-w-0">
-                    <div className="">
+            <div className="relative py-2 px-2 bg-white rounded-[24px] shadow-2xl">
+              {/* SECTION 1: Agent Banner */}
+              <div className="w-full overflow-hidden rounded-[20px] shadow-[0_2px_5px_rgb(0,0,0,0.8)] transition-shadow duration-300">
+                <div
+                  className="bg-[#ED1C24] px-3 py-1"
+                  onMouseEnter={() => setIsAgentAreaHovered(true)}
+                  onMouseLeave={() => setIsAgentAreaHovered(false)}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="">
+                        <Image
+                          src={property.agentCompany}
+                          alt="Company logo"
+                          width={100}
+                          height={44}
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 shrink-0">
+                      <div className="text-right">
+                        <p className="text-base font-semibold leading-none font-amasis">
+                          {property.agentName}
+                        </p>
+                      </div>
                       <Image
-                        src={property.agentCompany}
-                        alt="Company logo"
-                        width={100}
-                        height={44}
-                        className="object-contain"
+                        src={property.agentImage}
+                        alt={property.agentName}
+                        width={40}
+                        height={40}
+                        className="rounded-full object-cover size-10 border-2 border-white/40"
                       />
                     </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 shrink-0">
-                    <div className="text-right">
-                      <p className="text-base font-semibold leading-none font-amasis">
-                        {property.agentName}
-                      </p>
-                    </div>
-                    <Image
-                      src={property.agentImage}
-                      alt={property.agentName}
-                      width={40}
-                      height={40}
-                      className="rounded-full object-cover size-10 border-2 border-white/40"
-                    />
                   </div>
                 </div>
               </div>
 
-              <div className="relative bg-gray-200 group/img shrink-0 h-44  lg:w-full -mt-1.5">
-                <Image
+              <div className="mt-[3px] h-[2px]"></div>
+
+              {/* SECTION 2: Image and Details */}
+              <div className="w-full overflow-hidden rounded-[20px] bg-white shadow-[0_2px_5px_rgb(0,0,0,0.8)] transition-shadow duration-300">
+                <div className="relative bg-gray-200 group/img shrink-0 h-44 lg:w-full">
+                  <Image
                   src={property.images[imgIndex]}
                   alt={`Property in ${property.location}`}
                   fill
@@ -341,6 +348,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
           {isLastItem && (
