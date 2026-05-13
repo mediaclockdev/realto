@@ -223,9 +223,9 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   <Image
                     src={money}
                     alt="money icon"
-                    width={40}
-                    height={40}
-                    className="h-10 w-10 object-contain"
+                    width={44}
+                    height={48}
+                    className="h-12 w-11 object-contain"
                   />
                   <p className="font-amasis text-base font-semibold text-[#343434]">
                     {property.priceRange}
@@ -239,7 +239,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
           </div>
           <div className="mt-[1px] h-[1px]"></div>
           <div
-            className="flex flex-col justify-between shadow-xl rounded-xl bg-white hover:shadow-2xl px-2"
+            className="flex flex-col justify-between shadow-xl rounded-xl bg-white hover:shadow-2xl px-2 pb-1"
             onMouseEnter={() => setIsLowerHovered(true)}
             onMouseLeave={() => setIsLowerHovered(false)}
           >
@@ -250,8 +250,8 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     <Image
                       src={property.agentImage}
                       alt={property.agentName}
-                      width={52}
-                      height={52}
+                      width={60}
+                      height={60}
                       className="shrink-0 rounded-full border-2 border-red-100 object-cover"
                     />
                     <div className="space-y-1">
