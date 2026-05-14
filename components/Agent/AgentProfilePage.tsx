@@ -210,12 +210,12 @@ export default function AgentProfilePage({
         {/* About Agent */}
         <section className="grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_1fr] ">
           <div className="rounded-2xl border border-gray-200 p-6 shadow-sm">
-            <h2 className="text-base lg:text-xl font-semibold text-[#1f2937]">
+            <h2 className="text-[15px]  font-semibold text-[#007CBE]">
               About Me
             </h2>
             <p className="mt-4 text-sm leading-7 text-[#4b5563]">{agent.bio}</p>
 
-            <h3 className="mt-6 lg:mt-8 text-lg font-semibold text-[#1f2937]">
+            <h3 className="mt-6 lg:mt-8 text-[15px] font-semibold text-[#007CBE]">
               Experience & Credentials
             </h3>
             <div className="mt-6 space-y-6">
@@ -250,7 +250,7 @@ export default function AgentProfilePage({
               ))}
             </div>
 
-            <h3 className="mt-8 text-lg font-semibold text-[#1f2937]">
+            <h3 className="mt-8 text-[15px] font-semibold text-[#007CBE]">
               Certifications & Awards
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-[#374151]">
@@ -264,7 +264,7 @@ export default function AgentProfilePage({
           </div>
           <div className="space-y-6">
             <div>
-              <h2 className="text-lg font-semibold text-[#111827]">
+              <h2 className="text-[15px] font-semibold text-[#007CBE]">
                 Performance Highlights
               </h2>
               <div className="mt-3 space-y-3 rounded-2xl border border-gray-200 p-4 text-sm font-poppins">
@@ -296,7 +296,7 @@ export default function AgentProfilePage({
             </div>
 
             <div>
-              <h2 className="text-lg font-semibold text-[#1f2937]">
+              <h2 className="text-[15px] font-semibold text-[#007CBE]">
                 Languages
               </h2>
               <div className="mt-3 space-y-2 rounded-2xl border border-gray-200 p-4 text-sm">
@@ -317,7 +317,7 @@ export default function AgentProfilePage({
             </div>
 
             <div>
-              <h2 className="text-lg font-semibold text-[#1f2937]">
+              <h2 className="text-[15px] font-semibold text-[#007CBE]">
                 Service Areas
               </h2>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -339,7 +339,7 @@ export default function AgentProfilePage({
       <section className="px-5 py-4">
         <div className="mb-4 flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-semibold text-[#1f2937]">
+            <h2 className="text-[15px] font-semibold text-[#007CBE]">
               Current Listings
             </h2>
             <p className="text-sm text-[#6b7280]">
@@ -363,7 +363,7 @@ export default function AgentProfilePage({
       {/* Sold Property */}
       <section className="px-6 py-4">
         <div className="mb-4 flex items-center justify-between gap-4">
-          <h2 className="text-xl font-semibold text-[#1f2937]">
+          <h2 className="text-[15px] font-semibold text-[#007CBE]">
             Sold Property Listings
           </h2>
           <Link

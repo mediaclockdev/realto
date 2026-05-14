@@ -440,7 +440,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
             </div>
 
             {/* Content */}
-            <div className="px-3 pt-2 pb-3 flex flex-col flex-1">
+            <div className="px-3  pb-1 flex flex-col flex-1">
               {/* Icons row */}
               {property.renticonImages && (
                 <div className="flex items-center gap-2.5 ">
@@ -465,7 +465,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
 
               {/* Location + size */}
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1.5 min-w-0 my-1">
+                <div className="flex items-center gap-1.5 min-w-0">
                   <Image
                     src={property.locationIcon ?? location}
                     alt="location"
@@ -534,7 +534,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 onMouseLeave={() => setIsActionAreaHovered(false)}
               >
                 {/* Row: agent photo + name/phone | company + location */}
-                <div className="flex items-center justify-between gap-1">
+                <div className="flex items-center justify-between gap-1 mt-1">
                   <div className="flex items-center gap-1 mt-1">
                     <Image
                       src={property.agentImage}
