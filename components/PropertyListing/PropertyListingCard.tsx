@@ -230,7 +230,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 <div className="flex items-center justify-between gap-2 mb-1">
                   <div className="flex items-center gap-2 min-w-0">
                     <Image
-                      src={location}
+                      src={property.locationIcon ?? location}
                       alt="location"
                       className="w-6 h-9 shrink-0"
                     />
@@ -263,12 +263,13 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   </div>
                   <div className=" flex items-center">
                     <Image
-                      src={clock}
+                      src={property.clockIcon ?? clock}
                       alt="clockicon"
                       width={36}
                       height={36}
                       className="h-9 w-9 object-contain"
                     />
+
                     <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
                       {property.time}{" "}
                       <span className="font-amasis text-xs font-semibold">
@@ -466,9 +467,11 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1.5 min-w-0 my-1">
                   <Image
-                    src={location}
+                    src={property.locationIcon ?? location}
                     alt="location"
-                    className="w-4 h-6 shrink-0"
+                    width={40}
+                    height={40}
+                    className="w-10 h-10 shrink-0"
                   />
                   <span className="font-semibold font-amasis text-gray-800 text-sm truncate">
                     {property.location}
@@ -477,8 +480,10 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 <div className="flex items-center gap-1 ml-2 shrink-0">
                   <Image
                     src={squaremetericon}
-                    alt="location"
-                    className="w-6 h-6 shrink-0"
+                    alt="size"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 shrink-0"
                   />
                   <span className="text-[#343434] font-semibold  font-amasis text-base">
                     {property.size}
@@ -489,13 +494,13 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               {listingVariant !== "land" && (
                 <div className="flex items-center gap-3 mb-1 text-gray-500">
                   <div className="flex items-center gap-1">
-                    <Image src={calender} alt="" className="w-8 h-8 shrink-0" />
+                    <Image src={calender} alt="" width={32} height={32} className="w-8 h-8 shrink-0" />
                     <p className="text-[#343434] font-semibold font-amasis text-base">
                       {property.date}
                     </p>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Image src={clock} alt="" className="w-8 h-8 shrink-0" />
+                    <Image src={property.clockIcon ?? clock} alt="" width={32} height={32} className="w-8 h-8 shrink-0" />
                     <p className="text-[#343434] font-semibold font-amasis text-base">
                       {property.time}
                     </p>
@@ -503,13 +508,16 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 </div>
               )}
 
+
               {/* Price + type */}
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5 min-w-0">
                   <Image
                     src={money}
                     alt="money icon"
-                    className="w-8 h-8 shrink-0"
+                    width={40}
+                    height={40}
+                    className="w-10 h-10 shrink-0"
                   />
                   <p className="text-[#343434] font-semibold font-amasis text-base">
                     {property.priceRange}
@@ -522,86 +530,86 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
 
               {/* Agent */}
               <div
-                className="flex items-center justify-between"
                 onMouseEnter={() => setIsActionAreaHovered(true)}
                 onMouseLeave={() => setIsActionAreaHovered(false)}
               >
-                {/* Agent Information */}
-                <div>
-                  <div className="flex gap-1">
+                {/* Row: agent photo + name/phone | company + location */}
+                <div className="flex items-center justify-between gap-1">
+                  <div className="flex items-center gap-1 mt-1">
                     <Image
                       src={property.agentImage}
                       alt={property.agentName}
-                      width={30}
-                      height={30}
-                      className="rounded-full shrink-0 border-2 border-red-100 object-cover"
+                      width={60}
+                      height={60}
+                      className="shrink-0 rounded-full border-2 border-red-100 object-cover"
                     />
-                    <p className="font-bold font-amasis text-red-500 text-base truncate">
-                      {property.agentName}
+                    <div className="space-y-1">
+                      <p className="truncate font-amasis text-base font-semibold text-[#FA2F2F]">
+                        {property.agentName}
+                      </p>
+                      <p className="font-amasis text-xs font-semibold text-[#FA2F2F]">
+                        {property.agentPhone}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col items-center">
+                    <Image
+                      src={property.agentCompany}
+                      alt="Company logo"
+                      width={80}
+                      height={40}
+                      className="block object-contain"
+                    />
+                    <p className="text-right font-amasis text-xs font-medium text-[#FA2F2F]">
+                      {property.agentLocation}
                     </p>
-                  </div>
-                  <div className="flex items-center gap-1 text-xs text-gray-600 mt-1">
-                    <Image src={mobile} alt="" width={20} height={20} />
-                    <span>{property.agentPhone}</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-xs text-blue-600 mt-1">
-                    <Image src={mail} alt="" width={20} height={20} />
-                    <span className="truncate font-amasis">
-                      {property.agentEmail}
-                    </span>
                   </div>
                 </div>
 
-                {/* Company Badge + Actions */}
-                <div>
-                  <Image
-                    src={property.agentCompany}
-                    alt="Company logo"
-                    width={80}
-                    height={36}
-                    className="object-contain"
-                  />
+                {/* Share + Like icons right-aligned */}
+                <div className="relative flex items-center justify-end">
+                  <Tooltip text="Share">
+                    <button
+                      className="z-10 flex items-center gap-1 rounded-lg px-0.5 py-0.5 transition-colors hover:bg-blue-50"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowShareModal((prev) => !prev);
+                      }}
+                    >
+                      <Image
+                        src={share}
+                        alt="Share"
+                        width={40}
+                        height={40}
+                        className="cursor-pointer object-contain transition-all duration-200"
+                      />
+                    </button>
+                  </Tooltip>
 
-                  <div className="text-xs text-red-600 font-medium font-amasis">
-                    <p>{property.agentLocation}</p>
-                  </div>
-                  <div className="relative flex items-center gap-1">
-                    <Tooltip text="Share">
-                      <button
-                        className="flex items-center gap-1 px-2 py-1.5 hover:bg-blue-50 rounded-lg transition-colors text-xs text-blue-600 font-medium font-amasis"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setShowShareModal((prev) => !prev);
-                        }}
-                      >
-                        <Image src={share} alt="Share" width={28} height={28} />
-                      </button>
-                    </Tooltip>
-                    <Tooltip text="Like">
-                      <button
-                        className="flex items-center gap-1 px-2 py-1.5 hover:bg-red-50 rounded-lg transition-colors text-xs text-red-500 font-medium font-amasis"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setLiked((prev) => !prev);
-                        }}
-                      >
-                        <Image
-                          src={liked ? homeliked : buylikeicon}
-                          alt="Home"
-                          width={28}
-                          height={28}
-                          className="transition-all duration-200"
-                        />
-                      </button>
-                    </Tooltip>
-                    {showShareModal && (
-                      <div
-                        className="absolute bottom-20 right-0 z-[100] flex items-center justify-center animate-fade-in-up bg-white p-2 rounded-xl shadow-lg border border-gray-100"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <ShareMenuActionStrip iconSize={28} />
-                      </div>
-                    )}
+                  <Tooltip text="Like">
+                    <button
+                      className="z-10 flex cursor-pointer items-center gap-1 rounded-lg px-0.5 py-0.5 transition-colors hover:bg-red-50"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setLiked((prev) => !prev);
+                      }}
+                    >
+                      <Image
+                        src={liked ? homeliked : buylikeicon}
+                        alt="Home"
+                        width={40}
+                        height={40}
+                        className="object-contain transition-all duration-200"
+                      />
+                    </button>
+                  </Tooltip>
+
+                  <div
+                    className="absolute bottom-1 right-24 z-20 flex items-center justify-center animate-fade-in-up"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <ShareMenuActionStrip iconSize={28} />
                   </div>
                 </div>
               </div>

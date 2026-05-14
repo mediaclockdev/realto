@@ -13,7 +13,11 @@ import type { BuyPropertyCardItem } from "@/lib/property-cards/types";
 import {
   buyPropertyFeatureIcons,
   luxuryLocationIcon,
+  luxuryPropertyFeatureIcons,
+  luxuryClockIcon,
 } from "@/lib/properties/property-card-icons";
+
+
 
 const baseBuySectionCards: BuyPropertyCardItem[] = [
   {
@@ -129,32 +133,38 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     ...baseBuySectionCards[0],
     images: [luxury, modern],
     dateicon: hammer,
-    iconImages: buyPropertyFeatureIcons,
+    iconImages: luxuryPropertyFeatureIcons,
     locationIcon: luxuryLocationIcon,
+    clockIcon: luxuryClockIcon,
     detailHref: "/property/21?listingVariant=buy",
   },
   {
     ...baseBuySectionCards[1],
     images: [luxury, villa],
     dateicon: calender,
-    iconImages: buyPropertyFeatureIcons,
+    iconImages: luxuryPropertyFeatureIcons,
     locationIcon: luxuryLocationIcon,
+    clockIcon: luxuryClockIcon,
     detailHref: "/property/22?listingVariant=buy",
   },
   {
     ...baseBuySectionCards[2],
     images: [luxury, modern],
     dateicon: hammer,
-    iconImages: buyPropertyFeatureIcons,
+    iconImages: luxuryPropertyFeatureIcons,
     locationIcon: luxuryLocationIcon,
+    clockIcon: luxuryClockIcon,
     detailHref: "/property/23?listingVariant=buy",
   },
   {
     ...baseBuySectionCards[3],
     images: [luxury, villa],
     dateicon: calender,
-    iconImages: buyPropertyFeatureIcons,
+    iconImages: luxuryPropertyFeatureIcons,
     locationIcon: luxuryLocationIcon,
+    clockIcon: luxuryClockIcon,
     detailHref: "/property/24?listingVariant=buy",
   },
 ];
+
+

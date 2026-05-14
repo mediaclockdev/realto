@@ -39,7 +39,9 @@ export interface BuyPropertyCardData {
   agentImage: ImageSource;
   locationIcon?: ImageSource;
   buyiconImages?: ImageSource[];
+  clockIcon?: ImageSource;
   iconLabels?: string[];
+
   isLastItem?: boolean;
   onSeeMore?: () => void;
 }
@@ -206,12 +208,13 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                 </div>
                 <div className=" flex items-center">
                   <Image
-                    src={clock}
+                    src={property.clockIcon ?? clock}
                     alt="clockicon"
                     width={40}
                     height={40}
                     className="h-10 w-10 object-contain"
                   />
+
                   <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
                     {property.time}
                     <span className="text-xs"> am</span>

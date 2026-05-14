@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { usePathname } from "next/navigation";
 import facebook from "../public/logos_facebook.svg";
 import instagram from "../public/logos_instagram.svg";
 import twitter from "../public/logos_twitter.svg";
@@ -9,6 +12,13 @@ import logo from "../public/footerlogo.svg";
 import Image from "next/image";
 
 const Footer = () => {
+  const pathname = usePathname();
+  const isAuthRoute = pathname.startsWith("/login") || pathname.startsWith("/signup");
+
+  if (isAuthRoute) {
+    return null;
+  }
+
   return (
     <div className="space-y-2 ">
 

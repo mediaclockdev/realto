@@ -19,6 +19,8 @@ export interface BuyPropertyCardItem {
   agentEmail: string;
   agentImage: ImageSource;
   iconImages?: ImageSource[];
+  clockIcon?: ImageSource;
   iconLabels?: string[];
+
   detailHref?: string;
 }

@@ -21,7 +21,9 @@ export interface ListingProperty {
   agentImageCard: ImageSource;
   buyiconImages?: ImageSource[];
   renticonImages?: ImageSource[];
+  clockIcon?: ImageSource;
   iconLabels?: string[];
+
   thumbnail: ImageSource[];
   socials: ImageSource[];
   flags: ImageSource[];

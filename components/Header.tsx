@@ -8,6 +8,12 @@ import Link from "next/link";
 
 const Header = () => {
   const pathname = usePathname();
+  const isAuthRoute = pathname.startsWith("/login") || pathname.startsWith("/signup");
+
+  if (isAuthRoute) {
+    return null;
+  }
+
   const isTransparentHeader =
     pathname === "/homepage" ||
     pathname === "/studentResidency" ||
@@ -48,7 +54,9 @@ const Header = () => {
         </div>
 
         <button className="bg-[#009ffd] text-white text-sm sm:text-base font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-colors duration-200 flex-shrink-0">
-          Sign In
+          <Link href={"/login"}>
+            Sign In
+          </Link>
         </button>
       </div>
     </header>

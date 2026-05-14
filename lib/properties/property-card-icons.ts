@@ -3,6 +3,11 @@ import rentbathroom from "@/public/rentbathroom.svg";
 import rentbedroom from "@/public/rentbedroom.svg";
 import rentcar from "@/public/rentcar.svg";
 import locationiconluxurybuy from "@/public/locationiconluxurybuy.svg";
+import luxurybed from "@/public/luxurybed.svg";
+import luxurybath from "@/public/luxurybathroom.svg";
+import luxurycar from "@/public/luxurycar.svg";
+import luxuryclock from "@/public/luxuryclock.svg";
+
 
 export const buyPropertyFeatureIcons: ImageSource[] = [
   "/bedroom.jpg",
@@ -15,4 +20,14 @@ export const rentPropertyFeatureIcons: ImageSource[] = [
   rentbathroom,
   rentcar,
 ];
+
+export const luxuryPropertyFeatureIcons: ImageSource[] = [
+  luxurybed,
+  luxurybath,
+  luxurycar,
+];
+
 export const luxuryLocationIcon = locationiconluxurybuy;
+export const luxuryClockIcon = luxuryclock;
+
+

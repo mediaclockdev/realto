@@ -5,37 +5,43 @@ import {
   newlyListedBuyProperties,
   trendingBuyProperties,
 } from "@/lib/properties/buy/sections";
-import { rentPropertyFeatureIcons } from "@/lib/properties/property-card-icons";
+import {
+  rentPropertyFeatureIcons,
+} from "@/lib/properties/property-card-icons";
+
 
 function toRentSectionProperties(
   properties: BuyPropertyCardItem[],
   options: { priceRange: string; propertyType: string },
 ): ListingProperty[] {
-  return properties.map((property) => ({
-    id: property.id,
-    images: property.images,
-    location: property.location,
-    locationIcon: property.locationIcon,
-    size: property.size,
-    date: property.date,
-    time: property.time,
-    priceRange: options.priceRange,
-    propertyType: options.propertyType,
-    agentName: property.agentName,
-    agentCompany: property.agentCompany,
-    agentCompanyName: "Parker Realestate",
-    agentLocation: property.agentLocation,
-    agentPhone: property.agentPhone,
-    agentEmail: property.agentEmail,
-    agentImage: property.agentImage,
-    agentImageCard: property.agentImage,
-    renticonImages: rentPropertyFeatureIcons,
-    iconLabels: property.iconLabels ?? ["1", "1", "1"],
-    thumbnail: property.images,
-    socials: [],
-    flags: [],
-  }));
+  return properties.map((property) => {
+    return {
+      id: property.id,
+      images: property.images,
+      location: property.location,
+      size: property.size,
+      date: property.date,
+      time: property.time,
+      priceRange: options.priceRange,
+      propertyType: options.propertyType,
+      agentName: property.agentName,
+      agentCompany: property.agentCompany,
+      agentCompanyName: "Parker Realestate",
+      agentLocation: property.agentLocation,
+      agentPhone: property.agentPhone,
+      agentEmail: property.agentEmail,
+      agentImage: property.agentImage,
+      agentImageCard: property.agentImage,
+      renticonImages: rentPropertyFeatureIcons,
+      iconLabels: property.iconLabels ?? ["1", "1", "1"],
+      thumbnail: property.images,
+      socials: [],
+      flags: [],
+    };
+  });
 }
+
+
 
 export const newlyListedRentProperties = toRentSectionProperties(
   newlyListedBuyProperties,

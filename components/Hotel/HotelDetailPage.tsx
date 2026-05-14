@@ -30,12 +30,6 @@ export default function HotelDetailPage({ hotel }: HotelDetailPageProps) {
 
   const hotelSummary = useMemo(() => hotel.summary, [hotel.summary]);
 
-  const featureImages = [
-    hotel.gallery[1] ?? hotel.heroImage,
-    hotel.gallery[2] ?? hotel.heroImage,
-    hotel.gallery[3] ?? hotel.heroImage,
-  ];
-
   const amenityCards = hotel.amenities.map((amenity) => ({
     title: amenity.label,
     image: amenity.icon,

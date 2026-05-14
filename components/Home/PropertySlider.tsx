@@ -74,9 +74,11 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
               agentEmail: property.agentEmail,
               agentImage: property.agentImage,
               buyiconImages: property.iconImages,
+              clockIcon: property.clockIcon,
               iconLabels: property.iconLabels,
               locationIcon: property.locationIcon,
             }}
+
             isLastItem={index === properties.length - 1}
             onSeeMore={() => router.push(`/propertyListingpage`)}
             onClick={() => {
