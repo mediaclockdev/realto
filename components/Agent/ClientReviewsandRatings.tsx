@@ -141,7 +141,7 @@ const ClientReviewsandRatings: React.FC = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 flex flex-col justify-center items-center">
       <div className="flex flex-col justify-center items-center gap-2">
-        <h2 className="text-[#007CBE] font-semibold text-xl font-amasis">
+        <h2 className="text-[#007CBE] font-semibold text-[15px] font-amasis">
           Client Reviews and Ratings
         </h2>
         <p className="text-[#6B7280] font-poppins text-base font-normal">
