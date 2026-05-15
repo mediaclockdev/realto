@@ -363,7 +363,7 @@ export default function AgentProfilePage({
       {/* Sold Property */}
       <section className="px-6 py-4">
         <div className="mb-4 flex items-center justify-between gap-4">
-          <h2 className="text-[15px] font-semibold text-[#007CBE]">
+          <h2 className="text-[15px] font-semibold text-[#007CBE] font-amasis">
             Sold Property Listings
           </h2>
           <Link
