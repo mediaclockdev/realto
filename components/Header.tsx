@@ -8,7 +8,8 @@ import Link from "next/link";
 
 const Header = () => {
   const pathname = usePathname();
-  const isAuthRoute = pathname.startsWith("/login") || pathname.startsWith("/signup");
+  const isAuthRoute =
+    pathname.startsWith("/login") || pathname.startsWith("/signup");
 
   if (isAuthRoute) {
     return null;
@@ -53,10 +54,8 @@ const Header = () => {
           </Link>
         </div>
 
-        <button className="bg-[#009ffd] text-white text-sm sm:text-base font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-colors duration-200 flex-shrink-0">
-          <Link href={"/login"}>
-            Sign In
-          </Link>
+        <button className="bg-[#399918] text-white text-sm sm:text-base font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-colors duration-200 flex-shrink-0">
+          <Link href={"/login"}>Sign In</Link>
         </button>
       </div>
     </header>

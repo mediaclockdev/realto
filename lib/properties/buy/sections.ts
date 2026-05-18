@@ -15,9 +15,8 @@ import {
   luxuryLocationIcon,
   luxuryPropertyFeatureIcons,
   luxuryClockIcon,
+  luxuryClockIcon2,
 } from "@/lib/properties/property-card-icons";
-
-
 
 const baseBuySectionCards: BuyPropertyCardItem[] = [
   {
@@ -135,7 +134,7 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     dateicon: hammer,
     iconImages: luxuryPropertyFeatureIcons,
     locationIcon: luxuryLocationIcon,
-    clockIcon: luxuryClockIcon,
+    clockIcon: luxuryClockIcon2,
     detailHref: "/property/21?listingVariant=buy",
   },
   {
@@ -153,7 +152,7 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     dateicon: hammer,
     iconImages: luxuryPropertyFeatureIcons,
     locationIcon: luxuryLocationIcon,
-    clockIcon: luxuryClockIcon,
+    clockIcon: luxuryClockIcon2,
     detailHref: "/property/23?listingVariant=buy",
   },
   {
@@ -166,5 +165,3 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     detailHref: "/property/24?listingVariant=buy",
   },
 ];
-
-
