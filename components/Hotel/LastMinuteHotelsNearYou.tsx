@@ -1,12 +1,50 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import hotelImg from "../../public/hotelimg.png";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import star from "../../public/starsingle.svg";
 import { getHotelListings } from "@/lib/hotel/repository";
 import type { HotelListing } from "@/lib/hotel/types";
 
+import sheratonLogo from "../../public/sheraton.svg";
+import facebook from "../../public/logos_facebook.svg";
+import instagram from "../../public/logos_instagram.svg";
+import whatsapp from "../../public/whatsapp.svg";
+import locationIcon from "../../public/location.svg";
+import mail from "../../public/hotelemailicon.svg";
+import goldenArrowCircle from "../../public/goldencircle.svg";
+import telephone from "../../public/telephone.svg";
+
 const hotels = getHotelListings();
+
+const GOLD_GRADIENT =
+  "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
+
+const HeartIcon = ({
+  liked,
+  onClick,
+}: {
+  liked: boolean;
+  onClick: (e: any) => void;
+}) => (
+  <button
+    onClick={onClick}
+    className="w-11 h-11 flex items-center justify-center rounded-full bg-white shadow-md hover:shadow-lg transition-transform hover:scale-110 active:scale-95 border border-gray-100 shrink-0"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      className={`w-6 h-6 transition-colors duration-300 ${
+        liked
+          ? "fill-red-500 stroke-red-600 scale-110"
+          : "fill-none stroke-gray-400 hover:stroke-red-500"
+      }`}
+      strokeWidth="2"
+    >
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+  </button>
+);
 
 const StarRating = ({ count }: { count: number }) => (
   <div className="flex gap-0.5">
@@ -15,8 +53,8 @@ const StarRating = ({ count }: { count: number }) => (
         <Image
           src={star}
           alt="star"
-          width={20}
-          height={20}
+          width={15} // Smaller rating stars
+          height={15}
           className={i <= count ? "opacity-100" : "opacity-30"}
         />
       </div>
@@ -24,81 +62,285 @@ const StarRating = ({ count }: { count: number }) => (
   </div>
 );
 
-const HotelCard = ({ hotel }: { hotel: HotelListing }) => (
-  <Link
-    href={`/hotel/${hotel.slug}`}
-    className="group rounded-2xl p-[2px] transition hover:bg-[linear-gradient(90deg,#CB9E33,#EDD06A,#FCEA94,#FADE7B,#FDEE9D,#C29225)]"
-  >
-    <div className="bg-white rounded-2xl p-4 flex flex-col lg:flex-row gap-4 shadow-sm">
-      {/* Image */}
-      <div className="relative w-[220px] min-w-[300px] lg:min-w-[220px] h-[200px] rounded-xl overflow-hidden shrink-0">
-        <Image src={hotelImg} alt={hotel.title} fill className="object-cover" />
-      </div>
+const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [liked, setLiked] = useState(false);
 
-      {/* Content */}
-      <div className="flex flex-col flex-1 py-1">
-        {/* Stars + Rating */}
-        <div className="flex items-start justify-between">
-          <StarRating count={hotel.rating} />
-          <div className="flex flex-col">
-            <p className="bg-[#E7F2FD] text-[#4197EF] text-sm lg:text-base font-semibold px-2 py-1 rounded-lg leading-tight">
-              {hotel.badge}
-            </p>
-            <span className="font-poppins font-normal text-[10px] text-[#909090] text-right">
-              525 reviews
-            </span>
-          </div>
-        </div>
+  // Setup dynamic list of room images for slideshow (4 total photos)
+  const displayImages = hotel.gallery
+    ? hotel.gallery.slice(0, 4)
+    : [hotel.heroImage];
+  const displayRoomNames = hotel.roomNames || [
+    "Bedroom",
+    "Balcony View",
+    "Bathroom",
+    "Open Buffet",
+  ];
 
-        {/* Hotel Name */}
-        <h3 className="text-2xl lg:text-[32px] font-semibold font-poppins text-black">
-          {hotel.title.toLowerCase()}
-        </h3>
+  // Setup auto slideshow rotation every 3 seconds
+  useEffect(() => {
+    if (displayImages.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [displayImages.length]);
 
-        {/* Amenity Pills */}
-        <div className="flex flex-wrap gap-2 mt-2">
-          {hotel.amenities.slice(0, 3).map((item) => (
-            <span
-              key={item.label}
-              className="border border-gray-300 text-gray-600 text-xs px-3 py-1 rounded-full"
-            >
-              {item.label}
-            </span>
-          ))}
-        </div>
-
-        {/* Price + CTA */}
-        <div className="flex justify-between mt-1">
-          <div>
-            <p className="text-[#7ECC9B] font-semibold text-base font-poppins">
-              Free Cancellation
-            </p>
-            <p className="text-[#909090] text-xs lg:text-base font-normal font-poppins">
-              {hotel.totalLabel}
-            </p>
-          </div>
-          <div className="">
-            <div className="text-right">
-              <p className="text-xl lg:text-[32px] font-semibold text-black font-poppins">
-                {hotel.priceLabel}
-                <span className="text-[#909090] font-semibold font-poppins text-sm">
-                  /night
-                </span>
-              </p>
+  return (
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative rounded-2xl p-[2px] transition-all duration-300 hover:scale-[1.02] cursor-pointer w-[420px] shrink-0"
+      style={{
+        background: isHovered ? GOLD_GRADIENT : "transparent",
+        boxShadow: isHovered
+          ? "0 20px 40px -15px rgba(203, 158, 51, 0.3)"
+          : "0 10px 25px -10px rgba(0,0,0,0.08)",
+      }}
+    >
+      <div className="bg-white rounded-2xl flex flex-col justify-between h-full overflow-hidden shadow-md">
+        <div className="px-2 py-4 pb-2">
+          {/* Top Brand/Logo & City Bar */}
+          <div className="flex items-center gap-2 mb-1 border-b border-gray-100 pb-1">
+            {hotel.slug === "sheraton-sydney" ? (
+              <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center border border-gray-100 shadow-sm bg-white p-1">
+                <Image
+                  src={sheratonLogo}
+                  alt="Sheraton Logo"
+                  className="object-contain w-full h-full"
+                />
+              </div>
+            ) : (
+              <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center bg-gradient-to-tr from-[#CB9E33] to-[#EDD06A] text-white font-bold text-base shadow-sm font-poppins">
+                {hotel.title.charAt(0)}
+              </div>
+            )}
+            <div className="flex items-baseline gap-1.5 truncate">
+              <h3 className="text-xl font-bold font-poppins text-black truncate leading-tight">
+                {hotel.title}
+              </h3>
+              <span className="text-gray-500 text-xs font-semibold font-poppins truncate shrink-0">
+                {hotel.subtitle}
+              </span>
             </div>
-            <span className="inline-block bg-[#4189DD] hover:bg-[#3298DF] cursor-pointer text-white text-sm lg:text-base font-normal font-poppins px-3 lg:px-5 py-1 rounded-[10px] transition">
-              View Detail
-            </span>
+          </div>
+
+          {/* Auto-rotating Header Photo Container */}
+          <div
+            onClick={() =>
+              setCurrentImageIndex((prev) => (prev + 1) % displayImages.length)
+            }
+            className="relative w-full h-56 rounded-xl overflow-hidden shadow-sm shrink-0 bg-gray-100 group/image"
+          >
+            <Image
+              src={displayImages[currentImageIndex]}
+              alt={`${hotel.title} - ${displayRoomNames[currentImageIndex]}`}
+              fill
+              className="object-cover transition-opacity duration-700 select-none"
+            />
+            {/* Elegant Semi-Transparent Overlay Room Name Badge */}
+            <div className="absolute top-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded-md shadow-sm select-none border border-white/10">
+              {displayRoomNames[currentImageIndex]}
+            </div>
+          </div>
+
+          {/* Deeper 3D Thumbnail Photos under the Header */}
+          <div className="flex justify-between gap-2.5 mt-1">
+            {displayImages.slice(1, 4).map((img, idx) => {
+              const targetIndex = idx + 1;
+              const isActive = currentImageIndex === targetIndex;
+              return (
+                <div
+                  key={idx}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentImageIndex(targetIndex);
+                  }}
+                  className={`relative flex-1 h-28 rounded-lg overflow-hidden cursor-pointer border-2 shadow-[0_6px_14px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_18px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-0.5 shrink-0 ${
+                    isActive ? "border-[#CB9E33] scale-105" : "border-white"
+                  }`}
+                >
+                  <Image
+                    src={img}
+                    alt={displayRoomNames[targetIndex]}
+                    fill
+                    className="object-cover"
+                  />
+                  {/* Subtle dynamic overlay name text on top of thumbnail */}
+                  <div className="absolute top-0 left-0 right-0 bg-black/50 backdrop-blur-[1px] text-white text-[7px] font-bold py-0.5 px-0.5 text-center truncate leading-tight select-none">
+                    {displayRoomNames[targetIndex]}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Contact Details (Location, Phone, Email) Flexed with Pricing Section */}
+          <div className="flex justify-between items-start  border-t border-gray-50 pt-2 gap-2">
+            {/* Left Side: Address, Phone, Email Details (with increased spacing & size) */}
+            <div className="flex flex-col gap-1 flex-1 min-w-0">
+              {/* Address */}
+              <div className="flex items-center gap-1">
+                <Image
+                  src={locationIcon}
+                  alt="Location"
+                  width={40}
+                  height={40}
+                  className="shrink-0"
+                />
+                <span className="font-poppins text-sm font-semibold text-gray-800 leading-tight">
+                  {hotel.mapLabel || hotel.location}
+                </span>
+              </div>
+
+              {/* Phone */}
+              <div className="flex items-center gap-1">
+                <Image
+                  src={telephone}
+                  alt="Phone"
+                  width={40}
+                  height={40}
+                  className="shrink-0"
+                />
+                <span className="font-poppins text-sm font-semibold text-gray-800 leading-tight">
+                  {hotel.phone || "02 8745 3020"}
+                </span>
+              </div>
+
+              {/* Email */}
+              <div className="flex items-center gap-1">
+                <Image
+                  src={mail}
+                  alt="mail"
+                  width={40}
+                  height={40}
+                  className="shrink-0"
+                />
+                <span className="font-poppins text-sm font-semibold text-gray-800 leading-tight truncate">
+                  {hotel.email ||
+                    `Booking@${hotel.title.toLowerCase().replace(/\s+/g, "")}.com.au`}
+                </span>
+              </div>
+            </div>
+
+            {/* Right Side: Price Box - Positioned Upwards, bold, very big red price & grey old price */}
+            <div className="text-right flex flex-col items-end shrink-0 pt-1">
+              <span className="text-[10px] uppercase tracking-widest font-extrabold text-gray-400 font-poppins">
+                from
+              </span>
+              <p className="text-3xl font-extrabold text-[#FA2F2F] font-poppins leading-none">
+                {hotel.priceLabel}
+              </p>
+              {hotel.oldPrice && (
+                <p className="text-xs font-semibold text-gray-400 line-through font-poppins mt-1">
+                  was {hotel.oldPrice}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Rating & Actions Row (Star rating flexed horizontally with like and share) */}
+          <div className="flex justify-between items-center mt-1 px-1 pb-1 border-t border-gray-50/50">
+            {/* Left Side: Star Rating - Sized Down */}
+            <div className="flex flex-col gap-1">
+              <StarRating count={hotel.rating} />
+              <div className="w-full  flex justify-between items-center ">
+                <div className="flex gap-2.5">
+                  <a
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
+                    className="hover:scale-125 transition-transform duration-200"
+                  >
+                    <div className="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                      <Image
+                        src={whatsapp}
+                        alt="WhatsApp"
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                      />
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
+                    className="hover:scale-125 transition-transform duration-200"
+                  >
+                    <div className="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                      <Image
+                        src={instagram}
+                        alt="Instagram"
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                      />
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
+                    className="hover:scale-125 transition-transform duration-200"
+                  >
+                    <div className="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                      <Image
+                        src={facebook}
+                        alt="Facebook"
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                      />
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
+                    className="hover:scale-125 transition-transform duration-200"
+                  >
+                    <div className="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side: Enlarged Heart and Golden Arrow Circle (Like & Share) */}
+            <div className="flex items-center gap-3">
+              <Image src={goldenArrowCircle} alt="golden circle" />
+              <HeartIcon
+                liked={liked}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLiked(!liked);
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </Link>
-);
+  );
+};
 
 const LastMinuteHotels = () => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 380; // Slightly more than card width for smooth feel
+      const newScrollPosition =
+        direction === "left"
+          ? scrollContainerRef.current.scrollLeft - scrollAmount
+          : scrollContainerRef.current.scrollLeft + scrollAmount;
+
+      scrollContainerRef.current.scrollTo({
+        left: newScrollPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <div className="max-w-screen-2xl mx-auto px-5 py-5">
+    <div className="max-w-screen-2xl mx-auto px-5 py-8">
       {/* Header */}
       <div className="flex items-center gap-2 mb-6">
         <h2 className="font-poppins text-xl lg:text-[32px] font-semibold text-black">
@@ -106,7 +348,7 @@ const LastMinuteHotels = () => {
         </h2>
         {/* Trending icon */}
         <svg
-          className="w-6 h-6 text-gray-900"
+          className="w-6 h-6 text-gray-900 animate-pulse"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -119,11 +361,36 @@ const LastMinuteHotels = () => {
         </svg>
       </div>
 
-      {/* 2x2 Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {hotels.map((hotel) => (
-          <HotelCard key={hotel.id} hotel={hotel} />
-        ))}
+      {/* Horizontal Card Slider with Arrow Navigation */}
+      <div className="group relative overflow-visible">
+        {/* Left Arrow */}
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-0 top-1/2 z-10 -ml-5 -translate-y-1/2 rounded-full bg-white p-3 shadow-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:bg-gray-100"
+          aria-label="Scroll left"
+        >
+          <ChevronLeft className="h-6 w-6 text-gray-800" />
+        </button>
+
+        {/* Scrollable Container */}
+        <div
+          ref={scrollContainerRef}
+          className="flex gap-6 overflow-x-auto overflow-y-visible scroll-smooth px-0 py-2 lg:px-2"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {hotels.map((hotel) => (
+            <HotelCard key={hotel.id} hotel={hotel} />
+          ))}
+        </div>
+
+        {/* Right Arrow */}
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-0 top-1/2 z-10 -mr-5 -translate-y-1/2 rounded-full bg-white p-3 shadow-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:bg-gray-100"
+          aria-label="Scroll right"
+        >
+          <ChevronRight className="h-6 w-6 text-gray-800" />
+        </button>
       </div>
     </div>
   );

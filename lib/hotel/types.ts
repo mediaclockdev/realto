@@ -33,4 +33,9 @@ export interface HotelListing {
   mapLabel: string;
   iconImages: ImageSource[];
   iconLabels?: string[];
+  phone?: string;
+  email?: string;
+  oldPrice?: string;
+  roomNames?: string[];
 }
+
