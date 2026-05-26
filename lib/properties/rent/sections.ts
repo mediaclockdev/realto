@@ -34,6 +34,8 @@ function toRentSectionProperties(
       agentImageCard: property.agentImage,
       renticonImages: rentPropertyFeatureIcons,
       iconLabels: property.iconLabels ?? ["1", "1", "1"],
+      likeIcon: property.likeIcon,
+      likedIcon: property.likedIcon,
       thumbnail: property.images,
       socials: [],
       flags: [],

@@ -29,16 +29,6 @@ import theritzcarlton from "../../public/theritzcarlton.svg"
 
 const HotelLogos = () => {
   const franchise = [
-    // commercialRealEstate,
-    // knightfrank,
-    // x,
-    // goodman,
-    // cbre,
-    // jll,
-    // colliers,
-    // raywhite,
-    // cushman,
-    // belle,
     sheraton,
     movenpick,
     marriott,

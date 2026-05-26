@@ -21,6 +21,8 @@ export interface BuyPropertyCardItem {
   iconImages?: ImageSource[];
   clockIcon?: ImageSource;
   iconLabels?: string[];
+  likeIcon?: ImageSource;
+  likedIcon?: ImageSource;
 
   detailHref?: string;
 }

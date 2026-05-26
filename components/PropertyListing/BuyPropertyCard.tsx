@@ -41,6 +41,8 @@ export interface BuyPropertyCardData {
   buyiconImages?: ImageSource[];
   clockIcon?: ImageSource;
   iconLabels?: string[];
+  likeIcon?: ImageSource;
+  likedIcon?: ImageSource;
 
   isLastItem?: boolean;
   onSeeMore?: () => void;
@@ -312,7 +314,11 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                       }}
                     >
                       <Image
-                        src={liked ? homeliked : home}
+                        src={
+                          liked
+                            ? property.likedIcon ?? homeliked
+                            : property.likeIcon ?? home
+                        }
                         alt="Home"
                         width={40}
                         height={40}

@@ -16,6 +16,8 @@ import {
   luxuryPropertyFeatureIcons,
   luxuryClockIcon,
   luxuryClockIcon2,
+  luxurylikeicon,
+  luxurylikedicon,
 } from "@/lib/properties/property-card-icons";
 
 const baseBuySectionCards: BuyPropertyCardItem[] = [
@@ -135,6 +137,8 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     iconImages: luxuryPropertyFeatureIcons,
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon2,
+    likeIcon: luxurylikeicon,
+    likedIcon: luxurylikedicon,
     detailHref: "/property/21?listingVariant=buy",
   },
   {
@@ -144,6 +148,8 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     iconImages: luxuryPropertyFeatureIcons,
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon,
+    likeIcon: luxurylikeicon,
+    likedIcon: luxurylikedicon,
     detailHref: "/property/22?listingVariant=buy",
   },
   {
@@ -153,6 +159,8 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     iconImages: luxuryPropertyFeatureIcons,
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon2,
+    likeIcon: luxurylikeicon,
+    likedIcon: luxurylikedicon,
     detailHref: "/property/23?listingVariant=buy",
   },
   {
@@ -162,6 +170,8 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     iconImages: luxuryPropertyFeatureIcons,
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon,
+    likeIcon: luxurylikeicon,
+    likedIcon: luxurylikedicon,
     detailHref: "/property/24?listingVariant=buy",
   },
 ];

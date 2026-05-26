@@ -10,7 +10,6 @@ import share from "../../public/share.svg";
 import rentlike from "../../public/rentlike.svg";
 import buylikeicon from "../../public/buylikeicon.svg";
 import mobile from "../../public/mobileicon.svg";
-import mail from "../../public/mailicon.svg";
 import clock from "../../public/rentclock.svg";
 import money from "../../public/money.svg";
 import rentmoney from "../../public/rentmoneyicon.svg";
@@ -53,7 +52,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   const [isAgentAreaHovered, setIsAgentAreaHovered] = useState(false);
   const outerRef = useRef<HTMLDivElement>(null);
   const hoverBorderRent = "linear-gradient(135deg, #C0C0C0 0%, #D1D5DB 100%)";
-  const hoverBorderBuy = "linear-gradient(135deg, #f6d365 0%, #fda085 100%)";
+  const hoverBorderLand = "linear-gradient(135deg, #2A9A00 0%, #246B05 100%)";
 
   const next = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -90,6 +89,8 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           agentEmail: property.agentEmail,
           agentImage: property.agentImage,
           buyiconImages: property.buyiconImages,
+          likeIcon: property.likeIcon,
+          likedIcon: property.likedIcon,
 
           iconLabels: property.iconLabels,
         }}
@@ -178,178 +179,182 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               <div className="w-full overflow-hidden rounded-[20px] bg-white shadow-[0_2px_5px_rgb(0,0,0,0.8)] transition-shadow duration-300">
                 <div className="relative bg-gray-200 group/img shrink-0 h-44 lg:w-full">
                   <Image
-                  src={property.images[imgIndex]}
-                  alt={`Property in ${property.location}`}
-                  fill
-                  className="object-cover w-3/4 lg:w-full h-1/4 lg:h-full"
-                />
-                {property.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={prev}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 text-black bg-white/80 hover:bg-white rounded-full p-1.5 opacity-0 group-hover/img:opacity-100 transition-opacity"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={next}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-black bg-white/80 hover:bg-white rounded-full p-1.5 opacity-0 group-hover/img:opacity-100 transition-opacity"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </>
-                )}
-              </div>
-
-              <div className="px-2.5 pt-2 pb-2">
-                {property.renticonImages &&
-                  property.renticonImages.length > 0 && (
-                    <div className="flex items-center justify-between gap-4 mb-2">
-                      {property.renticonImages.map((icon, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center justify-between gap-0.5"
-                        >
-                          <div className="h-12 w-17 shrink-0 overflow-hidden rounded-lg">
-                            <Image
-                              src={icon}
-                              alt=""
-                              width={48}
-                              height={40}
-                              className="w-full h-full"
-                            />
-                          </div>
-                          <span className="text-xl font-semibold labeltext text-[#343434]">
-                            {property.iconLabels?.[i] ?? "1"}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                    src={property.images[imgIndex]}
+                    alt={`Property in ${property.location}`}
+                    fill
+                    className="object-cover w-3/4 lg:w-full h-1/4 lg:h-full"
+                  />
+                  {property.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={prev}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 text-black bg-white/80 hover:bg-white rounded-full p-1.5 opacity-0 group-hover/img:opacity-100 transition-opacity"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={next}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-black bg-white/80 hover:bg-white rounded-full p-1.5 opacity-0 group-hover/img:opacity-100 transition-opacity"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </>
                   )}
-
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <Image
-                      src={property.locationIcon ?? location}
-                      alt="location"
-                      className="w-6 h-9 shrink-0"
-                    />
-                    <span className="text-base font-semibold font-amasis text-[#343434] truncate">
-                      {property.location}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 shrink-0">
-                    <Image
-                      src={squaremetericon}
-                      alt="size"
-                      className="w-7 h-7 shrink-0"
-                    />
-                    <p className="text-base font-semibold font-amasis text-[#343434]">
-                      {property.size}
-                      <span className="text-xs">sqft</span>
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <Image
-                      src={calender}
-                      alt="money"
-                      className="w-8 h-8 shrink-0"
-                    />
-                    <p className="text-base font-semibold text-[#343434] font-amasis truncate">
-                      {property.date}
-                    </p>
-                  </div>
-                  <div className=" flex items-center">
-                    <Image
-                      src={property.clockIcon ?? clock}
-                      alt="clockicon"
-                      width={36}
-                      height={36}
-                      className="h-9 w-9 object-contain"
-                    />
-
-                    <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
-                      {property.time}{" "}
-                      <span className="font-amasis text-xs font-semibold">
-                        am
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-24 ">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <Image
-                      src={rentmoney}
-                      alt="money"
-                      className="w-8 h-8 shrink-0"
-                    />
-                    <p className="text-base font-semibold text-[#343434] font-amasis ">
-                      {property.priceRange}
-                    </p>
-                  </div>
-                  <p className="text-base font-semibold  font-amasis text-[#007CBE] shrink-0">
-                    • {property.propertyType}
-                  </p>
                 </div>
 
-                <div
-                  className="flex justify-between items-center"
-                  onMouseEnter={() => setIsActionAreaHovered(true)}
-                  onMouseLeave={() => setIsActionAreaHovered(false)}
-                >
-                  <div className="flex items-center">
-                    <Image src={mobile} alt="mobile icon" />
-                    <p className=" text-base font-semibold leading-none text-[#343434] font-amasis">
-                      {property.agentPhone}
-                    </p>
-                  </div>
-                  <div className="relative flex">
-                    <Tooltip text="Share">
-                      <button
-                        className="p-1 hover:bg-blue-50 rounded-lg transition-colors"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setShowShareModal((prev) => !prev);
-                        }}
-                      >
-                        <Image
-                          src={rentshare}
-                          alt="Share"
-                          width={36}
-                          height={36}
-                        />
-                      </button>
-                    </Tooltip>
-                    <Tooltip text="Like">
-                      <button
-                        className="pl-0.5 pt-0.5 pb-0.5 hover:bg-red-50 rounded-lg transition-colors"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setIsRentLiked((prev) => !prev);
-                        }}
-                      >
-                        <Image
-                          src={isRentLiked ? rentlikedicon : rentlike}
-                          alt="Like"
-                          width={40}
-                          height={40}
-                        />
-                      </button>
-                    </Tooltip>
-                    {showShareModal && (
-                      <div
-                        className="absolute bottom-10 right-0 z-[100] flex items-center gap-1 justify-center animate-fade-in-up bg-white px-1 py-1 rounded-xl shadow-lg border border-gray-100"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <ShareMenuActionStrip iconSize={24} />
+                <div className="px-2.5 pt-2 pb-2">
+                  {property.renticonImages &&
+                    property.renticonImages.length > 0 && (
+                      <div className="flex items-center justify-between gap-4 mb-2">
+                        {property.renticonImages.map((icon, i) => (
+                          <div
+                            key={i}
+                            className="flex items-center justify-between gap-0.5"
+                          >
+                            <div className="h-12 w-17 shrink-0 overflow-hidden rounded-lg">
+                              <Image
+                                src={icon}
+                                alt=""
+                                width={48}
+                                height={40}
+                                className="w-full h-full"
+                              />
+                            </div>
+                            <span className="text-xl font-semibold labeltext text-[#343434]">
+                              {property.iconLabels?.[i] ?? "1"}
+                            </span>
+                          </div>
+                        ))}
                       </div>
                     )}
+
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <Image
+                        src={property.locationIcon ?? location}
+                        alt="location"
+                        className="w-6 h-9 shrink-0"
+                      />
+                      <span className="text-base font-semibold font-amasis text-[#343434] truncate">
+                        {property.location}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <Image
+                        src={squaremetericon}
+                        alt="size"
+                        className="w-7 h-7 shrink-0"
+                      />
+                      <p className="text-base font-semibold font-amasis text-[#343434]">
+                        {property.size}
+                        <span className="text-xs">sqft</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <Image
+                        src={calender}
+                        alt="money"
+                        className="w-8 h-8 shrink-0"
+                      />
+                      <p className="text-base font-semibold text-[#343434] font-amasis truncate">
+                        {property.date}
+                      </p>
+                    </div>
+                    <div className=" flex items-center">
+                      <Image
+                        src={property.clockIcon ?? clock}
+                        alt="clockicon"
+                        width={36}
+                        height={36}
+                        className="h-9 w-9 object-contain"
+                      />
+
+                      <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
+                        {property.time}{" "}
+                        <span className="font-amasis text-xs font-semibold">
+                          am
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-24 ">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <Image
+                        src={rentmoney}
+                        alt="money"
+                        className="w-8 h-8 shrink-0"
+                      />
+                      <p className="text-base font-semibold text-[#343434] font-amasis ">
+                        {property.priceRange}
+                      </p>
+                    </div>
+                    <p className="text-base font-semibold  font-amasis text-[#007CBE] shrink-0">
+                      • {property.propertyType}
+                    </p>
+                  </div>
+
+                  <div
+                    className="flex justify-between items-center"
+                    onMouseEnter={() => setIsActionAreaHovered(true)}
+                    onMouseLeave={() => setIsActionAreaHovered(false)}
+                  >
+                    <div className="flex items-center">
+                      <Image src={mobile} alt="mobile icon" />
+                      <p className=" text-base font-semibold leading-none text-[#343434] font-amasis">
+                        {property.agentPhone}
+                      </p>
+                    </div>
+                    <div className="relative flex">
+                      <Tooltip text="Share">
+                        <button
+                          className="p-1 hover:bg-blue-50 rounded-lg transition-colors"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setShowShareModal((prev) => !prev);
+                          }}
+                        >
+                          <Image
+                            src={rentshare}
+                            alt="Share"
+                            width={36}
+                            height={36}
+                          />
+                        </button>
+                      </Tooltip>
+                      <Tooltip text="Like">
+                        <button
+                          className="pl-0.5 pt-0.5 pb-0.5 hover:bg-red-50 rounded-lg transition-colors"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setIsRentLiked((prev) => !prev);
+                          }}
+                        >
+                          <Image
+                            src={
+                              isRentLiked
+                                ? property.likedIcon ?? rentlikedicon
+                                : property.likeIcon ?? rentlike
+                            }
+                            alt="Like"
+                            width={40}
+                            height={40}
+                          />
+                        </button>
+                      </Tooltip>
+                      {showShareModal && (
+                        <div
+                          className="absolute bottom-10 right-0 z-[100] flex items-center gap-1 justify-center animate-fade-in-up bg-white px-1 py-1 rounded-xl shadow-lg border border-gray-100"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ShareMenuActionStrip iconSize={24} />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
           </div>
           {isLastItem && (
@@ -393,7 +398,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           style={{ background: "transparent" }}
           onMouseEnter={() => {
             if (outerRef.current) {
-              outerRef.current.style.background = hoverBorderBuy;
+              outerRef.current.style.background = hoverBorderLand;
             }
           }}
           onMouseLeave={() => {
@@ -469,9 +474,9 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   <Image
                     src={property.locationIcon ?? location}
                     alt="location"
-                    width={40}
+                    width={32}
                     height={40}
-                    className="w-10 h-10 shrink-0"
+                    className="w-8 h-10 shrink-0"
                   />
                   <span className="font-semibold font-amasis text-gray-800 text-sm truncate">
                     {property.location}
@@ -494,20 +499,31 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               {listingVariant !== "land" && (
                 <div className="flex items-center gap-3 mb-1 text-gray-500">
                   <div className="flex items-center gap-1">
-                    <Image src={calender} alt="" width={32} height={32} className="w-8 h-8 shrink-0" />
+                    <Image
+                      src={calender}
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 shrink-0"
+                    />
                     <p className="text-[#343434] font-semibold font-amasis text-base">
                       {property.date}
                     </p>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Image src={property.clockIcon ?? clock} alt="" width={32} height={32} className="w-8 h-8 shrink-0" />
+                    <Image
+                      src={property.clockIcon ?? clock}
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 shrink-0"
+                    />
                     <p className="text-[#343434] font-semibold font-amasis text-base">
                       {property.time}
                     </p>
                   </div>
                 </div>
               )}
-
 
               {/* Price + type */}
               <div className="flex items-center justify-between">
@@ -596,7 +612,11 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                       }}
                     >
                       <Image
-                        src={liked ? homeliked : buylikeicon}
+                        src={
+                          liked
+                            ? property.likedIcon ?? homeliked
+                            : property.likeIcon ?? buylikeicon
+                        }
                         alt="Home"
                         width={40}
                         height={40}

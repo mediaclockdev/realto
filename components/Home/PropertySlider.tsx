@@ -77,6 +77,8 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
               clockIcon: property.clockIcon,
               iconLabels: property.iconLabels,
               locationIcon: property.locationIcon,
+              likeIcon: property.likeIcon,
+              likedIcon: property.likedIcon,
             }}
 
             isLastItem={index === properties.length - 1}

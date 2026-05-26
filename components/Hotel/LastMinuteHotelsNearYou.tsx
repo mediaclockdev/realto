@@ -8,6 +8,11 @@ import { getHotelListings } from "@/lib/hotel/repository";
 import type { HotelListing } from "@/lib/hotel/types";
 
 import sheratonLogo from "../../public/sheraton.svg";
+import movenpickLogo from "../../public/movenpick.svg";
+import marriottLogo from "../../public/marriott.svg";
+import holidayInnLogo from "../../public/holidayinn.svg";
+import crownePlazaLogo from "../../public/crowneplaza.svg";
+import ibisLogo from "../../public/ibishotels.svg";
 import facebook from "../../public/logos_facebook.svg";
 import instagram from "../../public/logos_instagram.svg";
 import whatsapp from "../../public/whatsapp.svg";
@@ -19,22 +24,37 @@ import telephone from "../../public/telephone.svg";
 const hotels = getHotelListings();
 
 const GOLD_GRADIENT =
-  "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
+  // "linear-gradient(90deg , #0F172A , #1D4ED8, #38BDF8 , #7DD3FC , #BAE6FD , #2563EB)";
+  // "linear-gradient(90deg, #1E3A8A, #2563EB, #60A5FA, #93C5FD, #BFDBFE ,#1D4ED8 )";
+  // "linear-gradient( 90deg ,#001F5B ,#003C9E ,#005BFF ,#3399FF ,#66B2FF , #0047CC )";
+  "linear-gradient(90deg, #7DD3FC ,#38BDF8, #0EA5E9, #60A5FA , #3B82F6 ,#1D4ED8)";
+
+const hotelBrandLogos = {
+  "hotel-1": { src: sheratonLogo, alt: "Sheraton Logo" },
+  "hotel-2": { src: movenpickLogo, alt: "Movenpick Logo" },
+  "hotel-3": { src: marriottLogo, alt: "Marriott Logo" },
+  "hotel-4": { src: holidayInnLogo, alt: "Holiday Inn Logo" },
+  "hotel-5": { src: crownePlazaLogo, alt: "Crowne Plaza Logo" },
+  "hotel-6": { src: ibisLogo, alt: "Ibis Hotels Logo" },
+} as const;
 
 const HeartIcon = ({
   liked,
   onClick,
 }: {
   liked: boolean;
-  onClick: (e: any) => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }) => (
   <button
     onClick={onClick}
-    className="w-11 h-11 flex items-center justify-center rounded-full bg-white shadow-md hover:shadow-lg transition-transform hover:scale-110 active:scale-95 border border-gray-100 shrink-0"
+    className="w-11 h-11 flex items-center justify-center 
+  bg-transparent border-none outline-none
+  shadow-none hover:shadow-none
+  transition-transform hover:scale-110 active:scale-95 shrink-0"
   >
     <svg
       viewBox="0 0 24 24"
-      className={`w-6 h-6 transition-colors duration-300 ${
+      className={`w-6 h-6 transition-all duration-300 ${
         liked
           ? "fill-red-500 stroke-red-600 scale-110"
           : "fill-none stroke-gray-400 hover:stroke-red-500"
@@ -53,8 +73,8 @@ const StarRating = ({ count }: { count: number }) => (
         <Image
           src={star}
           alt="star"
-          width={15} // Smaller rating stars
-          height={15}
+          width={30} // Smaller rating stars
+          height={30}
           className={i <= count ? "opacity-100" : "opacity-30"}
         />
       </div>
@@ -66,6 +86,7 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [liked, setLiked] = useState(false);
+  const brandLogo = hotelBrandLogos[hotel.id as keyof typeof hotelBrandLogos];
 
   // Setup dynamic list of room images for slideshow (4 total photos)
   const displayImages = hotel.gallery
@@ -91,7 +112,7 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative rounded-2xl p-[2px] transition-all duration-300 hover:scale-[1.02] cursor-pointer w-[420px] shrink-0"
+      className="relative rounded-2xl p-[4px] transition-all duration-300 hover:scale-[1.02] cursor-pointer w-[420px] shrink-0"
       style={{
         background: isHovered ? GOLD_GRADIENT : "transparent",
         boxShadow: isHovered
@@ -100,20 +121,20 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
       }}
     >
       <div className="bg-white rounded-2xl flex flex-col justify-between h-full overflow-hidden shadow-md">
-        <div className="px-2 py-4 pb-2">
+        <div className="px-2 pt-1 pb-2">
           {/* Top Brand/Logo & City Bar */}
           <div className="flex items-center gap-2 mb-1 border-b border-gray-100 pb-1">
-            {hotel.slug === "sheraton-sydney" ? (
+            {brandLogo ? (
               <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center border border-gray-100 shadow-sm bg-white p-1">
                 <Image
-                  src={sheratonLogo}
-                  alt="Sheraton Logo"
+                  src={brandLogo.src}
+                  alt={brandLogo.alt}
                   className="object-contain w-full h-full"
                 />
               </div>
             ) : (
               <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center bg-gradient-to-tr from-[#CB9E33] to-[#EDD06A] text-white font-bold text-base shadow-sm font-poppins">
-                {hotel.title.charAt(0)}
+                {hotel.title.slice(0, 1)}
               </div>
             )}
             <div className="flex items-baseline gap-1.5 truncate">
@@ -131,12 +152,13 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
             onClick={() =>
               setCurrentImageIndex((prev) => (prev + 1) % displayImages.length)
             }
-            className="relative w-full h-56 rounded-xl overflow-hidden shadow-sm shrink-0 bg-gray-100 group/image"
+            className="relative w-full h-40 lg:h-56 rounded-xl overflow-hidden shadow-sm shrink-0 bg-gray-100 group/image"
           >
             <Image
               src={displayImages[currentImageIndex]}
               alt={`${hotel.title} - ${displayRoomNames[currentImageIndex]}`}
               fill
+              unoptimized
               className="object-cover transition-opacity duration-700 select-none"
             />
             {/* Elegant Semi-Transparent Overlay Room Name Badge */}
@@ -157,7 +179,7 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
                     e.stopPropagation();
                     setCurrentImageIndex(targetIndex);
                   }}
-                  className={`relative flex-1 h-28 rounded-lg overflow-hidden cursor-pointer border-2 shadow-[0_6px_14px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_18px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-0.5 shrink-0 ${
+                  className={`relative flex-1 w-full h-20 lg:h-28 rounded-lg overflow-hidden cursor-pointer border-2 shadow-[0_6px_14px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_18px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-0.5 shrink-0 ${
                     isActive ? "border-[#CB9E33] scale-105" : "border-white"
                   }`}
                 >
@@ -165,6 +187,7 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
                     src={img}
                     alt={displayRoomNames[targetIndex]}
                     fill
+                    unoptimized
                     className="object-cover"
                   />
                   {/* Subtle dynamic overlay name text on top of thumbnail */}
@@ -304,7 +327,7 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
             </div>
 
             {/* Right Side: Enlarged Heart and Golden Arrow Circle (Like & Share) */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
               <Image src={goldenArrowCircle} alt="golden circle" />
               <HeartIcon
                 liked={liked}
@@ -340,7 +363,7 @@ const LastMinuteHotels = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-5 py-8">
+    <div className="max-w-screen-2xl mx-auto px-2 lg:px-5 py-8">
       {/* Header */}
       <div className="flex items-center gap-2 mb-6">
         <h2 className="font-poppins text-xl lg:text-[32px] font-semibold text-black">
@@ -375,7 +398,7 @@ const LastMinuteHotels = () => {
         {/* Scrollable Container */}
         <div
           ref={scrollContainerRef}
-          className="flex gap-6 overflow-x-auto overflow-y-visible scroll-smooth px-0 py-2 lg:px-2"
+          className="flex  gap-4 lg:gap-6 overflow-x-auto overflow-y-visible scroll-smooth px-0 py-2 lg:px-2"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {hotels.map((hotel) => (

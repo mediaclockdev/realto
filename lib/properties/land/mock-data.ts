@@ -22,6 +22,7 @@ import landthumbnail6 from "@/public/landthumbnail6.svg";
 import landthumbnail7 from "@/public/landthumbnail7.svg";
 import landthumbnail8 from "@/public/landthumbnail8.svg";
 import landthumbnail9 from "@/public/landthumbnail9.svg";
+import { landLocationIcon2 } from "../property-card-icons";
 
 export const TOTAL_LAND_PROPERTIES = 445;
 
@@ -57,6 +58,7 @@ const LAND_BASE_PROPERTY: Omit<ListingProperty, "id"> = {
   agentImage: ana,
   agentImageCard: eddy,
   thumbnail: landThumbnails,
+  locationIcon: landLocationIcon2 ,
 };
 
 const landLocations = [
