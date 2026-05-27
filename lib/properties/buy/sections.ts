@@ -20,6 +20,9 @@ import {
   luxurylikedicon,
 } from "@/lib/properties/property-card-icons";
 
+const LUXURY_HOVER_BORDER_GRADIENT =
+  "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
+
 const baseBuySectionCards: BuyPropertyCardItem[] = [
   {
     id: "1",
@@ -139,6 +142,7 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     clockIcon: luxuryClockIcon2,
     likeIcon: luxurylikeicon,
     likedIcon: luxurylikedicon,
+    hoverBorderGradient: LUXURY_HOVER_BORDER_GRADIENT,
     detailHref: "/property/21?listingVariant=buy",
   },
   {
@@ -150,6 +154,7 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     clockIcon: luxuryClockIcon,
     likeIcon: luxurylikeicon,
     likedIcon: luxurylikedicon,
+    hoverBorderGradient: LUXURY_HOVER_BORDER_GRADIENT,
     detailHref: "/property/22?listingVariant=buy",
   },
   {
@@ -161,6 +166,7 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     clockIcon: luxuryClockIcon2,
     likeIcon: luxurylikeicon,
     likedIcon: luxurylikedicon,
+    hoverBorderGradient: LUXURY_HOVER_BORDER_GRADIENT,
     detailHref: "/property/23?listingVariant=buy",
   },
   {
@@ -172,6 +178,7 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
     clockIcon: luxuryClockIcon,
     likeIcon: luxurylikeicon,
     likedIcon: luxurylikedicon,
+    hoverBorderGradient: LUXURY_HOVER_BORDER_GRADIENT,
     detailHref: "/property/24?listingVariant=buy",
   },
 ];

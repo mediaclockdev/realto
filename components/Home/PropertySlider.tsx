@@ -79,6 +79,7 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
               locationIcon: property.locationIcon,
               likeIcon: property.likeIcon,
               likedIcon: property.likedIcon,
+              hoverBorderGradient: property.hoverBorderGradient,
             }}
 
             isLastItem={index === properties.length - 1}

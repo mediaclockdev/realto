@@ -36,6 +36,7 @@ function toRentSectionProperties(
       iconLabels: property.iconLabels ?? ["1", "1", "1"],
       likeIcon: property.likeIcon,
       likedIcon: property.likedIcon,
+      hoverBorderGradient: property.hoverBorderGradient,
       thumbnail: property.images,
       socials: [],
       flags: [],

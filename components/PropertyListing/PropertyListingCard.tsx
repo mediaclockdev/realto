@@ -91,6 +91,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           buyiconImages: property.buyiconImages,
           likeIcon: property.likeIcon,
           likedIcon: property.likedIcon,
+          hoverBorderGradient: property.hoverBorderGradient,
 
           iconLabels: property.iconLabels,
         }}
@@ -125,7 +126,8 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
             style={{ background: "transparent" }}
             onMouseEnter={() => {
               if (outerRef.current) {
-                outerRef.current.style.background = hoverBorderRent;
+                outerRef.current.style.background =
+                  property.hoverBorderGradient ?? hoverBorderRent;
               }
             }}
             onMouseLeave={() => {

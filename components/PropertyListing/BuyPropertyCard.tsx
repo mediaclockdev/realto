@@ -43,6 +43,7 @@ export interface BuyPropertyCardData {
   iconLabels?: string[];
   likeIcon?: ImageSource;
   likedIcon?: ImageSource;
+  hoverBorderGradient?: string;
 
   isLastItem?: boolean;
   onSeeMore?: () => void;
@@ -57,7 +58,7 @@ interface BuyPropertyCardProps {
 }
 
 const GOLD_GRADIENT =
-  "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
+  "linear-gradient(90deg, #7F1D1D, #B91C1C, #DC2626, #EF4444, #F87171, #991B1B)";
 
 const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
   property,
@@ -106,18 +107,19 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
       }
     >
       <div
-          className={`relative overflow-visible rounded-xl p-0.5 transition-all duration-300 cursor-pointer my-3 ${
-            sliderMode
-              ? " w-[340px] shrink-0 hover:scale-105"
-              : "w-full"
-          }`}
-          style={{ background: isHovered ? GOLD_GRADIENT : "transparent" }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={onClick}
-        >
-      <div className="relative py-2 px-2 bg-white rounded-xl shadow-2xl">
-        
+        className={`relative overflow-visible rounded-xl p-0.5 transition-all duration-300 cursor-pointer my-3 ${
+          sliderMode ? " w-[340px] shrink-0 hover:scale-105" : "w-full"
+        }`}
+        style={{
+          background: isHovered
+            ? property.hoverBorderGradient ?? GOLD_GRADIENT
+            : "transparent",
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={onClick}
+      >
+        <div className="relative py-2 px-2 bg-white rounded-xl shadow-2xl">
           <div className="h-full w-full overflow-visible rounded-xl bg-white shadow-xl transition-shadow duration-300 hover:shadow-2xl">
             <div className="group/image relative h-52 cursor-pointer overflow-hidden rounded-t-xl bg-gray-200">
               <Image
@@ -316,8 +318,8 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                       <Image
                         src={
                           liked
-                            ? property.likedIcon ?? homeliked
-                            : property.likeIcon ?? home
+                            ? (property.likedIcon ?? homeliked)
+                            : (property.likeIcon ?? home)
                         }
                         alt="Home"
                         width={40}

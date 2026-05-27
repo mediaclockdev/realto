@@ -23,6 +23,7 @@ export interface BuyPropertyCardItem {
   iconLabels?: string[];
   likeIcon?: ImageSource;
   likedIcon?: ImageSource;
+  hoverBorderGradient?: string;
 
   detailHref?: string;
 }
