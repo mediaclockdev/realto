@@ -324,10 +324,12 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   </div>
 
                   <div
-                    className="flex items-center justify-between animate-fade-in-u rounded-xl "
+                    className="flex items-center justify-between animate-fade-in-u rounded-xl -mt-2"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <ShareMenuActionStrip iconSize={26} />
+                    <div className="mt-2">
+                      <ShareMenuActionStrip iconSize={26} />
+                    </div>
                     <div className="flex">
                       <Tooltip text="Share">
                         <button
