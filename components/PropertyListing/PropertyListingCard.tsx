@@ -10,7 +10,7 @@ import share from "../../public/share.svg";
 import rentlike from "../../public/rentlike.svg";
 import buylikeicon from "../../public/buylikeicon.svg";
 import mobile from "../../public/mobileicon.svg";
-import clock from "../../public/rentclock.svg";
+import clock from "../../public/rentclockicon1.svg";
 import money from "../../public/money.svg";
 import rentmoney from "../../public/rentmoneyicon.svg";
 import calender from "../../public/rentcalender.svg";
@@ -146,36 +146,37 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 >
                   <div className="flex items-center justify-between gap-3">
                     <div className="min-w-0">
-                      <div className="">
+                      {" "}
+                      <div className="flex items-center gap-3 shrink-0">
                         <Image
-                          src={property.agentCompany}
-                          alt="Company logo"
-                          width={100}
-                          height={44}
-                          className="object-contain"
+                          src={property.agentImage}
+                          alt={property.agentName}
+                          width={56}
+                          height={56}
+                          className="rounded-full object-cover size-14 border-2 border-white/40"
                         />
+                        <div className="text-right">
+                          <p className="text-base font-semibold leading-none font-amasis">
+                            {property.agentName}
+                          </p>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 shrink-0">
-                      <div className="text-right">
-                        <p className="text-base font-semibold leading-none font-amasis">
-                          {property.agentName}
-                        </p>
-                      </div>
+                    <div className="">
                       <Image
-                        src={property.agentImage}
-                        alt={property.agentName}
-                        width={40}
-                        height={40}
-                        className="rounded-full object-cover size-10 border-2 border-white/40"
+                        src={property.agentCompany}
+                        alt="Company logo"
+                        width={100}
+                        height={44}
+                        className="object-contain"
                       />
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-[3px] h-[2px]"></div>
+              <div className="mt-[1.5px] h-[1px]"></div>
 
               {/* SECTION 2: Image and Details */}
               <div className="w-full overflow-hidden rounded-[20px] bg-white shadow-[0_2px_5px_rgb(0,0,0,0.8)] transition-shadow duration-300">
@@ -204,7 +205,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   )}
                 </div>
 
-                <div className="px-2.5 pt-2 pb-2">
+                <div className="px-2.5 pb-2">
                   {property.renticonImages &&
                     property.renticonImages.length > 0 && (
                       <div className="flex items-center justify-between gap-4 mb-2">
@@ -213,16 +214,16 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                             key={i}
                             className="flex items-center justify-between gap-0.5"
                           >
-                            <div className="h-12 w-17 shrink-0 overflow-hidden rounded-lg">
+                            <div className="h-14 w-17 shrink-0 overflow-hidden rounded-lg">
                               <Image
                                 src={icon}
                                 alt=""
-                                width={48}
-                                height={40}
+                                width={56}
+                                height={56}
                                 className="w-full h-full"
                               />
                             </div>
-                            <span className="text-xl font-semibold labeltext text-[#343434]">
+                            <span className="text-[15px] font-bold font-amasis  text-[#343434]">
                               {property.iconLabels?.[i] ?? "1"}
                             </span>
                           </div>
@@ -241,12 +242,15 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                         {property.location}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <Image
-                        src={squaremetericon}
-                        alt="size"
-                        className="w-7 h-7 shrink-0"
-                      />
+                    <div className="flex items-center shrink-0">
+                      <div className="w-10 flex justify-center">
+                        <Image
+                          src={squaremetericon}
+                          alt="size"
+                          className="w-7 h-7 shrink-0"
+                        />
+                      </div>
+
                       <p className="text-base font-semibold font-amasis text-[#343434]">
                         {property.size}
                         <span className="text-xs">sqft</span>
@@ -254,7 +258,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-2 min-w-0">
+                    <div className="flex items-center gap-0 min-w-0">
                       <Image
                         src={calender}
                         alt="money"
@@ -264,24 +268,26 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                         {property.date}
                       </p>
                     </div>
-                    <div className=" flex items-center">
-                      <Image
-                        src={property.clockIcon ?? clock}
-                        alt="clockicon"
-                        width={36}
-                        height={36}
-                        className="h-9 w-9 object-contain"
-                      />
+                    <div className="flex items-center shrink-0">
+                      <div className="w-10 flex justify-center">
+                        <Image
+                          src={property.clockIcon ?? clock}
+                          alt="clockicon"
+                          width={36}
+                          height={36}
+                          className="h-9 w-9 object-contain"
+                        />
+                      </div>
 
-                      <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
-                        {property.time}{" "}
-                        <span className="font-amasis text-xs font-semibold">
+                      <p className="font-amasis text-base font-semibold text-[#343434]">
+                        {property.time}
+                        <span className="font-amasis text-xs font-semibold ml-1">
                           am
                         </span>
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-24 ">
+                  <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 min-w-0">
                       <Image
                         src={rentmoney}
@@ -292,7 +298,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                         {property.priceRange}
                       </p>
                     </div>
-                    <p className="text-base font-semibold  font-amasis text-[#007CBE] shrink-0">
+                    <p className="text-base font-semibold font-amasis text-[#007CBE] shrink-0 pl-10">
                       • {property.propertyType}
                     </p>
                   </div>
@@ -302,8 +308,14 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     onMouseEnter={() => setIsActionAreaHovered(true)}
                     onMouseLeave={() => setIsActionAreaHovered(false)}
                   >
-                    <div className="flex items-center">
-                      <Image src={mobile} alt="mobile icon" />
+                    <div className="flex items-center -ml-1">
+                      <Image
+                        src={mobile}
+                        alt="mobile icon"
+                        width={36}
+                        height={36}
+                        className="w-9 h-9 shrink-0"
+                      />
                       <p className=" text-base font-semibold leading-none text-[#343434] font-amasis">
                         {property.agentPhone}
                       </p>
@@ -336,8 +348,8 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                           <Image
                             src={
                               isRentLiked
-                                ? property.likedIcon ?? rentlikedicon
-                                : property.likeIcon ?? rentlike
+                                ? (property.likedIcon ?? rentlikedicon)
+                                : (property.likeIcon ?? rentlike)
                             }
                             alt="Like"
                             width={40}
@@ -469,7 +481,6 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   ))}
                 </div>
               )}
-
               {/* Location + size */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1.5 min-w-0">
@@ -497,7 +508,6 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   </span>
                 </div>
               </div>
-
               {listingVariant !== "land" && (
                 <div className="flex items-center gap-3 mb-1 text-gray-500">
                   <div className="flex items-center gap-1">
@@ -526,7 +536,6 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   </div>
                 </div>
               )}
-
               {/* Price + type */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1.5 min-w-0">
@@ -545,8 +554,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   • {property.propertyType}
                 </span>
               </div>
-
-              {/* Agent */}
+              {/* Agent */}ok
               <div
                 onMouseEnter={() => setIsActionAreaHovered(true)}
                 onMouseLeave={() => setIsActionAreaHovered(false)}
@@ -616,8 +624,8 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                       <Image
                         src={
                           liked
-                            ? property.likedIcon ?? homeliked
-                            : property.likeIcon ?? buylikeicon
+                            ? (property.likedIcon ?? homeliked)
+                            : (property.likeIcon ?? buylikeicon)
                         }
                         alt="Home"
                         width={40}
