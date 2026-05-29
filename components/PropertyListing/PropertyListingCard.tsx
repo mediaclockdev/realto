@@ -268,6 +268,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                         {property.date}
                       </p>
                     </div>
+
                     <div className="flex items-center shrink-0">
                       <div className="w-10 flex justify-center">
                         <Image
@@ -298,7 +299,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                         {property.priceRange}
                       </p>
                     </div>
-                    <p className="text-base font-semibold font-amasis text-[#007CBE] shrink-0 pl-10">
+                    <p className="text-base font-semibold font-amasis text-[#007CBE] shrink-0">
                       • {property.propertyType}
                     </p>
                   </div>
@@ -308,7 +309,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     onMouseEnter={() => setIsActionAreaHovered(true)}
                     onMouseLeave={() => setIsActionAreaHovered(false)}
                   >
-                    <div className="flex items-center -ml-1">
+                    <div className="flex items-center -ml-2">
                       <Image
                         src={mobile}
                         alt="mobile icon"
@@ -320,7 +321,14 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                         {property.agentPhone}
                       </p>
                     </div>
-                    <div className="relative flex">
+                  </div>
+
+                  <div
+                    className="flex items-center justify-between animate-fade-in-u rounded-xl "
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <ShareMenuActionStrip iconSize={26} />
+                    <div className="flex">
                       <Tooltip text="Share">
                         <button
                           className="p-1 hover:bg-blue-50 rounded-lg transition-colors"
@@ -357,14 +365,6 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                           />
                         </button>
                       </Tooltip>
-                      {showShareModal && (
-                        <div
-                          className="absolute bottom-10 right-0 z-[100] flex items-center gap-1 justify-center animate-fade-in-up bg-white px-1 py-1 rounded-xl shadow-lg border border-gray-100"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <ShareMenuActionStrip iconSize={24} />
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -594,52 +594,53 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 </div>
 
                 {/* Share + Like icons right-aligned */}
-                <div className="relative flex items-center justify-end">
-                  <Tooltip text="Share">
-                    <button
-                      className="z-10 flex items-center gap-1 rounded-lg px-0.5 py-0.5 transition-colors hover:bg-blue-50"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowShareModal((prev) => !prev);
-                      }}
-                    >
-                      <Image
-                        src={share}
-                        alt="Share"
-                        width={40}
-                        height={40}
-                        className="cursor-pointer object-contain transition-all duration-200"
-                      />
-                    </button>
-                  </Tooltip>
-
-                  <Tooltip text="Like">
-                    <button
-                      className="z-10 flex cursor-pointer items-center gap-1 rounded-lg px-0.5 py-0.5 transition-colors hover:bg-red-50"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setLiked((prev) => !prev);
-                      }}
-                    >
-                      <Image
-                        src={
-                          liked
-                            ? (property.likedIcon ?? homeliked)
-                            : (property.likeIcon ?? buylikeicon)
-                        }
-                        alt="Home"
-                        width={40}
-                        height={40}
-                        className="object-contain transition-all duration-200"
-                      />
-                    </button>
-                  </Tooltip>
-
+                <div className=" flex items-center justify-between">
                   <div
-                    className="absolute bottom-1 right-24 z-20 flex items-center justify-center animate-fade-in-up"
+                    className="z-20 flex items-center justify-center animate-fade-in-up ml-1 mt-1"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <ShareMenuActionStrip iconSize={28} />
+                  </div>
+                  <div className="flex items-center animate-fade-in-up">
+                    <Tooltip text="Share">
+                      <button
+                        className="z-10 flex items-center gap-1 rounded-lg px-0.5 py-0.5 transition-colors hover:bg-blue-50"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowShareModal((prev) => !prev);
+                        }}
+                      >
+                        <Image
+                          src={share}
+                          alt="Share"
+                          width={40}
+                          height={40}
+                          className="cursor-pointer object-contain transition-all duration-200"
+                        />
+                      </button>
+                    </Tooltip>
+
+                    <Tooltip text="Like">
+                      <button
+                        className="z-10 flex cursor-pointer items-center gap-1 rounded-lg px-0.5 py-0.5 transition-colors hover:bg-red-50"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLiked((prev) => !prev);
+                        }}
+                      >
+                        <Image
+                          src={
+                            liked
+                              ? (property.likedIcon ?? homeliked)
+                              : (property.likeIcon ?? buylikeicon)
+                          }
+                          alt="Home"
+                          width={40}
+                          height={40}
+                          className="object-contain transition-all duration-200"
+                        />
+                      </button>
+                    </Tooltip>
                   </div>
                 </div>
               </div>

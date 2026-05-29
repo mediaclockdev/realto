@@ -239,7 +239,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     {property.priceRange}
                   </p>
                 </div>
-                <span className="font-amasis text-base font-semibold text-[#007CBE] mr-2">
+                <span className="font-amasis text-base font-semibold text-[#007CBE]">
                   • {property.propertyType}
                 </span>
               </div>
