@@ -554,7 +554,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   • {property.propertyType}
                 </span>
               </div>
-              {/* Agent */}ok
+              {/* Agent */}
               <div
                 onMouseEnter={() => setIsActionAreaHovered(true)}
                 onMouseLeave={() => setIsActionAreaHovered(false)}

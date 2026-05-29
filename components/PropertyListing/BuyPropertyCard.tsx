@@ -152,12 +152,12 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                 <div className="mb-1 flex items-center justify-between gap-3">
                   {property.buyiconImages.map((icon, index) => (
                     <div key={index} className="flex items-center  gap-0.5">
-                      <div className="h-14 w-18aw3aw33wa3wwwa shrink-0 overflow-hidden rounded-lg">
+                      <div className="h-13 w-17 shrink-0 overflow-hidden rounded-lg">
                         <Image
                           src={icon}
                           alt="icons for bed , bath , car"
-                          width={60}
-                          height={56}
+                          width={56}
+                          height={44}
                           className="h-full w-full"
                         />
                       </div>
