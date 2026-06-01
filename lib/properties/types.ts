@@ -26,6 +26,7 @@ export interface ListingProperty {
   likeIcon?: ImageSource;
   likedIcon?: ImageSource;
   hoverBorderGradient?: string;
+  detailHref?: string;
 
   thumbnail: ImageSource[];
   socials: ImageSource[];

@@ -2,12 +2,25 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import type { StaticImageData } from "next/image";
 import { Heart } from "lucide-react";
 
 const GOLD_GRADIENT =
   "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
 
-export default function ListingCard({ listing }: any) {
+export interface ListingCardData {
+  id?: number;
+  type: "flatmate" | "place";
+  title: string;
+  subtitle: string;
+  price: string;
+  Available?: string;
+  months: string;
+  img: string | StaticImageData;
+  iconImages?: string[];
+}
+
+export default function ListingCard({ listing }: { listing: ListingCardData }) {
   const isFlatmate = listing.type === "flatmate";
   const [liked, setLiked] = useState(false);
   const outerRef = useRef<HTMLDivElement>(null);

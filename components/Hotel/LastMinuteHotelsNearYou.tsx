@@ -366,12 +366,12 @@ const LastMinuteHotels = () => {
     <div className="max-w-screen-2xl mx-auto px-2 lg:px-5 py-8">
       {/* Header */}
       <div className="flex items-center gap-2 mb-6">
-        <h2 className="font-poppins text-xl lg:text-[32px] font-semibold text-black">
+        <h2 className="font-amasis text-xl lg:text-[32px] font-semibold text-[#0287C7]">
           Last - Minute Hotels Near You
         </h2>
         {/* Trending icon */}
         <svg
-          className="w-6 h-6 text-gray-900 animate-pulse"
+          className="w-6 h-6 text-[#0287C7] animate-pulse"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

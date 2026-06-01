@@ -35,7 +35,7 @@ const Experiencesthatlastalifetime = () => {
     <div className="max-w-screen-2xl mx-auto px-5 py-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-black font-poppins font-semibold text-2xl md:text-[32px]">
+        <h2 className="text-[#0287C7] font-amasis font-semibold text-2xl md:text-[32px]">
           Experiences that last a lifetime
         </h2>
         <div className="flex items-center gap-1 cursor-pointer">

@@ -1,8 +1,9 @@
 import ListingCard from "./ListingCard";
+import type { ListingCardData } from "./ListingCard";
 import flatshare from "../../public/flatshare.jpg"
 import vincenzo from "../../public/vincezo.jpg"
 
-const listings = [
+const listings: ListingCardData[] = [
   {
     id: 1,
     type: "flatmate",

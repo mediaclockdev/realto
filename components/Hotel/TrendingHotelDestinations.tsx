@@ -60,7 +60,7 @@ const TrendingHotelDestinations = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-12">
       <div className="mb-8">
-        <h2 className="text-2xl md:text-[32px] font-semibold text-black">
+        <h2 className="text-2xl md:text-[32px] font-semibold text-[#0287C7] font-amasis">
           Trending Hotel Destinations
         </h2>
       </div>

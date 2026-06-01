@@ -27,7 +27,7 @@ const GuestExperiences = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
       {/* Heading */}
-      <h2 className="text-center font-poppins font-semibold text-black text-[28px] md:text-[32px]">
+      <h2 className="text-center font-amasis font-semibold text-[#0287C7] text-[28px] md:text-[32px]">
         Guest Experiences
       </h2>
 

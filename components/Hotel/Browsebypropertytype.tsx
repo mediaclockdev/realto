@@ -53,7 +53,7 @@ const Browsebypropertytype = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
       <div className="flex items-center justify-between gap-5 mb-2">
-        <h2 className="font-poppins font-semibold text-lg lg:text-[32px] text-black">
+        <h2 className="font-amasis font-semibold text-lg lg:text-[32px] text-[#0287C7]">
           Browse by property type
         </h2>
 
@@ -120,7 +120,7 @@ const Browsebypropertytype = () => {
             </div>
 
             {/* Title */}
-            <p className="font-poppins font-semibold text-lg lg:text-[32px] text-black text-center">
+            <p className="font-amasis font-semibold text-lg lg:text-[32px] text-black text-center">
               {items.title}
             </p>
           </div>
