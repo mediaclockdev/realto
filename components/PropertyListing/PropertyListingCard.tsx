@@ -18,6 +18,7 @@ import squaremetericon from "../../public/squaremetericon.svg";
 import rentshare from "../../public/share.svg";
 import rentlikedicon from "../../public/rentlikedicon.svg";
 import homeliked from "@/public/homelike.svg";
+import email from "@/public/mailicon.svg";
 
 import BuyPropertyCard from "./BuyPropertyCard";
 import {
@@ -140,7 +141,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               {/* SECTION 1: Agent Banner */}
               <div className="w-full overflow-hidden rounded-[20px] shadow-[0_2px_5px_rgb(0,0,0,0.8)] transition-shadow duration-300">
                 <div
-                  className="bg-[#ED1C24] px-3 py-1"
+                  className="bg-[#ED1C24] px-1 py-1"
                   onMouseEnter={() => setIsAgentAreaHovered(true)}
                   onMouseLeave={() => setIsAgentAreaHovered(false)}
                 >
@@ -208,7 +209,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 <div className="px-2.5 pb-2">
                   {property.renticonImages &&
                     property.renticonImages.length > 0 && (
-                      <div className="flex items-center justify-between gap-4 mb-2">
+                      <div className="flex items-center justify-between gap-4 mb-2 mt-1">
                         {property.renticonImages.map((icon, i) => (
                           <div
                             key={i}
@@ -258,11 +259,11 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-0 min-w-0">
+                    <div className="flex items-center gap-2 min-w-0">
                       <Image
                         src={calender}
                         alt="money"
-                        className="w-8 h-8 shrink-0"
+                        className="w-7 h-8 shrink-0"
                       />
                       <p className="text-base font-semibold text-[#343434] font-amasis truncate">
                         {property.date}
@@ -293,7 +294,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                       <Image
                         src={rentmoney}
                         alt="money"
-                        className="w-8 h-8 shrink-0"
+                        className="w-7 h-8 shrink-0"
                       />
                       <p className="text-base font-semibold text-[#343434] font-amasis ">
                         {property.priceRange}
@@ -309,15 +310,27 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     onMouseEnter={() => setIsActionAreaHovered(true)}
                     onMouseLeave={() => setIsActionAreaHovered(false)}
                   >
-                    <div className="flex items-center -ml-2">
+                    <div className="flex items-center gap-2 ">
+                      <Image
+                        src={email}
+                        alt="email icon"
+                        width={36}
+                        height={36}
+                        className="w-6 h-9 shrink-0"
+                      />
+                      <p className=" text-base font-semibold leading-none text-[#343434] font-amasis">
+                        {property.agentEmail}
+                      </p>
+                    </div>
+                    <div className="flex items-center">
                       <Image
                         src={mobile}
                         alt="mobile icon"
                         width={36}
                         height={36}
-                        className="w-9 h-9 shrink-0"
+                        className="w-5 h-9 shrink-0"
                       />
-                      <p className=" text-base font-semibold leading-none text-[#343434] font-amasis">
+                      <p className="text-base font-semibold leading-none text-[#343434] font-amasis">
                         {property.agentPhone}
                       </p>
                     </div>

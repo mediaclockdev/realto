@@ -147,21 +147,21 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
               )}
             </div>
 
-            <div className="px-2 pb-1">
+            <div className="px-2">
               {property.buyiconImages && property.buyiconImages.length > 0 && (
-                <div className="mb-1 flex items-center justify-between gap-3">
+                <div className="mt-1 mb-1 flex items-center justify-between gap-3">
                   {property.buyiconImages.map((icon, index) => (
                     <div key={index} className="flex items-center  gap-0.5">
-                      <div className="h-13 w-17 shrink-0 overflow-hidden rounded-lg">
+                      <div className="h-13 w-18 shrink-0 overflow-hidden rounded-lg">
                         <Image
                           src={icon}
                           alt="icons for bed , bath , car"
-                          width={56}
+                          width={60}
                           height={44}
                           className="h-full w-full"
                         />
                       </div>
-                      <span className="text-[15px] font-bold font-amasis text-[#FA2F2F]">
+                      <span className="text-xl font-bold font-amasis text-[#FA2F2F]">
                         {property.iconLabels?.[index] ?? "1"}
                       </span>
                     </div>
@@ -202,9 +202,9 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   <Image
                     src={property.dateIcon ?? calender}
                     alt="calendericon"
-                    width={36}
-                    height={36}
-                    className="h-9 w-9 object-contain"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 object-contain"
                   />
                   <span className="ml-1 font-amasis text-base font-semibold text-[#343434]">
                     {property.date}
@@ -245,7 +245,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
               </div>
             </div>
           </div>
-          <div className="mt-[2px] h-[2px]"></div>
+          <div className="mt-[2.5px] h-[2.5px]"></div>
           <div
             className="flex flex-col justify-between shadow-sm rounded-xl bg-white hover:shadow-2xl px-2 pb-1"
             onMouseEnter={() => setIsLowerHovered(true)}

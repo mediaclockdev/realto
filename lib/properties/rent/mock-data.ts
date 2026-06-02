@@ -39,7 +39,7 @@ const RENT_BASE_PROPERTY: Omit<ListingProperty, "id"> = {
   agentCompanyName: "Parker Realestate",
   agentLocation: "Austin, Australia",
   agentPhone: "+9999999999",
-  agentEmail: "exampleemail.com",
+  agentEmail: "email@email.com",
   socials: [whatsapp, instagram, facebook, message, phone, mail],
   flags: [french, china, spanish],
   agentImage: ana,
@@ -70,7 +70,13 @@ const rentLocations = [
   "Brisbane, Australia",
 ];
 
-const rentPropertyTypes = ["Apartment", "House", "Townhouse", "Villa", "Studio"];
+const rentPropertyTypes = [
+  "Apartment",
+  "House",
+  "Townhouse",
+  "Villa",
+  "Studio",
+];
 const rentAgentNames = [
   "Anna Johns",
   "Eddie Jones",
