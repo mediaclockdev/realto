@@ -1,3 +1,4 @@
+import HotelLogos from "@/components/Home/Hotellogos";
 import Browsebypropertytype from "@/components/Hotel/Browsebypropertytype";
 import Experiencesthatlastalifetime from "@/components/Hotel/Experiencesthatlastalifetime";
 import GuestExperiences from "@/components/Hotel/GuestExperiences";
@@ -10,6 +11,7 @@ export default function Page() {
     <div>
       <HeroHotel />
       <Browsebypropertytype />
+      <HotelLogos/>
       <LastMinuteHotels />
       <TrendingHotelDestinations />
       <Experiencesthatlastalifetime />

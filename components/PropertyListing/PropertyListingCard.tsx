@@ -224,7 +224,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                                 className="w-full h-full"
                               />
                             </div>
-                            <span className="text-[15px] font-bold font-amasis  text-[#343434]">
+                            <span className="text-xl font-bold font-amasis  text-[#343434]">
                               {property.iconLabels?.[i] ?? "1"}
                             </span>
                           </div>

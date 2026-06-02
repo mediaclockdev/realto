@@ -365,7 +365,7 @@ const LastMinuteHotels = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-2 lg:px-5 py-8">
       {/* Header */}
-      <div className="flex items-center gap-2 mb-6">
+      <div className="flex items-center gap-2 mb-2">
         <h2 className="font-amasis text-xl lg:text-[32px] font-semibold text-[#0287C7]">
           Last - Minute Hotels Near You
         </h2>

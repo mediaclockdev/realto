@@ -32,7 +32,7 @@ const GuestExperiences = () => {
       </h2>
 
       {/* Cards */}
-      <div className="mt-7 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-2 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {reviews.map((item, idx) => (
           <div
             key={idx}

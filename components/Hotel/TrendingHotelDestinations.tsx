@@ -58,8 +58,8 @@ const TrendingHotelDestinations = () => {
     }
   };
   return (
-    <div className="max-w-screen-2xl mx-auto px-5 py-12">
-      <div className="mb-8">
+    <div className="max-w-screen-2xl mx-auto px-6 py-8">
+      <div className="mb-2">
         <h2 className="text-2xl md:text-[32px] font-semibold text-[#0287C7] font-amasis">
           Trending Hotel Destinations
         </h2>
@@ -69,7 +69,7 @@ const TrendingHotelDestinations = () => {
         {/* Left Arrow Button */}
         <button
           onClick={() => scroll("left")}
-          className="hidden md:block absolute -left-6 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          className="hidden md:block absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           aria-label="Scroll left"
         >
           <ChevronLeft className="w-5 h-5 text-gray-800" />
