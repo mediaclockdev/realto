@@ -11,7 +11,7 @@ export default function Page() {
     <div>
       <HeroHotel />
       <Browsebypropertytype />
-      <HotelLogos/>
+      <HotelLogos headingColor="text-[#0287C7]" />
       <LastMinuteHotels />
       <TrendingHotelDestinations />
       <Experiencesthatlastalifetime />

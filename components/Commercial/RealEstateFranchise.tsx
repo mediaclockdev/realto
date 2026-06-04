@@ -27,7 +27,7 @@ const RealEstateFranchise = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 ">
       <h2 className="font-poppins font-semibold text-2xl lg:text-[32px] text-black mb-1">
-        RealEstateFranchise
+        Commercial Real Estate Agencies
       </h2>
 
       <MarqueeCards items={franchise} speed="fast" />

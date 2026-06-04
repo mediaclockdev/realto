@@ -70,13 +70,9 @@ export default function PremiumFeaturedListing() {
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
       <div className="">
         {/* Header */}
-        <div className="mb-4 lg:mb-8">
-          <h2 className="text-2xl lg:text-[32px] font-semibold font-poppins text-[#4189DD] mb-2">
-            Exclusives
-          </h2>
-        </div>
+
         <div className="flex flex-col lg:flex-row justify-between gap-5 mb-5">
-          <h3 className="text-2xl lg:text-[32px] font-semibold text-black">
+          <h3 className="text-2xl lg:text-[32px] font-semibold text-[#0287C7]">
             Premium Featured Listing
           </h3>
           {/* State Tabs */}

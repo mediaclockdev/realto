@@ -8,6 +8,7 @@ import StudentresidencyPartners from "@/components/Home/StudentresidencyPartners
 import Explorenewproperties from "@/components/Commercial/Explorenewproperties";
 import LandRealEstateAgents from "@/components/Home/LandRealEstateAgents";
 import TopRealEstateAgents from "@/components/Home/TopRealEstateAgents";
+import LastMinuteHotels from "@/components/Hotel/LastMinuteHotelsNearYou";
 
 const LanguageSelection = dynamic(
   () => import("@/components/Home/LanguageSelection"),
@@ -27,8 +28,12 @@ const LuxuryProperties = dynamic(
 const LatestLandForSale = dynamic(
   () => import("@/components/Home/LatestLandForSale"),
 );
-const RoomsAndPrices = dynamic(() => import("@/components/Home/RoomsAndPrices"));
-const TopHotelOffers = dynamic(() => import("@/components/Home/TopHotelOffers"));
+const RoomsAndPrices = dynamic(
+  () => import("@/components/Home/RoomsAndPrices"),
+);
+const TopHotelOffers = dynamic(
+  () => import("@/components/Home/TopHotelOffers"),
+);
 const Contact = dynamic(() => import("@/components/Home/Contact"));
 
 const page = () => {
@@ -43,8 +48,9 @@ const page = () => {
       <TrendingProperties />
       <BrokersandBrokerage />
       <LuxuryProperties />
-      <HotelLogos />
-      <TopHotelOffers />
+      <HotelLogos headingColor="text-black" />
+      <LastMinuteHotels />
+      {/* <TopHotelOffers /> */}
       <CommercialRealestateAgencies />
       <Explorenewproperties />
       <StudentresidencyPartners />

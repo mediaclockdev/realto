@@ -15,13 +15,17 @@ import austraibank from "../../public/austrailabank.svg";
 import afghomeloans from "../../public/afghomeloans.svg";
 import finspobank from "../../public/finspobank.svg";
 import loanmarket from "../../public/loanmarket.svg";
-import mortgagebroker from "../../public/mortgagebrokermelbourne.svg"
-import adelaidehills from "../../public/adelaidehills.svg"
-import brighten from "../../public/brightenbank.svg"
-import darwinmortgage from "../../public/darwinmortgage.svg"
-import tassie from "../../public/tassiehomeloans.svg"
+import mortgagebroker from "../../public/mortgagebrokermelbourne.svg";
+import adelaidehills from "../../public/adelaidehills.svg";
+import brighten from "../../public/brightenbank.svg";
+import darwinmortgage from "../../public/darwinmortgage.svg";
+import tassie from "../../public/tassiehomeloans.svg";
 
-const Banks = () => {
+interface BanksProps {
+  heading?: string;
+}
+
+const Banks = ({ heading = "Banks" }: BanksProps) => {
   const bank = [
     { name: "Aussie", icon: aussiebank, interest: "6.94% p.a.%" },
     { name: "Nab bank", icon: nabbank, interest: "6.94% p.a.%" },
@@ -50,18 +54,28 @@ const Banks = () => {
     { name: "Afghome Loans", icon: afghomeloans, interest: "6.94% p.a.%" },
     { name: "Finspon", icon: finspobank, interest: "6.94% p.a.%" },
     { name: "Loan Market", icon: loanmarket, interest: "6.94% p.a.%" },
-    { name: "Mortgage Broker Melbourne", icon: mortgagebroker, interest: "6.94% p.a.%" },
+    {
+      name: "Mortgage Broker Melbourne",
+      icon: mortgagebroker,
+      interest: "6.94% p.a.%",
+    },
     { name: "Adelaide Hills", icon: adelaidehills, interest: "6.94% p.a.%" },
     { name: "Brighten Bank", icon: brighten, interest: "6.94% p.a.%" },
-    { name: "Darwin Mortgage Broker", icon: darwinmortgage, interest: "6.94% p.a.%" },
+    {
+      name: "Darwin Mortgage Broker",
+      icon: darwinmortgage,
+      interest: "6.94% p.a.%",
+    },
     { name: "Tassie Home Loans", icon: tassie, interest: "6.94% p.a.%" },
-    
   ];
 
   return (
-    <div className="max-w-screen-2xl mx-auto py-5 overflow-hidden">
+    <div className="max-w-screen-2xl mx-auto px-5 py-5 overflow-hidden">
+      <h2 className="font-poppins font-semibold text-xl mb-1 text-black">
+        {heading}
+      </h2>
       <div className="marquee-wrapper">
-        <div 
+        <div
           className="marquee-track"
           style={{ animationDuration: `${bank.length * 3}s` }}
         >
