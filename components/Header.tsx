@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import logo from "@/public/logo.svg";
+import logogif from "@/public/logogif.gif";
 import Link from "next/link";
 // import avatar from "@/public/avatar.png";
 
@@ -49,6 +50,7 @@ const Header = () => {
               src={logo}
               alt="Realto logo"
               priority
+              unoptimized
               className="w-full h-auto"
             />
           </Link>
