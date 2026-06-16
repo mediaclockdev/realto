@@ -14,6 +14,7 @@ import defaultLocationIcon from "@/public/commerciallocationicon.svg";
 import defaultCalendarIcon from "@/public/commercialcalender.svg";
 import defaultMoneyIcon from "@/public/money.svg";
 import defaultSquareMeterIcon from "@/public/squaremetericon.svg";
+import defaultclockicon from "@/public/buyclockicon1.svg";
 import defaultShareIcon from "@/public/commercialshareicon.svg";
 import defaultLikeOutlineIcon from "@/public/commerciallikeicon.svg";
 import defaultLikeFilledIcon from "@/public/commerciallikedicon.svg";
@@ -279,7 +280,7 @@ const CommercialPropertyCard: React.FC<{
                   </span>
                 </div>
                 <div className="flex items-center">
-                  {/* <Image src={} alt="" /> */}
+                  <Image src={defaultclockicon} alt="clock icon" />
                   <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
                     {property.time}
                     <span className="text-xs"> am</span>
