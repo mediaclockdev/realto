@@ -39,11 +39,11 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
   }, [images, interval]);
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 py-8 bg-gray-100 flex items-stretch">
-      <div className="flex flex-col lg:flex-row w-full gap-4 lg:gap-8 items-stretch">
+    <div className="max-w-screen-2xl mx-auto px-4 sm:px-8 py-10 bg-gray-100 shadow-4xl shadow-black flex items-stretch">
+      <div className="flex flex-col lg:flex-row w-full items-stretch gap-4 lg:gap-6 ">
         {/* Left: Image Carousel */}
 
-        <div className="w-full lg:w-2/3 shrink-0 relative min-h-55 ʼsm:min-h-75 rounded-2xl overflow-hidden">
+        <div className="w-full lg:w-2/3 shrink-0 relative min-h-55 sm:min-h-75 rounded-2xl overflow-hidden">
           {/* Slides */}
           {images.map((img, i) => (
             <Image
@@ -62,7 +62,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
         </div>
 
         {/* Right: Form */}
-        <div className="w-full lg:w-1/3 flex flex-col justify-between">
+        <div className="w-full lg:w-1/3 flex flex-col justify-between  bg-black/20 shadow-[0_10_0_5px_rgba(191,219,254,0.9),0_25px_45px_rgba(59,130,246,0.25)] rounded-2xl p-4">
           {/* Header */}
           <div className="mb-5">
             <h2 className="text-2xl sm:text-3xl font-bold text-black">
@@ -76,7 +76,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
           {/* Fields */}
           <div className="flex flex-col gap-4">
             {/* Full Name */}
-            <div className="bg-white border border-[#BFDBFE] shadow-[0_0_0_2px_rgba(191,219,254,0.9),0_10px_25px_rgba(59,130,246,0.25)] rounded-l-[10px]  pl-5 h-13 transition-all flex items-stretch justify-between ">
+            <div className=" border border-[#BFDBFE] shadow-[0_0_0_2px_rgba(191,219,254,0.9),0_10px_25px_rgba(59,130,246,0.25)] rounded-l-[10px]  pl-5 h-13 transition-all flex items-stretch justify-between ">
               <div className="flex flex-col justify-center h-full">
                 <label className="text-xs text-gray-500">Full Name</label>
                 <input

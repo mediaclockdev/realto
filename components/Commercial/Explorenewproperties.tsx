@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Mail, Phone } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import elder from "../../public/elderrealestate.svg";
 
 // ==========================================
@@ -10,13 +10,14 @@ import elder from "../../public/elderrealestate.svg";
 // ICONS FOR THE COMMERCIAL NEW PROPERTIES CARD
 // Changing icons here will NOT affect BuyPropertyCard
 // ==========================================
-import defaultLocationIcon from "@/public/locationcommcialicon.svg";
-import defaultCalendarIcon from "@/public/commercialclockicon.svg";
+import defaultLocationIcon from "@/public/commerciallocationicon.svg";
+import defaultCalendarIcon from "@/public/commercialcalender.svg";
 import defaultMoneyIcon from "@/public/money.svg";
 import defaultSquareMeterIcon from "@/public/squaremetericon.svg";
-import defaultShareIcon from "@/public/share.svg";
+import defaultShareIcon from "@/public/commercialshareicon.svg";
 import defaultLikeOutlineIcon from "@/public/commerciallikeicon.svg";
 import defaultLikeFilledIcon from "@/public/commerciallikedicon.svg";
+import mailicon from "@/public/commercialmailicon.svg";
 
 // ==========================================
 // FEATURE ICONS
@@ -25,7 +26,7 @@ import defaultLikeFilledIcon from "@/public/commerciallikedicon.svg";
 // ==========================================
 import defaultPropertyIcon from "@/public/commercialretailicon.svg";
 import defaultPropertyIcon2 from "@/public/commercialofficeicon.svg";
-import defaultCarIcon from "@/public/car.svg";
+import defaultCarIcon from "@/public/commercialcaricon.svg";
 
 // ==========================================
 // SOCIAL MEDIA ICONS (Local SVGs)
@@ -45,14 +46,15 @@ import new3 from "../../public/new3.svg";
 import agent1 from "../../public/agentimg1.jpg";
 import agent2 from "../../public/agentimg2.jpg";
 import agent3 from "../../public/agentimg3.jpg";
+import { ImageSource } from "@/lib/shared/types";
 
 interface PropertyData {
   id: string;
-  images: any[];
+  images: ImageSource[];
   agentName: string;
   agentPhone: string;
   agentEmail: string;
-  agentImage: any;
+  agentImage: ImageSource;
   agencyLogoText: string;
   propertyType: string;
   carSpaces: string;
@@ -68,10 +70,10 @@ interface PropertyData {
 const GOLD_GRADIENT =
   "linear-gradient(90deg, #000000, #000000, #000000, #000000, #000000, #000000)";
 
-const CommercialPropertyCard: React.FC<{ property: PropertyData; index: number }> = ({
-  property,
-  index,
-}) => {
+const CommercialPropertyCard: React.FC<{
+  property: PropertyData;
+  index: number;
+}> = ({ property, index }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [liked, setLiked] = useState(false);
 
@@ -134,7 +136,7 @@ const CommercialPropertyCard: React.FC<{ property: PropertyData; index: number }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative py-2 px-2 bg-white rounded-xl shadow-2xl">
+      <div className="relative pb-1 bg-white rounded-xl shadow-2xl">
         <div className="h-full w-full overflow-visible rounded-xl bg-white shadow-xl transition-shadow duration-300 hover:shadow-2xl">
           {/* ========================================== */}
           {/* 1. IMAGE AUTO-SLIDER - No frame             */}
@@ -184,7 +186,7 @@ const CommercialPropertyCard: React.FC<{ property: PropertyData; index: number }
           {/* Agent headshot (left) | Name | Logo (right) */}
           {/* Same style as Rent property card top box    */}
           {/* ========================================== */}
-          <div className="px-2 pt-2">
+          <div className="px-2 -mt-2">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
                 <Image
@@ -192,29 +194,33 @@ const CommercialPropertyCard: React.FC<{ property: PropertyData; index: number }
                   alt={property.agentName}
                   width={50}
                   height={50}
-                  className="shrink-0 rounded-full border-2 border-red-100 object-cover w-[50px] h-[50px]"
+                  className="shrink-0 rounded-full border-2 border-red-100 object-cover w-[40px] h-[40px]"
                 />
                 <p className="truncate font-amasis text-base font-semibold text-[#343434]">
                   {property.agentName}
                 </p>
               </div>
 
-              <Image src={elder} alt="agency logo" className="w-28 h-10" />
+              <Image src={elder} alt="agency logo" className="w-20 h-16" />
             </div>
           </div>
 
           {/* Card Details Section */}
-          <div className="px-2">
+          <div className="px-2 -mt-8">
             {/* ========================================== */}
             {/* 3. FEATURES ROW                            */}
             {/* Property Type Photo | Car + Parking # | SqFt */}
             {/* ========================================== */}
-            <div className="mt-1 mb-1 flex items-center justify-between gap-3">
+            <div className="flex items-center justify-between gap-3">
               {/* Property Type Photo/Icon */}
               <div className="flex items-center gap-0.5">
-                <div className="h-13 w-18 shrink-0 overflow-hidden rounded-lg">
+                <div className="h-8 w-12 shrink-0 overflow-hidden rounded-lg">
                   <Image
-                    src={index % 2 === 0 ? defaultPropertyIcon : defaultPropertyIcon2}
+                    src={
+                      index % 2 === 0
+                        ? defaultPropertyIcon
+                        : defaultPropertyIcon2
+                    }
                     alt={property.propertyType}
                     width={60}
                     height={44}
@@ -224,13 +230,13 @@ const CommercialPropertyCard: React.FC<{ property: PropertyData; index: number }
               </div>
               {/* Car / Parking Spots */}
               <div className="flex items-center gap-0.5">
-                <div className="h-18 w-15 shrink-0 overflow-hidden rounded-lg">
+                <div className="shrink-0 overflow-hidden rounded-lg">
                   <Image
                     src={defaultCarIcon}
                     alt="parking"
                     width={60}
                     height={72}
-                    className="w-15 h-18"
+                    className="w-20 h-24"
                   />
                 </div>
                 <span className="text-base font-bold font-amasis text-[#FA2F2F]">
@@ -248,7 +254,7 @@ const CommercialPropertyCard: React.FC<{ property: PropertyData; index: number }
                 />
                 <p className="font-amasis text-base font-semibold text-[#343434]">
                   {property.size}
-                  <span className="text-xs">sqft</span>
+                  <span className="text-[10px]">sqft</span>
                 </p>
               </div>
             </div>
@@ -256,66 +262,68 @@ const CommercialPropertyCard: React.FC<{ property: PropertyData; index: number }
             {/* ========================================== */}
             {/* 4. LOCATION ROW                            */}
             {/* ========================================== */}
-            <div className="flex items-center gap-0.5">
-              <Image
-                src={defaultLocationIcon}
-                alt="location"
-                width={40}
-                height={40}
-                className="shrink-0 object-contain h-10 w-10"
-              />
-              <span className="ml-0.5 truncate font-amasis text-sm font-semibold text-gray-800">
-                {property.address}
-              </span>
-            </div>
-
-            {/* ========================================== */}
-            {/* 5. CALENDAR ROW (Date + Time)              */}
-            {/* ========================================== */}
-            <div className="flex items-center justify-between gap-1 text-gray-600 mt-1">
-              <div className="flex items-center">
+            <div className="-mt-7">
+              <div className="flex items-center gap-0.5">
                 <Image
-                  src={defaultCalendarIcon}
-                  alt="calendar icon"
-                  width={36}
-                  height={36}
-                  className="h-9 w-9 object-contain"
-                />
-                <span className="ml-1 font-amasis text-base font-semibold text-[#343434]">
-                  Monday {property.date}
-                </span>
-              </div>
-              <div className="flex items-center">
-                <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
-                  {property.time}
-                  <span className="text-xs"> am</span>
-                </p>
-              </div>
-            </div>
-
-            {/* ========================================== */}
-            {/* 6. PRICE + PROPERTY TYPE + BUY/LEASE       */}
-            {/* ========================================== */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1">
-                <Image
-                  src={defaultMoneyIcon}
-                  alt="money icon"
+                  src={defaultLocationIcon}
+                  alt="location"
                   width={40}
                   height={40}
-                  className="h-10 w-10 object-contain"
+                  className="shrink-0 object-contain h-10 w-10"
                 />
-                <p className="font-amasis text-base font-semibold text-[#343434]">
-                  {property.price}
-                </p>
+                <span className="ml-0.5 truncate font-amasis text-sm font-semibold text-gray-800">
+                  {property.address}
+                </span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="font-amasis text-base font-semibold text-[#007CBE]">
-                  {property.propertyType}
-                </span>
-                <span className="font-amasis text-sm font-bold text-[#FA2F2F]">
-                  {property.listingType}
-                </span>
+
+              {/* ========================================== */}
+              {/* 5. CALENDAR ROW (Date + Time)              */}
+              {/* ========================================== */}
+              <div className="flex items-center justify-between gap-1 text-gray-600 mt-1">
+                <div className="flex items-center">
+                  <Image
+                    src={defaultCalendarIcon}
+                    alt="calendar icon"
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 object-contain"
+                  />
+                  <span className="ml-1 font-amasis text-base font-semibold text-[#343434]">
+                    Monday {property.date}
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
+                    {property.time}
+                    <span className="text-xs"> am</span>
+                  </p>
+                </div>
+              </div>
+
+              {/* ========================================== */}
+              {/* 6. PRICE + PROPERTY TYPE + BUY/LEASE       */}
+              {/* ========================================== */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1">
+                  <Image
+                    src={defaultMoneyIcon}
+                    alt="money icon"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 object-contain"
+                  />
+                  <p className="font-amasis text-base font-semibold text-[#343434]">
+                    {property.price}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="font-amasis text-sm font-bold text-[#007CBE]">
+                    {property.listingType}
+                  </span>
+                  <span className="font-amasis text-base font-semibold text-[#007CBE]">
+                    {property.propertyType}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -337,7 +345,7 @@ const CommercialPropertyCard: React.FC<{ property: PropertyData; index: number }
         {/* ========================================== */}
         {/* 8. LOWER CONTACT SECTION                   */}
         {/* ========================================== */}
-        <div className="px-3 pb-2">
+        <div className="px-3">
           {/* Agent Name + Mobile Number */}
           <div className="flex items-center justify-between gap-2">
             <p className="font-amasis text-base font-semibold text-[#FA2F2F] truncate">
@@ -349,8 +357,9 @@ const CommercialPropertyCard: React.FC<{ property: PropertyData; index: number }
           </div>
 
           {/* Email Address */}
-          <div className="flex items-center gap-1.5 mt-1">
-            <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+          <div className="flex items-center gap-1.5 ">
+            <Image src={mailicon} alt="" className="w-8 h-8 shrink-0" />
+
             <a
               href={`mailto:${property.agentEmail}`}
               className="font-amasis text-xs font-semibold text-slate-500 hover:text-blue-600 transition-colors truncate"
@@ -360,20 +369,20 @@ const CommercialPropertyCard: React.FC<{ property: PropertyData; index: number }
           </div>
 
           {/* Social Media Links (left) + Share & Save (right) */}
-          <div className="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-100">
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100">
             {/* Social media icon boxes */}
             <div className="flex gap-1.5">
               {socialIconsLocal.map((icon, i) => (
                 <button
                   key={i}
-                  className="w-6.5 h-6.5 rounded border border-slate-200 flex items-center justify-center bg-white hover:scale-115 hover:border-slate-400 transition-all cursor-pointer overflow-hidden p-0.5 shrink-0"
+                  className="w-7.5 h-7.5 rounded border border-slate-200 flex items-center justify-center bg-white hover:scale-115 hover:border-slate-400 transition-all cursor-pointer overflow-hidden p-0.5 shrink-0"
                   title={socialLabelsLocal[i]}
                 >
                   <Image
                     src={icon}
                     alt={socialLabelsLocal[i]}
-                    width={18}
-                    height={18}
+                    width={20}
+                    height={20}
                     className="object-contain w-full h-full"
                   />
                 </button>
@@ -533,7 +542,11 @@ const Explorenewproperties = () => {
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {newproperties.map((property, index) => (
-            <CommercialPropertyCard key={property.id} property={property} index={index} />
+            <CommercialPropertyCard
+              key={property.id}
+              property={property}
+              index={index}
+            />
           ))}
         </div>
 

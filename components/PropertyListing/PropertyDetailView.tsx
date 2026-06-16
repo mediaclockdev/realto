@@ -1,17 +1,51 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { ListingVariant } from "@/lib/listings/types";
 import locationIcon from "@/public/location.svg";
 import type { ListingProperty } from "@/lib/properties/types";
+
 import airconditioner from "../../public/airconditioner.svg";
+import airconditioner1 from "../../public/ac1.svg";
+import airconditioner2 from "../../public/ac2.svg";
+import airconditioner3 from "../../public/ac3.svg";
+import airconditioner4 from "../../public/ac4.svg";
+import airconditioner5 from "../../public/ac5.svg";
+import airconditioner6 from "../../public/ac6.svg";
+
 import Wifi from "../../public/wifi.svg";
+import wifi1 from "../../public/wifi1.svg";
+import wifi2 from "../../public/wifi2.svg";
+import wifi3 from "../../public/wifi3.svg";
+import wifi4 from "../../public/wifi4.svg";
+
 import alarmsystem from "../../public/alarmsystem.svg";
+import alarmsystem1 from "../../public/alarmsystem1.svg";
+import alarmsystem2 from "../../public/alarmsystem2.svg";
+import alarmsystem3 from "../../public/alarmsystem3.svg";
+
 import dishwasher from "../../public/dishwasher.svg";
+import dishwasher1 from "../../public/dishwasher1.svg";
+import dishwasher2 from "../../public/dishwasher2.svg";
+import dishwasher3 from "../../public/dishwasher3.svg";
+import dishwasher4 from "../../public/dishwasher4.svg";
+import dishwasher5 from "../../public/dishwasher5.svg";
+import dishwasher6 from "../../public/dishwasher6.svg";
+
 import builtInRobes from "../../public/buildinrobes.svg";
+import builtInRobes1 from "../../public/buildinrobes1.svg";
+import builtInRobes2 from "../../public/buildinrobes2.svg";
+import builtInRobes3 from "../../public/buildinrobes3.svg";
+import builtInRobes4 from "../../public/buildinrobes4.svg";
+
 import balcony from "../../public/balcony.svg";
+import balcony1 from "../../public/balcony1.svg";
+import balcony2 from "../../public/balcony2.svg";
+import balcony3 from "../../public/balcony3.svg";
+import balcony4 from "../../public/balcony4.svg";
+
 import garage from "../../public/garage.svg";
 import fullyfenced from "../../public/fullyfenced.svg";
 import swimmingpool from "../../public/swimmingpool.svg";
@@ -55,35 +89,81 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const [tick, setTick] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTick((t) => t + 1);
+    }, 10000); // 10 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   const residentialAmenities = [
-    { name: "Air Conditioner", icon: airconditioner },
-    { name: "Wi-fi", icon: Wifi },
-    { name: "Alarm System", icon: alarmsystem },
-    { name: "Dishwasher", icon: dishwasher },
-    { name: "Built-in robes", icon: builtInRobes },
-    { name: "Balcony", icon: balcony },
-    { name: "Garage", icon: garage },
-    { name: "Fully fenced", icon: fullyfenced },
-    { name: "Swimming pool", icon: swimmingpool },
+    {
+      name: "Air Conditioner",
+      icons: [
+        airconditioner,
+        airconditioner1,
+        airconditioner2,
+        airconditioner3,
+        airconditioner4,
+        airconditioner5,
+        airconditioner6,
+      ],
+    },
+    { name: "Wi-fi", icons: [Wifi, wifi1, wifi2, wifi3, wifi4] },
+    {
+      name: "Alarm System",
+      icons: [alarmsystem, alarmsystem1, alarmsystem2, alarmsystem3],
+    },
+    {
+      name: "Dishwasher",
+      icons: [
+        dishwasher,
+        dishwasher1,
+        dishwasher2,
+        dishwasher3,
+        dishwasher4,
+        dishwasher5,
+        dishwasher6,
+      ],
+    },
+    {
+      name: "Built-in robes",
+      icons: [
+        builtInRobes,
+        builtInRobes1,
+        builtInRobes2,
+        builtInRobes3,
+        builtInRobes4,
+      ],
+    },
+    {
+      name: "Balcony",
+      icons: [balcony, balcony1, balcony2, balcony3, balcony4],
+    },
+    { name: "Garage", icons: [garage] },
+    { name: "Fully fenced", icons: [fullyfenced] },
+    { name: "Swimming pool", icons: [swimmingpool] },
   ];
 
   const landFeatures = [
     {
       name: "Well",
-      icon: well,
+      icons: [well],
     },
     {
       name: "electricity",
-      icon: electricity,
+      icons: [electricity],
     },
     {
       name: "Council Approval",
-      icon: councilapproval,
+      icons: [councilapproval],
     },
     {
       name: "Near Transport",
-      icon: neartransport,
+      icons: [neartransport],
     },
   ];
 
@@ -422,15 +502,21 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
             {amenities.map((item, idx) => (
               <div
                 key={idx}
-                className="rounded-xl shrink-0 flex flex-col items-center justify-center gap-3 text-center transition-transform hover:scale-105 cursor-default"
+                className="relative rounded-xl shrink-0 overflow-hidden flex flex-col items-center justify-center text-center transition-transform hover:scale-105 cursor-default w-32 h-32"
               >
                 <Image
-                  src={item.icon}
+                  src={item.icons[tick % item.icons.length]}
                   alt="amenity"
-                  width={120}
-                  height={120}
-                  className="w-32 h-32"
+                  fill
+                  className="object-cover"
+                  unoptimized
                 />
+
+                <div className="absolute bottom-0 left-0 right-0 h-[18%] bg-white/50 flex items-center justify-center">
+                  <p className="text-[#343434] font-semibold text-[15px]">
+                    {item.name}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
