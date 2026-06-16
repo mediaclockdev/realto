@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import elder from "../../public/elderrealestate.svg";
+import elder from "../../public/century21.svg";
 
 // ==========================================
 // LOCAL ICONS - CHANGE THESE PATHS TO REPLACE
@@ -172,7 +172,7 @@ const CommercialPropertyCard: React.FC<{
           {/* Agent headshot (left) | Name | Logo (right) */}
           {/* Same style as Rent property card top box    */}
           {/* ========================================== */}
-          <div className="px-2 -mt-2">
+          <div className="px-1  bg-red-500/30">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
                 <Image
@@ -187,12 +187,12 @@ const CommercialPropertyCard: React.FC<{
                 </p>
               </div>
 
-              <Image src={elder} alt="agency logo" className="w-20 h-16" />
+              <Image src={elder} alt="agency logo" className="w-18 h-11" />
             </div>
           </div>
 
           {/* Card Details Section */}
-          <div className="px-2 -mt-8">
+          <div className="px-1 -mt-6">
             {/* ========================================== */}
             {/* 3. FEATURES ROW                            */}
             {/* Property Type Photo | Car + Parking # | SqFt */}
@@ -200,7 +200,7 @@ const CommercialPropertyCard: React.FC<{
             <div className="flex items-center justify-between gap-3">
               {/* Property Type Photo/Icon */}
               <div className="flex items-center gap-0.5">
-                <div className="h-8 w-12 shrink-0 overflow-hidden rounded-lg">
+                <div className="h-8 w-10 shrink-0 overflow-hidden rounded-lg">
                   <Image
                     src={
                       index % 2 === 0
@@ -225,7 +225,7 @@ const CommercialPropertyCard: React.FC<{
                     className="w-20 h-24"
                   />
                 </div>
-                <span className="text-base font-bold font-amasis text-[#FA2F2F]">
+                <span className="text-lg font-extrabold font-amasis text-[#FA2F2F]">
                   {property.carSpaces}
                 </span>
               </div>
@@ -249,13 +249,13 @@ const CommercialPropertyCard: React.FC<{
             {/* 4. LOCATION ROW                            */}
             {/* ========================================== */}
             <div className="-mt-7">
-              <div className="flex items-center gap-0.5">
+              <div className="flex items-center gap-1.5">
                 <Image
                   src={defaultLocationIcon}
                   alt="location"
                   width={40}
                   height={40}
-                  className="shrink-0 object-contain h-10 w-10"
+                  className="shrink-0 object-contain h-10 w-8"
                 />
                 <span className="ml-0.5 truncate font-amasis text-sm font-semibold text-gray-800">
                   {property.address}
@@ -279,6 +279,7 @@ const CommercialPropertyCard: React.FC<{
                   </span>
                 </div>
                 <div className="flex items-center">
+                  {/* <Image src={} alt="" /> */}
                   <p className="ml-1 font-amasis text-base font-semibold text-[#343434]">
                     {property.time}
                     <span className="text-xs"> am</span>
@@ -361,7 +362,7 @@ const CommercialPropertyCard: React.FC<{
               {socialIconsLocal.map((icon, i) => (
                 <button
                   key={i}
-                  className="w-7.5 h-7.5 rounded border border-slate-200 flex items-center justify-center bg-white hover:scale-115 hover:border-slate-400 transition-all cursor-pointer overflow-hidden p-0.5 shrink-0"
+                  className="w-7.5 h-7.5 rounded flex items-center justify-center bg-white hover:scale-115 hover:border-slate-400 transition-all cursor-pointer overflow-hidden p-0.5 shrink-0"
                   title={socialLabelsLocal[i]}
                 >
                   <Image
