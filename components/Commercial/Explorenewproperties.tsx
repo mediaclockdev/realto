@@ -165,20 +165,6 @@ const CommercialPropertyCard: React.FC<{
                 </button>
               </>
             )}
-
-            {/* Slider progress dots */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-              {property.images.map((_, idx) => (
-                <span
-                  key={idx}
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    idx === currentImageIndex
-                      ? "w-3 bg-white"
-                      : "w-1 bg-white/50"
-                  }`}
-                />
-              ))}
-            </div>
           </div>
 
           {/* ========================================== */}
