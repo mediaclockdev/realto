@@ -107,10 +107,6 @@ const CommercialPropertyCard: React.FC<{
     setLiked(newLiked);
   };
 
-  // ==========================================
-  // LOCAL SOCIAL MEDIA ICONS LIST
-  // Change these to update social icons for commercial cards only
-  // ==========================================
   const socialIconsLocal = [
     socialIconWhatsApp,
     socialIconInstagram,
@@ -137,8 +133,8 @@ const CommercialPropertyCard: React.FC<{
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative pb-1 bg-white rounded-xl shadow-2xl">
-        <div className="h-full w-full overflow-visible rounded-xl bg-white shadow-xl transition-shadow duration-300 hover:shadow-2xl">
+      <div className="relative pb-1 bg-white rounded-xl">
+        <div className="h-full w-full overflow-visible rounded-xl transition-shadow shadow-2xl duration-300">
           {/* ========================================== */}
           {/* 1. IMAGE AUTO-SLIDER - No frame             */}
           {/* ========================================== */}
@@ -173,7 +169,7 @@ const CommercialPropertyCard: React.FC<{
           {/* Agent headshot (left) | Name | Logo (right) */}
           {/* Same style as Rent property card top box    */}
           {/* ========================================== */}
-          <div className="px-1  bg-red-500/30">
+          <div className="px-1  bg-black/40">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
                 <Image
@@ -216,7 +212,7 @@ const CommercialPropertyCard: React.FC<{
                 </div>
               </div>
               {/* Car / Parking Spots */}
-              <div className="flex items-center gap-0.5">
+              <div className="flex items-center gap-0.5 ml-4">
                 <div className="shrink-0 overflow-hidden rounded-lg">
                   <Image
                     src={defaultCarIcon}
@@ -316,30 +312,17 @@ const CommercialPropertyCard: React.FC<{
             </div>
           </div>
         </div>
-
-        {/* ========================================== */}
-        {/* 7. 3D SEPARATING LINE                      */}
-        {/* ========================================== */}
-        <div
-          className="mx-1 my-2 h-[3px] rounded-full"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.18), rgba(0,0,0,0.06))",
-            boxShadow:
-              "0 1px 2px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(0,0,0,0.08)",
-          }}
-        />
-
+        <div className="mt-[2.5px] h-[2.5px]"></div>
         {/* ========================================== */}
         {/* 8. LOWER CONTACT SECTION                   */}
         {/* ========================================== */}
-        <div className="px-3">
+        <div className="px-3 shadow-sm rounded-xl bg-white hover:shadow-2xl">
           {/* Agent Name + Mobile Number */}
           <div className="flex items-center justify-between gap-2">
-            <p className="font-amasis text-base font-semibold text-[#FA2F2F] truncate">
+            <p className="font-amasis text-base font-semibold text-black truncate">
               {property.agentName}
             </p>
-            <p className="font-amasis text-sm font-semibold text-[#FA2F2F] shrink-0">
+            <p className="font-amasis text-sm font-semibold text-black shrink-0">
               {property.agentPhone}
             </p>
           </div>
@@ -359,7 +342,7 @@ const CommercialPropertyCard: React.FC<{
           {/* Social Media Links (left) + Share & Save (right) */}
           <div className="flex items-center justify-between pt-2 border-t border-slate-100">
             {/* Social media icon boxes */}
-            <div className="flex gap-1.5">
+            <div className="flex gap-1">
               {socialIconsLocal.map((icon, i) => (
                 <button
                   key={i}

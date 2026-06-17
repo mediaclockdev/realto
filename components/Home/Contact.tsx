@@ -62,7 +62,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
         </div>
 
         {/* Right: Form */}
-        <div className="w-full lg:w-1/3 flex flex-col justify-between  bg-black/20 shadow-[0_10_0_5px_rgba(191,219,254,0.9),0_25px_45px_rgba(59,130,246,0.25)] rounded-2xl p-4">
+        <div className="w-full lg:w-1/3 flex flex-col justify-between  rounded-2xl p-4">
           {/* Header */}
           <div className="mb-5">
             <h2 className="text-2xl sm:text-3xl font-bold text-black">
