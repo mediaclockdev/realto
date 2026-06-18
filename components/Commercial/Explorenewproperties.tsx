@@ -133,7 +133,7 @@ const CommercialPropertyCard: React.FC<{
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative pb-1 bg-white rounded-xl">
+      <div className="relative bg-white rounded-xl">
         <div className="h-full w-full overflow-visible rounded-xl transition-shadow shadow-2xl duration-300">
           {/* ========================================== */}
           {/* 1. IMAGE AUTO-SLIDER - No frame             */}
