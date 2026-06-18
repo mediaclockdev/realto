@@ -169,7 +169,7 @@ const CommercialPropertyCard: React.FC<{
           {/* Agent headshot (left) | Name | Logo (right) */}
           {/* Same style as Rent property card top box    */}
           {/* ========================================== */}
-          <div className="px-1  bg-black/40">
+          <div className="pl-1 pr-2  bg-black/40">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
                 <Image
@@ -189,7 +189,7 @@ const CommercialPropertyCard: React.FC<{
           </div>
 
           {/* Card Details Section */}
-          <div className="px-1 -mt-6">
+          <div className="pl-1 pr-2 -mt-6">
             {/* ========================================== */}
             {/* 3. FEATURES ROW                            */}
             {/* Property Type Photo | Car + Parking # | SqFt */}
@@ -300,8 +300,8 @@ const CommercialPropertyCard: React.FC<{
                     {property.price}
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="font-amasis text-sm font-bold text-[#007CBE]">
+                <div className="flex items-center gap-3">
+                  <span className="font-amasis text-base font-bold text-[#007CBE]">
                     {property.listingType}
                   </span>
                   <span className="font-amasis text-base font-semibold text-[#007CBE]">
@@ -312,11 +312,11 @@ const CommercialPropertyCard: React.FC<{
             </div>
           </div>
         </div>
-        <div className="mt-[2.5px] h-[2.5px]"></div>
+        <div className="mt-[1px] h-[2.5px]"></div>
         {/* ========================================== */}
         {/* 8. LOWER CONTACT SECTION                   */}
         {/* ========================================== */}
-        <div className="px-3 shadow-sm rounded-xl bg-white hover:shadow-2xl">
+        <div className="px-2 shadow-sm rounded-xl bg-white hover:shadow-2xl">
           {/* Agent Name + Mobile Number */}
           <div className="flex items-center justify-between gap-2">
             <p className="font-amasis text-base font-semibold text-black truncate">
@@ -340,7 +340,7 @@ const CommercialPropertyCard: React.FC<{
           </div>
 
           {/* Social Media Links (left) + Share & Save (right) */}
-          <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+          <div className="flex items-center justify-between  border-t border-slate-100">
             {/* Social media icon boxes */}
             <div className="flex gap-1">
               {socialIconsLocal.map((icon, i) => (

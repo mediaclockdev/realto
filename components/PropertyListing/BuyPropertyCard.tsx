@@ -161,7 +161,7 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                           className="h-full w-full"
                         />
                       </div>
-                      <span className="text-xl font-bold font-amasis text-[#FA2F2F]">
+                      <span className="text-xl font-extrabold font-amasis text-[#FA2F2F]">
                         {property.iconLabels?.[index] ?? "1"}
                       </span>
                     </div>
