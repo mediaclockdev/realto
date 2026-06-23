@@ -19,6 +19,8 @@ import rentshare from "../../public/share.svg";
 import rentlikedicon from "../../public/rentlikedicon.svg";
 import homeliked from "@/public/homelike.svg";
 import email from "@/public/mailicon.svg";
+import landliked from "@/public/landlikedicon.svg";
+import landlike from "@/public/landlikeicon.svg";
 
 import BuyPropertyCard from "./BuyPropertyCard";
 import {
@@ -123,7 +125,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           <div
             ref={outerRef}
             onClick={onClick}
-            className={`rounded-[24px] cursor-pointer transition-all duration-300 hover:scale-[1.02] p-[4px] ${showShareModal ? "relative z-50" : ""}`}
+            className={`rounded-3xl cursor-pointer transition-all duration-300 hover:scale-[1.02] p-1 ${showShareModal ? "relative z-50" : ""}`}
             style={{ background: "transparent" }}
             onMouseEnter={() => {
               if (outerRef.current) {
@@ -137,7 +139,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               }
             }}
           >
-            <div className="relative py-2 px-2 bg-white rounded-[24px] shadow-2xl">
+            <div className="relative py-2 px-2 bg-white rounded-3xl shadow-2xl">
               {/* SECTION 1: Agent Banner */}
               <div className="w-full overflow-hidden rounded-[20px] shadow-[0_2px_5px_rgb(0,0,0,0.8)] transition-shadow duration-300">
                 <div
@@ -646,8 +648,8 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                         <Image
                           src={
                             liked
-                              ? (property.likedIcon ?? homeliked)
-                              : (property.likeIcon ?? buylikeicon)
+                              ? (property.likedIcon ?? landliked)
+                              : (property.likeIcon ?? landlike)
                           }
                           alt="Home"
                           width={40}

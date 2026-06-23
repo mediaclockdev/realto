@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import Image from "next/image";
 import voice from "../../public/iconvoice.svg";
 import fliter from "../../public/iconfliter.svg";
@@ -9,6 +9,10 @@ import searchwhite from "../../public/iconsearchwhite.svg";
 import searchbar from "../../public/searchbar.svg";
 import PropertyFilterModal from "./PropertyFilterModal";
 import Counteries from "./Counteries";
+import magnifyingglass1 from "@/public/magnifyingglass1.svg";
+import magnifyingglass2 from "@/public/magnifyingglass2.svg";
+import magnifyingglass3 from "@/public/magnifyingglass3.svg";
+import magnifyingglass4 from "@/public/magnifyingglass4.svg";
 
 type TooltipProps = {
   text: string;
@@ -33,6 +37,22 @@ const Tooltip = ({ text, children }: TooltipProps) => {
 const Searchbar = () => {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [isCountriesOpen, setIsCountriesOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const images = [
+    searchwhite,
+    magnifyingglass1,
+    magnifyingglass2,
+    magnifyingglass3,
+    magnifyingglass4,
+  ];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -89,42 +109,46 @@ const Searchbar = () => {
             </Tooltip>
 
             {/* Voice */}
+            <div className="flex items-center gap-2  bg-white/40 rounded-r-[10px]">
+              {/* <div className="h-8 w-px bg-[#FFFFF7]"></div> */}
+              <Tooltip text="Microphone">
+                <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+                  <Image
+                    src={voice}
+                    alt="voice"
+                    fill
+                    className="object-contain"
+                  />
+                </button>
+              </Tooltip>
 
-            <Tooltip text="Microphone">
-              <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer  bg-white/50">
-                <Image
-                  src={voice}
-                  alt="voice"
-                  fill
-                  className="object-contain"
-                />
-              </button>
-            </Tooltip>
+              {/* Google Lens */}
+              <div className="h-10 w-px bg-[#ecece7]"></div>
+              <Tooltip text="Camera">
+                <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+                  <Image
+                    src={googlelens}
+                    alt="lens"
+                    fill
+                    className="object-contain"
+                  />
+                </button>
+              </Tooltip>
 
-            {/* Google Lens */}
-            <Tooltip text="Camera">
-              <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer bg-white/50">
-                <Image
-                  src={googlelens}
-                  alt="lens"
-                  fill
-                  className="object-contain"
-                />
-              </button>
-            </Tooltip>
+              {/* Search button — fills full height */}
+              <div className="h-10 w-px bg-[#ecece7]"></div>
+              <Tooltip text="Search">
+                <button className="relative ml-2 h-12 md:h-16 w-12 md:w-16 shrink-0 flex items-center justify-center transition-colors cursor-pointer ">
+                  <Image
+                    src={images[currentImage]}
+                    alt="search"
+                    fill
+                    className="object-contain rounded-r-[10px]"
+                  />
+                </button>
+              </Tooltip>
+            </div>
           </div>
-
-          {/* Search button — fills full height */}
-          <Tooltip text="Search">
-            <button className="relative ml-2 h-12 md:h-16 w-12 md:w-16 shrink-0 flex items-center justify-center bg-white/50 hover:bg-white/40 transition-colors cursor-pointer rounded-r-[10px]">
-              <Image
-                src={searchwhite}
-                alt="search"
-                fill
-                className="object-contain rounded-r-[10px]"
-              />
-            </button>
-          </Tooltip>
         </div>
       </div>
     </>

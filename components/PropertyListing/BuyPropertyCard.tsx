@@ -58,7 +58,7 @@ interface BuyPropertyCardProps {
 }
 
 const GOLD_GRADIENT =
-  "linear-gradient(90deg, #7F1D1D, #B91C1C, #DC2626, #EF4444, #F87171, #991B1B)";
+  "linear-gradient(90deg, #EF4444, #EF4444, #EF4444, #EF4444, #EF4444, #EF4444)";
 
 const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
   property,

@@ -116,8 +116,8 @@ const CardFace: React.FC<{ agent: Agent }> = ({ agent }) => (
       <Image
         src={agent.agentImage}
         alt={agent.name}
-        width={108}
-        height={108}
+        width={150}
+        height={150}
         style={{ objectFit: "cover", width: "100%", height: "100%" }}
       />
     </div>

@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import logo from "@/public/logo.svg";
-import logogif from "@/public/logogif.gif";
+import logogif from "@/public/logogifheader.gif";
+import signinbtn from "@/public/signinbtnicon.svg";
 import Link from "next/link";
 // import avatar from "@/public/avatar.png";
 
@@ -47,7 +48,7 @@ const Header = () => {
         <div className={isHome ? "w-32  lg:w-80" : "w-24  lg:w-40"}>
           <Link href="/homepage">
             <Image
-              src={logo}
+              src={logogif}
               alt="Realto logo"
               priority
               unoptimized
@@ -55,13 +56,18 @@ const Header = () => {
             />
           </Link>
         </div>
-
-        <button className="bg-[#399918] text-white text-sm sm:text-base font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-colors duration-200 flex-shrink-0">
-          <Link href={"/login"}>Sign In</Link>
-        </button>
+        <Link href={"/login"}>
+          <div className="flex items-center gap-2 bg-[#399918]  px-2 lg:px-3 py-2 sm:py-2.5 rounded-lg transition-colors duration-200 shrink-0">
+            <Image src={signinbtn} alt="sign in btn " className="size-8" />
+            <button className=" text-white text-sm sm:text-base font-bold ">
+              <p>Sign In</p>
+            </button>
+          </div>
+        </Link>
       </div>
     </header>
   );
+  
 };
 
 export default Header;

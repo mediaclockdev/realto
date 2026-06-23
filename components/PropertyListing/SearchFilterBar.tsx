@@ -60,7 +60,7 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
   return (
     <div
       className={`w-full border-b border-gray-200 px-4 sm:px-6 lg:px-10 py-3 ${
-        listingVariant === "rent" ? "bg-[#0284C7]" : "bg-[#0284C7]"
+        listingVariant === "rent" ? "bg-[#009FFD]" : "bg-[#009FFD]"
       }`}
     >
       <div className="max-w-screen-2xl mx-auto flex items-center gap-3 flex-wrap sm:flex-nowrap">

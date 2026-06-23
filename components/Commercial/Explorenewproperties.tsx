@@ -69,7 +69,7 @@ interface PropertyData {
 }
 
 const GOLD_GRADIENT =
-  "linear-gradient(90deg, #000000, #000000, #000000, #000000, #000000, #000000)";
+  "linear-gradient(90deg, #305792, #305792, #305792, #305792 ,#305792)";
 
 const CommercialPropertyCard: React.FC<{
   property: PropertyData;
