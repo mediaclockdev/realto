@@ -46,6 +46,10 @@ export interface AgentSocialLinks {
   instagram?: string;
   facebook?: string;
   sms?: string;
+  tiktok?: string;
+  wechat?: string;
+  snapchat?: string;
+  linkedin?: string;
 }
 
 export interface AgentPerformance {

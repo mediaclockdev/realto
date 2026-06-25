@@ -56,8 +56,10 @@ export const agentsCatalog: AgentDetail[] = [
     socialLinks: {
       whatsapp: "#",
       instagram: "#",
-      facebook: "#",
-      sms: "#",
+      tiktok: "#",
+      wechat: "#",
+      snapchat: "#",
+      linkedin: "#",
     },
     certifications: [
       "Certified Luxury Home Marketing Specialist (CLHMS)",
@@ -121,7 +123,7 @@ export const agentsCatalog: AgentDetail[] = [
       listToSaleRatio: "104%",
       responseTime: "< 1 hour",
     },
-    socialLinks: { whatsapp: "#", instagram: "#", facebook: "#" },
+    socialLinks: { whatsapp: "#", instagram: "#", tiktok: "#", wechat: "#", snapchat: "#", linkedin: "#" },
     certifications: ["Luxury Home Specialist", "Top Producer Award 2024"],
     careerHighlights: [
       {
@@ -177,7 +179,7 @@ export const agentsCatalog: AgentDetail[] = [
       listToSaleRatio: "99%",
       responseTime: "2 hours",
     },
-    socialLinks: { whatsapp: "#", instagram: "#", facebook: "#" },
+    socialLinks: { whatsapp: "#", instagram: "#", tiktok: "#", wechat: "#", snapchat: "#", linkedin: "#" },
     certifications: ["Commercial Negotiation Expert"],
     careerHighlights: [
       {
@@ -233,7 +235,7 @@ export const agentsCatalog: AgentDetail[] = [
       listToSaleRatio: "101%",
       responseTime: "< 1 hour",
     },
-    socialLinks: { whatsapp: "#", instagram: "#", facebook: "#", sms: "#" },
+    socialLinks: { whatsapp: "#", instagram: "#", tiktok: "#", wechat: "#", snapchat: "#", linkedin: "#" },
     certifications: ["Certified Property Investment Advisor"],
     careerHighlights: [
       {
@@ -289,7 +291,7 @@ export const agentsCatalog: AgentDetail[] = [
       listToSaleRatio: "100%",
       responseTime: "2 hours",
     },
-    socialLinks: { whatsapp: "#", facebook: "#" },
+    socialLinks: { whatsapp: "#", instagram: "#", tiktok: "#", wechat: "#", snapchat: "#", linkedin: "#" },
     certifications: ["National Sales Excellence Award"],
     careerHighlights: [
       {
@@ -348,7 +350,7 @@ export const agentsCatalog: AgentDetail[] = [
       listToSaleRatio: "103%",
       responseTime: "< 1 hour",
     },
-    socialLinks: { whatsapp: "#", instagram: "#", facebook: "#" },
+    socialLinks: { whatsapp: "#", instagram: "#", tiktok: "#", wechat: "#", snapchat: "#", linkedin: "#" },
     certifications: ["First Home Buyer Specialist"],
     careerHighlights: [
       {
@@ -405,7 +407,7 @@ export const agentsCatalog: AgentDetail[] = [
       listToSaleRatio: "101%",
       responseTime: "< 1 hour",
     },
-    socialLinks: { whatsapp: "#", instagram: "#", facebook: "#" },
+    socialLinks: { whatsapp: "#", instagram: "#", tiktok: "#", wechat: "#", snapchat: "#", linkedin: "#" },
     certifications: ["Residential Sales Specialist"],
     careerHighlights: [
       {
@@ -461,7 +463,7 @@ export const agentsCatalog: AgentDetail[] = [
       listToSaleRatio: "100%",
       responseTime: "2 hours",
     },
-    socialLinks: { whatsapp: "#", instagram: "#", facebook: "#", sms: "#" },
+    socialLinks: { whatsapp: "#", instagram: "#", tiktok: "#", wechat: "#", snapchat: "#", linkedin: "#" },
     certifications: ["Commercial Property Certified Advisor"],
     careerHighlights: [
       {
@@ -520,7 +522,7 @@ export const agentsCatalog: AgentDetail[] = [
       listToSaleRatio: "105%",
       responseTime: "< 1 hour",
     },
-    socialLinks: { whatsapp: "#", instagram: "#", facebook: "#" },
+    socialLinks: { whatsapp: "#", instagram: "#", tiktok: "#", wechat: "#", snapchat: "#", linkedin: "#" },
     certifications: ["Certified Luxury Home Marketing Specialist"],
     careerHighlights: [
       {
@@ -576,7 +578,7 @@ export const agentsCatalog: AgentDetail[] = [
       listToSaleRatio: "99%",
       responseTime: "2 hours",
     },
-    socialLinks: { whatsapp: "#", facebook: "#" },
+    socialLinks: { whatsapp: "#", instagram: "#", tiktok: "#", wechat: "#", snapchat: "#", linkedin: "#" },
     certifications: ["Rural Property Sales Specialist"],
     careerHighlights: [
       {
@@ -635,7 +637,7 @@ export const agentsCatalog: AgentDetail[] = [
       listToSaleRatio: "102%",
       responseTime: "< 1 hour",
     },
-    socialLinks: { whatsapp: "#", instagram: "#", facebook: "#", sms: "#" },
+    socialLinks: { whatsapp: "#", instagram: "#", tiktok: "#", wechat: "#", snapchat: "#", linkedin: "#" },
     certifications: ["Rental Property Management Specialist"],
     careerHighlights: [
       {
@@ -691,7 +693,7 @@ export const agentsCatalog: AgentDetail[] = [
       listToSaleRatio: "101%",
       responseTime: "2 hours",
     },
-    socialLinks: { whatsapp: "#", instagram: "#", facebook: "#" },
+    socialLinks: { whatsapp: "#", instagram: "#", tiktok: "#", wechat: "#", snapchat: "#", linkedin: "#" },
     certifications: ["Property Investment Advisor"],
     careerHighlights: [
       {

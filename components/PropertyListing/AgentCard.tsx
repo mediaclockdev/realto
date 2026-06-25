@@ -6,6 +6,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFlip, Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import type { ImageSource } from "@/lib/shared/types";
+import australiaFlag from "@/public/austrilaflag.svg";
+import chinaFlag from "@/public/chinaflag.svg";
+import franceFlag from "@/public/Franceflag.svg";
 
 import "swiper/css";
 import "swiper/css/effect-flip";
@@ -17,6 +20,8 @@ interface Agent {
   experience: number;
   sales: number;
   agentImage: ImageSource;
+  phone: string;
+  socialmedia: ImageSource[];
 }
 
 interface AgentCardStackProps {
@@ -55,7 +60,7 @@ const AgentCardStack: React.FC<AgentCardStackProps> = ({ agents }) => {
           slideShadows: false,
           limitRotation: true,
         }}
-        style={{ width: 260, height: 360 }}
+        style={{ width: 260, height: 420 }}
       >
         {agents.map((agent, i) => (
           <SwiperSlide
@@ -94,7 +99,7 @@ const CardFace: React.FC<{ agent: Agent }> = ({ agent }) => (
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      paddingTop: 30,
+      paddingTop: 10,
       paddingBottom: 26,
       paddingLeft: 20,
       paddingRight: 20,
@@ -103,8 +108,8 @@ const CardFace: React.FC<{ agent: Agent }> = ({ agent }) => (
   >
     <div
       style={{
-        width: 108,
-        height: 108,
+        width: 150,
+        height: 150,
         borderRadius: "50%",
         overflow: "hidden",
         border: "3px solid rgba(255,255,255,0.9)",
@@ -116,10 +121,16 @@ const CardFace: React.FC<{ agent: Agent }> = ({ agent }) => (
       <Image
         src={agent.agentImage}
         alt={agent.name}
-        width={150}
-        height={150}
+        width={250}
+        height={250}
         style={{ objectFit: "cover", width: "100%", height: "100%" }}
       />
+    </div>
+
+    <div className="flex items-center gap-2 mb-2">
+      <Image src={australiaFlag} alt="Australia" width={24} height={16} className="rounded-sm object-cover" />
+      <Image src={chinaFlag} alt="China" width={24} height={16} className="rounded-sm object-cover" />
+      <Image src={franceFlag} alt="France" width={24} height={16} className="rounded-sm object-cover" />
     </div>
 
     <p
@@ -127,7 +138,7 @@ const CardFace: React.FC<{ agent: Agent }> = ({ agent }) => (
         color: "#2d3a45",
         fontSize: 16,
         fontWeight: 600,
-        margin: "0 0 4px",
+        margin: "0 0 2px",
         textAlign: "center",
       }}
     >
@@ -138,7 +149,7 @@ const CardFace: React.FC<{ agent: Agent }> = ({ agent }) => (
         color: "#1a2a38",
         fontSize: 21,
         fontWeight: 800,
-        margin: "0 0 8px",
+        margin: "0 0 4px",
         textAlign: "center",
         letterSpacing: -0.4,
       }}
@@ -156,7 +167,7 @@ const CardFace: React.FC<{ agent: Agent }> = ({ agent }) => (
         width: "80%",
         height: 1,
         background: "rgba(150,190,220,0.4)",
-        margin: "18px 0 16px",
+        margin: "3px 0 3px",
       }}
     />
 
@@ -207,6 +218,46 @@ const CardFace: React.FC<{ agent: Agent }> = ({ agent }) => (
           Past 1 year
         </p>
       </div>
+    </div>
+
+    <div className="flex flex-col items-center gap-2 w-full mt-3">
+      <div className="flex items-center gap-1.5 text-[#2d3a45]">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <p style={{ fontSize: 13, fontWeight: 600, margin: 0 }}>
+          {agent.phone}
+        </p>
+      </div>
+
+      {agent.socialmedia && agent.socialmedia.length > 0 && (
+        <div className="flex items-center gap-1.5 mt-1">
+          {agent.socialmedia.map((icon, idx) => (
+            <button
+              key={idx}
+              className="cursor-pointer transition-transform hover:scale-110"
+            >
+              <Image
+                src={icon}
+                alt="social"
+                width={26}
+                height={26}
+                style={{ objectFit: "contain" }}
+              />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   </div>
 );

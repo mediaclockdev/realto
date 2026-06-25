@@ -18,6 +18,12 @@ import type {
 } from "@/lib/listings/types";
 import eddy from "../../public/eddyjones.svg";
 import eddy1 from "../../public/eddy1.png";
+import whatsappIcon from "../../public/whatsapp.svg";
+import instagramIcon from "../../public/logos_instagram.svg";
+import tiktokIcon from "../../public/tiktok.svg";
+import wechatIcon from "../../public/wechat.svg";
+import snapchatIcon from "../../public/snapchat.svg";
+import linkedinIcon from "../../public/logos_linkedin.svg";
 
 interface PropertyListingPageProps {
   data: PropertyListingPageData;
@@ -223,6 +229,8 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
                         experience: 9,
                         sales: 18,
                         agentImage: eddy,
+                        phone: "(555) 123-4567",
+                        socialmedia: [whatsappIcon, instagramIcon, tiktokIcon, wechatIcon, snapchatIcon, linkedinIcon],
                       },
                       {
                         name: "Anna Jones",
@@ -231,6 +239,8 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
                         experience: 9,
                         sales: 18,
                         agentImage: eddy1,
+                        phone: "(555) 987-6543",
+                        socialmedia: [whatsappIcon, instagramIcon, tiktokIcon, wechatIcon, snapchatIcon, linkedinIcon],
                       },
                       {
                         name: "Brook Jones",
@@ -239,6 +249,8 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
                         experience: 9,
                         sales: 18,
                         agentImage: eddy,
+                        phone: "(555) 321-7654",
+                        socialmedia: [whatsappIcon, instagramIcon, tiktokIcon, wechatIcon, snapchatIcon, linkedinIcon],
                       },
                       {
                         name: "Ash Jones",
@@ -247,6 +259,8 @@ const PropertyListingPage: React.FC<PropertyListingPageProps> = ({
                         experience: 9,
                         sales: 18,
                         agentImage: eddy1,
+                        phone: "(555) 654-3210",
+                        socialmedia: [whatsappIcon, instagramIcon, tiktokIcon, wechatIcon, snapchatIcon, linkedinIcon],
                       },
                       // ...more agents
                     ]}

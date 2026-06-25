@@ -7,32 +7,8 @@ import emily from "../../public/emilyrodriguez.jpg";
 import david from "../../public/davidthompson.jpg";
 import lisa from "../../public/lisaAnderson.jpg";
 import jennifer from "../../public/jennifermartinez.jpg";
-import starRating from "../../public/starRating.svg";
-
-type StarProps = {
-  fillPercentage: number;
-};
-
-const Star: React.FC<StarProps> = ({ fillPercentage }) => {
-  return (
-    <div className="relative w-4 h-4">
-      {/* Empty star */}
-      <Image
-        src={starRating}
-        alt="star"
-        className="absolute top-0 left-0 opacity-30 w-full h-full"
-      />
-
-      {/* Filled part */}
-      <div
-        className="absolute top-0 left-0 overflow-hidden h-full"
-        style={{ width: `${fillPercentage}%` }}
-      >
-        <Image src={starRating} alt="star" className="w-full h-full" />
-      </div>
-    </div>
-  );
-};
+import starRating from "../../public/agentstarrating.svg";
+import starRatingempty from "../../public/agentstarratingempty.svg";
 
 type Review = {
   id: number;
@@ -151,36 +127,64 @@ const ClientReviewsandRatings: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
         {reviews.map((items) => (
-          <div key={items.id} className="bg-white rounded-xl p-4">
-            <div className="flex gap-3">
-              <Image
-                src={items.clientImage}
-                alt={items.clientName}
-                className="rounded-full size-12"
-              />
+          <div
+            key={items.id}
+            className="p-[2px] rounded-xl inline-block hover:scale-105 transition-all duration-300"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+            }}
+          >
+            <div className="bg-white p-4 rounded-xl h-full w-full">
+              <div className="flex gap-3">
+                <Image
+                  src={items.clientImage}
+                  alt={items.clientName}
+                  className="rounded-full size-12"
+                />
 
-              <div>
-                <h3 className="text-[#111827] font-medium">
-                  {items.clientName}
-                </h3>
+                <div>
+                  <h3 className="text-[#111827] font-medium">
+                    {items.clientName}
+                  </h3>
 
-                {/* ⭐ Stars */}
-                <div className="flex items-center gap-0.5">
-                  {[...Array(5)].map((_, index) => {
-                    const fill =
-                      Math.min(Math.max(items.rating - index, 0), 1) * 100;
-
-                    return <Star key={index} fillPercentage={fill} />;
-                  })}
+                  {/* ⭐ Stars */}
+                  <div className="flex items-center gap-0.5">
+                    <Image
+                      src={starRating}
+                      alt="star rating"
+                      className="size-5"
+                    />
+                    <Image
+                      src={starRating}
+                      alt="star rating"
+                      className="size-5"
+                    />
+                    <Image
+                      src={starRating}
+                      alt="star rating"
+                      className="size-5"
+                    />
+                    <Image
+                      src={starRating}
+                      alt="star rating"
+                      className="size-5"
+                    />
+                    <Image
+                      src={starRatingempty}
+                      alt="star rating"
+                      className="size-5"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <p className="text-[#434C59] mt-3">{items.review}</p>
-            <div className="flex gap-2">
-              <p className="text-[#9CA3AF]">{items.purchasedin}</p>
-              <p className="text-[#9CA3AF]">.</p>
-              <p className="text-[#9CA3AF]">{items.months}</p>
+              <p className="text-[#434C59] mt-3">{items.review}</p>
+              <div className="flex gap-2">
+                <p className="text-[#9CA3AF]">{items.purchasedin}</p>
+                <p className="text-[#9CA3AF]">.</p>
+                <p className="text-[#9CA3AF]">{items.months}</p>
+              </div>
             </div>
           </div>
         ))}

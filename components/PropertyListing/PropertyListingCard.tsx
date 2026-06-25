@@ -6,18 +6,16 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import location from "@/public/rentlocation.svg";
 import type { ListingVariant } from "@/lib/listings/types";
 import type { ListingProperty } from "@/lib/properties/types";
-import share from "../../public/share.svg";
+import share from "../../public/landshareicon.svg";
 import rentlike from "../../public/rentlike.svg";
-import buylikeicon from "../../public/buylikeicon.svg";
 import mobile from "../../public/mobileicon.svg";
 import clock from "../../public/rentclockicon1.svg";
 import money from "../../public/money.svg";
 import rentmoney from "../../public/rentmoneyicon.svg";
 import calender from "../../public/rentcalender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
-import rentshare from "../../public/share.svg";
+import rentshare from "../../public/rentshareicon.svg";
 import rentlikedicon from "../../public/rentlikedicon.svg";
-import homeliked from "@/public/homelike.svg";
 import email from "@/public/mailicon.svg";
 import landliked from "@/public/landlikedicon.svg";
 import landlike from "@/public/landlikeicon.svg";
@@ -348,7 +346,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     <div className="flex">
                       <Tooltip text="Share">
                         <button
-                          className="p-1 hover:bg-blue-50 rounded-lg transition-colors"
+                          className="pl-0.5 pt-1.5 pb-0.5 hover:bg-blue-50 rounded-lg transition-colors"
                           onClick={(e) => {
                             e.stopPropagation();
                             setShowShareModal((prev) => !prev);

@@ -8,12 +8,17 @@ import whatsappIcon from "@/public/whatsapp.svg";
 import instagramIcon from "@/public/logos_instagram.svg";
 import facebookIcon from "@/public/logos_facebook.svg";
 import smsIcon from "@/public/smslogo.svg";
+import tiktokIcon from "@/public/tiktok.svg";
+import wechatIcon from "@/public/wechat.svg";
+import snapchatIcon from "@/public/snapchat.svg";
+import linkedinIcon from "@/public/logos_linkedin.svg";
 import locationIcon from "@/public/location.svg";
 import phoneIcon from "@/public/mobileicon.svg";
 import mailIcon from "@/public/mailicon.svg";
 import starIcon from "@/public/starsingle.svg";
 import license from "@/public/license.svg";
 import ClientReviewsandRatings from "./ClientReviewsandRatings";
+import call from "../../public/agentcallicon.svg";
 
 interface AgentProfilePageProps {
   agent: AgentDetail;
@@ -26,15 +31,19 @@ const socialIcons = {
   instagram: instagramIcon,
   facebook: facebookIcon,
   sms: smsIcon,
+  tiktok: tiktokIcon,
+  wechat: wechatIcon,
+  snapchat: snapchatIcon,
+  linkedin: linkedinIcon,
 };
 
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="w-full bg-[#ECECEC] rounded-[10px] px-[30px] py-[15px] flex flex-col items-center justify-center gap-[6px]">
-      <p className="text-xl lg:text-[26px] font-semibold text-[#343434] leading-none">
+    <div className="w-full  border-2 border-[#BFDBFE] rounded-[10px] px-7.5 py-3.75 flex flex-col items-center justify-center gap-1.5">
+      <p className="text-xl lg:text-[26px] font-semibold text-[#ff2f2f] leading-none">
         {value}
       </p>
-      <p className="text-sm lg:text-[16px] leading-[24px] text-[#909090] whitespace-nowrap">
+      <p className="text-sm lg:text-[16px] leading-6 text-[#14A4DD] whitespace-nowrap">
         {label}
       </p>
     </div>
@@ -50,7 +59,7 @@ export default function AgentProfilePage({
     <div className="min-h-screen bg-white">
       <HeroAgentSection />
 
-      <div className="max-w-screen-2xl mx-auto px-5 py-6 space-y-8">
+      <div className="max-w-screen-2xl mx-auto px-5 pt-6 space-y-6">
         <nav className="text-sm text-[#6b7280]">
           <Link href="/homepage" className="hover:text-[#0284C7]">
             Home
@@ -63,23 +72,23 @@ export default function AgentProfilePage({
           <span className="font-medium text-[#1f2937]">{agent.name}</span>
         </nav>
 
-        <section className="overflow-hidden rounded-2xl  bg-white shadow-sm">
-          <div className="bg-[#ff2f2f] px-6 ">
-            <div className="flex justify-center items-center gap-4">
+        <section className="overflow-hidden rounded-2xl bg-white shadow-sm">
+          <div className="bg-[#ff2f2f] px-6 h-14 flex items-center justify-center">
+            <div className="flex justify-center items-center h-full py-2">
               <Image
                 src={agent.agencyLogo}
                 alt={agent.agencyName}
-                className="object-cover "
+                className="object-contain h-full w-auto"
               />
             </div>
           </div>
         </section>
       </div>
 
-      <section className="max-w-7xl mx-auto px-5 py-6 space-y-8">
+      <section className="max-w-7xl mx-auto px-5 pb-6 space-y-8">
         {/* Agent Card */}
         <section className="">
-          <div className="grid grid-cols-1 gap-8 p-6 lg:grid-cols-[220px_1fr_280px]">
+          <div className="grid grid-cols-1 gap-8  lg:grid-cols-[220px_1fr_280px]">
             <div>
               <div className="relative mx-auto h-55 w-45 overflow-hidden rounded-2xl">
                 <Image
@@ -90,30 +99,18 @@ export default function AgentProfilePage({
                 />
               </div>
               <div className="mt-4 space-y-3">
-                <button className="w-full rounded-lg bg-[#4b8de3] px-4 py-2 text-sm font-semibold text-white">
-                  Call Agent
-                </button>
-                <button className="w-full rounded-lg border border-[#4b8de3] px-4 py-2 text-sm font-semibold text-[#4b8de3]">
+                <div className="flex items-center justify-center gap-2 border-2 border-[#BFDBFE]  bg-[#EFF6FF] px-4 py-2 rounded-lg ">
+                  <Image src={call} alt="" />
+                  <button className="text-sm font-semibold text-[#14A4DD]">
+                    Call Agent
+                  </button>
+                </div>
+                <button className="w-full rounded-lg  border-2 border-[#BFDBFE] px-4 py-2 text-sm font-semibold text-[#14A4DD]">
                   Send Message
                 </button>
-                <button className="w-full rounded-lg border border-[#4b8de3] px-4 py-2 text-sm font-semibold text-[#4b8de3]">
+                <button className="w-full rounded-lg  border-2 border-[#BFDBFE]  px-4 py-2 text-sm font-semibold text-[#14A4DD]">
                   Inspection Appointment
                 </button>
-              </div>
-              <div className="mt-4 flex items-center gap-3">
-                {Object.entries(agent.socialLinks).map(([key, href]) => {
-                  if (!href) return null;
-                  const icon = socialIcons[key as keyof typeof socialIcons];
-                  return (
-                    <Link
-                      key={key}
-                      href={href}
-                      className="transition-transform hover:scale-110"
-                    >
-                      <Image src={icon} alt={key} width={30} height={30} />
-                    </Link>
-                  );
-                })}
               </div>
             </div>
 
@@ -132,7 +129,7 @@ export default function AgentProfilePage({
                 <span>({agent.reviewCount} reviews)</span>
               </div>
 
-              <div className="mt-6 flex flex-col lg:flex-row gap-5 items-center w-full">
+              <div className="mt-3 flex flex-col lg:flex-row gap-5 items-center w-full bg-[#EFF6FF] p-3 rounded-lg">
                 <StatCard
                   label="Years Experience"
                   value={`${agent.yearsExperience}+`}
@@ -165,7 +162,7 @@ export default function AgentProfilePage({
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4 text-sm text-[#374151] md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 text-sm text-[#374151] md:grid-cols-3">
                   <div className="flex items-start gap-2">
                     <Image
                       src={locationIcon}
@@ -180,11 +177,44 @@ export default function AgentProfilePage({
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2">
-                    <Image src={phoneIcon} alt="phone" width={40} height={40} />
-                    <div>
-                      <p className="text-xs text-[#9ca3af]">Phone</p>
-                      <p className="font-medium">{agent.agencyPhone}</p>
+                  <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-4">
+                    <div className="flex items-start gap-2">
+                      <Image
+                        src={phoneIcon}
+                        alt="phone"
+                        width={20}
+                        height={20}
+                      />
+                      <div>
+                        <p className="text-xs text-[#9ca3af]">Phone</p>
+                        <p className="font-medium">{agent.agencyPhone}</p>
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-xs text-[#9ca3af]">Social Links</p>
+                      <div className="flex items-center gap-1.5">
+                        {Object.entries(agent.socialLinks).map(
+                          ([key, href]) => {
+                            if (!href) return null;
+                            const icon =
+                              socialIcons[key as keyof typeof socialIcons];
+                            return (
+                              <Link
+                                key={key}
+                                href={href}
+                                className="transition-transform hover:scale-110"
+                              >
+                                <Image
+                                  src={icon}
+                                  alt={key}
+                                  width={25}
+                                  height={25}
+                                />
+                              </Link>
+                            );
+                          },
+                        )}
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
@@ -209,13 +239,18 @@ export default function AgentProfilePage({
 
         {/* About Agent */}
         <section className="grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_1fr] ">
-          <div className="rounded-2xl border border-gray-200 p-6 shadow-sm">
-            <h2 className="text-[15px]  font-semibold text-[#007CBE]">
+          <div className="rounded-2xl border-2 border-[#BFDBFE] p-4 shadow-sm">
+            <h2 className="text-[15px]  font-semibold text-[#14A4DD]">
               About Me
             </h2>
             <p className="mt-4 text-sm leading-7 text-[#4b5563]">{agent.bio}</p>
-
-            <h3 className="mt-6 lg:mt-8 text-[15px] font-semibold text-[#007CBE]">
+            <h3
+              className="mt-6 lg:mt-8 text-[15px] font-semibold text-[#111827] px-4 py-2 rounded-md inline-block  [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+              }}
+            >
               Experience & Credentials
             </h3>
             <div className="mt-6 space-y-6">
@@ -234,7 +269,7 @@ export default function AgentProfilePage({
 
                   {/* Content */}
                   <div>
-                    <h3 className="text-base lg:text-lg font-semibold text-[#111827]">
+                    <h3 className="text-base lg:text-lg font-semibold text-[#14A4DD]">
                       {item.title}
                     </h3>
 
@@ -250,7 +285,7 @@ export default function AgentProfilePage({
               ))}
             </div>
 
-            <h3 className="mt-8 text-[15px] font-semibold text-[#007CBE]">
+            <h3 className="mt-8 text-[15px] font-semibold text-[#14A4DD]">
               Certifications & Awards
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-[#374151]">
@@ -264,10 +299,16 @@ export default function AgentProfilePage({
           </div>
           <div className="space-y-6">
             <div>
-              <h2 className="text-[15px] font-semibold text-[#007CBE]">
+              <h2
+                className="text-[15px] font-semibold  text-[#111827] px-4 py-2 rounded-md inline-block [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+                }}
+              >
                 Performance Highlights
               </h2>
-              <div className="mt-3 space-y-3 rounded-2xl border border-gray-200 p-4 text-sm font-poppins">
+              <div className="mt-3 space-y-3 rounded-2xl border-2 border-[#BFDBFE] p-4 text-sm font-poppins">
                 <div className="flex justify-between gap-4">
                   <span className="text-[#4B5563]">Avg Sale Price</span>
                   <span className="font-semibold text-[#111827]">
@@ -296,10 +337,16 @@ export default function AgentProfilePage({
             </div>
 
             <div>
-              <h2 className="text-[15px] font-semibold text-[#007CBE]">
+              <h2
+                className="text-[15px] font-semibold  text-[#111827] px-4 py-2 rounded-md inline-block [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+                }}
+              >
                 Languages
               </h2>
-              <div className="mt-3 space-y-2 rounded-2xl border border-gray-200 p-4 text-sm">
+              <div className="mt-3 space-y-2 rounded-2xl border-2 border-[#BFDBFE] p-4 text-sm">
                 {agent.languages.map((language) => (
                   <div
                     key={language.name}
@@ -317,14 +364,20 @@ export default function AgentProfilePage({
             </div>
 
             <div>
-              <h2 className="text-[15px] font-semibold text-[#007CBE]">
+              <h2
+                className="text-[15px] font-semibold  text-[#111827] px-4 py-2 rounded-md inline-block [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+                }}
+              >
                 Service Areas
               </h2>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-2">
                 {agent.serviceAreas.map((area) => (
                   <span
                     key={area}
-                    className="rounded-full bg-[#f3f4f6] px-3 py-1 text-xs font-medium text-[#4b5563]"
+                    className="rounded-full bg-[#f3f4f6]  border-2 border-[#BFDBFE]  px-3 py-1 text-sm font-medium text-[#4b5563]"
                   >
                     {area}
                   </span>
@@ -339,7 +392,13 @@ export default function AgentProfilePage({
       <section className="px-5 py-4">
         <div className="mb-4 flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-[15px] font-semibold text-[#007CBE]">
+            <h2
+              className="text-[15px] font-semibold text-[#111827] shadow-sm px-4 py-2 rounded-md inline-block [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+              }}
+            >
               Current Listings
             </h2>
             <p className="text-sm text-[#6b7280]">

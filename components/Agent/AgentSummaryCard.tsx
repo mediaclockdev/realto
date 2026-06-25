@@ -44,7 +44,7 @@ export default function AgentSummaryCard({
     return (
       <Link
         href={href}
-        className={`relative block h-[190px] overflow-hidden rounded-[10px] border border-[#e5e5e5] bg-[#f3f3f3] shadow-md ${className}`}
+        className={`relative block h-[190px] overflow-hidden rounded-2xl border border-[#e5e5e5] bg-[#f3f3f3] shadow-md ${className}`}
       >
         <div className="absolute inset-0 opacity-30">
           <Image
@@ -122,7 +122,7 @@ export default function AgentSummaryCard({
 
           <div className="mt-3 space-y-0.5 lg:space-y-1.5 text-xs">
             <div className="flex items-center gap-2">
-              <Image src={phoneIcon} alt="" width={20} height={20} />
+              <Image src={phoneIcon} alt="" width={12} height={12} />
               <span className="truncate">{agent.phone}</span>
             </div>
             <div className="flex items-center gap-2">
@@ -212,13 +212,13 @@ export default function AgentSummaryCard({
         </svg>
       </div>
 
-      <div className="relative z-10 ml-[45%] lg:ml-[50%] flex h-full flex-col justify-center px-4 py-5 text-[#2f2f2f]">
+      <div className="relative z-10 ml-[45%] lg:ml-[50%] flex h-full flex-col justify-center px-4 py-2 text-[#2f2f2f]">
         <h3 className="font-poppins text-sm lg:text-lg font-semibold italic">
           {agent.name}
         </h3>
-        <div className="mt-3 space-y-0.5 lg:space-y-1.5 text-xs">
+        <div className="mt-2 space-y-0.5 lg:space-y-1.5 text-xs">
           <div className="flex items-center gap-1 lg:gap-2">
-            <Image src={phoneIcon} alt="" width={20} height={20} />
+            <Image src={phoneIcon} alt="" width={12} height={12} />
             <span>{agent.phone}</span>
           </div>
           <div className="flex items-center gap-1 lg:gap-2">
@@ -230,7 +230,7 @@ export default function AgentSummaryCard({
             <span>{agent.location}</span>
           </div>
         </div>
-        <p className="mt-3 text-xs font-semibold truncate">
+        <p className="mt-2 text-xs font-semibold truncate">
           License No. - {agent.licenseNumber}
         </p>
         <div className="mt-1.5 flex items-center gap-1.5 text-xs">

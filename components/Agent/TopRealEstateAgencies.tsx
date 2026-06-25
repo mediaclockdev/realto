@@ -45,7 +45,14 @@ const TopRealEstateAgencies = () => {
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
       {/* Heading + scroll buttons */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-black font-semibold font-poppins text-xl">
+        <h2
+          className=" font-semibold font-poppins text-xl
+         text-[#111827] px-4 py-2 rounded-md inline-block  [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+          }}
+        >
           Top Real Estate Agencies
         </h2>
 
@@ -102,7 +109,7 @@ const TopRealEstateAgencies = () => {
             className="shrink-0 flex flex-col rounded-xl overflow-hidden"
             style={{
               width: "240px",
-              height: "175px",
+              height: "140px",
               backgroundColor: agency.dark ? "#2d2d2d" : "#ffffff",
               border: agency.dark ? "none" : "1px solid #e5e7eb",
               scrollSnapAlign: "start",
@@ -127,8 +134,8 @@ const TopRealEstateAgencies = () => {
                   key={i}
                   className="rounded-full overflow-hidden border-2 border-white shrink-0"
                   style={{
-                    width: "30px",
-                    height: "30px",
+                    width: "35px",
+                    height: "35px",
                     marginLeft: i === 0 ? "0" : "-6px",
                     position: "relative",
                     zIndex: agentIcons.length - i,
@@ -137,8 +144,8 @@ const TopRealEstateAgencies = () => {
                   <Image
                     src={icon}
                     alt={`Agent ${i + 1}`}
-                    width={30}
-                    height={30}
+                    width={35}
+                    height={35}
                     className="object-cover w-full h-full hover:scale-105"
                   />
                 </div>
@@ -148,8 +155,8 @@ const TopRealEstateAgencies = () => {
               <div
                 className="rounded-full flex items-center justify-center text-white shrink-0"
                 style={{
-                  width: "22px",
-                  height: "22px",
+                  width: "30px",
+                  height: "30px",
                   backgroundColor: "#3b82f6",
                   marginLeft: "-6px",
                   position: "relative",

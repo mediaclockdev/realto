@@ -31,7 +31,14 @@ const blogs = [
 const Tipsforselling = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 space-y-5">
-      <h2 className="font-semibold font-poppins text-2xl lg:text-[32px] text-black">
+      <h2
+        className=" font-semibold font-poppins text-xl
+         text-[#111827] px-4 py-2 rounded-md inline-block  [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+        }}
+      >
         Tips for selling
       </h2>
 
