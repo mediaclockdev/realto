@@ -60,6 +60,8 @@ import well from "../../public/well.svg";
 import electricity from "../../public/electricity.svg";
 import councilapproval from "../../public/councilapproval.svg";
 import neartransport from "../../public/neartransport.svg";
+import mapview from "../../public/mapviewicon.svg";
+import satallite from "../../public/sataliteicon.svg";
 
 interface PropertyDetailViewProps {
   property: ListingProperty;
@@ -260,10 +262,14 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
           {/* Left Column: Property Highlights */}
           <div className=" space-y-3 lg:space-y-3   ">
             {/* Features Icons */}
-            {property.buyiconImages && (
-              <div className="flex items-center gap-2">
-                {property.buyiconImages.map((icon, i) => (
-                  <div key={i} className="flex items-center gap-1">
+            {(listingVariant === "rent"
+              ? property.renticonImages
+              : property.buyiconImages) && (
+              <div className="flex items-center gap-10">
+                {(listingVariant === "rent"
+                  ? property.renticonImages
+                  : property.buyiconImages)!.map((icon, i) => (
+                  <div key={i} className="flex items-center gap-2">
                     <div className="w-[95px] h-[65px]">
                       <Image
                         src={icon}
@@ -273,7 +279,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                         className="w-full h-full"
                       />
                     </div>
-                    <span className="text-sm font-bold text-gray-800">
+                    <span className="text-xl font-extrabold font-amasis  text-[#343434]">
                       {property.iconLabels?.[i] ?? "1"}
                     </span>
                   </div>
@@ -295,7 +301,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-1 text-gray-600">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-4 text-gray-600">
               {listingVariant !== "land" && (
                 <>
                   <div className="flex items-center gap-1 ">
@@ -333,7 +339,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
             </div>
 
             {/* Price & Type */}
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-2">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4">
               <div className="flex items-center gap-1">
                 <Image
                   src={money}
@@ -344,6 +350,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                   {property.priceRange}
                 </p>
               </div>
+
               <p className="text-[#343434] font-semibold text-base lg:text-xl">
                 • {property.propertyType}
               </p>
@@ -450,10 +457,10 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
 
         {/* Property Description */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl font-bold  mb-4 font-amasis  bg-[#F0F0F0] text-[#111827] px-8 py-2 rounded-3xl inline-block  [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)] shadow-[4px_4px_10px_rgba(0,0,0,0.15)">
             Property description
           </h2>
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 leading-relaxed font-TimesNewRoman text-lg">
             This architecturally designed development offers an sophisticated
             retreat, just 5km from the Sydney CBD. Bathed in natural light, the
             spacious open-plan living and dining areas flow effortlessly onto a
@@ -469,7 +476,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <h2 className="text-xl font-semibold text-[#343434] mb-3">
+          <h2 className="text-xl font-bold  mb-4 font-amasis  bg-[#F0F0F0] text-[#111827] px-8 py-2 rounded-3xl inline-block  [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)] shadow-[4px_4px_10px_rgba(0,0,0,0.15)">
             Amenities & Facilities
           </h2>
 
@@ -535,9 +542,12 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                 className="border-0 w-full h-full pointer-events-none"
               />
             </div>
-            <h3 className="text-center font-bold text-lg text-gray-900">
-              Map view of property
-            </h3>
+            <div className="flex gap-2 items-center justify-center">
+              <Image src={mapview} alt="map icon" />
+              <h3 className="text-center font-bold text-lg text-[#F77F00]">
+                Map view of property
+              </h3>
+            </div>
           </div>
           <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100">
             <div className="w-full h-75 bg-gray-200 rounded-xl overflow-hidden relative mb-4">
@@ -551,18 +561,21 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                 className="border-0 w-full h-full pointer-events-none"
               />
             </div>
-            <h3 className="text-center font-bold text-lg text-gray-900">
-              Satellite view of property
-            </h3>
+            <div className="flex gap-2 items-center justify-center">
+              <Image src={satallite} alt="satallite icon" className="size-14" />
+              <h3 className="text-center font-bold text-lg text-[#F77F00]">
+                Satellite view of property
+              </h3>
+            </div>
           </div>
         </div>
 
         {/* Property History */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl font-bold  mb-4 font-amasis  bg-[#F0F0F0] text-[#111827] px-8 py-2 rounded-3xl inline-block  [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)] shadow-[4px_4px_10px_rgba(0,0,0,0.15)]">
             Property History
           </h2>
-          <div className="text-gray-600 leading-relaxed">
+          <div className="text-gray-600 leading-relaxed font-TimesNewRoman text-lg">
             <p>
               This provides a typical localized sales and construction history
               for an apartment complex in this area.

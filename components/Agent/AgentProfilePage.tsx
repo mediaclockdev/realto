@@ -78,19 +78,19 @@ export default function AgentProfilePage({
               <Image
                 src={agent.agencyLogo}
                 alt={agent.agencyName}
-                className="object-contain h-full w-auto"
+                className="object-cover h-auto w-auto"
               />
             </div>
           </div>
         </section>
       </div>
 
-      <section className="max-w-7xl mx-auto px-5 pb-6 space-y-8">
+      <section className="max-w-7xl mx-auto px-5 py-6 space-y-8">
         {/* Agent Card */}
         <section className="">
           <div className="grid grid-cols-1 gap-8  lg:grid-cols-[220px_1fr_280px]">
             <div>
-              <div className="relative mx-auto h-55 w-45 overflow-hidden rounded-2xl">
+              <div className="relative mx-auto h-72 w-52 overflow-hidden rounded-2xl">
                 <Image
                   src={agent.avatar}
                   alt={agent.name}

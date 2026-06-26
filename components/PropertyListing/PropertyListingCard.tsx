@@ -52,7 +52,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   const [isActionAreaHovered, setIsActionAreaHovered] = useState(false);
   const [isAgentAreaHovered, setIsAgentAreaHovered] = useState(false);
   const outerRef = useRef<HTMLDivElement>(null);
-  const hoverBorderRent = "linear-gradient(135deg, #C0C0C0 0%, #D1D5DB 100%)";
+  const hoverBorderRent = "linear-gradient(135deg, #DC6D74 0%, #DC6D74 100%)";
   const hoverBorderLand = "linear-gradient(135deg, #2A9A00 0%, #246B05 100%)";
 
   const next = (e: React.MouseEvent) => {

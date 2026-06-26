@@ -54,7 +54,8 @@ body {
   --font-poppins: var(--font-poppins);
   --font-amasis: "Amasis", serif;
   --font-Aptos: "Aptos", serif;
-    --font-arial: "Arial Black", sans-serif;
+  --font-arial: "Arial Black", sans-serif;
+  --font-TimesNewRoman: "TimesNewRoman", san-serif;
 }
 @layer utilities {
   .border-gold-gradient {
@@ -138,5 +139,7 @@ body {
   font-weight: 900;
   font-style: normal;
 }
-
-
+@font-face {
+  font-family: "Times New Roman";
+  src: url("/font/TimesNewRoman/TimesNewRoman.ttf") format("truetype");
+}

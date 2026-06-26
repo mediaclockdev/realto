@@ -239,7 +239,7 @@ const CardFace: React.FC<{ agent: Agent }> = ({ agent }) => (
           {agent.phone}
         </p>
       </div>
-
+      
       {agent.socialmedia && agent.socialmedia.length > 0 && (
         <div className="flex items-center gap-1.5 mt-1">
           {agent.socialmedia.map((icon, idx) => (
