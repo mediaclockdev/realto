@@ -49,10 +49,10 @@ const page = () => {
       <BrokersandBrokerage />
       <LuxuryProperties />
       <HotelLogos headingColor="text-black" />
-      <LastMinuteHotels />
+      <LastMinuteHotels pillHeading />
       {/* <TopHotelOffers /> */}
       <CommercialRealestateAgencies />
-      <Explorenewproperties />
+      <Explorenewproperties pillHeading />
       <StudentresidencyPartners />
       <RoomsAndPrices />
       <LandRealEstateAgents />

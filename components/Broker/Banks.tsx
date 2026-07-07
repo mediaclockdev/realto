@@ -23,9 +23,10 @@ import tassie from "../../public/tassiehomeloans.svg";
 
 interface BanksProps {
   heading?: string;
+  pillHeading?: boolean;
 }
 
-const Banks = ({ heading = "Banks" }: BanksProps) => {
+const Banks = ({ heading = "Banks", pillHeading = false }: BanksProps) => {
   const bank = [
     { name: "Aussie", icon: aussiebank, interest: "6.94% p.a.%" },
     { name: "Nab bank", icon: nabbank, interest: "6.94% p.a.%" },
@@ -71,7 +72,17 @@ const Banks = ({ heading = "Banks" }: BanksProps) => {
 
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 overflow-hidden">
-      <h2 className="font-poppins font-semibold text-xl mb-1 text-black">
+      <h2
+        className={`font-poppins font-semibold text-xl mb-1 text-black ${pillHeading ? "w-fit rounded-full px-4 py-2" : ""}`}
+        style={
+          pillHeading
+            ? {
+                background:
+                  "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+              }
+            : undefined
+        }
+      >
         {heading}
       </h2>
       <div className="marquee-wrapper">

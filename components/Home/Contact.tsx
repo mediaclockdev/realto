@@ -54,7 +54,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
               priority={i === 0}
               quality={80}
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className={`object-cover transition-opacity duration-700 ease-in-out${
+              className={`object-cover transition-opacity duration-700 ease-in-out ${
                 i === current ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -76,7 +76,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
           {/* Fields */}
           <div className="flex flex-col gap-4">
             {/* Full Name */}
-            <div className=" border border-[#BFDBFE] shadow-[0_0_0_2px_rgba(191,219,254,0.9),0_10px_25px_rgba(59,130,246,0.25)] rounded-l-[10px]  pl-5 h-13 transition-all flex items-stretch justify-between ">
+            <div className=" border border-[#FBD345] bg-white  shadow-[0_0_0_2px_rgba(251,211,69,0.9),0_10px_25px_rgba(251,211,69,0.25)] rounded-l-[10px]  pl-5 h-13 transition-all flex items-stretch justify-between ">
               <div className="flex flex-col justify-center h-full">
                 <label className="text-xs text-gray-500">Full Name</label>
                 <input
@@ -94,7 +94,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
             </div>
 
             {/* Phone */}
-            <div className="bg-white border  border-[#BFDBFE] shadow-[0_0_0_2px_rgba(191,219,254,0.9),0_10px_25px_rgba(59,130,246,0.25)] rounded-l-[10px]  pl-5 h-13 transition-all flex items-stretch justify-between">
+            <div className="bg-white border  border-[#FBD345]  shadow-[0_0_0_2px_rgba(251,211,69,0.9),0_10px_25px_rgba(251,211,69,0.25)] rounded-l-[10px]  pl-5 h-13 transition-all flex items-stretch justify-between">
               <div className="flex flex-col justify-center h-full">
                 <label className="text-xs text-gray-500">Phone Number</label>
                 <input
@@ -122,7 +122,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
             </div>
 
             {/* Email */}
-            <div className="bg-white border  border-[#BFDBFE] shadow-[0_0_0_2px_rgba(191,219,254,0.9),0_10px_25px_rgba(59,130,246,0.25)] rounded-l-[10px]  pl-5 h-13  transition-all flex items-stretch justify-between">
+            <div className="bg-white border  border-[#FBD345] shadow-[0_0_0_2px_rgba(251,211,69,0.9),0_10px_25px_rgba(251,211,69,0.25)] rounded-l-[10px]  pl-5 h-13  transition-all flex items-stretch justify-between">
               <div className="flex flex-col justify-center h-full">
                 <label className="text-xs text-gray-500">
                   Email Address
@@ -148,7 +148,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
             </div>
 
             {/* Message */}
-            <div className="bg-white border  border-[#BFDBFE] shadow-[0_0_0_2px_rgba(191,219,254,0.9),0_10px_25px_rgba(59,130,246,0.25)] rounded-l-[10px]  px-5 py-2 focus-within:border-blue-400 transition-all">
+            <div className="bg-white border  border-[#FBD345]  shadow-[0_0_0_2px_rgba(251,211,69,0.9),0_10px_25px_rgba(251,211,69,0.25)] rounded-l-[10px]  px-5 py-2 focus-within:border-blue-400 transition-all">
               <label className="text-xs text-gray-500">Message</label>
 
               <textarea

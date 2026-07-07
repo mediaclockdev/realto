@@ -16,6 +16,12 @@ const LandRealEstateAgents = () => {
         variant="Land Real Estate"
         heading="Agents"
         agents={agents}
+        headingClassName="text-3xl font-extrabold reel-text-heading text-[#111827] [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+        containerClassName="px-4 py-2 rounded-full mb-1"
+        headingStyle={{
+          background:
+            "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+        }}
       />
     </div>
   );

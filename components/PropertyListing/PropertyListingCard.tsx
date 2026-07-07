@@ -390,8 +390,8 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
             <div
               className="absolute inset-0 z-30 flex items-center justify-center rounded-xl cursor-pointer"
               style={{
-                backdropFilter: "blur(6px)",
-                WebkitBackdropFilter: "blur(6px)",
+                backdropFilter: "blur(2px)",
+                WebkitBackdropFilter: "blur(2px)",
                 backgroundColor: "rgba(255,255,255,0.3)",
               }}
               onClick={(e) => {
@@ -399,9 +399,13 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 onSeeMore?.();
               }}
             >
-              <span className="font-amasis text-2xl font-bold text-[#1a1a1a] drop-shadow-sm">
-                See More
-              </span>
+              <Image
+                src="/seemoreicon.svg"
+                alt="See More"
+                width={300}
+                height={300}
+                className="w-3/4 h-auto"
+              />
             </div>
           )}
         </div>
@@ -666,8 +670,8 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           <div
             className="absolute inset-0 z-30 flex items-center justify-center rounded-xl cursor-pointer"
             style={{
-              backdropFilter: "blur(6px)",
-              WebkitBackdropFilter: "blur(6px)",
+              backdropFilter: "blur(2px)",
+              WebkitBackdropFilter: "blur(2px)",
               backgroundColor: "rgba(255,255,255,0.3)",
             }}
             onClick={(e) => {
@@ -675,9 +679,13 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               onSeeMore?.();
             }}
           >
-            <span className="font-amasis text-2xl font-bold text-[#1a1a1a] drop-shadow-sm">
-              See More
-            </span>
+            <Image
+              src="/seemoreicon.svg"
+              alt="See More"
+              width={300}
+              height={300}
+              className="w-3/4 h-auto"
+            />
           </div>
         )}
       </div>

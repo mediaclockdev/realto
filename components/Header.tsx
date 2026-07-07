@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import logo from "@/public/logo.svg";
 import logogif from "@/public/logogifheader.gif";
 import signinbtn from "@/public/signinbtnicon.svg";
 import Link from "next/link";
@@ -67,7 +66,6 @@ const Header = () => {
       </div>
     </header>
   );
-  
 };
 
 export default Header;

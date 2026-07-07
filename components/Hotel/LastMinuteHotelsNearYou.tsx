@@ -47,7 +47,7 @@ const HeartIcon = ({
 }) => (
   <button
     onClick={onClick}
-    className="w-11 h-11 flex items-center justify-center 
+    className="w-12 h-12 flex items-center justify-center 
   bg-transparent border-none outline-none
   shadow-none hover:shadow-none
   transition-transform hover:scale-110 active:scale-95 shrink-0"
@@ -327,8 +327,12 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
             </div>
 
             {/* Right Side: Enlarged Heart and Golden Arrow Circle (Like & Share) */}
-            <div className="flex items-center gap-1.5">
-              <Image src={goldenArrowCircle} alt="golden circle" />
+            <div className="flex items-center gap-1">
+              <Image
+                src={goldenArrowCircle}
+                alt="golden circle"
+                className="size-7"
+              />
               <HeartIcon
                 liked={liked}
                 onClick={(e) => {
@@ -344,7 +348,7 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
   );
 };
 
-const LastMinuteHotels = () => {
+const LastMinuteHotels = ({ pillHeading = false }: { pillHeading?: boolean }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -365,7 +369,17 @@ const LastMinuteHotels = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-2 lg:px-5 py-8">
       {/* Header */}
-      <div className="flex items-center gap-2 mb-2">
+      <div
+        className={`flex items-center gap-2 mb-2 ${pillHeading ? "w-fit rounded-full px-4 py-2" : ""}`}
+        style={
+          pillHeading
+            ? {
+                background:
+                  "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+              }
+            : undefined
+        }
+      >
         <h2 className="font-amasis text-xl lg:text-[32px] font-semibold text-[#0287C7]">
           Last - Minute Hotels Near You
         </h2>

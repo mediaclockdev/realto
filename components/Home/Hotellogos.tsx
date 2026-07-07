@@ -57,10 +57,20 @@ const HotelLogos = ({ headingColor = "text-black" }: HotelLogosProps) => {
   ];
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 ">
-      <h2 className={`font-poppins font-semibold text-xl mb-1 ${headingColor}`}>
+      {/* <h2 className={`font-poppins font-semibold text-xl mb-1 ${headingColor}`}>
+        Hotel Logos
+      </h2> */}
+      <h2
+        className={`font-poppins font-semibold text-xl mb-1 ${headingColor}
+       px-4 py-2 rounded-full inline-block  mb-2 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]`}
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+        }}
+      >
+        {" "}
         Hotel Logos
       </h2>
-
       <MarqueeCards items={franchise} speed="fast" />
     </div>
   );

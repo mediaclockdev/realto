@@ -13,12 +13,18 @@ const SectionHeading = ({
   title: string;
   variant?: "BUY" | "RENT";
 }) => (
-  <div className="mt-2 flex items-center gap-2 px-1">
+  <div
+    className="mt-2 flex w-fit items-center gap-2 rounded-full px-4 py-2"
+    style={{
+      background:
+        "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+    }}
+  >
     <h2
       className="font-amasis text-2xl font-semibold lg:text-[32px] leading-none m-0"
       style={{
-        color: "transparent",
-        WebkitTextStroke: "1.5px #c0c0c0",
+        color: "#FFFFFF",
+        WebkitTextStroke: "1.5px #000000",
       }}
     >
       {title}
@@ -28,7 +34,7 @@ const SectionHeading = ({
         className="font-amasis text-xl font-semibold lg:text-[32px] leading-none"
         style={{
           color: "black",
-          WebkitTextStroke: "1.5px #c0c0c0",
+          WebkitTextStroke: "1.5px #FFFFFFF",
         }}
       >
         {variant}

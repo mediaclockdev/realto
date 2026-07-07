@@ -13,6 +13,10 @@ import magnifyingglass1 from "@/public/magnifyingglass1.svg";
 import magnifyingglass2 from "@/public/magnifyingglass2.svg";
 import magnifyingglass3 from "@/public/magnifyingglass3.svg";
 import magnifyingglass4 from "@/public/magnifyingglass4.svg";
+import magnifyingglass5 from "@/public/magnifyingglass5.svg";
+import magnifyingglass6 from "@/public/magnifyingglass6.svg";
+import magnifyingglass7 from "@/public/magnifyingglass7.svg";
+import magnifyingglass8 from "@/public/magnifyingglass8.svg";
 
 type TooltipProps = {
   text: string;
@@ -45,6 +49,10 @@ const Searchbar = () => {
     magnifyingglass2,
     magnifyingglass3,
     magnifyingglass4,
+    magnifyingglass5,
+    magnifyingglass6,
+    magnifyingglass7,
+    magnifyingglass8,
   ];
   useEffect(() => {
     const interval = setInterval(() => {
@@ -89,27 +97,27 @@ const Searchbar = () => {
             placeholder="Search suburb, postcode, state"
             className="flex-1 min-w-0 bg-transparent outline-none text-white placeholder:text-white/70 text-sm sm:text-base font-light tracking-wide px-3"
           />
+          <div className="flex items-center gap-2  bg-white/80 rounded-r-[10px]">
+            {/* Right icons */}
+            <div className="flex items-center h-full gap-2 shrink-0">
+              {/* Filter */}
+              <Tooltip text="Filters">
+                <button
+                  type="button"
+                  onClick={() => setIsFilterModalOpen(true)}
+                  className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer"
+                >
+                  <Image
+                    src={fliter}
+                    alt="filter"
+                    fill
+                    className="object-contain"
+                  />
+                </button>
+              </Tooltip>
 
-          {/* Right icons */}
-          <div className="flex items-center h-full gap-2 shrink-0">
-            {/* Filter */}
-            <Tooltip text="Filters">
-              <button
-                type="button"
-                onClick={() => setIsFilterModalOpen(true)}
-                className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer"
-              >
-                <Image
-                  src={fliter}
-                  alt="filter"
-                  fill
-                  className="object-contain"
-                />
-              </button>
-            </Tooltip>
-
-            {/* Voice */}
-            <div className="flex items-center gap-2  bg-white/40 rounded-r-[10px]">
+              {/* Voice */}
+              <div className="h-12 w-px bg-[#616161]"></div>
               {/* <div className="h-8 w-px bg-[#FFFFF7]"></div> */}
               <Tooltip text="Microphone">
                 <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
@@ -123,7 +131,7 @@ const Searchbar = () => {
               </Tooltip>
 
               {/* Google Lens */}
-              <div className="h-10 w-px bg-[#ecece7]"></div>
+              <div className="h-12 w-px bg-[#616161]"></div>
               <Tooltip text="Camera">
                 <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
                   <Image
@@ -136,9 +144,9 @@ const Searchbar = () => {
               </Tooltip>
 
               {/* Search button — fills full height */}
-              <div className="h-10 w-px bg-[#ecece7]"></div>
+              <div className="h-12 w-px bg-[#616161]"></div>
               <Tooltip text="Search">
-                <button className="relative ml-2 h-12 md:h-16 w-12 md:w-16 shrink-0 flex items-center justify-center transition-colors cursor-pointer ">
+                <button className="relative h-12 md:h-16 w-12 md:w-16 shrink-0 flex items-center justify-center transition-colors cursor-pointer ">
                   <Image
                     src={images[currentImage]}
                     alt="search"

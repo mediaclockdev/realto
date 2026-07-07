@@ -17,6 +17,9 @@ type AgentCarouselProps = {
   heading?: string;
   variant?: string;
   agents: Agent[];
+  headingClassName?: string;
+  headingStyle?: React.CSSProperties;
+  containerClassName?: string;
   speed?: "slow" | "normal" | "fast";
 };
 
@@ -24,6 +27,9 @@ export default function AgentCarousel({
   heading = "Agents",
   variant,
   agents,
+  headingClassName = "",
+  headingStyle = {},
+  containerClassName = "",
   speed = "fast",
 }: AgentCarouselProps) {
   const router = useRouter();
@@ -31,11 +37,13 @@ export default function AgentCarousel({
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-6">
       {/* Heading */}
-      <div className="flex items-baseline gap-2">
+      <div
+        className={`flex w-fit items-baseline gap-2 ${containerClassName}`}
+        style={headingStyle}
+      >
         {variant && (
           <h2
-            className="font-poppins text-2xl font-semibold lg:text-[32px]"
-            style={{ color: "transparent", WebkitTextStroke: "1.5px #c0c0c0" }}
+            className={`font-poppins text-2xl font-semibold lg:text-[32px]  ${headingClassName}`}
           >
             {variant}
           </h2>
@@ -47,7 +55,7 @@ export default function AgentCarousel({
 
       {/* Marquee */}
       <div className="marquee-wrapper overflow-hidden py-2">
-        <div 
+        <div
           className={`marquee-track ${speed}`}
           style={{ animationDuration: `${agents.length * 3}s` }}
         >

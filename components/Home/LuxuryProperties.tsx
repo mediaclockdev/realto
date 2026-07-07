@@ -10,7 +10,13 @@ import { luxuryRentProperties } from "@/lib/properties/rent/sections";
 
 const LuxuryHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
 
-<div className="flex items-center gap-2 px-1">
+<div
+  className="flex w-fit items-center gap-2 rounded-full px-4 py-2"
+  style={{
+    background:
+      "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+  }}
+>
   <div className="flex items-baseline gap-2">
     <h2
       className="font-poppins text-2xl font-semibold lg:text-[32px]"

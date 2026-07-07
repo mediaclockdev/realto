@@ -407,9 +407,16 @@ const LanguageSelection = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-2">
       <div className="flex items-center gap-3">
-        <p className="text-xl font-semibold font-poppins text-black ">
+        <h2
+          className=" font-semibold font-poppins text-xl
+         text-[#111827] px-4 py-2 rounded-full inline-block mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+          }}
+        >
           Language selection :
-        </p>
+        </h2>
         <div className="shrink-0 relative group/selected">
           <Image
             src={world}

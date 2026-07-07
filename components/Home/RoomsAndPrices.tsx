@@ -5,6 +5,7 @@ const RoomsAndPrices = () => {
   return (
     <PopularCityPropertiesSection
       title="Rooms and prices"
+      pillHeading
       citiesData={studentResidencyCitiesData}
       defaultCity="Melbourne"
     />
