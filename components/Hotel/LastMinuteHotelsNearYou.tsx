@@ -380,7 +380,13 @@ const LastMinuteHotels = ({ pillHeading = false }: { pillHeading?: boolean }) =>
             : undefined
         }
       >
-        <h2 className="font-amasis text-xl lg:text-[32px] font-semibold text-[#0287C7]">
+        <h2
+          className={
+            pillHeading
+              ? "font-poppins text-2xl lg:text-[32px] text-3xl font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+              : "font-amasis text-xl lg:text-[32px] font-semibold text-[#0287C7]"
+          }
+        >
           Last - Minute Hotels Near You
         </h2>
         {/* Trending icon */}

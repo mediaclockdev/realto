@@ -23,7 +23,7 @@ export default function PopularCityPropertiesSection({
   const [selectedCity, setSelectedCity] = useState(initialCity);
   const activeCity = cities.includes(selectedCity) ? selectedCity : initialCity;
 
-  const properties = activeCity ? citiesData[activeCity] ?? [] : [];
+  const properties = activeCity ? (citiesData[activeCity] ?? []) : [];
 
   return (
     <div className="bg-gray-50">
@@ -33,6 +33,8 @@ export default function PopularCityPropertiesSection({
           style={
             pillHeading
               ? {
+                  WebkitTextFillColor: "white",
+                  WebkitTextStroke: "1.5px #000000",
                   background:
                     "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
                 }
