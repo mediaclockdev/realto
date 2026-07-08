@@ -70,7 +70,7 @@ const Searchbar = () => {
       />
 
       <div className="absolute bottom-5 left-1/2 -translate-x-1/2 w-[85%] sm:w-[90%] max-w-6xl z-10">
-        <div className="relative h-12 md:h-16 flex items-center rounded-xl bg-white/20 border border-white/30 shadow-lg overflow-visible">
+        <div className="relative h-12 md:h-16 flex items-center rounded-xl bg-white/20 border border-white/30 shadow-lg overflow-visible pl-2">
           {/* Left icon */}
           <Tooltip text="States">
             <div
@@ -97,7 +97,7 @@ const Searchbar = () => {
             placeholder="Search suburb, postcode, state"
             className="flex-1 min-w-0 bg-transparent outline-none text-white placeholder:text-white/70 text-sm sm:text-base font-light tracking-wide px-3"
           />
-          <div className="flex items-center gap-2  bg-white/80 rounded-r-[10px]">
+          <div className="flex items-center gap-2  bg-white/80 rounded-r-[10px] pr-2">
             {/* Right icons */}
             <div className="flex items-center h-full gap-2 shrink-0">
               {/* Filter */}
@@ -117,7 +117,7 @@ const Searchbar = () => {
               </Tooltip>
 
               {/* Voice */}
-              <div className="h-12 w-px bg-[#616161]"></div>
+              <div className="h-12 w-[2px] bg-white"></div>
               {/* <div className="h-8 w-px bg-[#FFFFF7]"></div> */}
               <Tooltip text="Microphone">
                 <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
@@ -131,7 +131,7 @@ const Searchbar = () => {
               </Tooltip>
 
               {/* Google Lens */}
-              <div className="h-12 w-px bg-[#616161]"></div>
+              <div className="h-12 w-[2px] bg-white"></div>
               <Tooltip text="Camera">
                 <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
                   <Image
@@ -144,9 +144,9 @@ const Searchbar = () => {
               </Tooltip>
 
               {/* Search button — fills full height */}
-              <div className="h-12 w-px bg-[#616161]"></div>
+              <div className="h-12 w-[2px] bg-white "></div>
               <Tooltip text="Search">
-                <button className="relative h-12 md:h-16 w-12 md:w-16 shrink-0 flex items-center justify-center transition-colors cursor-pointer ">
+                <button className=" relative h-12 md:h-16 w-12 md:w-16 shrink-0 flex items-center justify-center transition-colors cursor-pointer ">
                   <Image
                     src={images[currentImage]}
                     alt="search"

@@ -1,14 +1,28 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import logogif from "@/public/logogifheader.gif";
 import signinbtn from "@/public/signinbtnicon.svg";
 import Link from "next/link";
+import realtologogif1 from "@/public/Realto Logo - 1.gif";
+import realtologogif2 from "@/public/Realto Logo - 2.gif";
+import realtologogif3 from "@/public/Realto Logo - 3.gif";
 // import avatar from "@/public/avatar.png";
+
+const realtoLogos = [realtologogif1, realtologogif2, realtologogif3];
 
 const Header = () => {
   const pathname = usePathname();
+  const [logoIndex, setLogoIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setLogoIndex((i) => (i + 1) % realtoLogos.length),
+      30000,
+    );
+    return () => clearInterval(interval);
+  }, []);
   const isAuthRoute =
     pathname.startsWith("/login") || pathname.startsWith("/signup");
 
@@ -47,7 +61,8 @@ const Header = () => {
         <div className={isHome ? "w-32  lg:w-80" : "w-24  lg:w-40"}>
           <Link href="/homepage">
             <Image
-              src={logogif}
+              key={logoIndex}
+              src={realtoLogos[logoIndex]}
               alt="Realto logo"
               priority
               unoptimized

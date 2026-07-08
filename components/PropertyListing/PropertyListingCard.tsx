@@ -141,7 +141,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
               {/* SECTION 1: Agent Banner */}
               <div className="w-full overflow-hidden rounded-[20px] shadow-[0_2px_5px_rgb(0,0,0,0.8)] transition-shadow duration-300">
                 <div
-                  className="bg-[#ED1C24] px-1 py-1"
+                  className="bg-[#ED1C24] px-1"
                   onMouseEnter={() => setIsAgentAreaHovered(true)}
                   onMouseLeave={() => setIsAgentAreaHovered(false)}
                 >
@@ -177,7 +177,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 </div>
               </div>
 
-              <div className="mt-[1.5px] h-[1px]"></div>
+              <div className="mt-1 h-1"></div>
 
               {/* SECTION 2: Image and Details */}
               <div className="w-full overflow-hidden rounded-[20px] bg-white shadow-[0_2px_5px_rgb(0,0,0,0.8)] transition-shadow duration-300">
@@ -258,7 +258,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                       </p>
                     </div>
                   </div>
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-left gap-12 items-center">
                     <div className="flex items-center gap-2 min-w-0">
                       <Image
                         src={calender}
@@ -289,7 +289,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-left gap-13">
                     <div className="flex items-center gap-2 min-w-0">
                       <Image
                         src={rentmoney}
