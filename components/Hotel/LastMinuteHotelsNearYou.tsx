@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import star from "../../public/starsingle.svg";
+// import star from "../../public/starsingle.svg";
 import { getHotelListings } from "@/lib/hotel/repository";
 import type { HotelListing } from "@/lib/hotel/types";
 
@@ -13,13 +13,20 @@ import marriottLogo from "../../public/marriott.svg";
 import holidayInnLogo from "../../public/holidayinn.svg";
 import crownePlazaLogo from "../../public/crowneplaza.svg";
 import ibisLogo from "../../public/ibishotels.svg";
-import facebook from "../../public/logos_facebook.svg";
-import instagram from "../../public/logos_instagram.svg";
-import whatsapp from "../../public/whatsapp.svg";
+import facebook from "../../public/facebookiconhotel.svg";
+import instagram from "../../public/instagramiconhotel.svg";
+// import whatsapp from "../../public/whatsapp.svg";
 import locationIcon from "../../public/location.svg";
 import mail from "../../public/hotelemailicon.svg";
 import goldenArrowCircle from "../../public/goldencircle.svg";
 import telephone from "../../public/telephone.svg";
+import tumblur from "../../public/tumbluriconhotel.svg";
+import snapchat from "../../public/snapchaticonhotel.svg";
+import tiktok from "../../public/tiktokiconhotel.svg";
+import x from "../../public/xiconhotel.svg";
+import wechat from "../../public/wechaticonhotel.svg";
+import vicon from "../../public/viconhotel.svg";
+import linkedin from "../../public/linkediniconhotel.svg";
 
 const hotels = getHotelListings();
 
@@ -27,7 +34,7 @@ const GOLD_GRADIENT =
   // "linear-gradient(90deg , #0F172A , #1D4ED8, #38BDF8 , #7DD3FC , #BAE6FD , #2563EB)";
   // "linear-gradient(90deg, #1E3A8A, #2563EB, #60A5FA, #93C5FD, #BFDBFE ,#1D4ED8 )";
   // "linear-gradient( 90deg ,#001F5B ,#003C9E ,#005BFF ,#3399FF ,#66B2FF , #0047CC )";
-  "linear-gradient(90deg, #7DD3FC ,#38BDF8, #0EA5E9, #60A5FA , #3B82F6 ,#1D4ED8)";
+  "linear-gradient(90deg, #4975D1 ,#4975D1, #4975D1, #4975D1 , #4975D1 ,#4975D1)";
 
 const hotelBrandLogos = {
   "hotel-1": { src: sheratonLogo, alt: "Sheraton Logo" },
@@ -37,6 +44,31 @@ const hotelBrandLogos = {
   "hotel-5": { src: crownePlazaLogo, alt: "Crowne Plaza Logo" },
   "hotel-6": { src: ibisLogo, alt: "Ibis Hotels Logo" },
 } as const;
+
+const images = [
+  facebook,
+  instagram,
+  tumblur,
+  snapchat,
+  tiktok,
+  x,
+  wechat,
+  vicon,
+  linkedin,
+];
+
+const SocialIcons = () => (
+  <div className="flex items-center gap-2">
+    {images.map((image, index) => (
+      <img
+        key={index}
+        src={image.src}
+        alt={`Social media icon ${index + 1}`}
+        className="h-6 w-6"
+      />
+    ))}
+  </div>
+);
 
 const HeartIcon = ({
   liked,
@@ -54,7 +86,7 @@ const HeartIcon = ({
   >
     <svg
       viewBox="0 0 24 24"
-      className={`w-6 h-6 transition-all duration-300 ${
+      className={`w-10 h-10 transition-all duration-300 ${
         liked
           ? "fill-red-500 stroke-red-600 scale-110"
           : "fill-none stroke-gray-400 hover:stroke-red-500"
@@ -66,21 +98,21 @@ const HeartIcon = ({
   </button>
 );
 
-const StarRating = ({ count }: { count: number }) => (
-  <div className="flex gap-0.5">
-    {[1, 2, 3, 4, 5].map((i) => (
-      <div key={i}>
-        <Image
-          src={star}
-          alt="star"
-          width={30} // Smaller rating stars
-          height={30}
-          className={i <= count ? "opacity-100" : "opacity-30"}
-        />
-      </div>
-    ))}
-  </div>
-);
+// const StarRating = ({ count }: { count: number }) => (
+//   <div className="flex gap-0.5">
+//     {[1, 2, 3, 4, 5].map((i) => (
+//       <div key={i}>
+//         <Image
+//           src={star}
+//           alt="star"
+//           width={30}
+//           height={30}
+//           className={i <= count ? "opacity-100" : "opacity-30"}
+//         />
+//       </div>
+//     ))}
+//   </div>
+// );
 
 const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -121,33 +153,35 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
       }}
     >
       <div className="bg-white rounded-2xl flex flex-col justify-between h-full overflow-hidden shadow-md">
-        <div className="px-2 pt-1 pb-2">
-          {/* Top Brand/Logo & City Bar */}
-          <div className="flex items-center gap-2 mb-1 border-b border-gray-100 pb-1">
-            {brandLogo ? (
-              <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center border border-gray-100 shadow-sm bg-white p-1">
-                <Image
-                  src={brandLogo.src}
-                  alt={brandLogo.alt}
-                  className="object-contain w-full h-full"
-                />
-              </div>
-            ) : (
-              <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center bg-gradient-to-tr from-[#CB9E33] to-[#EDD06A] text-white font-bold text-base shadow-sm font-poppins">
-                {hotel.title.slice(0, 1)}
-              </div>
-            )}
-            <div className="flex items-baseline gap-1.5 truncate">
-              <h3 className="text-xl font-bold font-poppins text-black truncate leading-tight">
-                {hotel.title}
-              </h3>
-              <span className="text-gray-500 text-xs font-semibold font-poppins truncate shrink-0">
-                {hotel.subtitle}
-              </span>
-            </div>
-          </div>
+        {/* Top Brand/Logo & City Bar */}
 
-          {/* Auto-rotating Header Photo Container */}
+        <div className="flex items-center justify-center gap-2 border-b border-gray-200 py-2 shadow-md">
+          {brandLogo ? (
+            <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center border border-gray-100 shadow-sm bg-white p-1">
+              <Image
+                src={brandLogo.src}
+                alt={brandLogo.alt}
+                className="object-contain w-full h-full"
+              />
+            </div>
+          ) : (
+            <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center bg-gradient-to-tr from-[#CB9E33] to-[#EDD06A] text-white font-bold text-base shadow-sm font-poppins">
+              {hotel.title.slice(0, 1)}
+            </div>
+          )}
+          <div className="flex items-baseline gap-1.5 truncate">
+            <h3 className="text-xl font-bold font-poppins text-black truncate leading-tight">
+              {hotel.title}
+            </h3>
+            {/* <span className="text-gray-500 text-xs font-semibold font-poppins truncate shrink-0">
+                {hotel.subtitle}
+              </span> */}
+          </div>
+        </div>
+
+        <div className="mt-1.5 h-1.5"></div>
+        {/* Auto-rotating Header Photo Container */}
+        <div>
           <div
             onClick={() =>
               setCurrentImageIndex((prev) => (prev + 1) % displayImages.length)
@@ -162,9 +196,9 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
               className="object-cover transition-opacity duration-700 select-none"
             />
             {/* Elegant Semi-Transparent Overlay Room Name Badge */}
-            <div className="absolute top-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded-md shadow-sm select-none border border-white/10">
+            {/* <div className="absolute top-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded-md shadow-sm select-none border border-white/10">
               {displayRoomNames[currentImageIndex]}
-            </div>
+            </div> */}
           </div>
 
           {/* Deeper 3D Thumbnail Photos under the Header */}
@@ -191,9 +225,9 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
                     className="object-cover"
                   />
                   {/* Subtle dynamic overlay name text on top of thumbnail */}
-                  <div className="absolute top-0 left-0 right-0 bg-black/50 backdrop-blur-[1px] text-white text-[7px] font-bold py-0.5 px-0.5 text-center truncate leading-tight select-none">
+                  {/* <div className="absolute top-0 left-0 right-0 bg-black/50 backdrop-blur-[1px] text-white text-[7px] font-bold py-0.5 px-0.5 text-center truncate leading-tight select-none">
                     {displayRoomNames[targetIndex]}
-                  </div>
+                  </div> */}
                 </div>
               );
             })}
@@ -248,15 +282,15 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
             </div>
 
             {/* Right Side: Price Box - Positioned Upwards, bold, very big red price & grey old price */}
-            <div className="text-right flex flex-col items-end shrink-0 pt-1">
-              <span className="text-[10px] uppercase tracking-widest font-extrabold text-gray-400 font-poppins">
+            <div className="text-right flex flex-col items-end shrink-0 pt-1 mt-10">
+              <span className="text-[10px] uppercase tracking-widest font-extrabold text-gray-400 font-TimesNewRoman italic">
                 from
               </span>
-              <p className="text-3xl font-extrabold text-[#FA2F2F] font-poppins leading-none">
+              <p className="text-3xl font-extrabold text-[#009A00] font-poppins leading-none">
                 {hotel.priceLabel}
               </p>
               {hotel.oldPrice && (
-                <p className="text-xs font-semibold text-gray-400 line-through font-poppins mt-1">
+                <p className="text-xs font-semibold text-[#D62828] line-through font-poppins mt-1">
                   was {hotel.oldPrice}
                 </p>
               )}
@@ -267,62 +301,9 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
           <div className="flex justify-between items-center mt-1 px-1 pb-1 border-t border-gray-50/50">
             {/* Left Side: Star Rating - Sized Down */}
             <div className="flex flex-col gap-1">
-              <StarRating count={hotel.rating} />
+              {/* <StarRating count={hotel.rating} /> */}
               <div className="w-full  flex justify-between items-center ">
-                <div className="flex gap-2.5">
-                  <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="hover:scale-125 transition-transform duration-200"
-                  >
-                    <div className="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
-                      <Image
-                        src={whatsapp}
-                        alt="WhatsApp"
-                        width={20}
-                        height={20}
-                        className="object-contain"
-                      />
-                    </div>
-                  </a>
-                  <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="hover:scale-125 transition-transform duration-200"
-                  >
-                    <div className="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
-                      <Image
-                        src={instagram}
-                        alt="Instagram"
-                        width={20}
-                        height={20}
-                        className="object-contain"
-                      />
-                    </div>
-                  </a>
-                  <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="hover:scale-125 transition-transform duration-200"
-                  >
-                    <div className="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
-                      <Image
-                        src={facebook}
-                        alt="Facebook"
-                        width={20}
-                        height={20}
-                        className="object-contain"
-                      />
-                    </div>
-                  </a>
-                  <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="hover:scale-125 transition-transform duration-200"
-                  >
-                    <div className="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"></div>
-                  </a>
-                </div>
+                <SocialIcons />
               </div>
             </div>
 
@@ -331,7 +312,7 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
               <Image
                 src={goldenArrowCircle}
                 alt="golden circle"
-                className="size-7"
+                className="size-10"
               />
               <HeartIcon
                 liked={liked}
@@ -348,7 +329,11 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
   );
 };
 
-const LastMinuteHotels = ({ pillHeading = false }: { pillHeading?: boolean }) => {
+const LastMinuteHotels = ({
+  pillHeading = false,
+}: {
+  pillHeading?: boolean;
+}) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {

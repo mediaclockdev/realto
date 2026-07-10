@@ -63,6 +63,29 @@ import neartransport from "../../public/neartransport.svg";
 import mapview from "../../public/mapviewicon.svg";
 import satallite from "../../public/sataliteicon.svg";
 
+import snapchat from "../../public/snapchaticonhotel.svg";
+import tiktok from "../../public/tiktokiconhotel.svg";
+import x from "../../public/xiconhotel.svg";
+import wechat from "../../public/wechaticonhotel.svg";
+import linkedin from "../../public/linkediniconhotel.svg";
+
+import instagram from "../../public/instagramiconhotel.svg";
+
+const images = [instagram, snapchat, tiktok, x, wechat, linkedin];
+
+const SocialIcons = () => (
+  <div className="flex items-center gap-2">
+    {images.map((image, index) => (
+      <img
+        key={index}
+        src={image.src}
+        alt={`Social media icon ${index + 1}`}
+        className="h-6 w-6"
+      />
+    ))}
+  </div>
+);
+
 interface PropertyDetailViewProps {
   property: ListingProperty;
   onBack?: () => void;
@@ -358,9 +381,12 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
           </div>
 
           {/* Right Column: Agent Card */}
-          <div className="w-full lg:max-w-md ">
+          <div className="w-full lg:max-w-md  rounded-2xl  ">
             {/* Card */}
-            <div className="bg-[#EDEDED] rounded-2xl shadow-md p-2 lg:p-5 sticky top-6">
+            <div
+              className="bg-[#ffffff]/10 rounded-2xl shadow-md p-2 lg:p-5 bg-no-repeat bg-center bg-cover"
+              style={{ backgroundImage: "url('/glasseffect.svg')" }}
+            >
               <div className="flex items-center gap-2 lg:gap-6">
                 {/* LEFT SECTION */}
                 <div className="flex flex-col items-center gap-2 lg:gap-3 min-w-[100px]">
@@ -369,7 +395,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                     alt={property.agentName}
                     width={120}
                     height={120}
-                    className="rounded-full object-cover w-18 h-18 lg:w-18 lg:h-18 "
+                    className="rounded-full object-cover w-18 h-18 lg:w-20 lg:h-20 "
                   />
 
                   {/* Flags */}
@@ -381,31 +407,33 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                         alt="flag"
                         width={24}
                         height={24}
-                        className="w-4 h-4 lg:w-4 lg:h-4 "
+                        className="w-4 h-4 lg:w-8 lg:h-8 "
                       />
                     ))}
                   </div>
 
                   {/* Name */}
-                  <h3 className="font-semibold text-sm lg:text-base text-[#343434] lg:text-center">
+                  <h3 className="font-semibold text-sm lg:text-lg whitespace-nowrap text-[#343434] lg:text-center">
                     {property.agentName}
                   </h3>
                 </div>
 
-                {/* Divider */}
-                <div className="w-[1px] bg-gray-300 h-full" />
-
                 {/* RIGHT SECTION */}
                 <div className="flex flex-col justify-center gap-1 flex-1">
                   {/* Company */}
-                  <h2 className="text-base  font-bold text-[#343434]">
+                  <h2 className="text-3xl  font-bold text-[#343434] whitespace-nowrap">
                     {property.agentCompanyName}
                   </h2>
 
-                  {/* License */}
-                  <p className="text-sm text-gray-500">License #12345678</p>
+                  {/* phone number */}
+                  <p className="text-sm text-gray-500">+614578912305</p>
 
                   {/* Stars */}
+
+                  {/* Social Icons */}
+                  <div className="my-2">
+                    <SocialIcons />
+                  </div>
                   <div className="">
                     {" "}
                     <Image
@@ -413,24 +441,6 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                       alt="star icons"
                       className="size-1/2 lg:size-auto"
                     />{" "}
-                  </div>
-
-                  {/* Social Icons */}
-                  <div className="flex items-center gap-2.5 mt-2">
-                    {property.socials.map((icon, i) => (
-                      <div
-                        key={i}
-                        className="w-4 lg:w-8 h-4 lg:h-8  flex items-center justify-center "
-                      >
-                        <Image
-                          src={icon}
-                          alt="icon"
-                          width={24}
-                          height={24}
-                          className="object-contain"
-                        />
-                      </div>
-                    ))}
                   </div>
                 </div>
               </div>
@@ -442,21 +452,32 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
             />
 
             {/* Enquiry Button */}
-            <button
-              type="button"
-              onClick={() => setIsInquiryOpen(true)}
-              className="bg-[#EDEDED] mt-3 rounded-2xl shadow-md flex items-center justify-center gap-3 py-3 lg:py-4 w-full hover:bg-gray-200 transition cursor-pointer"
+            <div
+              className="bg-no-repeat bg-center bg-cover"
+              style={{ backgroundImage: "url('/glasseffect1.svg')" }}
             >
-              <Image src={inqury} alt="enquiry" width={28} height={28} />
-              <span className="text-base lg:text-lg font-semibold text-[#343434]">
-                Send an inquiry
-              </span>
-            </button>
+              <button
+                type="button"
+                onClick={() => setIsInquiryOpen(true)}
+                className="bg-[#ffffff]/10 mt-3 rounded-2xl shadow-md flex items-center justify-center gap-3 py-3 lg:py-4 w-full  cursor-pointer"
+              >
+                <Image src={inqury} alt="enquiry" width={28} height={28} />
+                <p
+                  className="text-base lg:text-2xl font-bold text-[#343434]"
+                  style={{
+                    WebkitTextFillColor: "white",
+                    WebkitTextStroke: "1.5px #000000",
+                  }}
+                >
+                  Send an inquiry
+                </p>
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Property Description */}
-        <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
+        <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm ">
           <h2 className="text-xl font-bold  mb-4 font-amasis  bg-[#F0F0F0] text-[#111827] px-8 py-2 rounded-3xl inline-block  [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)] shadow-[4px_4px_10px_rgba(0,0,0,0.15)">
             Property description
           </h2>
