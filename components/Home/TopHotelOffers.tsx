@@ -102,11 +102,12 @@ const HotelOfferCard = ({ hotel }: { hotel: HotelListing }) => {
 
             <div className="text-right mt-0 lg:mt-3">
               <p className="font-poppins text-xl md:text-3xl font-semibold leading-none text-black">
-                {hotel.priceLabel}  <span className="font-poppins text-[10px] md:text-xs font-semibold text-[#909090]">
-                /night
-              </span>
+                {hotel.priceLabel}{" "}
+                <span className="font-poppins text-[10px] md:text-xs font-semibold text-[#909090]">
+                  /night
+                </span>
               </p>
-              
+
               <span className="mt-1.5 md:mt-2 inline-block rounded-lg bg-[#4189DD] px-3 md:px-6 py-1.5 font-poppins text-[11px] md:text-sm text-white transition group-hover:bg-[#3298DF]">
                 View Detail
               </span>
@@ -125,8 +126,11 @@ const TopHotelOffers = () => {
 
   const handleScroll = () => {
     if (!scrollRef.current) return;
-    const { scrollLeft: nextScrollLeft, scrollWidth, clientWidth } =
-      scrollRef.current;
+    const {
+      scrollLeft: nextScrollLeft,
+      scrollWidth,
+      clientWidth,
+    } = scrollRef.current;
     setScrollLeft(nextScrollLeft);
     setIsAtEnd(nextScrollLeft + clientWidth >= scrollWidth - 10);
   };
@@ -142,7 +146,7 @@ const TopHotelOffers = () => {
   return (
     <section className="mx-auto max-w-screen-2xl px-5 py-5">
       <div className="mb-5 flex items-center gap-2">
-        <h2 className="font-poppins text-xl font-semibold text-black lg:text-[32px]">
+        <h2 className="font-amasis text-[32px] font-semibold text-black lg:text-[32px]">
           TOP Hotels Offers
         </h2>
         <TrendingIcon />

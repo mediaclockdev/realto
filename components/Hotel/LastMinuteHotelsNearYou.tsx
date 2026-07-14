@@ -45,17 +45,7 @@ const hotelBrandLogos = {
   "hotel-6": { src: ibisLogo, alt: "Ibis Hotels Logo" },
 } as const;
 
-const images = [
-  facebook,
-  instagram,
-  tumblur,
-  snapchat,
-  tiktok,
-  x,
-  wechat,
-  vicon,
-  linkedin,
-];
+const images = [facebook, instagram, snapchat, tiktok, x, linkedin];
 
 const SocialIcons = () => (
   <div className="flex items-center gap-2">
@@ -64,7 +54,7 @@ const SocialIcons = () => (
         key={index}
         src={image.src}
         alt={`Social media icon ${index + 1}`}
-        className="h-6 w-6"
+        className="h-8 w-8"
       />
     ))}
   </div>
@@ -152,12 +142,12 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
           : "0 10px 25px -10px rgba(0,0,0,0.08)",
       }}
     >
-      <div className="bg-white rounded-2xl flex flex-col justify-between h-full overflow-hidden shadow-md">
+      <div className="bg-gray-100 rounded-2xl flex flex-col justify-between h-full overflow-hidden shadow-md px-2 py-2 border">
         {/* Top Brand/Logo & City Bar */}
 
-        <div className="flex items-center justify-center gap-2 border-b border-gray-200 py-2 shadow-md">
+        <div className="flex items-center justify-center gap-2 border-b border-gray-200 py-2 shadow-md rounded-2xl shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.1)] bg-white">
           {brandLogo ? (
-            <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center border border-gray-100 shadow-sm bg-white p-1">
+            <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center  border border-gray-100 shadow-sm p-1">
               <Image
                 src={brandLogo.src}
                 alt={brandLogo.alt}

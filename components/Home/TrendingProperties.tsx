@@ -9,7 +9,7 @@ import { trendingRentProperties } from "@/lib/properties/rent/sections";
 const TrendingHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
   <div className="mt-1 flex items-center gap-2 px-1">
     <h2
-      className="font-semibold font-poppins text-2xl px-4 py-2 rounded-full inline-block mb-1"
+      className="font-semibold font-amasis text-[32px] px-4 py-2 rounded-full inline-block mb-1"
       style={{
         background:
           "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",

@@ -57,7 +57,7 @@ export default function RealEstateAgents() {
     <div className="relative overflow-hidden max-w-screen-2xl mx-auto  py-5 px-5">
       <div>
         <h2
-          className=" font-semibold font-poppins text-2xl
+          className=" font-semibold font-amasis text-[32px]
          text-[#111827]  px-4 py-2 rounded-full inline-block mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
           style={{
             WebkitTextFillColor: "white",
