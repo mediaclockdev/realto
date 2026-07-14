@@ -22,7 +22,7 @@ const NewListing = ({
 }: NewListingProps) => {
   return (
     <div>
-      <div className={`flex items-center gap-2  font-poppins ${className}`}>
+      <div className={`flex items-center gap-2  font-amasis ${className}`}>
         <h2
           className=" text-[32px] font-extrabold  font-amasis reel-text-heading
          text-[#111827] px-4 py-2 rounded-full inline-block mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
