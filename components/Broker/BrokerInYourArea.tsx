@@ -5,6 +5,36 @@ import React, { useState } from "react";
 import downarrow from "../../public/downarrow.svg";
 import tonylau from "../../public/tonylau.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import type { AgentSummary } from "@/lib/agents/types";
+// glass background
+import glassBackground from "@/public/glasseffectagent.svg";
+// agency logo icon
+import anzLogo from "@/public/anzbank1.svg";
+// portrait photo
+import portrait from "@/public/recommendagent1.jpg";
+// language flag icons
+import frenchFlag from "@/public/Franceflag1.svg";
+import chinaFlag from "@/public/chinaflag1.svg";
+import spainFlag from "@/public/spain1.svg";
+// contact icons (phone / mail / location)
+import phoneIcon from "@/public/mobileicon.svg";
+import mailIcon from "@/public/agentemail.svg";
+import locationIcon from "@/public/agentlocation.svg";
+// social icons
+import instagram from "@/public/logos_instagram.svg";
+import linkedin from "@/public/logos_linkedin.svg";
+import facebook from "@/public/logos_facebook.svg";
+import snapchat from "@/public/snapchat.svg";
+import wechat from "@/public/wechat.svg";
+import xLogo from "@/public/xiconhotel.svg";
+import youtube from "@/public/logos_youtube-icon.svg";
+// rating star icon
+import star from "@/public/star.svg";
+// share (refresh-style) icon
+import shareGold from "@/public/shareiconagent.svg";
+// like (heart) icon
+import heart from "@/public/likeiconagent.svg";
 
 const brokers = [
   {
@@ -25,6 +55,45 @@ const brokers = [
     location: "Based in Sydney",
     img: tonylau,
   },
+];
+// loan broker cards data — swap portraits/details per broker when real data is ready
+const loanBrokers = [
+  {
+    name: "John Citizen",
+    phone: "+9999999999",
+    email: "john@commonwealth",
+    address: "500 Alex st, Sydney",
+    img: portrait,
+  },
+  {
+    name: "Sarah Mitchell",
+    phone: "+9999999998",
+    email: "sarah@commonwealth",
+    address: "12 George st, Sydney",
+    img: portrait,
+  },
+  {
+    name: "David Chen",
+    phone: "+9999999997",
+    email: "david@commonwealth",
+    address: "88 Pitt st, Sydney",
+    img: portrait,
+  },
+  {
+    name: "Emma Wilson",
+    phone: "+9999999996",
+    email: "emma@commonwealth",
+    address: "45 Park st, Sydney",
+    img: portrait,
+  },
+];
+
+const socials = [
+  { src: instagram, alt: "Instagram" },
+  { src: linkedin, alt: "LinkedIn" },
+  { src: facebook, alt: "Facebook" },
+  { src: snapchat, alt: "Snapchat" },
+  { src: wechat, alt: "WeChat" },
 ];
 
 const loans = [
@@ -47,6 +116,13 @@ const loans = [
     comp: "5.56% p.a.",
   },
 ];
+// export default function AgentSummaryCard({
+//   agent,
+//   className = "",
+// }: {
+//   agent?: AgentSummary;
+//   className?: string;
+//   }) {
 
 const BrokerInYourArea = () => {
   //   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -75,137 +151,126 @@ const BrokerInYourArea = () => {
           </p>
           <Image src={downarrow} alt="downarrow" width={16} height={16} />
         </div>
+        <div className="flex items-start gap-4 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory lg:snap-none lg:gap-6">
+          {loanBrokers.map((broker) => (
+          <div key={broker.name} className="w-[85vw] min-w-[85vw] shrink-0 snap-start sm:w-[320px] sm:min-w-[320px] lg:min-w-[320px] lg:w-[320px]">
+          <div className="relative block shrink-0 overflow-hidden rounded-[28px] p-[10px] shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+            {/* glass background — portrait svg matches the card shape */}
+            <Image
+              src={glassBackground}
+              alt="glassbackground"
+              fill
+              className="object-cover"
+            />
 
-        {/* Broker Cards Carousel */}
-        <div className="relative flex items-center">
-          {/* LEFT */}
-          <button
-            onClick={handlePrevCarousel}
-            className="absolute -left-6 z-10 w-10 h-10 rounded-full bg-white text-black shadow-md flex items-center justify-center"
-          >
-            <ChevronLeft size={20} />
-          </button>
+            <div className="relative flex h-full flex-col overflow-hidden rounded-[20px]">
+              {/* Portrait */}
+              <div className="relative h-[240px] lg:h-[210px] w-full">
+                <Image
+                  src={broker.img}
+                  alt={broker.name}
+                  fill
+                  className="object-cover object-top"
+                />
+                {/* ANZ agency badge */}
+                <div className="absolute left-4 top-3">
+                  <Image src={anzLogo} alt="ANZ" width={70} height={28} />
+                </div>
+              </div>
 
-          {/* CARDS */}
-          <div className="overflow-hidden w-full">
-            <div
-              className="flex gap-6 transition-transform duration-500"
-              style={{
-                transform: `translateX(-${carouselIndex * 320}px)`,
-              }}
-            >
-              {brokers.map((broker, index) => (
-                <div
-                  key={index}
-                  className="min-w-[320px] flex items-center gap-4 border border-gray-200 rounded-xl p-5 bg-white shadow-sm"
-                >
-                  <Image
-                    src={broker.img}
-                    alt="broker"
-                    className="w-16 h-16 rounded-full object-cover"
-                  />
-                  <div className="text-black font-poppins">
-                    <h3 className="font-bold text-xl">{broker.name}</h3>
-                    <p className="text-xl font-light">{broker.role}</p>
-                    <p className="text-xl font-light">{broker.location}</p>
+              {/* Details */}
+              {/* details sit directly on the glass background */}
+              <div className="flex flex-1 flex-col justify-between gap-1 px-5 py-3 lg:px-3 lg:py-3">
+                {/* Name + language flags */}
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-poppins text-lg lg:text-2xl font-bold text-[#123C63] whitespace-nowrap">
+                    {broker.name}
+                  </h3>
+                  {/* French flag */}
+                  <Image src={frenchFlag} alt="French" width={35} height={25} />
+                  {/* Chinese flag */}
+                  <Image src={chinaFlag} alt="Chinese" width={35} height={25} />
+                  {/* Spanish flag */}
+                  <Image src={spainFlag} alt="Spanish" width={35} height={25} />
+                </div>
+
+                <div className="space-y-1.5 lg:space-y-2 text-xs lg:text-base font-semibold text-[#123C63]">
+                  <div className="flex items-center gap-3">
+                    {/* phone icon */}
+                    <Image src={phoneIcon} alt="Phone" width={18} height={18} />
+                    <span>{broker.phone}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {/* mail icon */}
+                    <Image src={mailIcon} alt="Email" width={30} height={20} />
+                    <span>{broker.email}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {/* location icon */}
+                    <Image
+                      src={locationIcon}
+                      alt="Location"
+                      width={26}
+                      height={26}
+                    />
+                    <span>{broker.address}</span>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* RIGHT */}
-          <button
-            onClick={handleNextCarousel}
-            className="absolute -right-6 z-10 w-10 h-10 rounded-full bg-white text-black shadow-md flex items-center justify-center"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
-      </div>
+                <div className="space-y-3 mt-2">
+                  {/* Social icons row */}
+                  <div className="flex items-center gap-1.5 lg:gap-2">
+                    {socials.map((social) => (
+                      <Image
+                        key={social.alt}
+                        src={social.src}
+                        alt={social.alt}
+                        width={30}
+                        height={30}
+                        className="h-6 w-6 lg:h-8 lg:w-8"
+                      />
+                    ))}
+                  </div>
 
-      {/* BOTTOM SECTION */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start ">
-        {/* LEFT TEXT */}
-        <div className="space-y-4 pt-2">
-          <h2 className="text-2xl font-bold leading-snug text-black font-poppins">
-            Choose from a huge range of home loans
-          </h2>
-          <p className="text-black font-poppins font-normal text-base leading-relaxed ">
-            Whether you&apos;re a first-time homebuyer, an investor, or looking
-            for the stability of a fixed rate, we&apos;ll help you find a loan
-            that fits you best.
-          </p>
-        </div>
+                  {/* Stars + share + like */}
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-1">
+                      {/* gold rating stars */}
 
-        {/* LOAN CARDS */}
-        {loans.map((loan, index) => (
-          <div
-            key={index}
-            className="border border-[#E2E8F0] rounded-xl p-6 shadow-sm bg-[#FAFBFC] flex flex-col h-full"
-          >
-            {/* TOP CONTENT */}
-            <div className="space-y-4">
-              <h3 className="font-bold text-lg font-poppins text-black">
-                {loan.title}
-              </h3>
-
-              {/* NORMALIZED DESCRIPTION */}
-              <p className="text-black text-sm font-poppins font-normal min-h-24 max-w-75.75">
-                {loan.desc}
-              </p>
-
-              {/* BUTTON (fixed spacing) */}
-              <div className="min-h-9">
-                <button className="text-black font-poppins font-normal text-sm border border-[#E2E8F0] px-6 py-1 rounded-[5px]">
-                  View loans and compare
-                </button>
-              </div>
-
-              {/* RATES (fixed space) */}
-              <div className="space-y-1 text-sm text-black min-h-12">
-                <p>
-                  <span className="font-semibold">{loan.rate}</span> interest
-                  rate
-                </p>
-                <p>
-                  <span className="font-semibold">{loan.comp}</span> comparison
-                  rate
-                </p>
-              </div>
-            </div>
-
-            {/* PUSH DETAILS TO BOTTOM */}
-            <div className="grow" />
-
-            {/* DETAILS */}
-            <div>
-              <button
-                // onClick={() =>
-                //   setExpandedIndex(expandedIndex === index ? null : index)
-                // }
-                className="w-full border-t pt-3 flex items-center justify-between text-black font-poppins font-semibold text-sm"
-              >
-                <span>Details</span>
-                <ChevronRight
-                  size={18}
-                  //   className={`transition-transform duration-300 ${
-                  //     expandedIndex === index ? "rotate-90" : ""
-                  //   }`}
-                />
-              </button>
-              {/* 
-              {expandedIndex === index && ( */}
-              <div className="text-base text-black mt-2">
-                <p>
-                  Owner occupier, Variable, Principal and interest, Maximum LVR
-                  80%, Maximum loan amount $1,00,00,000, Minimum loan amount
-                  $1,50,000. Further conditions, fees and charges may apply.
-                </p>
+                      <Image
+                        src={star}
+                        alt="Star"
+                        width={26}
+                        height={26}
+                        className="h-6 w-6 lg:h-8 lg:w-28"
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {/* share/refresh icon */}
+                      <Image
+                        src={shareGold}
+                        alt="Share"
+                        width={26}
+                        height={26}
+                        className="h-5 w-5 lg:h-7 lg:w-7"
+                      />
+                      {/* heart/like icon */}
+                      <Image
+                        src={heart}
+                        alt="Like"
+                        width={26}
+                        height={26}
+                        className="h-5 w-5 lg:h-7 lg:w-7"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        ))}
+          </div>
+          ))}
+        </div>
       </div>
     </div>
   );

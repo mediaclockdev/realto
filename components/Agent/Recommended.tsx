@@ -38,7 +38,7 @@ export default function Recommended({ agents }: RecommendedProps) {
           <AgentSummaryCard
             key={agent.id}
             agent={agent}
-            className="w-[85vw] min-w-[85vw] shrink-0 snap-start sm:w-[320px] sm:min-w-[320px] lg:min-w-[360px] lg:w-[360px]"
+            className="w-[85vw] min-w-[85vw] shrink-0 snap-start sm:w-[320px] sm:min-w-[320px] lg:min-w-[340px] lg:w-[340px]"
           />
         ))}
       </div>

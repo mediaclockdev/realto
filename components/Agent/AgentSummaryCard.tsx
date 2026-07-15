@@ -4,7 +4,7 @@ import type { AgentSummary } from "@/lib/agents/types";
 // glass background
 import glassBackground from "@/public/glasseffectagent.svg";
 // agency logo icon
-import anzLogo from "@/public/anzbank.svg";
+import anzLogo from "@/public/raywhite1.svg";
 // portrait photo
 import portrait from "@/public/recommendagent1.jpg";
 // language flag icons
@@ -36,8 +36,6 @@ const socials = [
   { src: facebook, alt: "Facebook" },
   { src: snapchat, alt: "Snapchat" },
   { src: wechat, alt: "WeChat" },
-  { src: xLogo, alt: "X" },
-  { src: youtube, alt: "YouTube" },
 ];
 
 // ponytail: agent prop accepted but content is hardcoded per design; wire agent data in when real data is ready
@@ -58,7 +56,7 @@ export default function AgentSummaryCard({
 
       <div className="relative flex h-full flex-col overflow-hidden rounded-[20px]">
         {/* Portrait */}
-        <div className="relative h-[240px] lg:h-[300px] w-full">
+        <div className="relative h-[240px] lg:h-[250px] w-full">
           <Image
             src={portrait}
             alt="John Citizen"
@@ -66,17 +64,17 @@ export default function AgentSummaryCard({
             className="object-cover object-top"
           />
           {/* ANZ agency badge */}
-          <div className="absolute left-3 top-3">
+          <div className="absolute left-4 top-3">
             <Image src={anzLogo} alt="ANZ" width={70} height={28} />
           </div>
         </div>
 
         {/* Details */}
         {/* details sit directly on the glass background */}
-        <div className="flex flex-1 flex-col justify-between gap-1 px-5 py-3 lg:px-6 lg:py-5">
+        <div className="flex flex-1 flex-col justify-between gap-1 px-5 py-3 lg:px-3 lg:py-3">
           {/* Name + language flags */}
-          <div className="flex items-center gap-2">
-            <h3 className="font-poppins text-lg lg:text-2xl font-bold text-[#123C63]">
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="font-poppins text-lg lg:text-2xl font-bold text-[#123C63] whitespace-nowrap">
               John Citizen
             </h3>
             {/* French flag */}
@@ -87,7 +85,7 @@ export default function AgentSummaryCard({
             <Image src={spainFlag} alt="Spanish" width={35} height={25} />
           </div>
 
-          <div className="space-y-2.5 lg:space-y-4 text-xs lg:text-base font-semibold text-[#123C63]">
+          <div className="space-y-1.5 lg:space-y-2 text-xs lg:text-base font-semibold text-[#123C63]">
             <div className="flex items-center gap-3">
               {/* phone icon */}
               <Image src={phoneIcon} alt="Phone" width={18} height={18} />
