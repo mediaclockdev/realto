@@ -25,7 +25,11 @@ import spanish from "@/public/spain.svg";
 import {
   buyPropertyFeatureIcons,
   rentPropertyFeatureIcons,
+  luxuryPropertyFeatureIcons,
 } from "@/lib/properties/property-card-icons";
+import luxury from "@/public/Luxury Modern Villa.jpg";
+import modern from "@/public/Luxury Modern Villa1.jpg";
+import villa from "@/public/Luxury Modern Villa2.jpg";
 
 export const TOTAL_BUY_PROPERTIES = 876;
 
@@ -81,6 +85,19 @@ const buyAgentNames = [
   "Brook Jones",
 ];
 
+// ponytail: ids 21-24 are the luxury cards' detailHref targets (lib/properties/buy/sections.ts)
+const luxuryDetails: Partial<ListingProperty> = {
+  propertyType: "Villa",
+  priceRange: "$2,000,000-$3,500,000",
+  buyiconImages: luxuryPropertyFeatureIcons,
+};
+const luxuryOverrides: Record<string, Partial<ListingProperty>> = {
+  "21": { ...luxuryDetails, images: [luxury, modern] },
+  "22": { ...luxuryDetails, images: [luxury, villa] },
+  "23": { ...luxuryDetails, images: [luxury, modern] },
+  "24": { ...luxuryDetails, images: [luxury, villa] },
+};
+
 export const buyPropertyCatalog: ListingProperty[] = Array.from(
   { length: TOTAL_BUY_PROPERTIES },
   (_, index) => {
@@ -97,6 +114,7 @@ export const buyPropertyCatalog: ListingProperty[] = Array.from(
       propertyType,
       agentName,
       priceRange: `$${priceMin.toLocaleString()}-$${priceMax.toLocaleString()}`,
+      ...luxuryOverrides[String(index + 1)],
     };
   },
 );

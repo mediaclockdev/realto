@@ -293,7 +293,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                   ? property.renticonImages
                   : property.buyiconImages)!.map((icon, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <div className="w-[95px] h-[65px]">
+                    <div className="w-[55px] lg:w-[95px] h-[40px] lg:h-[65px]">
                       <Image
                         src={icon}
                         alt="Feature"
@@ -312,7 +312,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
 
             {/* Location & Size */}
             <div className="flex flex-col sm:flex-row sm:items-center">
-              <div className="flex items-start sm:items-center gap-2">
+              <div className="flex items-center gap-1">
                 <Image
                   src={locationIcon}
                   alt="Location"
@@ -337,7 +337,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                       {property.date}
                     </span>
                   </div>
-                  <div className="flex items-center ">
+                  <div className="flex items-center gap-1">
                     <Image
                       src={clock}
                       alt="clockicon"
@@ -349,7 +349,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                   </div>
                 </>
               )}
-              <div className="flex items-center gap-1 ml-2 shrink-0">
+              <div className="flex items-center gap-2 ml-2 shrink-0">
                 <Image
                   src={squaremetericon}
                   alt="location"
@@ -389,7 +389,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
             >
               <div className="flex items-center gap-2 lg:gap-6">
                 {/* LEFT SECTION */}
-                <div className="flex flex-col items-center gap-2 lg:gap-3 min-w-[100px]">
+                <div className="flex flex-col items-center gap-2 lg:gap-3 min-w-[80px] lg:min-w-[100px]">
                   <Image
                     src={property.agentImageCard}
                     alt={property.agentName}
@@ -421,7 +421,7 @@ const PropertyDetailView: React.FC<PropertyDetailViewProps> = ({
                 {/* RIGHT SECTION */}
                 <div className="flex flex-col justify-center gap-1 flex-1">
                   {/* Company */}
-                  <h2 className="text-3xl  font-bold text-[#343434] whitespace-nowrap">
+                  <h2 className="text-xl lg:text-3xl  font-bold text-[#343434] whitespace-nowrap">
                     {property.agentCompanyName}
                   </h2>
 

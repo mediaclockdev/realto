@@ -80,8 +80,8 @@ const PropertyDetailPage: React.FC<PropertyDetailPageProps> = ({
         listingVariant={listingMeta.listingVariant}
       />
 
-      <div className="max-w-screen-2xl mx-auto px-5 py-5">
-        <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6 items-start">
+      <div className="max-w-screen-2xl mx-auto px-3 lg:px-5 py-5">
+        <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 items-start">
           <aside className="order-2 lg:order-1">
             <div className="lg:sticky lg:top-0 space-y-4">
               <div className="">
