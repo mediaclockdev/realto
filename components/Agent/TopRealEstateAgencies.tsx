@@ -14,6 +14,10 @@ import agenticon1 from "../../public/agenticon.svg";
 import agenticon2 from "../../public/agenticon2.svg";
 import agenticon3 from "../../public/agenticon3.svg";
 import agenticon4 from "../../public/agenticon4.svg";
+import bg1 from "../../public/toprealestateagencybg1.svg";
+import bg2 from "../../public/toprealestateagencybg2.svg";
+import bg3 from "../../public/toprealestateagencybg3.svg";
+import bg4 from "../../public/toprealestateagencybg4.svg";
 
 const agencies = [
   { logo: agencies1, dark: false },
@@ -27,6 +31,8 @@ const agencies = [
 ];
 
 const agentIcons = [agenticon1, agenticon2, agenticon3, agenticon4];
+
+const cardBgs = [bg1, bg2, bg3, bg4];
 
 const SCROLL_AMOUNT = 480;
 
@@ -111,6 +117,9 @@ const TopRealEstateAgencies = () => {
               width: "240px",
               height: "140px",
               backgroundColor: agency.dark ? "#2d2d2d" : "#ffffff",
+              backgroundImage: `url(${cardBgs[idx % cardBgs.length].src})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
               border: agency.dark ? "none" : "1px solid #e5e7eb",
               scrollSnapAlign: "start",
             }}
