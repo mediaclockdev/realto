@@ -112,14 +112,15 @@ const TopRealEstateAgencies = () => {
         {agencies.map((agency, idx) => (
           <div
             key={idx}
-            className="shrink-0 flex flex-col rounded-xl overflow-hidden"
+            className="shrink-0 flex flex-col rounded-lg overflow-hidden"
             style={{
-              width: "240px",
-              height: "140px",
-              backgroundColor: agency.dark ? "#2d2d2d" : "#ffffff",
+              width: "300px",
+              height: "200px",
+              // backgroundColor: agency.dark ? "#2d2d2d" : "#ffffff",
               backgroundImage: `url(${cardBgs[idx % cardBgs.length].src})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
               border: agency.dark ? "none" : "1px solid #e5e7eb",
               scrollSnapAlign: "start",
             }}
@@ -143,8 +144,8 @@ const TopRealEstateAgencies = () => {
                   key={i}
                   className="rounded-full overflow-hidden border-2 border-white shrink-0"
                   style={{
-                    width: "35px",
-                    height: "35px",
+                    width: "45px",
+                    height: "45px",
                     marginLeft: i === 0 ? "0" : "-6px",
                     position: "relative",
                     zIndex: agentIcons.length - i,
@@ -153,8 +154,8 @@ const TopRealEstateAgencies = () => {
                   <Image
                     src={icon}
                     alt={`Agent ${i + 1}`}
-                    width={35}
-                    height={35}
+                    width={45}
+                    height={45}
                     className="object-cover w-full h-full hover:scale-105"
                   />
                 </div>
@@ -164,8 +165,8 @@ const TopRealEstateAgencies = () => {
               <div
                 className="rounded-full flex items-center justify-center text-white shrink-0"
                 style={{
-                  width: "30px",
-                  height: "30px",
+                  width: "40px",
+                  height: "40px",
                   backgroundColor: "#3b82f6",
                   marginLeft: "-6px",
                   position: "relative",

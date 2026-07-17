@@ -29,7 +29,7 @@ export default function PopularCityPropertiesSection({
     <div className="bg-gray-50">
       <section className="max-w-screen-2xl mx-auto px-5 py-5">
         <h2
-          className={`text-[32px] font-extrabold text-gray-900 mb-5 ${pillHeading ? "w-fit font-amasis rounded-full px-4 py-2" : ""}`}
+          className={`text-[32px] font-extrabold text-gray-900 mb-5 ${pillHeading ? "text-[32px] w-fit font-amasis rounded-full px-4 py-2" : ""}`}
           style={
             pillHeading
               ? {
