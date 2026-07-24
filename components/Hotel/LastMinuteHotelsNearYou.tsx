@@ -345,7 +345,7 @@ const LastMinuteHotels = ({
     <div className="max-w-screen-2xl mx-auto px-2 lg:px-5 py-8">
       {/* Header */}
       <div
-        className={`flex items-center gap-2 mb-2 ${pillHeading ? "w-fit rounded-full px-4 py-2" : ""}`}
+        className={`flex items-center gap-2 ${pillHeading ? "w-fit rounded-full px-4 py-2 mb-1" : "mb-2"}`}
         style={
           pillHeading
             ? {
@@ -358,7 +358,7 @@ const LastMinuteHotels = ({
         <h2
           className={
             pillHeading
-              ? "font-poppins text-2xl lg:text-[32px] text-3xl font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+              ? "font-amasis text-2xl lg:text-[32px] text-3xl font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
               : "font-amasis text-xl lg:text-[32px] font-semibold text-[#0287C7]"
           }
         >

@@ -27,8 +27,12 @@ import theritzcarlton from "../../public/theritzcarlton.svg";
 
 interface HotelLogosProps {
   headingColor?: string;
+  pillHeading?: boolean;
 }
-const HotelLogos = ({ headingColor = "text-black" }: HotelLogosProps) => {
+const HotelLogos = ({
+  headingColor = "text-black",
+  pillHeading = false,
+}: HotelLogosProps) => {
   const franchise = [
     sheraton,
     movenpick,
@@ -61,14 +65,25 @@ const HotelLogos = ({ headingColor = "text-black" }: HotelLogosProps) => {
         Hotel Logos
       </h2> */}
       <h2
-        className={`font-amasis font-semibold text-[32px] mb-1 ${headingColor}
-       px-4 py-2 rounded-full inline-block  mb-2 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]`}
-        style={{
-          WebkitTextFillColor: "white",
-          WebkitTextStroke: "1.5px #000000",
-          background:
-            "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-        }}
+        className={
+          pillHeading
+            ? "font-amasis font-extrabold text-[32px] reel-text-heading px-4 py-2 rounded-full inline-block mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+            : `font-amasis font-semibold text-[32px] mb-1 ${headingColor}
+       px-4 py-2 rounded-full inline-block  mb-2 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]`
+        }
+        style={
+          pillHeading
+            ? {
+                background:
+                  "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+              }
+            : {
+                WebkitTextFillColor: "white",
+                WebkitTextStroke: "1.5px #000000",
+                background:
+                  "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+              }
+        }
       >
         {" "}
         Hotel Logos

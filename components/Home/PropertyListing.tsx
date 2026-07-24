@@ -14,19 +14,13 @@ const SectionHeading = ({
   variant?: "BUY" | "RENT";
 }) => (
   <div
-    className="mt-2 flex w-fit items-center gap-2 rounded-full px-4 py-2"
+    className="flex w-fit items-center gap-2 rounded-full px-4 py-2 mb-1"
     style={{
       background:
         "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
     }}
   >
-    <h2
-      className="font-amasis text-2xl font-semibold lg:text-[32px] leading-none m-0"
-      style={{
-        color: "#FFFFFF",
-        WebkitTextStroke: "1.5px #000000",
-      }}
-    >
+    <h2 className="font-amasis text-2xl font-extrabold lg:text-[32px] leading-none m-0 reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]">
       {title}
     </h2>
     {variant && (

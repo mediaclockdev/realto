@@ -9,21 +9,13 @@ import { trendingRentProperties } from "@/lib/properties/rent/sections";
 const TrendingHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
   <div className="mt-1 flex items-center gap-2 px-1">
     <h2
-      className="font-semibold font-amasis text-[32px] px-4 py-2 rounded-full inline-block mb-1"
+      className="font-extrabold font-amasis text-[32px] px-4 py-2 rounded-full inline-block mb-1"
       style={{
         background:
           "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-        filter: "drop-shadow(2px 2px 3px rgba(0,0,0,0.4))",
       }}
     >
-      <span
-        className="font-bold"
-        style={{
-          WebkitTextFillColor: "#ffffff",
-          WebkitTextStroke: "1.5px #000000",
-          textShadow: "0px 0px 4px rgb(255 255 255 / 100%)",
-        }}
-      >
+      <span className="font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]">
         Trending Properties
       </span>
 

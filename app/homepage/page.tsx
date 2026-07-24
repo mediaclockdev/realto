@@ -42,13 +42,13 @@ const page = () => {
       <Hero />
       <Category />
       <LanguageSelection />
-      <RealEstateAgents />
+      <RealEstateAgents enhancedHeading />
       <PropertyListing />
       <TopRealEstateAgents />
       <TrendingProperties />
       <BrokersandBrokerage />
       <LuxuryProperties />
-      <HotelLogos headingColor="text-black" />
+      <HotelLogos headingColor="text-black" pillHeading />
       <LastMinuteHotels pillHeading />
       {/* <TopHotelOffers /> */}
       <CommercialRealestateAgencies />

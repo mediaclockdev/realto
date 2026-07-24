@@ -73,7 +73,7 @@ const Banks = ({ heading = "Banks", pillHeading = false }: BanksProps) => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 overflow-hidden">
       <h2
-        className={`font-poppins font-semibold text-2xl mb-1 text-black ${pillHeading ? "w-fit text-[32px] font-amasis rounded-full px-4 py-2 reel-text-heading text-2xl" : ""}`}
+        className={`font-poppins font-semibold text-2xl mb-1 text-black ${pillHeading ? "w-fit text-[32px] font-amasis font-extrabold rounded-full px-4 py-2 reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]" : ""}`}
         style={
           pillHeading
             ? {

@@ -52,19 +52,33 @@ const partners = [
   elder,
 ];
 
-export default function RealEstateAgents() {
+export default function RealEstateAgents({
+  enhancedHeading = false,
+}: {
+  enhancedHeading?: boolean;
+}) {
   return (
     <div className="relative overflow-hidden max-w-screen-2xl mx-auto  py-5 px-5">
       <div>
         <h2
-          className=" font-semibold font-amasis text-[32px]
-         text-[#111827]  px-4 py-2 rounded-full inline-block mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
-          style={{
-            WebkitTextFillColor: "white",
-            WebkitTextStroke: "1.5px #000000",
-            background:
-              "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-          }}
+          className={
+            enhancedHeading
+              ? "font-extrabold font-amasis text-[32px] reel-text-heading px-4 py-2 rounded-full inline-block mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+              : " font-semibold font-amasis text-[32px]\n         text-[#111827]  px-4 py-2 rounded-full inline-block mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+          }
+          style={
+            enhancedHeading
+              ? {
+                  background:
+                    "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+                }
+              : {
+                  WebkitTextFillColor: "white",
+                  WebkitTextStroke: "1.5px #000000",
+                  background:
+                    "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+                }
+          }
         >
           Real Estate Agents :
         </h2>

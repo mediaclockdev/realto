@@ -562,9 +562,13 @@ const Explorenewproperties = ({ pillHeading = false }: { pillHeading?: boolean }
 
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 relative">
-      <div className="mb-4">
+      <div className={pillHeading ? "mb-1" : "mb-4"}>
         <h2
-          className={`font-poppins text-2xl lg:text-[32px] ${pillHeading ? "w-fit rounded-full px-4 py-2 text-3xl font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]" : "font-semibold text-black"}`}
+          className={
+            pillHeading
+              ? "w-fit rounded-full px-4 py-2 text-3xl font-amasis font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+              : "font-poppins text-2xl lg:text-[32px] font-semibold text-black"
+          }
           style={
             pillHeading
               ? {
