@@ -20,12 +20,12 @@ const SectionHeading = ({
         "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
     }}
   >
-    <h2 className="font-amasis text-2xl font-extrabold lg:text-[32px] leading-none m-0 reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]">
+    <h2 className="font-amasis text-[32px] font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]">
       {title}
     </h2>
     {variant && (
       <span
-        className="font-amasis text-xl font-semibold lg:text-[32px] leading-none"
+        className="font-amasis text-xl font-semibold lg:text-[32px]"
         style={{
           color: "black",
           WebkitTextStroke: "1.5px #FFFFFFF",

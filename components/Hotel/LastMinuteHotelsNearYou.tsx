@@ -358,7 +358,7 @@ const LastMinuteHotels = ({
         <h2
           className={
             pillHeading
-              ? "font-amasis text-2xl lg:text-[32px] text-3xl font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+              ? "font-amasis text-[32px] font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
               : "font-amasis text-xl lg:text-[32px] font-semibold text-[#0287C7]"
           }
         >

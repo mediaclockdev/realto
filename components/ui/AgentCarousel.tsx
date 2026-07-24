@@ -43,7 +43,10 @@ export default function AgentCarousel({
       >
         {variant && (
           <h2
-            className={`font-poppins text-2xl font-semibold lg:text-[32px]  ${headingClassName}`}
+            className={
+              headingClassName ||
+              "font-poppins text-2xl font-semibold lg:text-[32px]"
+            }
           >
             {variant}
           </h2>
