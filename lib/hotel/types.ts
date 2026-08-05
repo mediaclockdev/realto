@@ -39,3 +39,17 @@ export interface HotelListing {
   roomNames?: string[];
 }
 
+export interface HotelRoom {
+  id: string;
+  name: string;
+  image: ImageSource;
+  sizeLabel: string;
+  bedLabel: string;
+  bathroomsLabel: string;
+  extraLabel: string;
+  amenities: string[];
+  price: string;
+  taxesLabel: string;
+  loginPrice: string;
+}
+

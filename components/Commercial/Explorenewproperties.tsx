@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import elder from "../../public/century21.svg";
+import { commercialListings } from "@/lib/commercial/data";
 
 // ==========================================
 // LOCAL ICONS - CHANGE THESE PATHS TO REPLACE
@@ -40,41 +42,16 @@ import socialIconWeChat from "@/public/wechat.svg";
 import socialIconSnapchat from "@/public/snapchat.svg";
 import socialIconLinkedIn from "@/public/logos_linkedin.svg";
 
-// Property images for mock data
-import new1 from "../../public/new1.svg";
-import new2 from "../../public/new2.svg";
-import new3 from "../../public/new3.svg";
-import agent1 from "../../public/agentimg1.jpg";
-import agent2 from "../../public/agentimg2.jpg";
-import agent3 from "../../public/agentimg3.jpg";
-import { ImageSource } from "@/lib/shared/types";
-
-interface PropertyData {
-  id: string;
-  images: ImageSource[];
-  agentName: string;
-  agentPhone: string;
-  agentEmail: string;
-  agentImage: ImageSource;
-  agencyLogoText: string;
-  propertyType: string;
-  carSpaces: string;
-  size: string;
-  address: string;
-  day: string;
-  date: string;
-  time: string;
-  price: string;
-  listingType: "Buy" | "Lease";
-}
+import type { CommercialListing } from "@/lib/commercial/types";
 
 const GOLD_GRADIENT =
   "linear-gradient(90deg, #305792, #305792, #305792, #305792 ,#305792)";
 
 const CommercialPropertyCard: React.FC<{
-  property: PropertyData;
+  property: CommercialListing;
   index: number;
 }> = ({ property, index }) => {
+  const router = useRouter();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [liked, setLiked] = useState(false);
 
@@ -82,22 +59,22 @@ const CommercialPropertyCard: React.FC<{
 
   // Auto-slider effect: switch image every 3 seconds
   useEffect(() => {
-    if (!property.images || property.images.length === 0) return;
+    if (!property.gallery || property.gallery.length === 0) return;
     const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
+      setCurrentImageIndex((prev) => (prev + 1) % property.gallery.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [property.images]);
+  }, [property.gallery]);
 
   const handleNextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
+    setCurrentImageIndex((prev) => (prev + 1) % property.gallery.length);
   };
 
   const handlePrevImage = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentImageIndex(
-      (prev) => (prev - 1 + property.images.length) % property.images.length,
+      (prev) => (prev - 1 + property.gallery.length) % property.gallery.length,
     );
   };
 
@@ -132,6 +109,7 @@ const CommercialPropertyCard: React.FC<{
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => router.push(`/commercial/${property.id}`)}
     >
       <div className="relative bg-white rounded-xl">
         <div className="h-full w-full overflow-visible rounded-xl transition-shadow shadow-2xl duration-300">
@@ -140,13 +118,13 @@ const CommercialPropertyCard: React.FC<{
           {/* ========================================== */}
           <div className="group/image relative h-52 cursor-pointer overflow-hidden rounded-t-xl bg-gray-200">
             <Image
-              src={property.images[currentImageIndex]}
+              src={property.gallery[currentImageIndex]}
               alt={`Property in ${property.address}`}
               fill
               className="object-cover transition-opacity duration-700"
             />
 
-            {property.images.length > 1 && (
+            {property.gallery.length > 1 && (
               <>
                 <button
                   onClick={handlePrevImage}
@@ -173,14 +151,14 @@ const CommercialPropertyCard: React.FC<{
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
                 <Image
-                  src={property.agentImage}
-                  alt={property.agentName}
+                  src={property.agent.image}
+                  alt={property.agent.name}
                   width={50}
                   height={50}
                   className="shrink-0 rounded-full border-2 border-red-100 object-cover w-[40px] h-[40px]"
                 />
                 <p className="truncate font-amasis text-base font-semibold text-[#343434]">
-                  {property.agentName}
+                  {property.agent.name}
                 </p>
               </div>
 
@@ -320,10 +298,10 @@ const CommercialPropertyCard: React.FC<{
           {/* Agent Name + Mobile Number */}
           <div className="flex items-center justify-between gap-2">
             <p className="font-amasis text-base font-semibold text-black truncate">
-              {property.agentName}
+              {property.agent.name}
             </p>
             <p className="font-amasis text-sm font-semibold text-black shrink-0">
-              {property.agentPhone}
+              {property.agent.phone}
             </p>
           </div>
 
@@ -332,10 +310,10 @@ const CommercialPropertyCard: React.FC<{
             <Image src={mailicon} alt="" className="w-8 h-8 shrink-0" />
 
             <a
-              href={`mailto:${property.agentEmail}`}
+              href={`mailto:${property.agent.email}`}
               className="font-amasis text-xs font-semibold text-slate-500 hover:text-blue-600 transition-colors truncate"
             >
-              {property.agentEmail}
+              {property.agent.email}
             </a>
           </div>
 
@@ -396,152 +374,7 @@ const CommercialPropertyCard: React.FC<{
 };
 
 const Explorenewproperties = ({ pillHeading = false }: { pillHeading?: boolean }) => {
-  const newproperties: PropertyData[] = [
-    {
-      id: "commercial-1",
-      images: [new1, new2, new3],
-      agentName: "John Citizen",
-      agentPhone: "0400 123 456",
-      agentEmail: "John.Citizen@niemeyer.com.au",
-      agentImage: agent1,
-      agencyLogoText: "Niemeyer",
-      propertyType: "Warehouse",
-      carSpaces: "2",
-      size: "850",
-      address: "500 King George Street, Sydney NSW 2000",
-      day: "Monday",
-      date: "08.06.2026",
-      time: "10:30",
-      price: "$100,000",
-      listingType: "Lease",
-    },
-    {
-      id: "commercial-2",
-      images: [new2, new3, new1],
-      agentName: "Sarah Connor",
-      agentPhone: "0422 987 654",
-      agentEmail: "Sarah.Connor@niemeyer.com.au",
-      agentImage: agent2,
-      agencyLogoText: "Niemeyer",
-      propertyType: "Retail",
-      carSpaces: "4",
-      size: "1,200",
-      address: "12 Collins Street, Melbourne VIC 3000",
-      day: "Tuesday",
-      date: "09.06.2026",
-      time: "02:00",
-      price: "$250,000",
-      listingType: "Buy",
-    },
-    {
-      id: "commercial-3",
-      images: [new3, new1, new2],
-      agentName: "Michael Chang",
-      agentPhone: "0433 555 777",
-      agentEmail: "Michael.Chang@niemeyer.com.au",
-      agentImage: agent3,
-      agencyLogoText: "Niemeyer",
-      propertyType: "Office",
-      carSpaces: "8",
-      size: "2,500",
-      address: "88 Barangaroo Avenue, Sydney NSW 2000",
-      day: "Wednesday",
-      date: "10.06.2026",
-      time: "11:00",
-      price: "$1,800,000",
-      listingType: "Buy",
-    },
-    {
-      id: "commercial-4",
-      images: [new1, new3, new2],
-      agentName: "Emily Rodriguez",
-      agentPhone: "0455 111 222",
-      agentEmail: "Emily.Rodriguez@niemeyer.com.au",
-      agentImage: agent1,
-      agencyLogoText: "Niemeyer",
-      propertyType: "Showroom",
-      carSpaces: "1",
-      size: "450",
-      address: "104 Main North Road, Medindie SA 5081",
-      day: "Thursday",
-      date: "11.06.2026",
-      time: "09:30",
-      price: "$85,000",
-      listingType: "Lease",
-    },
-    {
-      id: "commercial-5",
-      images: [new1, new3, new2],
-      agentName: "Emily Rodriguez",
-      agentPhone: "0455 111 222",
-      agentEmail: "Emily.Rodriguez@niemeyer.com.au",
-      agentImage: agent1,
-      agencyLogoText: "Niemeyer",
-      propertyType: "Showroom",
-      carSpaces: "1",
-      size: "450",
-      address: "104 Main North Road, Medindie SA 5081",
-      day: "Thursday",
-      date: "11.06.2026",
-      time: "09:30",
-      price: "$85,000",
-      listingType: "Lease",
-    },
-    {
-      id: "commercial-6",
-      images: [new1, new3, new2],
-      agentName: "Emily Rodriguez",
-      agentPhone: "0455 111 222",
-      agentEmail: "Emily.Rodriguez@niemeyer.com.au",
-      agentImage: agent1,
-      agencyLogoText: "Niemeyer",
-      propertyType: "Showroom",
-      carSpaces: "1",
-      size: "450",
-      address: "104 Main North Road, Medindie SA 5081",
-      day: "Thursday",
-      date: "11.06.2026",
-      time: "09:30",
-      price: "$85,000",
-      listingType: "Lease",
-    },
-    {
-      id: "commercial-7",
-      images: [new1, new3, new2],
-      agentName: "Emily Rodriguez",
-      agentPhone: "0455 111 222",
-      agentEmail: "Emily.Rodriguez@niemeyer.com.au",
-      agentImage: agent1,
-      agencyLogoText: "Niemeyer",
-      propertyType: "Showroom",
-      carSpaces: "1",
-      size: "450",
-      address: "104 Main North Road, Medindie SA 5081",
-      day: "Thursday",
-      date: "11.06.2026",
-      time: "09:30",
-      price: "$85,000",
-      listingType: "Lease",
-    },
-    {
-      id: "commercial-8",
-      images: [new1, new3, new2],
-      agentName: "Emily Rodriguez",
-      agentPhone: "0455 111 222",
-      agentEmail: "Emily.Rodriguez@niemeyer.com.au",
-      agentImage: agent1,
-      agencyLogoText: "Niemeyer",
-      propertyType: "Showroom",
-      carSpaces: "1",
-      size: "450",
-      address: "104 Main North Road, Medindie SA 5081",
-      day: "Thursday",
-      date: "11.06.2026",
-      time: "09:30",
-      price: "$85,000",
-      listingType: "Lease",
-    },
-  ];
+  const newproperties = commercialListings;
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 

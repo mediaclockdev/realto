@@ -11,6 +11,7 @@ interface ListingMetaProps {
   onSortChange?: (sort: ListingSortOption) => void;
   variant?: "default" | "map";
   listingLabel?: string;
+  compact?: boolean;
 }
 
 const ListingMeta: React.FC<ListingMetaProps> = ({
@@ -21,6 +22,7 @@ const ListingMeta: React.FC<ListingMetaProps> = ({
   onSortChange,
   variant = "default",
   listingLabel,
+  compact = false,
 }) => {
   const [internalSort, setInternalSort] = useState<ListingSortOption>("Relevant listings");
   const [open, setOpen] = useState(false);
@@ -38,7 +40,7 @@ const ListingMeta: React.FC<ListingMetaProps> = ({
   const isMapVariant = variant === "map";
 
   return (
-    <div className={`max-w-screen-2xl mx-auto ${isMapVariant ? "px-6 sm:px-8 py-8 sm:py-10" : "px-4 sm:px-6 lg:px-10 py-4"}`}>
+    <div className={`max-w-screen-2xl mx-auto ${compact ? "px-3 py-4" : isMapVariant ? "px-6 sm:px-8 py-8 sm:py-10" : "px-4 sm:px-6 lg:px-10 py-4"}`}>
       
       {/* Left border accent + content */}
       <div className="">
@@ -56,7 +58,7 @@ const ListingMeta: React.FC<ListingMetaProps> = ({
         </p>
 
         {/* Count + Sort row */}
-        <div className="flex items-center gap-2 text-sm text-gray-600 flex-nowrap whitespace-nowrap">
+        <div className={`flex items-center gap-2 text-sm text-gray-600 ${compact ? "flex-wrap" : "flex-nowrap whitespace-nowrap"}`}>
           <span className="font-medium text-gray-800">{count} Properties</span>
           <span className="text-gray-400">|</span>
           <span>Sort by</span>

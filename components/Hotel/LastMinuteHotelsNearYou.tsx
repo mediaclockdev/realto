@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 // import star from "../../public/starsingle.svg";
 import { getHotelListings } from "@/lib/hotel/repository";
@@ -105,6 +106,7 @@ const HeartIcon = ({
 // );
 
 const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
+  const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [liked, setLiked] = useState(false);
@@ -134,6 +136,7 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => router.push(`/hotel/${hotel.id}`)}
       className="relative rounded-2xl p-[4px] transition-all duration-300 hover:scale-[1.02] cursor-pointer w-[420px] shrink-0"
       style={{
         background: isHovered ? GOLD_GRADIENT : "transparent",
@@ -173,9 +176,10 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
         {/* Auto-rotating Header Photo Container */}
         <div>
           <div
-            onClick={() =>
-              setCurrentImageIndex((prev) => (prev + 1) % displayImages.length)
-            }
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);
+            }}
             className="relative w-full h-40 lg:h-56 rounded-xl overflow-hidden shadow-sm shrink-0 bg-gray-100 group/image"
           >
             <Image

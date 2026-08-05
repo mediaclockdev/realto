@@ -2,25 +2,13 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import type { StaticImageData } from "next/image";
 import { Heart } from "lucide-react";
+import type { FlatmateListing } from "@/lib/flatmate/types";
 
 const GOLD_GRADIENT =
   "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
 
-export interface ListingCardData {
-  id?: number;
-  type: "flatmate" | "place";
-  title: string;
-  subtitle: string;
-  price: string;
-  Available?: string;
-  months: string;
-  img: string | StaticImageData;
-  iconImages?: string[];
-}
-
-export default function ListingCard({ listing }: { listing: ListingCardData }) {
+export default function ListingCard({ listing }: { listing: FlatmateListing }) {
   const isFlatmate = listing.type === "flatmate";
   const [liked, setLiked] = useState(false);
   const outerRef = useRef<HTMLDivElement>(null);
@@ -41,7 +29,7 @@ export default function ListingCard({ listing }: { listing: ListingCardData }) {
       {/* Image Section */}
       <div className="relative h-[220px] w-full">
         <Image
-          src={listing.img}
+          src={listing.thumbnail}
           alt={listing.title}
             fill
             unoptimized
@@ -50,7 +38,11 @@ export default function ListingCard({ listing }: { listing: ListingCardData }) {
 
         {/* Heart / Favourite Button */}
         <button
-          onClick={() => setLiked(!liked)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setLiked(!liked);
+          }}
           className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md cursor-pointer hover:scale-105 transition-all"
         >
           <Heart
@@ -63,24 +55,20 @@ export default function ListingCard({ listing }: { listing: ListingCardData }) {
       {/* Content Section */}
       <div className="px-4 py-3 space-y-0.5 h-[130px]">
         {/* Icon badges for place type - below image */}
-        {!isFlatmate && listing.iconImages && (
+        {!isFlatmate && (
           <div className="flex items-center gap-2">
-            {listing.iconImages.map((icon: string, idx: number) => (
-              <div
-                key={idx}
-                className="flex items-center gap-1"
-              >
-               
+            {listing.roomIcons.map((item, idx) => (
+              <div key={idx} className="flex items-center gap-1">
                 <div className="relative size-10">
                   <Image
-                    src={icon}
+                    src={item.icon}
                     alt="amenity"
                     fill
                     unoptimized
                     className="object-contain rounded-sm"
                   />
                 </div>
-                 <span className="text-[11px] font-bold text-gray-800">1</span>
+                <span className="text-[11px] font-bold text-gray-800">{item.count}</span>
               </div>
             ))}
           </div>

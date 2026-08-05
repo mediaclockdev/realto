@@ -1,21 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Image, { StaticImageData } from "next/image";
-import internationaltower from "../../public/international tower.jpg";
-import port from "../../public/port melbourn.jpg";
-import collins from "../../public/collins Street.jpg";
-
-interface Property {
-  id: string;
-  title: string;
-  image: string | StaticImageData;
-  sqm: number;
-  level: number;
-  location: string;
-  postcode: string;
-  state: string;
-}
+import Image from "next/image";
+import Link from "next/link";
+import { commercialListings } from "@/lib/commercial/data";
 
 const STATES = [
   "All States",
@@ -30,38 +18,14 @@ const STATES = [
   "NT",
 ];
 
-const PROPERTIES: Property[] = [
-  {
-    id: "1",
-    title: "International Towers , Sydney",
-    image: internationaltower,
-    sqm: 1200,
-    level: 45,
-    location: "Barangaroo",
-    postcode: "NSW 2000",
-    state: "NSW",
-  },
-  {
-    id: "2",
-    title: "Port Melbourne Logistics hub",
-    image: port,
-    sqm: 1200,
-    level: 45,
-    location: "Barangaroo",
-    postcode: "NSW 2000",
-    state: "NSW",
-  },
-  {
-    id: "3",
-    title: "Collins Street luxury Retail",
-    image: collins,
-    sqm: 1200,
-    level: 45,
-    location: "Barangaroo",
-    postcode: "NSW 2000",
-    state: "NSW",
-  },
-];
+const PROPERTIES = commercialListings.slice(0, 3).map((listing) => ({
+  id: listing.id,
+  title: listing.title,
+  image: listing.thumbnail,
+  sqm: listing.size,
+  level: listing.carSpaces,
+  location: listing.location,
+}));
 
 export default function PremiumFeaturedListing() {
   const [activeState, setActiveState] = useState("All States");
@@ -119,10 +83,10 @@ export default function PremiumFeaturedListing() {
                 {/* Property Details */}
                 <div className="space-y-2 mb-1">
                   <p className="text-sm text-black font-normal font-poppins">
-                    {property.sqm} sqm | Level {property.level}
+                    {property.sqm} sqm | {property.level} car spaces
                   </p>
                   <p className="text-sm text-black font-normal font-poppins">
-                    {property.location},{property.postcode}
+                    {property.location}
                   </p>
                 </div>
 
@@ -131,12 +95,12 @@ export default function PremiumFeaturedListing() {
                   <button className="font-semibold text-black text-lg lg:text-xl hover:text-blue-600 transition-colors cursor-pointer">
                     Contact For Pricing
                   </button>
-                  <a
-                    href="#"
+                  <Link
+                    href={`/commercial/${property.id}`}
                     className="text-[#4189DD] hover:text-blue-700 font-semibold transition-colors text-sm font-poppins cursor-pointer hover:underline decoration-blue-700"
                   >
                     View Details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
