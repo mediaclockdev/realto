@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import type { HotelListing } from "@/lib/hotel/types";
 import { getHotelRooms } from "@/lib/hotel/repository";
@@ -42,6 +42,14 @@ export default function HotelDetailPage({ hotel }: HotelDetailPageProps) {
       />
 
       <div className="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 lg:px-8">
+        <Link
+          href="/hotel/browse"
+          className="mb-4 inline-flex items-center text-sm font-medium text-gray-700 hover:text-red-500"
+        >
+          <ChevronLeft className="mr-1 h-4 w-4" />
+          Back to Listing
+        </Link>
+
         <section className="overflow-hidden border border-gray-200 bg-white shadow-sm">
           <div className="relative h-[260px] md:h-[380px] lg:h-[530px]">
             <Image

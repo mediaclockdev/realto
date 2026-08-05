@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 // import star from "../../public/starsingle.svg";
@@ -105,7 +106,7 @@ const HeartIcon = ({
 //   </div>
 // );
 
-const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
+export const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -137,7 +138,7 @@ const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => router.push(`/hotel/${hotel.id}`)}
-      className="relative rounded-2xl p-[4px] transition-all duration-300 hover:scale-[1.02] cursor-pointer w-[420px] shrink-0"
+      className="relative rounded-2xl p-[4px] transition-all duration-300 hover:scale-[1.02] cursor-pointer w-full"
       style={{
         background: isHovered ? GOLD_GRADIENT : "transparent",
         boxShadow: isHovered
@@ -348,39 +349,47 @@ const LastMinuteHotels = ({
   return (
     <div className="max-w-screen-2xl mx-auto px-2 lg:px-5 py-8">
       {/* Header */}
-      <div
-        className={`flex items-center gap-2 ${pillHeading ? "w-fit rounded-full px-4 py-2 mb-1" : "mb-2"}`}
-        style={
-          pillHeading
-            ? {
-                background:
-                  "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-              }
-            : undefined
-        }
-      >
-        <h2
-          className={
+      <div className={`flex items-center justify-between ${pillHeading ? "mb-1" : "mb-2"}`}>
+        <div
+          className={`flex items-center gap-2 ${pillHeading ? "w-fit rounded-full px-4 py-2" : ""}`}
+          style={
             pillHeading
-              ? "font-amasis text-[32px] font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
-              : "font-amasis text-xl lg:text-[32px] font-semibold text-[#0287C7]"
+              ? {
+                  background:
+                    "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+                }
+              : undefined
           }
         >
-          Last - Minute Hotels Near You
-        </h2>
-        {/* Trending icon */}
-        <svg
-          className="w-6 h-6 text-[#0287C7] animate-pulse"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
+          <h2
+            className={
+              pillHeading
+                ? "font-amasis text-[32px] font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
+                : "font-amasis text-xl lg:text-[32px] font-semibold text-[#0287C7]"
+            }
+          >
+            Last - Minute Hotels Near You
+          </h2>
+          {/* Trending icon */}
+          <svg
+            className="w-6 h-6 text-[#0287C7] animate-pulse"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+            <polyline points="16 7 22 7 22 13" />
+            <path d="M22 7l-1 1" strokeLinecap="round" />
+            <circle cx="22" cy="6" r="1" fill="currentColor" stroke="none" />
+          </svg>
+        </div>
+        <Link
+          href="/hotel/browse"
+          className="shrink-0 text-sm font-semibold text-[#0287C7] hover:underline"
         >
-          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-          <polyline points="16 7 22 7 22 13" />
-          <path d="M22 7l-1 1" strokeLinecap="round" />
-          <circle cx="22" cy="6" r="1" fill="currentColor" stroke="none" />
-        </svg>
+          View All
+        </Link>
       </div>
 
       {/* Horizontal Card Slider with Arrow Navigation */}
@@ -401,7 +410,9 @@ const LastMinuteHotels = ({
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {hotels.map((hotel) => (
-            <HotelCard key={hotel.id} hotel={hotel} />
+            <div key={hotel.id} className="w-[420px] shrink-0">
+              <HotelCard hotel={hotel} />
+            </div>
           ))}
         </div>
 
