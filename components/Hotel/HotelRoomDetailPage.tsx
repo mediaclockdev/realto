@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ChevronLeft,
   ChevronRight,
@@ -59,12 +60,15 @@ export default function HotelRoomDetailPage({
   hotel,
   room,
 }: HotelRoomDetailPageProps) {
+  const router = useRouter();
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState(1);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [liked, setLiked] = useState(false);
   const amenitiesRef = useRef<HTMLDivElement>(null);
+  const checkInRef = useRef<HTMLInputElement>(null);
+  const checkOutRef = useRef<HTMLInputElement>(null);
 
   const nightlyRate = Number(room.price.replace(/[^0-9.]/g, "")) || 0;
   const nights = parseNights(hotel.totalLabel);
@@ -91,7 +95,13 @@ export default function HotelRoomDetailPage({
       toast.error("Pick check-in and check-out dates");
       return;
     }
-    toast.success(`Checking availability for ${nights} nights`);
+    if (checkOut <= checkIn) {
+      toast.error("Check-out date must be after check-in date");
+      return;
+    }
+    router.push(
+      `/hotel/${hotel.id}/room/${room.id}/book?checkIn=${checkIn}&checkOut=${checkOut}&guests=${guests}`,
+    );
   };
 
   const handleShare = () => {
@@ -266,34 +276,42 @@ export default function HotelRoomDetailPage({
 
               <div className="mt-4 overflow-hidden rounded-xl border border-gray-300">
                 <div className="grid grid-cols-2 divide-x divide-gray-300">
-                  <label className="relative block p-2">
+                  <label
+                    className="relative block cursor-pointer p-2"
+                    onClick={() => checkInRef.current?.showPicker?.()}
+                  >
                     <span className="block text-[10px] font-bold uppercase tracking-wide text-gray-500">
                       Check-in
                     </span>
                     <input
+                      ref={checkInRef}
                       type="date"
                       value={checkIn}
                       onChange={(e) => setCheckIn(e.target.value)}
-                      className="mt-1 w-full bg-transparent text-sm text-[#343434] outline-none [&::-webkit-calendar-picker-indicator]:opacity-0"
+                      className="mt-1 w-full cursor-pointer bg-transparent text-sm text-[#343434] outline-none"
                     />
                     {!checkIn && (
-                      <span className="pointer-events-none absolute inset-x-2 bottom-2 bg-white text-sm text-gray-400">
+                      <span className="pointer-events-none absolute bottom-2 left-2 right-6 bg-white text-sm text-gray-400">
                         Add date
                       </span>
                     )}
                   </label>
-                  <label className="relative block p-2">
+                  <label
+                    className="relative block cursor-pointer p-2"
+                    onClick={() => checkOutRef.current?.showPicker?.()}
+                  >
                     <span className="block text-[10px] font-bold uppercase tracking-wide text-gray-500">
                       Check-out
                     </span>
                     <input
+                      ref={checkOutRef}
                       type="date"
                       value={checkOut}
                       onChange={(e) => setCheckOut(e.target.value)}
-                      className="mt-1 w-full bg-transparent text-sm text-[#343434] outline-none [&::-webkit-calendar-picker-indicator]:opacity-0"
+                      className="mt-1 w-full cursor-pointer bg-transparent text-sm text-[#343434] outline-none"
                     />
                     {!checkOut && (
-                      <span className="pointer-events-none absolute inset-x-2 bottom-2 bg-white text-sm text-gray-400">
+                      <span className="pointer-events-none absolute bottom-2 left-2 right-6 bg-white text-sm text-gray-400">
                         Add date
                       </span>
                     )}
