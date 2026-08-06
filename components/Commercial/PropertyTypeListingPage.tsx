@@ -40,7 +40,7 @@ export default function PropertyTypeListingPage({
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-5 py-10">
+    <div className="max-w-screen-2xl mx-auto px-5 py-5">
       <Link
         href="/commercial"
         className="text-[#4189DD] text-sm font-poppins hover:underline"
@@ -85,7 +85,11 @@ export default function PropertyTypeListingPage({
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {filtered.map((listing, index) => (
-              <CommercialPropertyCard key={listing.id} property={listing} index={index} />
+              <CommercialPropertyCard
+                key={listing.id}
+                property={listing}
+                index={index}
+              />
             ))}
           </div>
 
@@ -99,8 +103,8 @@ export default function PropertyTypeListingPage({
         </div>
       ) : (
         <p className="text-gray-500 py-10">
-          No {filter !== "All" ? `${filter.toLowerCase()} ` : ""}listings available for
-          this property type yet.
+          No {filter !== "All" ? `${filter.toLowerCase()} ` : ""}listings
+          available for this property type yet.
         </p>
       )}
     </div>
