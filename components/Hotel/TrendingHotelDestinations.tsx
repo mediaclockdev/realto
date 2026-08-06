@@ -103,7 +103,7 @@ const TrendingHotelDestinations = () => {
         {/* Right Arrow Button */}
         <button
           onClick={() => scroll("right")}
-          className="hidden md:block absolute -right-6 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           aria-label="Scroll right"
         >
           <ChevronRight className="w-5 h-5 text-gray-800" />

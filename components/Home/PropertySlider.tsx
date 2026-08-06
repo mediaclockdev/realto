@@ -42,7 +42,7 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
     <div className="group relative overflow-visible">
       <button
         onClick={() => scroll("left")}
-        className="absolute left-0 top-1/2 z-10 -ml-6 -translate-y-1/2 rounded-full bg-white p-3 shadow-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:bg-gray-100"
+        className="absolute left-0 top-1/2 z-10 -ml-4 -translate-y-1/2 rounded-full bg-white p-3 shadow-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:bg-gray-100"
         aria-label="Scroll left"
       >
         <ChevronLeft className="h-6 w-6 text-gray-800" />
@@ -100,7 +100,7 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
 
       <button
         onClick={() => scroll("right")}
-        className="absolute right-0 top-1/2 z-10 -mr-6 -translate-y-1/2 rounded-full bg-white p-3 shadow-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:bg-gray-100"
+        className="absolute right-0 top-1/2 z-10 -mr-4 -translate-y-1/2 rounded-full bg-white p-3 shadow-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:bg-gray-100"
         aria-label="Scroll right"
       >
         <ChevronRight className="h-6 w-6 text-gray-800" />

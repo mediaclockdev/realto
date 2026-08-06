@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React, { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { commercialListings } from "@/lib/commercial/data";
+import { CommercialPropertyCard } from "./Explorenewproperties";
 
 const STATES = [
   "All States",
@@ -18,17 +18,29 @@ const STATES = [
   "NT",
 ];
 
-const PROPERTIES = commercialListings.slice(0, 3).map((listing) => ({
-  id: listing.id,
-  title: listing.title,
-  image: listing.thumbnail,
-  sqm: listing.size,
-  level: listing.carSpaces,
-  location: listing.location,
-}));
+const GOLD_GRADIENT =
+  "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
+
+const PROPERTIES = commercialListings.slice(0, 4);
 
 export default function PremiumFeaturedListing() {
   const [activeState, setActiveState] = useState("All States");
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 370;
+      const newScrollPosition =
+        direction === "left"
+          ? scrollContainerRef.current.scrollLeft - scrollAmount
+          : scrollContainerRef.current.scrollLeft + scrollAmount;
+
+      scrollContainerRef.current.scrollTo({
+        left: newScrollPosition,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
@@ -56,55 +68,38 @@ export default function PremiumFeaturedListing() {
             ))}
           </div>
         </div>
-        {/* Property Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROPERTIES.map((property) => (
-            <div
-              key={property.id}
-              className="group overflow-hidden rounded-2xl  hover:shadow-xl transition-shadow"
-            >
-              {/* Image Container */}
-              <div className="relative h-64 w-full overflow-hidden ">
-                <Image
-                  src={property.image}
-                  alt={property.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+        {/* Property Cards Slider */}
+        <div className="relative group">
+          <button
+            onClick={() => scroll("left")}
+            className="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-slate-100 rounded-full p-2.5 shadow-lg border border-slate-100 text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center cursor-pointer"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
 
-              {/* Content Container */}
-              <div className="p-3 lg:p-6">
-                {/* Title */}
-                <h4 className="text-lg lg:text-xl font-poppins font-semibold text-black mb-3 ">
-                  {property.title}
-                </h4>
+          <div
+            className="flex gap-6 overflow-x-auto scroll-smooth py-2 px-1"
+            ref={scrollContainerRef}
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {PROPERTIES.map((property, index) => (
+              <CommercialPropertyCard
+                key={property.id}
+                property={property}
+                index={index}
+                borderGradient={GOLD_GRADIENT}
+              />
+            ))}
+          </div>
 
-                {/* Property Details */}
-                <div className="space-y-2 mb-1">
-                  <p className="text-sm text-black font-normal font-poppins">
-                    {property.sqm} sqm | {property.level} car spaces
-                  </p>
-                  <p className="text-sm text-black font-normal font-poppins">
-                    {property.location}
-                  </p>
-                </div>
-
-                {/* CTA Section */}
-                <div className="flex items-center justify-between pt-1 ">
-                  <button className="font-semibold text-black text-lg lg:text-xl hover:text-blue-600 transition-colors cursor-pointer">
-                    Contact For Pricing
-                  </button>
-                  <Link
-                    href={`/commercial/${property.id}`}
-                    className="text-[#4189DD] hover:text-blue-700 font-semibold transition-colors text-sm font-poppins cursor-pointer hover:underline decoration-blue-700"
-                  >
-                    View Details
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
+          <button
+            onClick={() => scroll("right")}
+            className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-slate-100 rounded-full p-2.5 shadow-lg border border-slate-100 text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center cursor-pointer"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </div>

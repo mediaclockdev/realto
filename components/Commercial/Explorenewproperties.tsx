@@ -47,10 +47,11 @@ import type { CommercialListing } from "@/lib/commercial/types";
 const GOLD_GRADIENT =
   "linear-gradient(90deg, #305792, #305792, #305792, #305792 ,#305792)";
 
-const CommercialPropertyCard: React.FC<{
+export const CommercialPropertyCard: React.FC<{
   property: CommercialListing;
   index: number;
-}> = ({ property, index }) => {
+  borderGradient?: string;
+}> = ({ property, index, borderGradient = GOLD_GRADIENT }) => {
   const router = useRouter();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [liked, setLiked] = useState(false);
@@ -105,7 +106,7 @@ const CommercialPropertyCard: React.FC<{
     <div
       className="relative overflow-visible rounded-xl p-0.5 transition-all duration-300 cursor-pointer my-3 w-full sm:w-[340px] shrink-0"
       style={{
-        background: isHovered ? GOLD_GRADIENT : "transparent",
+        background: isHovered ? borderGradient : "transparent",
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -419,7 +420,7 @@ const Explorenewproperties = ({ pillHeading = false }: { pillHeading?: boolean }
         {/* Left Arrow Button */}
         <button
           onClick={() => scroll("left")}
-          className="hidden md:flex absolute -left-6 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-slate-100 rounded-full p-2.5 shadow-lg border border-slate-100 text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center cursor-pointer"
+          className="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-slate-100 rounded-full p-2.5 shadow-lg border border-slate-100 text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center cursor-pointer"
           aria-label="Scroll left"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -443,7 +444,7 @@ const Explorenewproperties = ({ pillHeading = false }: { pillHeading?: boolean }
         {/* Right Arrow Button */}
         <button
           onClick={() => scroll("right")}
-          className="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-slate-100 rounded-full p-2.5 shadow-lg border border-slate-100 text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center cursor-pointer"
+          className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-slate-100 rounded-full p-2.5 shadow-lg border border-slate-100 text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center cursor-pointer"
           aria-label="Scroll right"
         >
           <ChevronRight className="w-5 h-5" />
