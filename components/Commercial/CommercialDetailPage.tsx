@@ -6,7 +6,7 @@ import type { CommercialListing } from "@/lib/commercial/types";
 import SearchFilterBar from "@/components/PropertyListing/SearchFilterBar";
 import ListingMeta from "@/components/PropertyListing/ListingMeta";
 import CommercialDetailView from "./CommercialDetailView";
-import CommercialListingCard from "./CommercialListingCard";
+import { CommercialPropertyCard } from "./Explorenewproperties";
 
 interface CommercialDetailPageProps {
   listing: CommercialListing;
@@ -42,14 +42,12 @@ const CommercialDetailPage: React.FC<CommercialDetailPageProps> = ({
               </div>
 
               <div className="space-y-4 pr-1">
-                {relatedListings.map((relatedListing) => (
-                  <div
+                {relatedListings.map((relatedListing, index) => (
+                  <CommercialPropertyCard
                     key={relatedListing.id}
-                    onClick={() => router.push(`/commercial/${relatedListing.id}`)}
-                    className="cursor-pointer"
-                  >
-                    <CommercialListingCard listing={relatedListing} />
-                  </div>
+                    property={relatedListing}
+                    index={index}
+                  />
                 ))}
               </div>
             </div>
