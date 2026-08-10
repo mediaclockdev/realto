@@ -1,11 +1,5 @@
 import Image, { type StaticImageData } from "next/image";
-import {
-  CheckCircle2,
-  XCircle,
-  PenLine,
-  Languages as LanguagesIcon,
-  Link2,
-} from "lucide-react";
+import { CheckCircle2, XCircle, PenLine, Link2 } from "lucide-react";
 
 import avatar from "@/public/agentimg1.jpg";
 import linkedinIcon from "@/public/logos_linkedin.svg";
@@ -44,6 +38,7 @@ import activelistingicon from "@/public/agentpanelicons/profileactivelistingicon
 import totalrevenueicon from "@/public/agentpanelicons/profiletotalrevenueicon.svg";
 import clientratingicon from "@/public/agentpanelicons/profileclientratingicon.svg";
 import camericon from "@/public/agentpanelicons/profilecameraicon.svg";
+import languageWorld from "@/public/languageworld.svg";
 import licenseIcon from "@/public/agentpanelicons/profiledl.svg";
 import mailIcon from "@/public/agentpanelicons/profilemailicon.svg";
 import mobileIcon from "@/public/agentpanelicons/profilephoneicon.svg";
@@ -380,25 +375,25 @@ export default function AgentPanelProfile() {
         </div>
 
         {/* Right column: Languages */}
-        <div className="rounded-xl bg-white p-4 shadow-sm">
-          <p className="flex items-center gap-2 font-bold text-blue-700">
-            <LanguagesIcon className="size-5" />
+        <div className={SECTION}>
+          <p className={HEADING_PILL}>
+            <Image src={languageWorld} alt="" className="size-10 shrink-0" />
             Languages
           </p>
-          <p className="text-xs italic text-gray-500">
+          <p className="mt-2 italic text-gray-500">
             Select the languages you speak
           </p>
-          <div className="mt-3 max-h-[640px] space-y-2 overflow-y-auto pr-1">
+          <div className="mt-3 space-y-3">
             {languages.map(({ name, native, level, flag, checked }) => (
               <label
                 key={name}
-                className="flex items-center gap-3 rounded-lg border border-gray-100 px-2 py-2"
+                className="flex items-center gap-3 rounded-2xl border-2 border-[#E1AB18] px-3 py-2"
               >
                 <span
                   className={`flex size-5 shrink-0 items-center justify-center rounded-full border-2 ${
                     checked
                       ? "border-green-500 bg-green-500"
-                      : "border-gray-300"
+                      : "border-[#2495FF]"
                   }`}
                 >
                   {checked && <CheckCircle2 className="size-4 text-white" />}
@@ -406,15 +401,15 @@ export default function AgentPanelProfile() {
                 <Image
                   src={flag}
                   alt=""
-                  className="size-6 shrink-0 rounded-full object-cover"
+                  className="size-11 shrink-0 rounded-full object-cover"
                 />
                 <span className="min-w-0 flex-1">
-                  <span className="block text-sm font-semibold text-gray-900">
+                  <span className="text-lg font-bold text-gray-900">
                     {name}
-                  </span>
-                  <span className="text-xs text-gray-500">{native}</span>
+                  </span>{" "}
+                  <span className="text-sm text-gray-500">{native}</span>
                 </span>
-                <span className="shrink-0 text-xs font-medium text-gray-400">
+                <span className="shrink-0 rounded-full bg-[#E8F2FE] px-3 py-1.5 text-sm font-semibold text-[#2495FF]">
                   {level}
                 </span>
               </label>
