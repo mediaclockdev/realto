@@ -21,8 +21,7 @@ import linkedin from "@/public/logos_linkedin.svg";
 import facebook from "@/public/logos_facebook.svg";
 import snapchat from "@/public/snapchat.svg";
 import wechat from "@/public/wechat.svg";
-import xLogo from "@/public/xiconhotel.svg";
-import youtube from "@/public/logos_youtube-icon.svg";
+
 // rating star icon
 import star from "@/public/star.svg";
 // share (refresh-style) icon
@@ -56,7 +55,7 @@ export default function AgentSummaryCard({
 
       <div className="relative flex h-full flex-col overflow-hidden rounded-[20px]">
         {/* Portrait */}
-        <div className="relative h-[240px] lg:h-[250px] w-full">
+        <div className="relative h-[210px] lg:h-[220px] w-full">
           <Image
             src={portrait}
             alt="John Citizen"
@@ -73,32 +72,34 @@ export default function AgentSummaryCard({
         {/* details sit directly on the glass background */}
         <div className="flex flex-1 flex-col justify-between gap-1 px-5 py-3 lg:px-3 lg:py-3">
           {/* Name + language flags */}
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="font-poppins text-lg lg:text-2xl font-bold text-[#123C63] whitespace-nowrap">
+          <div className="flex items-center  gap-2">
+            <h3 className="font-poppins text-lg lg:text-xl font-bold text-[#123C63] whitespace-nowrap">
               John Citizen
             </h3>
-            {/* French flag */}
-            <Image src={frenchFlag} alt="French" width={35} height={25} />
-            {/* Chinese flag */}
-            <Image src={chinaFlag} alt="Chinese" width={35} height={25} />
-            {/* Spanish flag */}
-            <Image src={spainFlag} alt="Spanish" width={35} height={25} />
+            <div className="flex items-center gap-1">
+              {/* French flag */}
+              <Image src={frenchFlag} alt="French" width={30} height={20} />
+              {/* Chinese flag */}
+              <Image src={chinaFlag} alt="Chinese" width={30} height={20} />
+              {/* Spanish flag */}
+              <Image src={spainFlag} alt="Spanish" width={30} height={20} />
+            </div>
           </div>
 
           <div className="space-y-1.5 lg:space-y-2 text-xs lg:text-base font-semibold text-[#123C63]">
             <div className="flex items-center gap-3">
               {/* phone icon */}
-              <Image src={phoneIcon} alt="Phone" width={18} height={18} />
+              <Image src={phoneIcon} alt="Phone" width={16} height={16} />
               <span>+9999999999</span>
             </div>
             <div className="flex items-center gap-3">
               {/* mail icon */}
-              <Image src={mailIcon} alt="Email" width={30} height={20} />
+              <Image src={mailIcon} alt="Email" width={28} height={18} />
               <span>john@commonwealth</span>
             </div>
             <div className="flex items-center gap-3">
               {/* location icon */}
-              <Image src={locationIcon} alt="Location" width={26} height={26} />
+              <Image src={locationIcon} alt="Location" width={24} height={24} />
               <span>500 Alex st, Sydney</span>
             </div>
           </div>
@@ -113,7 +114,7 @@ export default function AgentSummaryCard({
                   alt={social.alt}
                   width={30}
                   height={30}
-                  className="h-6 w-6 lg:h-8 lg:w-8"
+                  className="h-6 w-6 lg:h-7 lg:w-7"
                 />
               ))}
             </div>

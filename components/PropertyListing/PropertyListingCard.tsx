@@ -35,6 +35,7 @@ interface PropertyListingCardProps {
   listingVariant?: ListingVariant;
   isLastItem?: boolean;
   onSeeMore?: () => void;
+  disableHoverScale?: boolean;
 }
 
 const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
@@ -44,6 +45,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   listingVariant = "buy",
   isLastItem = false,
   onSeeMore,
+  disableHoverScale = false,
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
   const [liked, setLiked] = useState(false);
@@ -123,7 +125,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
           <div
             ref={outerRef}
             onClick={onClick}
-            className={`rounded-3xl cursor-pointer transition-all duration-300 hover:scale-[1.02] p-1 ${showShareModal ? "relative z-50" : ""}`}
+            className={`rounded-3xl cursor-pointer transition-all duration-300 p-1 ${disableHoverScale ? "" : "hover:scale-[1.02]"} ${showShareModal ? "relative z-50" : ""}`}
             style={{ background: "transparent" }}
             onMouseEnter={() => {
               if (outerRef.current) {

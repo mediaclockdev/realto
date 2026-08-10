@@ -24,7 +24,9 @@ const Header = () => {
     return () => clearInterval(interval);
   }, []);
   const isAuthRoute =
-    pathname.startsWith("/login") || pathname.startsWith("/signup");
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/signup") ||
+    pathname.startsWith("/agentpanel");
 
   if (isAuthRoute) {
     return null;

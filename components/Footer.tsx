@@ -13,7 +13,10 @@ import Image from "next/image";
 
 const Footer = () => {
   const pathname = usePathname();
-  const isAuthRoute = pathname.startsWith("/login") || pathname.startsWith("/signup");
+  const isAuthRoute =
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/signup") ||
+    pathname.startsWith("/agentpanel");
 
   if (isAuthRoute) {
     return null;

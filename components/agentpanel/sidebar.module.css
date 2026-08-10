@@ -1,0 +1,112 @@
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  width: 100%;
+  border-radius: 14px;
+  padding: 0 52px 0 20px;
+  overflow: visible;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid #DBE5F1;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.item:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Runs flush into the sidebar divider, which detours around it: the tab's
+   own top/left/bottom border continues the line, and its opaque body hides
+   the divider segment behind it. */
+.active {
+  width: calc(100% + 8px);
+  z-index: 10;
+  background: #ffffff;
+  border: 1px solid #DBE5F1;
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.active:hover {
+  background: #ffffff;
+  transform: none;
+  }
+
+/* Fillets easing the divider into the tab's top and bottom edges. Each box
+   covers the last 12px of the straight divider and redraws it as an arc. */
+.active::before,
+.active::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+}
+
+.active::before {
+  top: -12px;
+  background: radial-gradient(
+    circle at top left,
+    #f8fafc 11px,
+    #DBE5F1 11px,
+    #DBE5F1 12px,
+    #f8fafc 12px
+  );
+}
+
+.active::after {
+  bottom: -12px;
+  background: radial-gradient(
+    circle at bottom left,
+    #f8fafc 11px,
+    #DBE5F1 11px,
+    #DBE5F1 12px,
+    #f8fafc 12px
+  );
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  color: #0f172a;
+}
+
+.labelActive {
+  composes: label;
+  color: #d9a000;
+}
+
+.icon {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  transform: translateY(-50%);
+  object-fit: contain;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .item {
+    height: 54px;
+    padding-right: 52px;
+  }
+
+  .label {
+    font-size: 15px;
+  }
+}
