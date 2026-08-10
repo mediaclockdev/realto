@@ -1,16 +1,5 @@
 import Image, { type StaticImageData } from "next/image";
 import {
-  User,
-  Mail,
-  Phone,
-  PhoneCall,
-  MapPin,
-  Building2,
-  Briefcase,
-  Globe,
-  BadgeCheck,
-  Clock,
-  FileText,
   CheckCircle2,
   XCircle,
   PenLine,
@@ -55,13 +44,19 @@ import activelistingicon from "@/public/agentpanelicons/profileactivelistingicon
 import totalrevenueicon from "@/public/agentpanelicons/profiletotalrevenueicon.svg";
 import clientratingicon from "@/public/agentpanelicons/profileclientratingicon.svg";
 import camericon from "@/public/agentpanelicons/profilecameraicon.svg";
+import licenseIcon from "@/public/agentpanelicons/profiledl.svg";
+import mailIcon from "@/public/agentpanelicons/profilemailicon.svg";
+import mobileIcon from "@/public/agentpanelicons/profilephoneicon.svg";
+import telephoneIcon from "@/public/agentpanelicons/profiletelephoneicon.svg";
+import locationIcon from "@/public/agentpanelicons/profilelocationicon.svg";
+import globeIcon from "@/public/agentpanelicons/profileglobalicon.svg";
 // same Figma token as the dashboard tiles
 // section shell: white + the two outer drop shadows (no inner shadow)
 const SECTION =
   "rounded-xl bg-white p-4 shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
 
 const HEADING_PILL =
-  "inline-block rounded-full bg-[#F1F3F2] px-8 py-2.5 text-3xl font-bold text-[#2495FF] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
+  "inline-flex items-center gap-3 rounded-full bg-[#F1F3F2] px-8 py-2.5 text-3xl font-bold text-[#2495FF] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
 
 const TILE =
   "bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF,inset_0_4px_4px_0_rgba(43,108,176,0.2)]";
@@ -94,50 +89,64 @@ const stats = [
 ];
 
 const personalFields = [
-  { label: "Full Name", value: "Parker Realestate", icon: User, valid: true },
+  {
+    label: "Full Name",
+    value: "Parker Realestate",
+    image: licenseIcon,
+    valid: true,
+  },
   {
     label: "Email Address",
     value: "parker.realestate@gmail.com",
-    icon: Mail,
+    image: mailIcon,
     valid: true,
   },
-  { label: "Phone Number", value: "0142 345 678", icon: Phone, valid: true },
-  { label: "Landline", value: "03 9123 4567", icon: PhoneCall, valid: true },
+  {
+    label: "Phone Number",
+    value: "0142 345 678",
+    image: mobileIcon,
+    valid: true,
+  },
+  {
+    label: "Landline",
+    value: "03 9123 4567",
+    image: telephoneIcon,
+    valid: true,
+  },
   {
     label: "Address",
     value: "123 Broadway, New York, NY 10001, USA",
-    icon: MapPin,
+    image: locationIcon,
     valid: true,
     full: true,
   },
   {
     label: "Company Name",
     value: "Parker Realestate Group",
-    icon: Building2,
+
     valid: true,
   },
   {
     label: "Your Title",
     value: "Senior Real Estate Agent",
-    icon: Briefcase,
+
     valid: true,
   },
   {
     label: "Website",
     value: "www.parkerrealestate.com",
-    icon: Globe,
+    image: globeIcon,
     valid: false,
     full: true,
   },
-  { label: "License No.", value: "#12345678", icon: BadgeCheck, valid: false },
-  { label: "Total Experience (Years)", value: "9", icon: Clock, valid: false },
+  { label: "License No.", value: "#12345678", valid: false },
+  { label: "Total Experience (Years)", value: "9", valid: false },
 ];
 
 const bio = {
   label: "About / Bio",
   value:
     "Experienced real estate agent specializing in residential and commercial properties. Helping clients find their perfect space with dedicated expertise and a track record of success in the New York market.",
-  icon: FileText,
   valid: false,
 };
 
@@ -208,37 +217,44 @@ const languages = [
   { name: "Persian", native: "فارسی", level: "Basic", flag: iranFlag },
 ];
 
+function StatusDot({ valid }: { valid: boolean }) {
+  return valid ? (
+    <CheckCircle2 className="size-4 shrink-0 fill-green-500 text-white" />
+  ) : (
+    <XCircle className="size-4 shrink-0 fill-red-500 text-white" />
+  );
+}
+
 function FieldBox({
   label,
   value,
-  icon: Icon,
+  image,
   valid,
   full,
 }: {
   label: string;
   value: string;
-  icon: typeof User;
+  image?: StaticImageData;
   valid: boolean;
   full?: boolean;
 }) {
   return (
     <div
-      className={`flex items-center justify-between gap-3 rounded-lg border border-yellow-300 px-3 py-2.5 ${
+      className={`flex items-start justify-between gap-3 rounded-2xl border-2 border-[#E1AB18] px-4 py-2.5 ${
         full ? "sm:col-span-2" : ""
       }`}
     >
-      <div>
-        <p className="flex items-center gap-1 text-xs text-gray-500">
-          {valid ? (
-            <CheckCircle2 className="size-3.5 text-green-500" />
-          ) : (
-            <XCircle className="size-3.5 text-red-500" />
-          )}
+      <div className="min-w-0">
+        <p className="flex items-center gap-1.5 text-sm text-gray-500">
+          <StatusDot valid={valid} />
           {label}
         </p>
-        <p className="font-bold text-gray-900">{value}</p>
+        <p className="mt-0.5 truncate text-xl text-gray-900">{value}</p>
       </div>
-      <Icon className="size-5 shrink-0 text-gray-300" />
+
+      {image && (
+        <Image src={image} alt="" className="size-9 shrink-0 object-contain" />
+      )}
     </div>
   );
 }
@@ -321,39 +337,41 @@ export default function AgentPanelProfile() {
               {personalFields.map((field) => (
                 <FieldBox key={field.label} {...field} />
               ))}
-              <div className="rounded-lg border border-yellow-300 px-3 py-2.5 sm:col-span-2">
-                <p className="flex items-center gap-1 text-xs text-gray-500">
-                  <XCircle className="size-3.5 text-red-500" />
+              <div className="rounded-2xl border-2 border-[#E1AB18] px-4 py-2.5 sm:col-span-2">
+                <p className="flex items-center gap-1.5 text-sm text-gray-500">
+                  <StatusDot valid={bio.valid} />
                   {bio.label}
                 </p>
-                <p className="text-sm text-gray-700">{bio.value}</p>
+                <p className="mt-0.5 text-xl text-gray-900">{bio.value}</p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-xl bg-white p-4 shadow-sm">
-            <p className="flex items-center gap-2 font-bold text-blue-700">
-              <Link2 className="size-4" />
+          <div className={SECTION}>
+            <p className={HEADING_PILL}>
+              <Link2 className="size-8 text-[#E1AB18]" />
               Social Media Links
             </p>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {socialLinks.map(({ label, image }) => (
                 <label
                   key={label}
-                  className="flex items-center justify-between gap-2 rounded-lg border border-yellow-300 px-3 py-2"
+                  className="flex items-center justify-between gap-3 rounded-2xl border-2 border-[#E1AB18] px-4 py-2.5"
                 >
-                  <span className="min-w-0">
-                    <span className="block text-xs text-gray-500">{label}</span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm text-gray-500">{label}</span>
                     <input
                       type="text"
                       placeholder="Enter Link"
-                      className="w-full text-sm text-gray-700 outline-none placeholder:text-gray-400"
+                      className="mt-0.5 w-full text-xl text-gray-900 outline-none placeholder:text-gray-400"
                     />
                   </span>
-                  {image ? (
-                    <Image src={image} alt="" className="size-6 shrink-0" />
-                  ) : (
-                    <Link2 className="size-6 shrink-0 text-gray-400" />
+                  {image && (
+                    <Image
+                      src={image}
+                      alt=""
+                      className="size-12 shrink-0 object-contain"
+                    />
                   )}
                 </label>
               ))}
