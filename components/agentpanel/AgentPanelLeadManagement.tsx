@@ -1,21 +1,16 @@
 import Image from "next/image";
-import {
-  Search,
-  FolderOpen,
-  Archive,
-  Trash2,
-  Phone,
-  MessageCircle,
-  Mail,
-  MoreVertical,
-  ChevronLeft,
-  ChevronRight,
-  CheckCircle2,
-} from "lucide-react";
+import { Trash2, ChevronLeft, ChevronRight, CheckCircle2 } from "lucide-react";
 
 import leadsicon from "@/public/agentpanelicons/sidebarleadsmanagementicon.svg";
 import addleadicon from "@/public/agentpanelicons/dashboardaddlistingicon.svg";
 import searchicon from "@/public/magnifyingglass1.svg";
+import totalleadsicon from "@/public/agentpanelicons/leadmanagementTotalleads.svg";
+import openleadsicon from "@/public/agentpanelicons/leadmanagementOpenleads.svg";
+import closedleadsicon from "@/public/agentpanelicons/leadmanagementClosedleads.svg";
+import phoneicon from "@/public/agentpanelicons/leadmanagementphoneicon.svg";
+import messageicon from "@/public/agentpanelicons/leadmanagementmessageicon.svg";
+import mailicon from "@/public/agentpanelicons/leadmanagementmailicon.svg";
+import dotmenu from "@/public/agentpanelicons/leadmanagement3doticon.svg";
 
 const SOFT_SHADOW = "shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
 
@@ -23,9 +18,9 @@ const TILE =
   "bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF,inset_0_4px_4px_0_rgba(43,108,176,0.2)]";
 
 const stats = [
-  { label: "Total Leads", value: 32, icon: Search },
-  { label: "Open Leads", value: 31, icon: FolderOpen },
-  { label: "Closed Leads", value: 1, icon: Archive },
+  { label: "Total Leads", value: 32, icon: totalleadsicon },
+  { label: "Open Leads", value: 31, icon: openleadsicon },
+  { label: "Closed Leads", value: 1, icon: closedleadsicon },
 ];
 
 const statusStyles: Record<string, string> = {
@@ -78,7 +73,11 @@ export default function AgentPanelLeadManagement() {
             key={label}
             className={`flex items-center gap-3 rounded-xl p-4 ${TILE}`}
           >
-            <Icon className="size-11 shrink-0 text-[#E1AB18]" />
+            <Image
+              src={Icon}
+              alt="icons"
+              className="size-12 shrink-0 text-[#E1AB18] object-cover"
+            />
             <div>
               <p className="text-lg font-bold text-[#2495FF]">{label}</p>
               <p className="text-xl font-bold text-gray-900">{value}</p>
@@ -202,11 +201,17 @@ export default function AgentPanelLeadManagement() {
                     </span>
                   </td>
                   <td className="py-3">
-                    <div className="flex items-center gap-3 text-[#E1AB18]">
-                      <Phone className="size-5" />
-                      <MessageCircle className="size-5" />
-                      <Mail className="size-5" />
-                      <MoreVertical className="size-5" />
+                    <div className="flex items-center gap-3">
+                      {[phoneicon, messageicon, mailicon, dotmenu].map(
+                        (icon, i) => (
+                          <Image
+                            key={i}
+                            src={icon}
+                            alt="icons"
+                            className="h-7 w-auto"
+                          />
+                        ),
+                      )}
                     </div>
                   </td>
                 </tr>
