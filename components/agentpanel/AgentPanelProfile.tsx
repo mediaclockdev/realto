@@ -332,8 +332,8 @@ export default function AgentPanelProfile() {
               <Image src={Icon} alt="icons" className="size-12" />
 
               <div>
-                <p className="text-xs text-gray-500">{label}</p>
-                <p className="text-lg font-bold text-gray-900">{value}</p>
+                <p className="text-lg font-bold text-[#0496FF]">{label}</p>
+                <p className="text-2xl font-bold text-[#191C1E]">{value}</p>
               </div>
             </div>
           ))}
