@@ -1,6 +1,5 @@
+import Image from "next/image";
 import {
-  KeyRound,
-  PlusCircle,
   Search,
   FolderOpen,
   Archive,
@@ -11,8 +10,17 @@ import {
   MoreVertical,
   ChevronLeft,
   ChevronRight,
-  Home,
+  CheckCircle2,
 } from "lucide-react";
+
+import leadsicon from "@/public/agentpanelicons/sidebarleadsmanagementicon.svg";
+import addleadicon from "@/public/agentpanelicons/dashboardaddlistingicon.svg";
+import searchicon from "@/public/magnifyingglass1.svg";
+
+const SOFT_SHADOW = "shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
+
+const TILE =
+  "bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF,inset_0_4px_4px_0_rgba(43,108,176,0.2)]";
 
 const stats = [
   { label: "Total Leads", value: 32, icon: Search },
@@ -27,9 +35,9 @@ const statusStyles: Record<string, string> = {
 };
 
 const engagementStyles: Record<string, string> = {
-  High: "text-green-600",
-  Medium: "text-orange-500",
-  Low: "text-red-500",
+  High: "bg-green-50 text-green-600",
+  Medium: "bg-orange-50 text-orange-500",
+  Low: "bg-red-50 text-red-500",
 };
 
 const rowCycle = [
@@ -50,12 +58,12 @@ export default function AgentPanelLeadManagement() {
   return (
     <main className="space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <span className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-4 py-2 font-bold text-gray-900">
+        <span className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-2 py-2 text-xl font-semibold text-[#E1AB18]">
           Leads Management
-          <KeyRound className="size-4" />
+          <Image src={leadsicon} alt="" width={32} height={32} />
         </span>
-        <button className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-4 py-2 font-bold text-yellow-600">
-          <PlusCircle className="size-4" />
+        <button className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-4 py-2 text-lg font-semibold text-[#E1AB18]">
+          <Image src={addleadicon} alt="" width={28} height={28} />
           Add New Lead
         </button>
       </div>
@@ -68,30 +76,28 @@ export default function AgentPanelLeadManagement() {
         {stats.map(({ label, value, icon: Icon }) => (
           <div
             key={label}
-            className="flex items-center gap-3 rounded-xl bg-blue-50 p-4 shadow-sm"
+            className={`flex items-center gap-3 rounded-xl p-4 ${TILE}`}
           >
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-yellow-100 text-yellow-600">
-              <Icon className="size-5" />
-            </span>
+            <Icon className="size-11 shrink-0 text-[#E1AB18]" />
             <div>
-              <p className="font-bold text-blue-700">{label}</p>
-              <p className="text-2xl font-bold text-gray-900">{value}</p>
+              <p className="text-lg font-bold text-[#2495FF]">{label}</p>
+              <p className="text-xl font-bold text-gray-900">{value}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="rounded-xl bg-white p-4 shadow-sm">
+      <div className={`rounded-2xl bg-white p-4 ${SOFT_SHADOW}`}>
         {/* Filters */}
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-4 text-sm">
-            <label className="flex items-center gap-2 font-semibold text-blue-700">
+          <div className="flex flex-wrap items-center gap-4 text-base">
+            <label className="flex items-center gap-2 font-bold text-[#2495FF]">
               Listings :
               <select className="rounded-lg border border-gray-200 px-2 py-1.5 text-gray-700">
                 <option>All</option>
               </select>
             </label>
-            <label className="flex items-center gap-2 font-semibold text-blue-700">
+            <label className="flex items-center gap-2 font-bold text-[#2495FF]">
               Status :
               <select className="rounded-lg border border-gray-200 px-2 py-1.5 text-gray-700">
                 <option>All</option>
@@ -100,7 +106,7 @@ export default function AgentPanelLeadManagement() {
                 <option>Qualified</option>
               </select>
             </label>
-            <label className="flex items-center gap-2 font-semibold text-blue-700">
+            <label className="flex items-center gap-2 font-bold text-[#2495FF]">
               Records :
               <select className="rounded-lg border border-gray-200 px-2 py-1.5 text-gray-700">
                 <option>15</option>
@@ -109,27 +115,33 @@ export default function AgentPanelLeadManagement() {
               </select>
             </label>
           </div>
-          <label className="flex items-center gap-2 text-sm font-semibold text-blue-700">
+          <label className="flex items-center gap-2 text-base font-bold text-[#2495FF]">
             Lead Search :
-            <span className="flex items-center gap-2 rounded-full border border-gray-300 px-3 py-1.5">
+            <span
+              className={`flex items-center gap-2 rounded-full bg-white px-4 py-2 ${SOFT_SHADOW}`}
+            >
               <input
                 type="text"
                 placeholder="Search Documents"
-                className="w-40 text-sm text-gray-600 outline-none placeholder:italic"
+                className="w-56 text-base text-gray-600 outline-none placeholder:italic placeholder:text-gray-400"
               />
-              <Home className="size-4 shrink-0 text-gray-400" />
+              <Image src={searchicon} alt="" className="size-7 shrink-0" />
             </span>
           </label>
         </div>
 
         {/* Actions */}
         <div className="mt-4 flex flex-wrap gap-3">
-          <button className="flex items-center gap-2 rounded-lg border border-yellow-400 px-4 py-2 text-sm font-bold text-yellow-600">
-            <PlusCircle className="size-4" />
+          <button
+            className={`flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-lg font-bold text-[#E1AB18] ${SOFT_SHADOW}`}
+          >
+            <Image src={addleadicon} alt="" width={26} height={26} />
             Add New Lead
           </button>
-          <button className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-bold text-red-600">
-            <Trash2 className="size-4" />
+          <button
+            className={`flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-lg font-bold text-[#EF4444] ${SOFT_SHADOW}`}
+          >
+            <Trash2 className="size-6 text-gray-700" />
             Delete Selected
           </button>
         </div>
@@ -138,47 +150,63 @@ export default function AgentPanelLeadManagement() {
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-[900px] text-left text-sm">
             <thead>
-              <tr className="border-b border-gray-200 text-gray-600">
-                <th className="w-10 py-2"></th>
-                <th className="py-2 font-bold text-blue-700">Date</th>
-                <th className="py-2 font-bold text-blue-700">Name</th>
-                <th className="py-2 font-bold text-blue-700">Email</th>
-                <th className="py-2 font-bold text-blue-700">Status</th>
-                <th className="py-2 font-bold text-blue-700">Last Activity</th>
-                <th className="py-2 font-bold text-blue-700">Engagement</th>
-                <th className="py-2 font-bold text-blue-700">Contact</th>
+              <tr className="bg-[#EAF4FE] text-gray-600">
+                <th className="w-12 rounded-l-lg py-3 pl-4">
+                  <span className="block size-5 rounded-full border-2 border-gray-300" />
+                </th>
+                <th className="py-3 text-base font-bold text-[#2495FF]">
+                  Date
+                </th>
+                <th className="py-3 text-base font-bold text-[#2495FF]">
+                  Name
+                </th>
+                <th className="py-3 text-base font-bold text-[#2495FF]">
+                  Email
+                </th>
+                <th className="py-3 text-base font-bold text-[#2495FF]">
+                  Status
+                </th>
+                <th className="py-3 text-base font-bold text-[#2495FF]">
+                  Last Activity
+                </th>
+                <th className="py-3 text-base font-bold text-[#2495FF]">
+                  Engagement
+                </th>
+                <th className="rounded-r-lg py-3 pr-4 font-bold text-[#2495FF]">
+                  Contact
+                </th>
               </tr>
             </thead>
             <tbody>
               {leads.map((lead, i) => (
                 <tr key={i} className="border-b border-gray-100">
-                  <td className="py-3">
-                    <input
-                      type="checkbox"
-                      defaultChecked
-                      className="size-4 accent-green-500"
-                    />
+                  <td className="py-3 pl-4">
+                    <CheckCircle2 className="size-5 fill-green-500 text-white" />
                   </td>
                   <td className="py-3 text-gray-700">{lead.date}</td>
                   <td className="py-3 font-bold text-gray-900">{lead.name}</td>
                   <td className="py-3 text-gray-600">{lead.email}</td>
                   <td className="py-3">
                     <span
-                      className={`rounded-full px-3 py-1 text-xs font-semibold ${statusStyles[lead.status]}`}
+                      className={`rounded-full px-3 py-1 text-sm font-bold ${statusStyles[lead.status]}`}
                     >
                       {lead.status}
                     </span>
                   </td>
                   <td className="py-3 text-gray-700">{lead.lastActivity}</td>
-                  <td className={`py-3 font-semibold ${engagementStyles[lead.engagement]}`}>
-                    {lead.engagement}
+                  <td className="py-3">
+                    <span
+                      className={`rounded-full px-3 py-1 text-sm font-bold ${engagementStyles[lead.engagement]}`}
+                    >
+                      {lead.engagement}
+                    </span>
                   </td>
                   <td className="py-3">
-                    <div className="flex items-center gap-3 text-yellow-500">
-                      <Phone className="size-4" />
-                      <MessageCircle className="size-4" />
-                      <Mail className="size-4" />
-                      <MoreVertical className="size-4 text-gray-400" />
+                    <div className="flex items-center gap-3 text-[#E1AB18]">
+                      <Phone className="size-5" />
+                      <MessageCircle className="size-5" />
+                      <Mail className="size-5" />
+                      <MoreVertical className="size-5" />
                     </div>
                   </td>
                 </tr>
@@ -189,22 +217,24 @@ export default function AgentPanelLeadManagement() {
 
         {/* Footer / pagination */}
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-          <p className="text-sm text-gray-500">Showing 1 to 10 of 32 leads</p>
+          <p className="text-base text-gray-500">Showing 1 to 10 of 32 leads</p>
           <div className="flex items-center gap-2">
-            <button className="flex size-8 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
+            <button className="flex size-10 items-center justify-center rounded-xl bg-[#D7E9FB] text-[#2495FF]">
               <ChevronLeft className="size-4" />
             </button>
             {[1, 2, 3].map((page) => (
               <button
                 key={page}
-                className={`flex size-8 items-center justify-center rounded-lg font-semibold ${
-                  page === 1 ? "bg-blue-600 text-white" : "bg-blue-100 text-blue-600"
+                className={`flex size-10 items-center justify-center rounded-xl font-bold ${
+                  page === 1
+                    ? "bg-[#1E6FD9] text-white"
+                    : "bg-[#D7E9FB] text-[#2495FF]"
                 }`}
               >
                 {page}
               </button>
             ))}
-            <button className="flex size-8 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
+            <button className="flex size-10 items-center justify-center rounded-xl bg-[#D7E9FB] text-[#2495FF]">
               <ChevronRight className="size-4" />
             </button>
           </div>

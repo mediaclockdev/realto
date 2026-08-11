@@ -1,5 +1,5 @@
 import Image, { type StaticImageData } from "next/image";
-import { CheckCircle2, XCircle, PenLine, Link2 } from "lucide-react";
+import { CheckCircle2, XCircle, Link2 } from "lucide-react";
 
 import avatar from "@/public/agentimg1.jpg";
 import linkedinIcon from "@/public/logos_linkedin.svg";
@@ -45,8 +45,11 @@ import mobileIcon from "@/public/agentpanelicons/profilephoneicon.svg";
 import telephoneIcon from "@/public/agentpanelicons/profiletelephoneicon.svg";
 import locationIcon from "@/public/agentpanelicons/profilelocationicon.svg";
 import globeIcon from "@/public/agentpanelicons/profileglobalicon.svg";
-// same Figma token as the dashboard tiles
-// section shell: white + the two outer drop shadows (no inner shadow)
+import vimeoicon from "@/public/agentpanelicons/profilesocialiconvimeo.svg";
+import editIcon from "@/public/agentpanelicons/profileEditicon.svg";
+
+const SOFT_SHADOW = "shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
+
 const SECTION =
   "rounded-xl bg-white p-4 shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
 
@@ -154,7 +157,7 @@ const socialLinks: { label: string; image?: StaticImageData }[] = [
   { label: "Youtube", image: youtubeIcon },
   { label: "Tik Tok", image: tiktokIcon },
   { label: "Snapchat", image: snapchatIcon },
-  { label: "Vimeo" },
+  { label: "Vimeo", image: vimeoicon },
   { label: "Tumbler", image: tumblrIcon },
 ];
 
@@ -234,23 +237,31 @@ function FieldBox({
   full?: boolean;
 }) {
   return (
-    <div
-      className={`flex items-start justify-between gap-3 rounded-2xl border-2 border-[#E1AB18] px-4 py-2.5 ${
+    <label
+      className={`flex items-center justify-between gap-3 rounded-2xl border-2 border-[#E1AB18] px-4 py-2.5 ${
         full ? "sm:col-span-2" : ""
       }`}
     >
-      <div className="min-w-0">
-        <p className="flex items-center gap-1.5 text-sm text-gray-500">
+      <span className="min-w-0 flex-1">
+        <span className="flex items-center gap-1.5 text-sm text-gray-500">
           <StatusDot valid={valid} />
           {label}
-        </p>
-        <p className="mt-0.5 truncate text-xl text-gray-900">{value}</p>
-      </div>
+        </span>
+        <input
+          type="text"
+          defaultValue={value}
+          className="mt-0.5 w-full text-xl text-gray-900 outline-none placeholder:text-gray-400"
+        />
+      </span>
 
       {image && (
-        <Image src={image} alt="" className="size-9 shrink-0 object-contain" />
+        <Image
+          src={image}
+          alt="icons"
+          className="size-12 shrink-0 object-contain"
+        />
       )}
-    </div>
+    </label>
   );
 }
 
@@ -300,8 +311,14 @@ export default function AgentPanelProfile() {
               </p>
             </div>
           </div>
-          <button className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-4 py-2 text-sm font-bold text-gray-900">
-            <PenLine className="size-4 text-yellow-500" />
+          <button
+            className={`relative ml-10 mt-8 rounded-lg border border-gray-300 bg-white px-12 py-3 text-base font-bold text-[#004BCA] ${SOFT_SHADOW}`}
+          >
+            <Image
+              src={editIcon}
+              alt=""
+              className="absolute -left-1 -top-4 size-16 -rotate-6 object-contain"
+            />
             Edit Profile
           </button>
         </div>
@@ -326,19 +343,23 @@ export default function AgentPanelProfile() {
       <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_340px]">
         {/* Left column */}
         <div className="space-y-5">
-          <div className="rounded-xl bg-white p-4 shadow-sm">
+          <div className={SECTION}>
             <p className={HEADING_PILL}>Personal Information</p>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {personalFields.map((field) => (
                 <FieldBox key={field.label} {...field} />
               ))}
-              <div className="rounded-2xl border-2 border-[#E1AB18] px-4 py-2.5 sm:col-span-2">
-                <p className="flex items-center gap-1.5 text-sm text-gray-500">
+              <label className="rounded-2xl border-2 border-[#E1AB18] px-4 py-2.5 sm:col-span-2">
+                <span className="flex items-center gap-1.5 text-sm text-gray-500">
                   <StatusDot valid={bio.valid} />
                   {bio.label}
-                </p>
-                <p className="mt-0.5 text-xl text-gray-900">{bio.value}</p>
-              </div>
+                </span>
+                <textarea
+                  rows={3}
+                  defaultValue={bio.value}
+                  className="mt-0.5 w-full resize-none text-xl text-gray-900 outline-none"
+                />
+              </label>
             </div>
           </div>
 
