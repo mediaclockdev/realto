@@ -13,7 +13,7 @@ import snapchatIcon from "@/public/snapchat.svg";
 import tumblrIcon from "@/public/tumbluriconhotel.svg";
 
 import austrilaFlag from "@/public/austrilaflag.svg";
-import chinaFlag from "@/public/chinaflag1.svg";
+import chinaFlag from "@/public/agentpanelicons/chinaflag2.svg";
 import franceFlag from "@/public/Franceflag.svg";
 import indiaFlag from "@/public/India.svg";
 import earthIcon from "@/public/earth.svg";
@@ -54,7 +54,7 @@ const SECTION =
   "rounded-xl bg-white p-4 shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
 
 const HEADING_PILL =
-  "inline-flex items-center gap-3 rounded-full bg-[#F1F3F2] px-8 py-2.5 text-3xl font-bold text-[#2495FF] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
+  "flex w-full items-center gap-8 rounded-full bg-[#F1F3F2] py-2.5 pl-4 pr-8 text-3xl font-bold text-[#4A90F0] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
 
 const TILE =
   "bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF,inset_0_4px_4px_0_rgba(43,108,176,0.2)]";
@@ -340,7 +340,7 @@ export default function AgentPanelProfile() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_340px]">
+      <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_420px]">
         {/* Left column */}
         <div className="space-y-5">
           <div className={SECTION}>
@@ -398,20 +398,20 @@ export default function AgentPanelProfile() {
         {/* Right column: Languages */}
         <div className={SECTION}>
           <p className={HEADING_PILL}>
-            <Image src={languageWorld} alt="" className="size-10 shrink-0" />
+            <Image src={languageWorld} alt="" className="size-14 shrink-0" />
             Languages
           </p>
           <p className="mt-2 italic text-gray-500">
             Select the languages you speak
           </p>
-          <div className="mt-3 space-y-3">
+          <div className="mt-3 space-y-5">
             {languages.map(({ name, native, level, flag, checked }) => (
               <label
                 key={name}
-                className="flex items-center gap-3 rounded-2xl border-2 border-[#E1AB18] px-3 py-2"
+                className="flex items-center gap-3  rounded-2xl border-2 border-[#E1AB18] px-3 py-1.5"
               >
                 <span
-                  className={`flex size-5 shrink-0 items-center justify-center rounded-full border-2 ${
+                  className={`flex size-3 shrink-0 items-center justify-center rounded-full border-2 ${
                     checked
                       ? "border-green-500 bg-green-500"
                       : "border-[#2495FF]"
@@ -419,16 +419,20 @@ export default function AgentPanelProfile() {
                 >
                   {checked && <CheckCircle2 className="size-4 text-white" />}
                 </span>
-                <Image
-                  src={flag}
-                  alt=""
-                  className="size-11 shrink-0 rounded-full object-cover"
-                />
+                <div className="relative h-9 w-10">
+                  <Image
+                    src={flag}
+                    alt=""
+                    width={60}
+                    height={60}
+                    className="absolute -top-4 rounded-full object-cover"
+                  />
+                </div>
                 <span className="min-w-0 flex-1">
-                  <span className="text-lg font-bold text-gray-900">
+                  <span className="text-base font-semibold text-gray-900">
                     {name}
                   </span>{" "}
-                  <span className="text-sm text-gray-500">{native}</span>
+                  <span className="text-sm text-gray-400">{native}</span>
                 </span>
                 <span className="shrink-0 rounded-full bg-[#E8F2FE] px-3 py-1.5 text-sm font-semibold text-[#2495FF]">
                   {level}
