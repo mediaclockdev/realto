@@ -1,5 +1,6 @@
+import Image from "next/image";
+import documentsicon from "@/public/agentpanelicons/sidebardocumentsicon.svg";
 import {
-  FileCheck2,
   FolderPlus,
   Folder,
   FolderOpen,
@@ -12,6 +13,17 @@ import {
   ChevronRight,
   FileText,
 } from "lucide-react";
+
+const GOLD_PILL =
+  "flex items-center gap-8 rounded-2xl border border-transparent px-4 py-2 text-2xl font-bold text-[#E1AB18] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
+
+const GOLD_PILL_STYLE = {
+  background:
+    "linear-gradient(135deg,#FFFFFF 0%,#ECEDF0 50%,#C2C6CD 100%) padding-box, linear-gradient(180deg,#BA9000 0%,#F7D257 50%,#BA9000 100%) border-box",
+};
+
+const TILE =
+  "bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF,inset_0_4px_4px_0_rgba(43,108,176,0.2)]";
 
 const stats = [
   { label: "Total Documents", value: 48, icon: Folder, color: "text-yellow-500" },
@@ -54,26 +66,26 @@ export default function AgentPanelDocuments() {
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <span className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-4 py-2 font-bold text-gray-900">
+        <span className={GOLD_PILL} style={GOLD_PILL_STYLE}>
           Documents
-          <FileCheck2 className="size-4" />
+          <Image src={documentsicon} alt="" className="size-11" />
         </span>
-        <button className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-4 py-2 font-bold text-gray-900 shadow-sm">
-          <FolderPlus className="size-5 text-blue-500" />
-          New Folder
+        <button className={GOLD_PILL} style={GOLD_PILL_STYLE}>
+          <FolderPlus className="size-10 text-[#41A5FF]" />
+          <span className="text-[#EF4444]">New Folder</span>
         </button>
       </div>
-      <p className="italic text-gray-600">
+      <p className="font-serif text-2xl italic text-[#64748B]">
         Store, manage and access all your important documents.
       </p>
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {stats.map(({ label, value, icon: Icon, color }) => (
-          <div key={label} className="flex items-center gap-3 rounded-xl bg-blue-50 p-4 shadow-sm">
-            <Icon className={`size-8 shrink-0 ${color}`} />
+          <div key={label} className={`flex items-center gap-3 rounded-xl p-4 ${TILE}`}>
+            <Icon className={`size-12 shrink-0 ${color}`} />
             <div>
-              <p className="text-sm font-bold text-blue-700">{label}</p>
-              <p className="text-xl font-bold text-gray-900">{value}</p>
+              <p className="text-lg font-bold text-[#2495FF]">{label}</p>
+              <p className="text-2xl font-bold text-[#0F172A]">{value}</p>
             </div>
           </div>
         ))}

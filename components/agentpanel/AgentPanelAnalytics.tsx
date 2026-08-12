@@ -1,26 +1,43 @@
 import Image from "next/image";
-import {
-  Star,
-  Eye,
-  Home,
-  FileSignature,
-  Calendar,
-  HelpCircle,
-  UserPlus,
-  Handshake,
-} from "lucide-react";
 
+import analyticsicon from "@/public/agentpanelicons/sidebaranalyticsicons.svg";
+import calendericon from "@/public/agentpanelicons/analtyicscalendericon.svg";
+import totalviewsicon from "@/public/agentpanelicons/analtyicstotalviews.svg";
+import mylistingsicon from "@/public/agentpanelicons/sidebarmylistingicon.svg";
+import soldicon from "@/public/agentpanelicons/mylistingsoldicon.svg";
+import totalleadsicon from "@/public/agentpanelicons/dashboardtotalleadicon.svg";
+import enquiriesicon from "@/public/agentpanelicons/analyticsEnquiriesicon.svg";
+import newleadsicon from "@/public/agentpanelicons/analyticsNewleadsicon.svg";
+import closeddealsicon from "@/public/agentpanelicons/dashboardcloseddealsicon.svg";
 import villa1 from "@/public/Luxury Modern Villa.jpg";
 import villa2 from "@/public/Luxury Modern Villa1.jpg";
 import villa3 from "@/public/Luxury Modern Villa2.jpg";
 
-const months = ["Dec 2025", "Jan 2026", "Feb 2026", "Mar 2026", "Apr 2026", "May 2026"];
+const months = [
+  "Dec 2025",
+  "Jan 2026",
+  "Feb 2026",
+  "Mar 2026",
+  "Apr 2026",
+  "May 2026",
+];
+
+const GOLD_PILL =
+  "flex items-center gap-8 rounded-2xl border border-transparent px-4 py-2 text-2xl font-bold text-[#E1AB18] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
+
+const GOLD_PILL_STYLE = {
+  background:
+    "linear-gradient(135deg,#FFFFFF 0%,#ECEDF0 50%,#C2C6CD 100%) padding-box, linear-gradient(180deg,#BA9000 0%,#F7D257 50%,#BA9000 100%) border-box",
+};
+
+const TILE =
+  "bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF,inset_0_4px_4px_0_rgba(43,108,176,0.2)]";
 
 const stats = [
-  { label: "Total Listings", value: "10", icon: Star, color: "text-yellow-500" },
-  { label: "Total Views", value: "2,458", icon: Eye, color: "text-sky-500" },
-  { label: "Total Leads", value: "112", icon: Home, color: "text-orange-500" },
-  { label: "Total Deals", value: "4", icon: FileSignature, color: "text-blue-500" },
+  { label: "Total Listings", value: "10", icon: mylistingsicon },
+  { label: "Total Views", value: "2,458", icon: totalviewsicon },
+  { label: "Total Leads", value: "112", icon: totalleadsicon },
+  { label: "Total Deals", value: "4", icon: soldicon },
 ];
 
 const listingSeries = [
@@ -38,10 +55,42 @@ const leadSources = [
 ];
 
 const topListings = [
-  { image: villa1, name: "Modern Villa", area: "Austin, Australia", views: 512, leads: 28, enquiries: 16, rate: "18.2%" },
-  { image: villa2, name: "Luxury Apartment", area: "Cronulla, NSW", views: 398, leads: 22, enquiries: 12, rate: "16.7%" },
-  { image: villa3, name: "Beachside House", area: "Bondi Beach, NSW", views: 341, leads: 18, enquiries: 10, rate: "15.6%" },
-  { image: villa1, name: "City View Apartment", area: "Parramatta, NSW", views: 289, leads: 15, enquiries: 8, rate: "14.3%" },
+  {
+    image: villa1,
+    name: "Modern Villa",
+    area: "Austin, Australia",
+    views: 512,
+    leads: 28,
+    enquiries: 16,
+    rate: "18.2%",
+  },
+  {
+    image: villa2,
+    name: "Luxury Apartment",
+    area: "Cronulla, NSW",
+    views: 398,
+    leads: 22,
+    enquiries: 12,
+    rate: "16.7%",
+  },
+  {
+    image: villa3,
+    name: "Beachside House",
+    area: "Bondi Beach, NSW",
+    views: 341,
+    leads: 18,
+    enquiries: 10,
+    rate: "15.6%",
+  },
+  {
+    image: villa1,
+    name: "City View Apartment",
+    area: "Parramatta, NSW",
+    views: 289,
+    leads: 15,
+    enquiries: 8,
+    rate: "14.3%",
+  },
 ];
 
 const leadsViews = [
@@ -54,24 +103,26 @@ const leadsViews = [
 ];
 
 const activity = [
-  { label: "New Listings", value: "3", icon: Star, color: "text-yellow-500" },
-  { label: "Property Views", value: "2,458", icon: Eye, color: "text-sky-500" },
-  { label: "Enquiries", value: "156", icon: HelpCircle, color: "text-orange-400" },
-  { label: "New Leads", value: "112", icon: UserPlus, color: "text-red-400" },
-  { label: "Close Deals", value: "4", icon: Handshake, color: "text-amber-500" },
+  { label: "New Listings", value: "3", icon: mylistingsicon },
+  { label: "Property Views", value: "2,458", icon: totalviewsicon },
+  { label: "Enquiries", value: "156", icon: enquiriesicon },
+  { label: "New Leads", value: "112", icon: newleadsicon },
+  { label: "Close Deals", value: "4", icon: closeddealsicon },
 ];
 
 function Card({
   title,
   action,
   children,
+  className = "border border-gray-200 bg-white shadow-sm",
 }: {
   title: string;
   action?: React.ReactNode;
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <section className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+    <section className={`rounded-xl p-4 ${className}`}>
       <div className="flex items-center justify-between gap-3">
         <h2 className="font-bold text-orange-500">{title}</h2>
         {action}
@@ -101,9 +152,21 @@ function ListingsOverviewChart() {
 
   return (
     <div>
-      <svg viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" className="h-52 w-full">
+      <svg
+        viewBox={`0 0 ${w} ${h}`}
+        preserveAspectRatio="none"
+        className="h-52 w-full"
+      >
         {[0, 5, 10, 15, 20].map((v) => (
-          <line key={v} x1={0} x2={w} y1={y(v)} y2={y(v)} stroke="#f1f5f9" strokeWidth={0.4} />
+          <line
+            key={v}
+            x1={0}
+            x2={w}
+            y1={y(v)}
+            y2={y(v)}
+            stroke="#f1f5f9"
+            strokeWidth={0.4}
+          />
         ))}
         {listingSeries.map(({ label, color, data }) => (
           <polyline
@@ -149,7 +212,10 @@ function LeadsDonut() {
       <ul className="space-y-2 text-sm">
         {leadSources.map(({ label, pct, color }) => (
           <li key={label} className="flex items-center gap-2">
-            <span className="size-2.5 rounded-full" style={{ background: color }} />
+            <span
+              className="size-2.5 rounded-full"
+              style={{ background: color }}
+            />
             <span className="w-32 text-gray-600">{label}</span>
             <span className="font-bold text-gray-900">{pct}%</span>
           </li>
@@ -169,7 +235,9 @@ function LeadsViewsChart() {
         {leadsViews.map(({ leads, views }, i) => (
           <div key={i} className="flex flex-1 justify-center gap-1">
             <div className="flex flex-1 flex-col items-center justify-end">
-              <span className="text-[10px] font-semibold text-blue-500">{leads}</span>
+              <span className="text-[10px] font-semibold text-blue-500">
+                {leads}
+              </span>
               <div
                 className="w-full max-w-4 rounded-t bg-blue-500"
                 style={{ height: `${(leads / maxLeads) * 100}%` }}
@@ -202,26 +270,29 @@ export default function AgentPanelAnalytics() {
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <span className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-4 py-2 font-bold text-gray-900">
+        <span className={GOLD_PILL} style={GOLD_PILL_STYLE}>
           Analytics
-          <Star className="size-4" />
+          <Image src={analyticsicon} alt="" className="size-11" />
         </span>
-        <span className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 font-bold text-orange-500 shadow-sm">
-          <Calendar className="size-5 text-red-500" />
+        <span className={GOLD_PILL} style={GOLD_PILL_STYLE}>
+          <Image src={calendericon} alt="" className="size-11" />
           12 Feb 2026 - 12 May 2026
         </span>
       </div>
-      <p className="italic text-gray-600">
+      <p className="font-serif text-2xl italic text-[#64748B]">
         Track your performance and grow your real estate business.
       </p>
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {stats.map(({ label, value, icon: Icon, color }) => (
-          <div key={label} className="flex items-center gap-3 rounded-xl bg-blue-50 p-4 shadow-sm">
-            <Icon className={`size-8 shrink-0 ${color}`} />
+        {stats.map(({ label, value, icon: Icon }) => (
+          <div
+            key={label}
+            className={`flex items-center gap-3 rounded-xl p-4 ${TILE}`}
+          >
+            <Image src={Icon} alt="" className="size-14 shrink-0" />
             <div>
-              <p className="text-sm font-bold text-blue-700">{label}</p>
-              <p className="text-xl font-bold text-gray-900">{value}</p>
+              <p className="text-lg font-bold text-[#2495FF]">{label}</p>
+              <p className="text-2xl font-bold text-[#0F172A]">{value}</p>
             </div>
           </div>
         ))}
@@ -235,7 +306,10 @@ export default function AgentPanelAnalytics() {
               <ul className="hidden items-center gap-3 text-[11px] text-gray-600 sm:flex">
                 {listingSeries.map(({ label, color }) => (
                   <li key={label} className="flex items-center gap-1">
-                    <span className="size-2 rounded-full" style={{ background: color }} />
+                    <span
+                      className="size-2 rounded-full"
+                      style={{ background: color }}
+                    />
                     {label}
                   </li>
                 ))}
@@ -247,7 +321,10 @@ export default function AgentPanelAnalytics() {
           <ListingsOverviewChart />
         </Card>
 
-        <Card title="Leads by Source" action={<RangeSelect options={["This Month", "Last Month"]} />}>
+        <Card
+          title="Leads by Source"
+          action={<RangeSelect options={["This Month", "Last Month"]} />}
+        >
           <LeadsDonut />
         </Card>
 
@@ -272,18 +349,31 @@ export default function AgentPanelAnalytics() {
               </thead>
               <tbody>
                 {topListings.map((l) => (
-                  <tr key={l.name} className="border-b border-gray-100 last:border-0">
+                  <tr
+                    key={l.name}
+                    className="border-b border-gray-100 last:border-0"
+                  >
                     <td className="flex items-center gap-2 py-2">
-                      <Image src={l.image} alt="" className="size-9 rounded object-cover" />
+                      <Image
+                        src={l.image}
+                        alt=""
+                        className="size-9 rounded object-cover"
+                      />
                       <span>
-                        <span className="block font-bold text-gray-900">{l.name}</span>
-                        <span className="block text-xs text-gray-500">{l.area}</span>
+                        <span className="block font-bold text-gray-900">
+                          {l.name}
+                        </span>
+                        <span className="block text-xs text-gray-500">
+                          {l.area}
+                        </span>
                       </span>
                     </td>
                     <td className="text-right text-gray-700">{l.views}</td>
                     <td className="text-right text-gray-700">{l.leads}</td>
                     <td className="text-right text-gray-700">{l.enquiries}</td>
-                    <td className="text-right font-bold text-green-600">{l.rate}</td>
+                    <td className="text-right font-bold text-green-600">
+                      {l.rate}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -311,14 +401,14 @@ export default function AgentPanelAnalytics() {
         </Card>
       </div>
 
-      <Card title="Activity Summary">
+      <Card title="Activity Summary" className={TILE}>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
-          {activity.map(({ label, value, icon: Icon, color }) => (
+          {activity.map(({ label, value, icon: Icon }) => (
             <div key={label} className="flex items-center gap-3">
-              <Icon className={`size-8 shrink-0 ${color}`} />
+              <Image src={Icon} alt="" className="size-14 shrink-0" />
               <div>
-                <p className="text-sm font-bold text-blue-600">{label}</p>
-                <p className="text-xl font-bold text-gray-900">{value}</p>
+                <p className="text-lg font-bold text-[#2495FF]">{label}</p>
+                <p className="text-2xl font-bold text-[#0F172A]">{value}</p>
               </div>
             </div>
           ))}

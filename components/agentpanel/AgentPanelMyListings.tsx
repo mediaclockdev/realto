@@ -2,50 +2,63 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {
-  Star,
-  PlusCircle,
-  UploadCloud,
-  Gavel,
-  XCircle,
-  CheckCircle2,
-  PenSquare,
-  Home,
-  Search,
-  Bed,
-  Sofa,
-  Car,
-  MapPin,
-  Ruler,
-  Calendar,
-  Clock,
-} from "lucide-react";
+import { PlusCircle, UploadCloud, Gavel, XCircle, Search } from "lucide-react";
 
 import AgentPanelRightRail from "./AgentPanelRightRail";
-import agentAvatarThumb from "@/public/emilyrodriguez.jpg";
-import villa1 from "@/public/Luxury Modern Villa.jpg";
-import villa2 from "@/public/Luxury Modern Villa1.jpg";
-import villa3 from "@/public/Luxury Modern Villa2.jpg";
+import PropertyListingCard from "@/components/PropertyListing/PropertyListingCard";
+import type { ListingProperty } from "@/lib/properties/types";
+import type { ListingVariant } from "@/lib/listings/types";
+import {
+  newlyListedBuyProperties,
+  luxuryBuyProperties,
+} from "@/lib/properties/buy/sections";
+import { newlyListedRentProperties } from "@/lib/properties/rent/sections";
+import mylistingsicon from "@/public/agentpanelicons/sidebarmylistingicon.svg";
+import soldicon from "@/public/agentpanelicons/mylistingsoldicon.svg";
+import totalleadsicon from "@/public/agentpanelicons/dashboardtotalleadicon.svg";
+import activelistingicon from "@/public/agentpanelicons/profileactivelistingicon.svg";
+
+const TILE =
+  "bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF,inset_0_4px_4px_0_rgba(43,108,176,0.2)]";
 
 const stats = [
-  { label: "Total Listings", value: 10, icon: Star, color: "bg-blue-100 text-blue-500" },
-  { label: "Active", value: 6, icon: CheckCircle2, color: "bg-green-100 text-green-500" },
-  { label: "Sold", value: 4, icon: PenSquare, color: "bg-yellow-100 text-yellow-500" },
-  { label: "Total Leads", value: 112, icon: Home, color: "bg-orange-100 text-orange-500" },
+  {
+    label: "Total Listings",
+    value: 10,
+    icon: mylistingsicon,
+  },
+  {
+    label: "Active",
+    value: 6,
+    icon: activelistingicon,
+  },
+  {
+    label: "Sold",
+    value: 4,
+    icon: soldicon,
+  },
+  {
+    label: "Total Leads",
+    value: 112,
+    icon: totalleadsicon,
+  },
 ];
 
-const villaImages = [villa1, villa2, villa3];
-
-const listings = Array.from({ length: 9 }, (_, i) => ({
-  image: villaImages[i % villaImages.length],
-  status: "Active",
-  location: "Austin, Australia",
-  size: "8,235sqft",
-  date: "12-02-2026",
-  time: "10:00AM",
-  price: "$1,00,000-$2,00,000",
-  type: "Apartment",
-}));
+/** Three per section: newly listed buy, luxury buy, rent. */
+const listings: { property: ListingProperty; variant: ListingVariant }[] = [
+  ...newlyListedBuyProperties.slice(0, 3).map((property) => ({
+    property: property as unknown as ListingProperty,
+    variant: "buy" as ListingVariant,
+  })),
+  ...luxuryBuyProperties.slice(0, 3).map((property) => ({
+    property: property as unknown as ListingProperty,
+    variant: "buy" as ListingVariant,
+  })),
+  ...newlyListedRentProperties.slice(0, 3).map((property) => ({
+    property,
+    variant: "rent" as ListingVariant,
+  })),
+];
 
 /** Bordered box with a small floating label, matching the design. */
 function Field({
@@ -78,7 +91,7 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
       <div className="flex flex-wrap items-center gap-3">
         <span className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-4 py-2 font-bold text-yellow-600">
           Add New Listing
-          <Star className="size-4" />
+          <Image src={mylistingsicon} alt="my listing" className="size-4" />
         </span>
       </div>
       <p className="italic text-gray-600">
@@ -98,7 +111,9 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
                 type="button"
                 onClick={() => setTab(t)}
                 className={`rounded-lg border border-yellow-400 px-8 py-2 font-bold ${
-                  tab === t ? "bg-yellow-400 text-white" : "bg-white text-gray-700"
+                  tab === t
+                    ? "bg-yellow-400 text-white"
+                    : "bg-white text-gray-700"
                 }`}
               >
                 {t}
@@ -159,19 +174,42 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <Field label="No. of Bedroom">
-            <input type="number" min={0} className={inputClass} placeholder="Enter No. of Bedrooms" />
+            <input
+              type="number"
+              min={0}
+              className={inputClass}
+              placeholder="Enter No. of Bedrooms"
+            />
           </Field>
           <Field label="No. of Bathroom">
-            <input type="number" min={0} className={inputClass} placeholder="Enter No. of Bathrooms" />
+            <input
+              type="number"
+              min={0}
+              className={inputClass}
+              placeholder="Enter No. of Bathrooms"
+            />
           </Field>
           <Field label="No. of Cars">
-            <input type="number" min={0} className={inputClass} placeholder="Enter No. of Parking Spaces" />
+            <input
+              type="number"
+              min={0}
+              className={inputClass}
+              placeholder="Enter No. of Parking Spaces"
+            />
           </Field>
           <Field label="Location">
-            <input className={inputClass} placeholder="Enter Property Location" />
+            <input
+              className={inputClass}
+              placeholder="Enter Property Location"
+            />
           </Field>
           <Field label="Area in Square Feet">
-            <input type="number" min={0} className={inputClass} placeholder="Enter Area in Square Feet" />
+            <input
+              type="number"
+              min={0}
+              className={inputClass}
+              placeholder="Enter Area in Square Feet"
+            />
           </Field>
           <Field label="Date of Inspection">
             <input type="date" className={inputClass} />
@@ -224,9 +262,19 @@ export default function AgentPanelMyListings() {
     <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_300px]">
       <main className="space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-4 py-2 font-bold text-gray-900">
+          <span
+            style={{
+              background:
+                "linear-gradient(135deg,#FFFFFF 0%,#ECEDF0 50%,#C2C6CD 100%) padding-box, linear-gradient(180deg,#BA9000 0%,#F7D257 50%,#BA9000 100%) border-box",
+            }}
+            className="flex items-center gap-8 rounded-2xl border border-transparent px-4 py-2 text-2xl font-bold text-[#E1AB18] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]"
+          >
             My Listings
-            <Star className="size-4" />
+            <Image
+              src={mylistingsicon}
+              alt="my listing icon"
+              className="size-11"
+            />
           </span>
           <button
             onClick={() => setAdding(true)}
@@ -236,23 +284,21 @@ export default function AgentPanelMyListings() {
             Add New Listing
           </button>
         </div>
-        <p className="italic text-gray-600">
+        <p className="font-serif text-2xl italic text-[#64748B]">
           Manage and view all your listed properties.
         </p>
 
         {/* Stat cards */}
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {stats.map(({ label, value, icon: Icon, color }) => (
+          {stats.map(({ label, value, icon: Icon }) => (
             <div
               key={label}
-              className="flex items-center gap-3 rounded-xl bg-blue-50 p-4 shadow-sm"
+              className={`flex items-center gap-3 rounded-xl p-4 ${TILE}`}
             >
-              <span className={`flex size-11 shrink-0 items-center justify-center rounded-full ${color}`}>
-                <Icon className="size-5" />
-              </span>
+              <Image src={Icon} alt="icons" className="size-14" />
               <div>
-                <p className="text-sm font-bold text-blue-700">{label}</p>
-                <p className="text-xl font-bold text-gray-900">{value}</p>
+                <p className="text-lg font-bold text-[#2495FF]">{label}</p>
+                <p className="text-2xl font-bold text-[#0F172A]">{value}</p>
               </div>
             </div>
           ))}
@@ -284,67 +330,27 @@ export default function AgentPanelMyListings() {
         </div>
 
         {/* Listings grid */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {listings.map((listing, i) => (
-            <div
-              key={i}
-              className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm"
-            >
-              <div className="relative h-40 w-full">
-                <span className="absolute left-2 top-2 z-10 rounded-full bg-green-500 px-2 py-0.5 text-xs font-semibold text-white">
-                  {listing.status}
-                </span>
-                <Image src={listing.image} alt="Property" fill className="object-cover" />
-              </div>
-              <div className="space-y-2 p-3 text-sm">
-                <div className="flex items-center gap-4 text-gray-500">
-                  <span className="flex items-center gap-1">
-                    <Bed className="size-4" /> 1
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Sofa className="size-4" /> 1
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Car className="size-4" /> 1
-                  </span>
-                </div>
-                <p className="flex items-center gap-1 text-gray-700">
-                  <MapPin className="size-4 text-red-500" />
-                  {listing.location}
-                  <Ruler className="ml-2 size-4 text-gray-400" />
-                  {listing.size}
-                </p>
-                <p className="flex items-center gap-4 text-gray-500">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="size-4" /> {listing.date}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="size-4" /> {listing.time}
-                  </span>
-                </p>
-                <p className="flex items-center gap-2">
-                  <Image
-                    src={agentAvatarThumb}
-                    alt=""
-                    className="size-5 rounded-full object-cover"
-                  />
-                  <span className="text-gray-500">• {listing.type}</span>
-                </p>
-                <p className="font-bold text-gray-900">{listing.price}</p>
-                <div className="grid grid-cols-4 gap-1.5 pt-1">
-                  <button className="rounded-md bg-blue-500 py-1.5 text-xs font-semibold text-white">
-                    View
-                  </button>
-                  <button className="rounded-md bg-orange-400 py-1.5 text-xs font-semibold text-white">
-                    Edit
-                  </button>
-                  <button className="rounded-md bg-green-500 py-1.5 text-xs font-semibold text-white">
-                    Promote
-                  </button>
-                  <button className="rounded-md bg-red-500 py-1.5 text-xs font-semibold text-white">
-                    Delete
-                  </button>
-                </div>
+        <div className="grid grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 [&>div]:w-full [&>div]:max-w-[380px]">
+          {listings.map(({ property, variant }, i) => (
+            <div key={i} className="space-y-2">
+              <PropertyListingCard
+                property={property}
+                listingVariant={variant}
+                disableHoverScale
+              />
+              <div className="grid grid-cols-4 gap-1.5">
+                <button className="rounded-md bg-blue-500 py-1.5 text-xs font-semibold text-white">
+                  View
+                </button>
+                <button className="rounded-md bg-orange-400 py-1.5 text-xs font-semibold text-white">
+                  Edit
+                </button>
+                <button className="rounded-md bg-green-500 py-1.5 text-xs font-semibold text-white">
+                  Promote
+                </button>
+                <button className="rounded-md bg-red-500 py-1.5 text-xs font-semibold text-white">
+                  Delete
+                </button>
               </div>
             </div>
           ))}
