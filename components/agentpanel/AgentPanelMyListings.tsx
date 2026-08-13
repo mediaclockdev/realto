@@ -44,16 +44,19 @@ const stats = [
   },
 ];
 
+/** Buy cards carry their bed/bath/car icons on `iconImages`; the card reads `buyiconImages`. */
+const asBuyListing = (property: (typeof newlyListedBuyProperties)[number]) => ({
+  property: {
+    ...property,
+    buyiconImages: property.iconImages,
+  } as unknown as ListingProperty,
+  variant: "buy" as ListingVariant,
+});
+
 /** Three per section: newly listed buy, luxury buy, rent. */
 const listings: { property: ListingProperty; variant: ListingVariant }[] = [
-  ...newlyListedBuyProperties.slice(0, 3).map((property) => ({
-    property: property as unknown as ListingProperty,
-    variant: "buy" as ListingVariant,
-  })),
-  ...luxuryBuyProperties.slice(0, 3).map((property) => ({
-    property: property as unknown as ListingProperty,
-    variant: "buy" as ListingVariant,
-  })),
+  ...newlyListedBuyProperties.slice(0, 3).map(asBuyListing),
+  ...luxuryBuyProperties.slice(0, 3).map(asBuyListing),
   ...newlyListedRentProperties.slice(0, 3).map((property) => ({
     property,
     variant: "rent" as ListingVariant,
