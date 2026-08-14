@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AuthInput from "./AuthInput";
 import emailIcon from "@/public/authicons/emailicon.svg";
-import passwordIconView from "@/public/agentpanelicons/analtyicstotalviews.svg";
+import passwordIconView from "@/public/authicons/eyeopen.svg";
 import passwordIconClosed from "@/public/authicons/eyeclosed.svg";
 import logo from "@/public/Realto Logo - 1.gif";
 

@@ -18,14 +18,15 @@ export default function AuthInput({
 }) {
   const [show, setShow] = useState(false);
   const isPassword = type === "password";
+  const iconClass = "h-full w-auto object-contain";
 
   return (
-    <div className="flex items-center gap-2 rounded-xl border-2 border-[#C9A227] bg-white px-3 py-3 sm:py-3.5">
+    <div className="flex h-12 items-stretch overflow-hidden rounded-xl border-2 border-[#C9A227] bg-white sm:h-14">
       <input
         name={name}
         type={isPassword && show ? "text" : type}
         placeholder={placeholder}
-        className="w-full bg-transparent text-base text-[#1f2a28] outline-none placeholder:text-[#8a8a8a]"
+        className="w-full bg-transparent px-3 text-base text-[#1f2a28] outline-none placeholder:text-[#8a8a8a]"
       />
       {!icon ? null : isPassword ? (
         <button
@@ -37,11 +38,11 @@ export default function AuthInput({
           <Image
             src={show ? icon : (iconClosed ?? icon)}
             alt=""
-            className="h-7 w-auto"
+            className={iconClass}
           />
         </button>
       ) : (
-        <Image src={icon} alt="" className="h-7 w-auto shrink-0" />
+        <Image src={icon} alt="" className={`${iconClass} shrink-0`} />
       )}
     </div>
   );
