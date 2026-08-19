@@ -43,6 +43,7 @@ import socialIconSnapchat from "@/public/snapchat.svg";
 import socialIconLinkedIn from "@/public/logos_linkedin.svg";
 
 import type { CommercialListing } from "@/lib/commercial/types";
+import backgroundimg from "@/public/homepageheadingbackground.svg";
 
 const GOLD_GRADIENT =
   "linear-gradient(90deg, #305792, #305792, #305792, #305792 ,#305792)";
@@ -374,7 +375,11 @@ export const CommercialPropertyCard: React.FC<{
   );
 };
 
-const Explorenewproperties = ({ pillHeading = false }: { pillHeading?: boolean }) => {
+const Explorenewproperties = ({
+  pillHeading = false,
+}: {
+  pillHeading?: boolean;
+}) => {
   const newproperties = commercialListings;
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -396,25 +401,21 @@ const Explorenewproperties = ({ pillHeading = false }: { pillHeading?: boolean }
 
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 relative">
-      <div className={pillHeading ? "mb-1" : "mb-4"}>
-        <h2
-          className={
-            pillHeading
-              ? "w-fit rounded-full px-4 py-2 text-[32px] font-amasis font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
-              : "font-poppins text-2xl lg:text-[32px] font-semibold text-black"
-          }
-          style={
-            pillHeading
-              ? {
-                  background:
-                    "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-                }
-              : undefined
-          }
-        >
-          Explore new properties
-        </h2>
+      {/*
+      <div className="flex justify-center mb-4">
+        <div className="relative inline-flex items-center justify-center">
+          <Image
+            src={backgroundimg}
+            alt="heading background"
+            className="absolute inset-0 w-full h-full"
+          />
+
+          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
+            Explore new properties
+          </h2>
+        </div>
       </div>
+      */}
 
       <div className="relative group">
         {/* Left Arrow Button */}

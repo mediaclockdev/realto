@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import signinbtn from "@/public/signinbtnicon.svg";
+import blueglassbackground from "@/public/loginbg.png";
+import usericon from "@/public/loginusericon.svg";
 import Link from "next/link";
 import realtologogif1 from "@/public/Realto Logo - 1.gif";
 import realtologogif2 from "@/public/Realto Logo - 2.gif";
@@ -83,10 +85,24 @@ const Header = () => {
             setView("choose");
             dialogRef.current?.showModal();
           }}
-          className="flex items-center gap-2 bg-[#399918] px-2 lg:px-3 py-2 sm:py-2.5 rounded-lg transition-colors duration-200 shrink-0 cursor-pointer"
+          className="relative flex h-11 shrink-0 self-start cursor-pointer items-center gap-2 overflow-hidden rounded-full pl-1.5 pr-5 transition-transform duration-200 active:scale-95 sm:h-12 sm:gap-2.5 sm:pr-6"
         >
-          <Image src={signinbtn} alt="sign in btn " className="size-8" />
-          <span className="text-white text-sm sm:text-base font-bold">
+          {/* loginbg.png is a 1536x1024 canvas holding a 1180x200 pill;
+              this scale crops the padding so the pill fills the button */}
+          <Image
+            src={blueglassbackground}
+            alt=""
+            fill
+            loading="eager"
+            className="scale-x-[1.302] scale-y-[5.12] object-fill"
+          />
+          <Image
+            src={usericon}
+            alt=""
+            loading="eager"
+            className="relative size-8 shrink-0 sm:size-9"
+          />
+          <span className="relative text-base font-bold text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)] sm:text-lg">
             Sign In
           </span>
         </button>
@@ -128,9 +144,7 @@ const Header = () => {
             <Login
               isAgent={view === "login-agent"}
               onSwitch={() =>
-                setView(
-                  view === "login-agent" ? "signup-agent" : "signup-user",
-                )
+                setView(view === "login-agent" ? "signup-agent" : "signup-user")
               }
             />
           ) : (

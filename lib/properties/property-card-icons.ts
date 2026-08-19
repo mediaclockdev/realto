@@ -14,6 +14,7 @@ import buyclockicon2 from "@/public/buyclockicon2.svg";
 import locationland from "@/public/landlocationicon.svg";
 import luxurylike from "@/public/luxurylike.svg";
 import luxuryliked from "@/public/luxuryliked.svg";
+import luxurysqft from "@/public/luxurysqfticon.svg";
 
 export const buyPropertyFeatureIcons: ImageSource[] = [
   "/bedroom.jpg",
@@ -33,6 +34,7 @@ export const luxuryPropertyFeatureIcons: ImageSource[] = [
   luxurycar,
 ];
 export const luxuryLocationIcon = locationiconluxurybuy;
+export const luxurySqftIcon: ImageSource = luxurysqft;
 export const luxuryClockIcon = luxuryclockicon1;
 export const luxuryClockIcon2 = luxuryclockicon2;
 export const luxuryClockIcon3 = luxuryclockicon3;

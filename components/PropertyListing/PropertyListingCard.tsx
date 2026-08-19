@@ -14,6 +14,7 @@ import money from "../../public/money.svg";
 import rentmoney from "../../public/rentmoneyicon.svg";
 import calender from "../../public/rentcalender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
+import rentsqfticon from "@/public/rentsqfticon.svg";
 import rentshare from "../../public/rentshareicon.svg";
 import rentlikedicon from "../../public/rentlikedicon.svg";
 import email from "@/public/mailicon.svg";
@@ -47,6 +48,9 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
   onSeeMore,
   disableHoverScale = false,
 }) => {
+  const sizeIcon =
+    property.sizeIcon ??
+    (listingVariant === "rent" ? rentsqfticon : squaremetericon);
   const [imgIndex, setImgIndex] = useState(0);
   const [liked, setLiked] = useState(false);
   const [isRentLiked, setIsRentLiked] = useState(false);
@@ -248,7 +252,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                     <div className="flex items-center shrink-0">
                       <div className="w-10 flex justify-center">
                         <Image
-                          src={squaremetericon}
+                          src={sizeIcon}
                           alt="size"
                           className="w-7 h-7 shrink-0"
                         />
@@ -256,7 +260,6 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
 
                       <p className="text-base font-semibold font-amasis text-[#343434]">
                         {property.size}
-                        <span className="text-xs">sqft</span>
                       </p>
                     </div>
                   </div>
@@ -518,7 +521,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 </div>
                 <div className="flex items-center gap-1 ml-2 shrink-0">
                   <Image
-                    src={squaremetericon}
+                    src={sizeIcon}
                     alt="size"
                     width={32}
                     height={32}

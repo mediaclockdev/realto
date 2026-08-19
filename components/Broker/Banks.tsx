@@ -20,6 +20,7 @@ import adelaidehills from "../../public/adelaidehills.svg";
 import brighten from "../../public/brightenbank.svg";
 import darwinmortgage from "../../public/darwinmortgage.svg";
 import tassie from "../../public/tassiehomeloans.svg";
+import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
 interface BanksProps {
   heading?: string;
@@ -72,23 +73,25 @@ const Banks = ({ heading = "Banks", pillHeading = false }: BanksProps) => {
 
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 overflow-hidden">
-      <h2
-        className={
-          pillHeading
-            ? "w-fit text-[32px] font-amasis font-extrabold rounded-full px-4 py-2 mb-1 reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
-            : "font-poppins font-semibold text-2xl mb-1 text-black"
-        }
-        style={
-          pillHeading
-            ? {
-                background:
-                  "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-              }
-            : undefined
-        }
-      >
-        {heading}
-      </h2>
+      {pillHeading ? (
+        <div className="flex justify-center mb-4">
+          <div className="relative inline-flex items-center justify-center">
+            <Image
+              src={backgroundimg}
+              alt="heading background"
+              className="absolute inset-0 w-full h-full"
+            />
+
+            <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
+              {heading}
+            </h2>
+          </div>
+        </div>
+      ) : (
+        <h2 className="font-poppins font-semibold text-2xl mb-1 text-black">
+          {heading}
+        </h2>
+      )}
       <div className="marquee-wrapper">
         <div
           className="marquee-track"

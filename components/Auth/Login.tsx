@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import Link from "next/link";
 import AuthInput from "./AuthInput";
 import emailIcon from "@/public/authicons/emailicon.svg";
@@ -15,6 +16,38 @@ export default function Login({
   isAgent?: boolean;
   onSwitch?: () => void;
 }) {
+  const [error, setError] = useState("");
+  const [pending, setPending] = useState(false);
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setPending(true);
+    setError("");
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/agents/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(
+            Object.fromEntries(new FormData(e.currentTarget)),
+          ),
+        },
+      );
+      const json = await res.json();
+      // API rejects unapproved agents with its own message
+      if (!res.ok || !json.success)
+        return setError(json.message ?? "Invalid email or password");
+      const me = json.data?.agent;
+      window.location.href = me?.role === "agent" ? "/agent" : "/";
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setPending(false);
+    }
+  }
+
   return (
     <>
       <Image
@@ -25,12 +58,13 @@ export default function Login({
         className="mx-auto mb-6 h-auto w-full max-w-xs max-h-[20dvh] object-contain"
       />
 
-      <form className="space-y-3">
+      <form onSubmit={onSubmit} className="space-y-3">
         <AuthInput
           icon={emailIcon}
           name="email"
           type="email"
           placeholder="Email Address"
+          required
         />
         <AuthInput
           icon={passwordIconView}
@@ -38,12 +72,15 @@ export default function Login({
           name="password"
           type="password"
           placeholder="Password"
+          required
         />
+        {error ? <p className="text-sm text-red-600">{error}</p> : null}
         <button
           type="submit"
-          className="w-full cursor-pointer rounded-xl bg-[#2C63B5] py-3 text-lg font-bold text-white"
+          disabled={pending}
+          className="w-full cursor-pointer rounded-xl bg-[#2C63B5] py-3 text-lg font-bold text-white disabled:opacity-60"
         >
-          Sign in
+          {pending ? "Signing in..." : "Sign in"}
         </button>
       </form>
 

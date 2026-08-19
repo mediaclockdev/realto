@@ -39,7 +39,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
   }, [images, interval]);
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-4 sm:px-8 py-10 bg-gray-100 shadow-4xl shadow-black flex items-stretch">
+    <div className="max-w-screen-2xl mx-auto px-4 sm:px-8 py-5 bg-gray-100 shadow-4xl shadow-black flex items-stretch">
       <div className="flex flex-col lg:flex-row w-full items-stretch gap-4 lg:gap-6 ">
         {/* Left: Image Carousel */}
 

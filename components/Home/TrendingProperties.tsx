@@ -5,26 +5,26 @@ import { PropertySlider } from "./PropertySlider";
 import PropertyListingCardSlider from "./PropertyListingCardSlider";
 import { trendingBuyProperties } from "@/lib/properties/buy/sections";
 import { trendingRentProperties } from "@/lib/properties/rent/sections";
+import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
 const TrendingHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
-  <div className="mt-1 flex items-center gap-2 px-1">
-    <h2
-      className="font-extrabold font-amasis text-[32px] px-4 py-2 rounded-full inline-block mb-1"
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-      }}
-    >
-      <span className="font-extrabold reel-text-heading [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]">
-        Trending Properties
-      </span>
+  <div className="mt-3 flex justify-center">
+    <div className="relative inline-flex items-center justify-center gap-2 pl-10 pr-6 py-4">
+      <Image
+        src={backgroundimg}
+        alt="heading background"
+        className="absolute inset-0 w-full h-full"
+      />
 
-      <span className="ml-1 font-amasis text-2xl font-medium text-[#1FAF38] lg:text-3xl leading-none">
-        {" "}
-        {variant}
-      </span>
-    </h2>
-    <Image src={magic} alt="magic" className="h-7 w-7" />
+      <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading">
+        Trending Properties
+        <span className="ml-1 font-amasis text-base font-medium text-[#1FAF38] lg:text-[32px] leading-none">
+          {" "}
+          {variant}
+        </span>
+      </h2>
+      <Image src={magic} alt="magic" className="relative z-10 h-7 w-7" />
+    </div>
   </div>
 );
 

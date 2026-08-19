@@ -4,6 +4,7 @@ import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
 import phone from "../../public/mobileicon.svg";
+import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
 export type Agent = {
   id: string | number;
@@ -18,8 +19,6 @@ type AgentCarouselProps = {
   variant?: string;
   agents: Agent[];
   headingClassName?: string;
-  headingStyle?: React.CSSProperties;
-  containerClassName?: string;
   speed?: "slow" | "normal" | "fast";
 };
 
@@ -28,32 +27,32 @@ export default function AgentCarousel({
   variant,
   agents,
   headingClassName = "",
-  headingStyle = {},
-  containerClassName = "",
   speed = "fast",
 }: AgentCarouselProps) {
   const router = useRouter();
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-5 py-6">
+    <div className="max-w-screen-2xl mx-auto px-5 py-5">
       {/* Heading */}
-      <div
-        className={`flex w-fit items-baseline gap-2 ${containerClassName}`}
-        style={headingStyle}
-      >
-        {variant && (
-          <h2
-            className={
-              headingClassName ||
-              "font-poppins text-2xl font-semibold lg:text-[32px]"
-            }
-          >
-            {variant}
+      <div className="flex justify-center mb-4">
+        <div
+          className="inline-flex items-baseline gap-2 px-8 py-4"
+          style={{
+            backgroundImage: `url(${backgroundimg.src})`,
+            backgroundSize: "100% 100%",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          {variant && (
+            <h2 className="font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading">
+              {variant}
+            </h2>
+          )}
+
+          <h2 className="font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading">
+            {heading}
           </h2>
-        )}
-        <h2 className="font-poppins text-2xl font-semibold text-black lg:text-[32px]">
-          {heading}
-        </h2>
+        </div>
       </div>
 
       {/* Marquee */}

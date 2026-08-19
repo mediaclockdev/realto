@@ -22,6 +22,7 @@ export interface ListingProperty {
   buyiconImages?: ImageSource[];
   renticonImages?: ImageSource[];
   clockIcon?: ImageSource;
+  sizeIcon?: ImageSource;
   iconLabels?: string[];
   likeIcon?: ImageSource;
   likedIcon?: ImageSource;

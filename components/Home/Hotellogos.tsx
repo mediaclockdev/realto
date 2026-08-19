@@ -24,6 +24,9 @@ import pullman from "../../public/pullman.svg";
 import mercure from "../../public/mercure.svg";
 import yehs from "../../public/yehs.svg";
 import theritzcarlton from "../../public/theritzcarlton.svg";
+import Image from "next/image";
+import backgroundimg from "@/public/homepageheadingbackground.svg";
+import headingiocn from "@/public/hotelheadingicon.svg"
 
 interface HotelLogosProps {
   headingColor?: string;
@@ -64,30 +67,43 @@ const HotelLogos = ({
       {/* <h2 className={`font-poppins font-semibold text-xl mb-1 ${headingColor}`}>
         Hotel Logos
       </h2> */}
-      <h2
-        className={
-          pillHeading
-            ? "font-amasis font-extrabold text-[32px] reel-text-heading px-4 py-2 rounded-full inline-block mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
-            : `font-amasis font-semibold text-[32px] mb-1 ${headingColor}
-       px-4 py-2 rounded-full inline-block  mb-2 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]`
-        }
-        style={
-          pillHeading
-            ? {
-                background:
-                  "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-              }
-            : {
-                WebkitTextFillColor: "white",
-                WebkitTextStroke: "1.5px #000000",
-                background:
-                  "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-              }
-        }
-      >
-        {" "}
-        Hotel Logos
-      </h2>
+      {pillHeading ? (
+        <div className="flex w-fit mx-auto items-center mb-4 gap-2">
+          {/* Text + Background */}
+          <div className="relative inline-flex items-center justify-center">
+            <Image
+              src={backgroundimg}
+              alt="heading background"
+              className="absolute inset-0 w-full h-full"
+            />
+
+            <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
+              Hotel Franchise
+            </h2>
+          </div>
+
+          {/* Heading Icon */}
+          <Image
+            src={headingiocn}
+            alt="hotel franchise"
+            width={80}
+            height={70}
+            className="shrink-0"
+          />
+        </div>
+      ) : (
+        <h2
+          className={`font-amasis font-semibold text-base lg:text-[32px] ${headingColor} px-4 py-2 inline-block mb-2 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]`}
+          style={{
+            WebkitTextFillColor: "white",
+            WebkitTextStroke: "1.5px #000000",
+            background:
+              "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+          }}
+        >
+          Hotel Franchise
+        </h2>
+      )}
       <MarqueeCards items={franchise} speed="fast" />
     </div>
   );

@@ -20,6 +20,7 @@ export interface BuyPropertyCardItem {
   agentImage: ImageSource;
   iconImages?: ImageSource[];
   clockIcon?: ImageSource;
+  sizeIcon?: ImageSource;
   iconLabels?: string[];
   likeIcon?: ImageSource;
   likedIcon?: ImageSource;

@@ -27,6 +27,7 @@ import australia from "../../public/austrilaflag.svg";
 import thailand from "../../public/thailandflag.svg";
 import germany from "../../public/germanyflag.svg";
 import philippines from "../../public/Philippineflag.svg";
+import backgroundimg from "@/public/homepageheadingbackground.svg";
 // import bangladesh from "../../public/bangladesh.svg";
 // import malasyia from "../../public/malasyianflag.svg";
 // import samoan from "../../public/samoan.svg";
@@ -405,17 +406,19 @@ const LanguageSelection = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-5 py-2">
+    <div className="max-w-screen-2xl mx-auto px-5 py-5">
       <div className="flex items-center gap-3">
-        <h2
-          className="font-extrabold font-amasis text-[32px] reel-text-heading px-4 py-2 rounded-full inline-block mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-          }}
-        >
-          Language selection :
-        </h2>
+        <div className="relative inline-flex items-center justify-center mb-4">
+          <Image
+            src={backgroundimg}
+            alt="heading background"
+            className="absolute inset-0 w-full h-full"
+          />
+
+          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
+            Language selection :
+          </h2>
+        </div>
         <div className="shrink-0 relative group/selected">
           <Image
             src={world}

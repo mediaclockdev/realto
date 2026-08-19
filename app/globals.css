@@ -144,3 +144,24 @@ body {
   font-family: "Times New Roman";
   src: url("/font/TimesNewRoman/TimesNewRoman.ttf") format("truetype");
 }
+
+/* Homepage-only: centre section headings. The h2 pills are inline-block or
+   sit in w-fit wrappers, so centring needs auto margins on the heading box
+   itself, not just text-align on the parent. */
+.home-centered-headings h2,
+.home-centered-headings :has(> h2),
+.home-centered-headings :has(> * > h2) {
+  margin-inline: auto;
+}
+.home-centered-headings :has(> h2) {
+  text-align: center;
+  justify-content: center;
+}
+.home-centered-headings .keep-heading-inline h2,
+.home-centered-headings .keep-heading-inline :has(> h2),
+.home-centered-headings .keep-heading-inline :has(> * > h2) {
+  margin-inline: 0;
+  text-align: left;
+  justify-content: flex-start;
+}
+

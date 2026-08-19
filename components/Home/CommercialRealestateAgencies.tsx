@@ -10,6 +10,8 @@ import colliers from "../../public/colliers.svg";
 import raywhite from "../../public/raywhitecommercial.svg";
 import cushman from "../../public/cushman&wakefield.svg";
 import belle from "../../public/belle.svg";
+import Image from "next/image";
+import backgroundimg from "@/public/homepageheadingbackground.svg";
 
 const CommercialRealestateAgencies = () => {
   const franchise = [
@@ -25,16 +27,22 @@ const CommercialRealestateAgencies = () => {
     belle,
   ];
   return (
-    <div className="max-w-screen-2xl mx-auto px-5 py-5 mt-2">
-      <h2
-        className="font-extrabold font-amasis text-[32px] reel-text-heading px-4 py-2 rounded-full inline-block mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-        }}
-      >
-        Commercial Realestate Agencies
-      </h2>
+    <div className="max-w-screen-2xl mx-auto px-5 py-5">
+{/*
+      <div className="flex justify-center mb-4">
+        <div className="relative inline-flex items-center justify-center">
+          <Image
+            src={backgroundimg}
+            alt="heading background"
+            className="absolute inset-0 w-full h-full"
+          />
+
+          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
+            Commercial Realestate Agencies
+          </h2>
+        </div>
+      </div>
+      */}
 
       <MarqueeCards items={franchise} speed="fast" />
     </div>

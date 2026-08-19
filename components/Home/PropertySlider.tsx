@@ -75,6 +75,7 @@ export const PropertySlider: React.FC<PropertySliderProps> = ({
               agentImage: property.agentImage,
               buyiconImages: property.iconImages,
               clockIcon: property.clockIcon,
+              sizeIcon: property.sizeIcon,
               iconLabels: property.iconLabels,
               locationIcon: property.locationIcon,
               likeIcon: property.likeIcon,

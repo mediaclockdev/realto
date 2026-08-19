@@ -347,16 +347,16 @@ const LastMinuteHotels = ({
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-2 lg:px-5 py-8">
+    <div className={`max-w-screen-2xl mx-auto px-2 lg:px-5 ${pillHeading ? "py-5" : "py-8"}`}>
       {/* Header */}
-      <div className={`flex items-center justify-between ${pillHeading ? "mb-1" : "mb-2"}`}>
-        <div
+      {/* <div className={`flex items-center justify-between ${pillHeading ? "mb-4" : "mb-2"}`}> */}
+      {/* <div
           className={`flex items-center gap-2 ${pillHeading ? "w-fit rounded-full px-4 py-2" : ""}`}
           style={
             pillHeading
               ? {
                   background:
-                    "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
+                    "url('/homepageheadingbackground.svg') no-repeat center / 107.7% 153.4%",
                 }
               : undefined
           }
@@ -369,9 +369,9 @@ const LastMinuteHotels = ({
             }
           >
             Last - Minute Hotels Near You
-          </h2>
-          {/* Trending icon */}
-          <svg
+          </h2> */}
+      {/* Trending icon */}
+      {/* <svg
             className="w-6 h-6 text-[#0287C7] animate-pulse"
             viewBox="0 0 24 24"
             fill="none"
@@ -390,7 +390,7 @@ const LastMinuteHotels = ({
         >
           View All
         </Link>
-      </div>
+      </div> */}
 
       {/* Horizontal Card Slider with Arrow Navigation */}
       <div className="group relative overflow-visible">

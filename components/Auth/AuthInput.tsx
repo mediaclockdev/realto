@@ -9,12 +9,14 @@ export default function AuthInput({
   type = "text",
   placeholder,
   name,
+  required,
 }: {
   icon?: StaticImageData;
   iconClosed?: StaticImageData;
   type?: string;
   placeholder: string;
   name?: string;
+  required?: boolean;
 }) {
   const [show, setShow] = useState(false);
   const isPassword = type === "password";
@@ -24,6 +26,7 @@ export default function AuthInput({
     <div className="flex h-12 items-stretch overflow-hidden rounded-xl border-2 border-[#C9A227] bg-white sm:h-14">
       <input
         name={name}
+        required={required}
         type={isPassword && show ? "text" : type}
         placeholder={placeholder}
         className="w-full bg-transparent px-3 text-base text-[#1f2a28] outline-none placeholder:text-[#8a8a8a]"

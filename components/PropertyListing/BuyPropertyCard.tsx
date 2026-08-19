@@ -12,7 +12,7 @@ import homeliked from "@/public/homelike.svg";
 // import mobile from "@/public/mobileicon.svg";
 import clock from "@/public/buyclock.svg";
 import money from "@/public/money.svg";
-import squaremetericon from "@/public/squaremetericon.svg";
+import squaremetericon from "@/public/buysqfticon.svg";
 import calender from "@/public/buycalender.svg";
 import {
   Tooltip,
@@ -40,6 +40,7 @@ export interface BuyPropertyCardData {
   locationIcon?: ImageSource;
   buyiconImages?: ImageSource[];
   clockIcon?: ImageSource;
+  sizeIcon?: ImageSource;
   iconLabels?: string[];
   likeIcon?: ImageSource;
   likedIcon?: ImageSource;
@@ -182,9 +183,9 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                     {property.location}
                   </span>
                 </div>
-                <div className=" flex shrink-0 items-center gap-3">
+                <div className=" flex shrink-0 items-center gap-2 pr-6">
                   <Image
-                    src={squaremetericon}
+                    src={property.sizeIcon ?? squaremetericon}
                     alt="size"
                     width={28}
                     height={28}
@@ -192,7 +193,6 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                   />
                   <p className=" font-amasis text-base font-semibold text-[#343434]">
                     {property.size}
-                    <span className="text-xs">sqft</span>
                   </p>
                 </div>
               </div>

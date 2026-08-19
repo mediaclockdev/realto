@@ -1,20 +1,24 @@
 import React from "react";
 import PropertyListingCardSlider from "./PropertyListingCardSlider";
 import { latestLandProperties } from "@/lib/properties/land/sections";
+import Image from "next/image";
+import backgroundimg from "@/public/homepageheadingbackground.svg";
 
 const LatestLandForSale = () => {
   return (
     <section className="mx-auto max-w-screen-2xl px-5 py-5">
-      <div className="mb-2 flex items-center gap-2 px-1 ">
-        <h2
-          className="font-extrabold font-amasis text-[32px] reel-text-heading px-4 py-2 rounded-full inline-block mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-          }}
-        >
-          Latest Land For Sale
-        </h2>
+      <div className="flex justify-center mb-4">
+        <div className="relative inline-flex items-center justify-center">
+          <Image
+            src={backgroundimg}
+            alt="heading background"
+            className="absolute inset-0 w-full h-full"
+          />
+
+          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
+            Latest Land For Sale
+          </h2>
+        </div>
       </div>
 
       <PropertyListingCardSlider

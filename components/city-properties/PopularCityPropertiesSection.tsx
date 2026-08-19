@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import type { Property } from "@/types/types";
 import CityTabs from "./CityTabs";
 import PropertyGrid from "./PropertyGrid";
+import Image from "next/image";
+import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
 type PopularCityPropertiesSectionProps = {
   title: string;
@@ -28,23 +30,25 @@ export default function PopularCityPropertiesSection({
   return (
     <div className="bg-gray-50">
       <section className="max-w-screen-2xl mx-auto px-5 py-5">
-        <h2
-          className={
-            pillHeading
-              ? "text-[32px] w-fit font-amasis font-extrabold reel-text-heading rounded-full px-4 py-2 mb-1 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
-              : "text-[32px] font-extrabold text-gray-900 mb-5"
-          }
-          style={
-            pillHeading
-              ? {
-                  background:
-                    "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-                }
-              : undefined
-          }
-        >
-          {title}
-        </h2>
+        {pillHeading ? (
+          <div className="flex justify-center mb-4">
+            <div className="relative inline-flex items-center justify-center">
+              <Image
+                src={backgroundimg}
+                alt="heading background"
+                className="absolute inset-0 w-full h-full"
+              />
+
+              <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
+                {title}
+              </h2>
+            </div>
+          </div>
+        ) : (
+          <h2 className="text-[32px] font-extrabold text-gray-900 mb-5">
+            {title}
+          </h2>
+        )}
 
         <CityTabs
           cities={cities}

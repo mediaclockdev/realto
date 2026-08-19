@@ -38,10 +38,12 @@ const Contact = dynamic(() => import("@/components/Home/Contact"));
 
 const page = () => {
   return (
-    <div>
+    <div className="home-centered-headings">
       <Hero />
       <Category />
-      <LanguageSelection />
+      <div className="keep-heading-inline">
+        <LanguageSelection />
+      </div>
       <RealEstateAgents enhancedHeading />
       <PropertyListing />
       <TopRealEstateAgents />
