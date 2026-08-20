@@ -18,8 +18,8 @@ import ibisLogo from "../../public/ibishotels.svg";
 import facebook from "../../public/facebookiconhotel.svg";
 import instagram from "../../public/instagramiconhotel.svg";
 // import whatsapp from "../../public/whatsapp.svg";
-import locationIcon from "../../public/location.svg";
-import mail from "../../public/hotelemailicon.svg";
+import locationIcon from "../../public/hotellocationicon.svg";
+import mail from "../../public/contactemailicon.svg";
 import goldenArrowCircle from "../../public/goldencircle.svg";
 import telephone from "../../public/telephone.svg";
 import tumblur from "../../public/tumbluriconhotel.svg";
@@ -36,7 +36,7 @@ const GOLD_GRADIENT =
   // "linear-gradient(90deg , #0F172A , #1D4ED8, #38BDF8 , #7DD3FC , #BAE6FD , #2563EB)";
   // "linear-gradient(90deg, #1E3A8A, #2563EB, #60A5FA, #93C5FD, #BFDBFE ,#1D4ED8 )";
   // "linear-gradient( 90deg ,#001F5B ,#003C9E ,#005BFF ,#3399FF ,#66B2FF , #0047CC )";
-  "linear-gradient(90deg, #4975D1 ,#4975D1, #4975D1, #4975D1 , #4975D1 ,#4975D1)";
+  "linear-gradient(90deg, #52BEFE ,#52BEFE, #52BEFE, #52BEFE , #52BEFE ,#52BEFE)";
 
 const hotelBrandLogos = {
   "hotel-1": { src: sheratonLogo, alt: "Sheraton Logo" },
@@ -277,7 +277,7 @@ export const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
             </div>
 
             {/* Right Side: Price Box - Positioned Upwards, bold, very big red price & grey old price */}
-            <div className="text-right flex flex-col items-end shrink-0 pt-1 mt-10">
+            <div className="text-right flex flex-col items-end shrink-0 pt-1 mt-10 pr-4">
               <span className="text-[10px] uppercase tracking-widest font-extrabold text-gray-400 font-TimesNewRoman italic">
                 from
               </span>
@@ -347,7 +347,9 @@ const LastMinuteHotels = ({
   };
 
   return (
-    <div className={`max-w-screen-2xl mx-auto px-2 lg:px-5 ${pillHeading ? "py-5" : "py-8"}`}>
+    <div
+      className={`max-w-screen-2xl mx-auto px-2 lg:px-5 ${pillHeading ? "py-5" : "py-8"}`}
+    >
       {/* Header */}
       {/* <div className={`flex items-center justify-between ${pillHeading ? "mb-4" : "mb-2"}`}> */}
       {/* <div

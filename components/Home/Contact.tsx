@@ -12,12 +12,13 @@ import dl from "@/public/agentpanelicons/profiledl.svg";
 import edit from "@/public/agentpanelicons/dashboardeditprofileicon.svg";
 import sendicon from "@/public/contactsendbtn.svg";
 import img1 from "@/public/contactimage.svg";
-// import img2 from "@//public/contact1.jpeg";
-// import img3 from "@//public/contact2.jpeg";
+import img2 from "@/public/contactimg1.svg";
+import img3 from "@//public//contactimg2.svg";
 import img4 from "@/public/contactimg3.svg";
-// import img5 from "@/public/contact4.jpeg";
+import img5 from "@/public/contactimg4.svg";
+import img6 from "@/public/contactimg5.svg";
 
-const IMAGES = [img1, img4];
+const IMAGES = [img1, img2, img3, img4, img5, img6];
 
 type ContactProps = {
   images?: (StaticImageData | string)[];
