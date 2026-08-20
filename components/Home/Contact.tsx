@@ -74,7 +74,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
               <Image src={mail} alt="mail" className="" />
             </div>
 
-            <div className="absolute inset-0  -right-10 flex items-center justify-center">
+            <div className="absolute inset-0  -right-15 flex items-center justify-center">
               <h2 className="text-white font-amasis font-black text-[28px] leading-none [text-shadow:0_0_7.3px_rgba(0,0,0,0.6),1px_1px_2.1px_#000]">
                 Message{" "}
                 <span className="font-['Times_New_Roman',serif] font-normal italic">
@@ -160,7 +160,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
             <Image src={sendbg} alt="Send" className="w-full h-auto" />
 
             {/* Text */}
-            <span className="absolute inset-0 left-0 flex items-center justify-center font-sans font-bold text-2xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
+            <span className="absolute inset-0 left-0 flex items-center justify-center pr-10 font-sans font-bold text-2xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
               Send
             </span>
 
