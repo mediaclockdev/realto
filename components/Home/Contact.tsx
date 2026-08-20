@@ -157,7 +157,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
             type="button"
             className="relative mt-3  self-end w-2/3 sm:w-1/2 cursor-pointer hover:brightness-105"
           >
-            <Image src={sendbg} alt="Send" className="w-[120%]" />
+            <Image src={sendbg} alt="Send" className="w-full h-full" />
 
             {/* Text */}
             <span className="absolute inset-0 left-0 flex items-center justify-center pr-10 font-sans font-bold text-2xl text-white [text-shadow:0_0_7.3px_rgba(0,0,0,0.6),1px_1px_2.1px_#000000]">
