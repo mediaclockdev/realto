@@ -14,7 +14,7 @@ const SectionHeading = ({
   title: string;
   variant?: "BUY" | "RENT";
 }) => (
-  <div className="flex justify-center mb-4">
+  <div className="flex justify-center">
     <div className="relative inline-flex items-center justify-center gap-2 px-8 py-4">
       <Image
         src={backgroundimg}
@@ -36,11 +36,7 @@ const SectionHeading = ({
           {variant}
         </span>
       )}
-      <Image
-        src={newclockicon}
-        alt="clock"
-        className="relative z-10 h-7 w-7"
-      />
+      <Image src={newclockicon} alt="clock" className="relative z-10 h-7 w-7" />
     </div>
   </div>
 );

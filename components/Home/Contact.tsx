@@ -70,11 +70,11 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
               className="w-full h-auto"
             />
 
-            <div className="absolute left-4 top-1/2 -translate-y-1/2">
+            <div className="absolute left-1 top-1/2 -translate-y-1/2">
               <Image src={mail} alt="mail" className="" />
             </div>
 
-            <div className="absolute inset-0  -right-15 flex items-center justify-center">
+            <div className="absolute inset-0 -right-2 flex items-center justify-center pl-10">
               <h2 className="text-white font-amasis font-black text-[28px] leading-none [text-shadow:0_0_7.3px_rgba(0,0,0,0.6),1px_1px_2.1px_#000]">
                 Message{" "}
                 <span className="font-['Times_New_Roman',serif] font-normal italic">

@@ -7,7 +7,7 @@ import backgroundimg from "@/public/homepageheadingbackground.svg";
 const LatestLandForSale = () => {
   return (
     <section className="mx-auto max-w-screen-2xl px-5 py-5">
-      <div className="flex justify-center mb-4">
+      {/* <div className="flex justify-center mb-4">
         <div className="relative inline-flex items-center justify-center">
           <Image
             src={backgroundimg}
@@ -19,7 +19,7 @@ const LatestLandForSale = () => {
             Latest Land For Sale
           </h2>
         </div>
-      </div>
+      </div> */}
 
       <PropertyListingCardSlider
         properties={latestLandProperties}

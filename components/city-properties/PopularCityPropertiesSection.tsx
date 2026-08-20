@@ -8,7 +8,7 @@ import Image from "next/image";
 import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
 type PopularCityPropertiesSectionProps = {
-  title: string;
+  title?: string;
   citiesData: Record<string, Property[]>;
   defaultCity?: string;
   pillHeading?: boolean;
@@ -30,7 +30,7 @@ export default function PopularCityPropertiesSection({
   return (
     <div className="bg-gray-50">
       <section className="max-w-screen-2xl mx-auto px-5 py-5">
-        {pillHeading ? (
+        {!title ? null : pillHeading ? (
           <div className="flex justify-center mb-4">
             <div className="relative inline-flex items-center justify-center">
               <Image
