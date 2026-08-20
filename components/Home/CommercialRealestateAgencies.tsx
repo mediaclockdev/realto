@@ -11,7 +11,7 @@ import raywhite from "../../public/raywhitecommercial.svg";
 import cushman from "../../public/cushman&wakefield.svg";
 import belle from "../../public/belle.svg";
 import Image from "next/image";
-import backgroundimg from "@/public/homepageheadingbackground.svg";
+import backgroundimg from "@/public/homepageheadingbackground2.svg";
 
 const CommercialRealestateAgencies = () => {
   const franchise = [
@@ -28,7 +28,6 @@ const CommercialRealestateAgencies = () => {
   ];
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
-{/*
       <div className="flex justify-center mb-4">
         <div className="relative inline-flex items-center justify-center">
           <Image
@@ -42,7 +41,6 @@ const CommercialRealestateAgencies = () => {
           </h2>
         </div>
       </div>
-      */}
 
       <MarqueeCards items={franchise} speed="fast" />
     </div>

@@ -15,6 +15,7 @@ import rentmoney from "../../public/rentmoneyicon.svg";
 import calender from "../../public/rentcalender.svg";
 import squaremetericon from "../../public/squaremetericon.svg";
 import rentsqfticon from "@/public/rentsqfticon.svg";
+import buysqfticon from "@/public/buysqfticon.svg";
 import rentshare from "../../public/rentshareicon.svg";
 import rentlikedicon from "../../public/rentlikedicon.svg";
 import email from "@/public/mailicon.svg";
@@ -50,7 +51,11 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
 }) => {
   const sizeIcon =
     property.sizeIcon ??
-    (listingVariant === "rent" ? rentsqfticon : squaremetericon);
+    (listingVariant === "rent"
+      ? rentsqfticon
+      : listingVariant === "land"
+        ? buysqfticon
+        : squaremetericon);
   const [imgIndex, setImgIndex] = useState(0);
   const [liked, setLiked] = useState(false);
   const [isRentLiked, setIsRentLiked] = useState(false);
@@ -506,7 +511,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 </div>
               )}
               {/* Location + size */}
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mt-2">
                 <div className="flex items-center gap-1.5 min-w-0">
                   <Image
                     src={property.locationIcon ?? location}

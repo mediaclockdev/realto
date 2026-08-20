@@ -25,7 +25,7 @@ import pace from "../../public/pace.svg";
 import rainehorne from "../../public/rainehorne.svg";
 import elder from "../../public/elderrealestate.svg";
 import MarqueeCards from "../ui/MarqueeCards";
-import backgroundimg from "@/public/homepageheadingbackground.svg";
+import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
 const partners = [
   raywhite,
@@ -69,8 +69,8 @@ export default function RealEstateAgents({
             className="absolute inset-0 w-full h-full"
           />
 
-          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
-            Real Estate Agents :
+          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-6 py-4">
+            Real Estate Agencies :
           </h2>
         </div>
       </div>

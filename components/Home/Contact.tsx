@@ -3,20 +3,19 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { StaticImageData } from "next/image";
-import email from "../../public/formemailicon.svg";
-import email2 from "../../public/formmailicon2.svg";
-
-import phone from "../../public/formphoneicon.svg";
-import phone2 from "../../public/formphoneicon2.svg";
-import phone3 from "../../public/formphoneicon3.svg";
-import dl from "../../public/formnameicon.svg";
-import submitbtn from "../../public/submitbtnicon.svg";
-
-import img1 from "../../public/contactimage.svg";
-import img2 from "../../public/contact1.jpeg";
-import img3 from "../../public/contact2.jpeg";
-import img4 from "../../public/contact3.jpeg";
-import img5 from "../../public/contact4.jpeg";
+import headingbg from "@/public/contactheadingbg.svg";
+import sendbg from "@/public/contactsendbg.svg";
+import mail from "@/public/contactemailicon.svg";
+import email from "@/public/agentpanelicons/profilemailicon.svg";
+import phone from "@/public/agentpanelicons/profilephoneicon.svg";
+import dl from "@/public/agentpanelicons/profiledl.svg";
+import edit from "@/public/agentpanelicons/dashboardeditprofileicon.svg";
+import sendicon from "@/public/contactsendbtn.svg";
+import img1 from "@/public/contactimage.svg";
+import img2 from "@//public/contact1.jpeg";
+import img3 from "@//public/contact2.jpeg";
+import img4 from "@/public/contact3.jpeg";
+import img5 from "@/public/contact4.jpeg";
 
 const IMAGES = [img1, img2, img3, img4, img5];
 
@@ -62,125 +61,116 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
         </div>
 
         {/* Right: Form */}
-        <div className="w-full lg:w-1/3 flex flex-col justify-between  rounded-2xl p-4">
-          {/* Header */}
-          <div className="mb-5">
-            <h2 className="text-2xl sm:text-3xl font-bold text-black">
-              Get in touch
-            </h2>
-            <p className="text-xs text-gray-600 mt-1">
-              Tell us about your dream space. We will make it real.
-            </p>
+        <div className="w-full lg:w-1/3 flex flex-col bg-white rounded-3xl shadow-[-8px_8px_16px_#999FB4,6px_-6px_12px_#F0F0F0] p-4 sm:p-5">
+          {/* Header pill */}
+          <div className="relative w-full">
+            <Image
+              src={headingbg}
+              alt="Heading Background"
+              className="w-full h-auto"
+            />
+
+            <div className="absolute left-4 top-1/2 -translate-y-1/2">
+              <Image src={mail} alt="mail" className="" />
+            </div>
+
+            <div className="absolute inset-0  -right-10 flex items-center justify-center">
+              <h2 className="text-white font-amasis font-black text-[28px] leading-none [text-shadow:0_0_7.3px_rgba(0,0,0,0.6),1px_1px_2.1px_#000]">
+                Message{" "}
+                <span className="font-['Times_New_Roman',serif] font-normal italic">
+                  of
+                </span>{" "}
+                Inquiry
+              </h2>
+            </div>
           </div>
 
           {/* Fields */}
           <div className="flex flex-col gap-4">
             {/* Full Name */}
-            <div className=" border border-[#FBD345] bg-white  shadow-[0_0_0_2px_rgba(251,211,69,0.9),0_10px_25px_rgba(251,211,69,0.25)] rounded-l-[10px]  pl-5 h-13 transition-all flex items-stretch justify-between ">
-              <div className="flex flex-col justify-center h-full">
-                <label className="text-xs text-gray-500">Full Name</label>
-                <input
-                  type="text"
-                  className="w-full bg-transparent outline-none text-sm text-black font-medium mt-1"
-                />
-              </div>
-              <div className="h-full overflow-hidden">
-                <Image
-                  src={dl}
-                  alt="name icon"
-                  className="h-full w-auto object-cover"
-                />
-              </div>
-            </div>
-
-            {/* Phone */}
-            <div className="bg-white border  border-[#FBD345]  shadow-[0_0_0_2px_rgba(251,211,69,0.9),0_10px_25px_rgba(251,211,69,0.25)] rounded-l-[10px]  pl-5 h-13 transition-all flex items-stretch justify-between">
-              <div className="flex flex-col justify-center h-full">
-                <label className="text-xs text-gray-500">Phone Number</label>
-                <input
-                  type="tel"
-                  className="w-full bg-transparent outline-none text-sm text-gray-800 mt-1"
-                />
-              </div>
-              <div className="h-full overflow-hidden flex">
-                <Image
-                  src={phone}
-                  alt="phone icon"
-                  className="h-full w-auto object-cover"
-                />
-                <Image
-                  src={phone2}
-                  alt="phone icon"
-                  className="h-full w-auto object-cover"
-                />
-                <Image
-                  src={phone3}
-                  alt="phone icon"
-                  className="h-full w-auto object-cover"
-                />
-              </div>
+            <div className="relative bg-white border-2 border-transparent rounded-2xl [background:linear-gradient(white,white)_padding-box,linear-gradient(180deg,#BA9000,#F7D257,#BA9000)_border-box] px-4 py-2 flex flex-col justify-center min-h-[68px]">
+              <label className="flex items-center gap-2 text-sm text-gray-500">
+                {/* icon: green check */}
+                Full Name
+              </label>
+              <input
+                type="text"
+                className="w-full bg-transparent outline-none text-xl text-black mt-1 pr-24"
+              />
+              <Image
+                src={dl}
+                alt="name"
+                className="absolute right-2 top-1/2 -translate-y-1/2 size-24"
+              />{" "}
             </div>
 
             {/* Email */}
-            <div className="bg-white border  border-[#FBD345] shadow-[0_0_0_2px_rgba(251,211,69,0.9),0_10px_25px_rgba(251,211,69,0.25)] rounded-l-[10px]  pl-5 h-13  transition-all flex items-stretch justify-between">
-              <div className="flex flex-col justify-center h-full">
-                <label className="text-xs text-gray-500">
-                  Email Address
-                  <input
-                    type="email"
-                    className="w-full bg-transparent outline-none text-sm text-gray-800 mt-1"
-                  />
-                </label>
-              </div>
+            <div className="relative bg-white border-2 border-transparent rounded-2xl [background:linear-gradient(white,white)_padding-box,linear-gradient(180deg,#BA9000,#F7D257,#BA9000)_border-box] px-4 py-2 flex flex-col justify-center min-h-[68px]">
+              <label className="flex items-center gap-2 text-sm text-gray-500">
+                {/* icon: green check */}
+                Email Address
+              </label>
+              <input
+                type="email"
+                className="w-full bg-transparent outline-none text-xl text-black mt-1 pr-24"
+              />
+              <Image
+                src={email}
+                alt="email"
+                className=" absolute right-2 top-1/2 -translate-y-1/2 size-18"
+              />
+            </div>
 
-              <div className="h-full overflow-hidden flex">
-                <Image
-                  src={email}
-                  alt="email icon"
-                  className="w-full h-full object-cover "
-                />
-                <Image
-                  src={email2}
-                  alt="email icon"
-                  className="w-full h-full object-cover "
-                />
-              </div>
+            {/* Phone */}
+            <div className="relative bg-white border-2 border-transparent rounded-2xl [background:linear-gradient(white,white)_padding-box,linear-gradient(180deg,#BA9000,#F7D257,#BA9000)_border-box] px-4 py-2 flex flex-col justify-center min-h-[68px]">
+              <label className="flex items-center gap-2 text-sm text-gray-500">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                className="w-full bg-transparent outline-none text-xl text-black mt-1 pr-24"
+              />
+              <Image
+                src={phone}
+                alt="phone number"
+                className="absolute right-1 top-1/2 -translate-y-1/2 size-20"
+              />
             </div>
 
             {/* Message */}
-            <div className="bg-white border  border-[#FBD345]  shadow-[0_0_0_2px_rgba(251,211,69,0.9),0_10px_25px_rgba(251,211,69,0.25)] rounded-l-[10px]  px-5 py-2 focus-within:border-blue-400 transition-all">
-              <label className="text-xs text-gray-500">Message</label>
-
+            <div className="bg-white border-2 border-transparent rounded-2xl [background:linear-gradient(white,white)_padding-box,linear-gradient(180deg,#BA9000,#F7D257,#BA9000)_border-box] px-4 py-2">
+              <label className="flex items-center gap-1 text-sm text-gray-500">
+                {/* icon: green check */}
+                Message
+                <Image src={edit} alt="message" className="size-10" />
+              </label>
               <textarea
-                rows={4}
-                className="w-full bg-transparent outline-none text-sm text-gray-800 mt-1 resize-none"
+                rows={5}
+                placeholder="Please type your message…"
+                className="w-full bg-transparent outline-none text-xl italic text-gray-500 mt-1 resize-none placeholder:italic placeholder:text-gray-500"
               />
             </div>
           </div>
 
-          {/* Submit Button */}
+          {/* Send Button */}
           <button
             type="button"
-            className="mt-5 w-full font-Aptos bg-[#0284C7] hover:bg-[#0277C9] text-white text-xl font-semibold rounded-2xl transition-colors cursor-pointer py-3 flex items-center justify-center relative overflow-visible"
+            className="relative mt-3  self-end w-2/3 sm:w-1/2 cursor-pointer hover:brightness-105"
           >
-            Submit/Send
+            <Image src={sendbg} alt="Send" className="w-full h-auto" />
+
+            {/* Text */}
+            <span className="absolute inset-0 left-0 flex items-center justify-center font-sans font-bold text-2xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
+              Send
+            </span>
+
+            {/* Plane Icon */}
             <Image
-              src={submitbtn}
-              alt="submit btn icon"
-              width={60}
-              height={60}
-              className="h-16 w-auto object-contain absolute right-9 lg:right-20 bottom-[-4]"
+              src={sendicon}
+              alt=""
+              className="absolute right-6 top-0 size-12 z-10 pointer-events-none"
             />
           </button>
-
-          {/* Privacy note */}
-          <p className="text-xs text-[#909090] mt-4 leading-relaxed">
-            By clicking submit, you agree to send your info to Realto who agrees
-            to use it according to their privacy policy.{" "}
-            <a href="#" className="text-blue-500 hover:underline">
-              View Privacy Policy.
-            </a>
-          </p>
         </div>
       </div>
     </div>
