@@ -14,7 +14,7 @@ import sendicon from "@/public/contactsendbtn.svg";
 import img1 from "@/public/contactimage.svg";
 import img2 from "@//public/contact1.jpeg";
 import img3 from "@//public/contact2.jpeg";
-import img4 from "@/public/contact3.jpeg";
+import img4 from "@/public/contactimg3.svg";
 import img5 from "@/public/contact4.jpeg";
 
 const IMAGES = [img1, img2, img3, img4, img5];
