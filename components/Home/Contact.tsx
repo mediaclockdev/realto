@@ -5,9 +5,9 @@ import React, { useState, useEffect } from "react";
 import { StaticImageData } from "next/image";
 import headingbg from "@/public/contactheadingbg.svg";
 import sendbg from "@/public/contactsendbg.svg";
-import mail from "@/public/contactemailicon.svg";
-import email from "@/public/agentpanelicons/profilemailicon.svg";
-import phone from "@/public/agentpanelicons/profilephoneicon.svg";
+import mail from "@/public/contactmailicon.svg";
+import email from "@/public/contactemailicon.svg";
+import phone from "@/public/contactphoneicon.svg";
 import dl from "@/public/agentpanelicons/profiledl.svg";
 import edit from "@/public/agentpanelicons/dashboardeditprofileicon.svg";
 import sendicon from "@/public/contactsendbtn.svg";
@@ -138,7 +138,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
             </div>
 
             {/* Message */}
-            <div className="bg-white border-2 border-transparent rounded-2xl [background:linear-gradient(white,white)_padding-box,linear-gradient(180deg,#BA9000,#F7D257,#BA9000)_border-box] px-4 py-2">
+            <div className="bg-white border-2 border-transparent rounded-2xl [background:linear-gradient(white,white)_padding-box,linear-gradient(180deg,#BA9000,#F7D257,#BA9000)_border-box] px-4 ">
               <label className="flex items-center gap-1 text-sm text-gray-500">
                 {/* icon: green check */}
                 Message
@@ -147,7 +147,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
               <textarea
                 rows={5}
                 placeholder="Please type your message…"
-                className="w-full bg-transparent outline-none text-xl italic text-gray-500 mt-1 resize-none placeholder:italic placeholder:text-gray-500"
+                className="w-full bg-transparent outline-none text-xl italic text-gray-500 mt-1 resize-none placeholder:italic placeholder:text-gray-500 placeholder:font-TimesNewRoman"
               />
             </div>
           </div>
@@ -157,10 +157,10 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
             type="button"
             className="relative mt-3  self-end w-2/3 sm:w-1/2 cursor-pointer hover:brightness-105"
           >
-            <Image src={sendbg} alt="Send" className="w-full h-auto" />
+            <Image src={sendbg} alt="Send" className="w-[120%]" />
 
             {/* Text */}
-            <span className="absolute inset-0 left-0 flex items-center justify-center pr-10 font-sans font-bold text-2xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
+            <span className="absolute inset-0 left-0 flex items-center justify-center pr-10 font-sans font-bold text-2xl text-white [text-shadow:0_0_7.3px_rgba(0,0,0,0.6),1px_1px_2.1px_#000000]">
               Send
             </span>
 
