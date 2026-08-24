@@ -34,7 +34,7 @@ const socialImages = [instagram, snapchat, tiktok, x, wechat, linkedin];
 const SocialIcons = () => (
   <div className="flex items-center gap-2">
     {socialImages.map((image, index) => (
-      <img
+      <Image
         key={index}
         src={image.src}
         alt={`Social media icon ${index + 1}`}
@@ -441,8 +441,8 @@ const CommercialDetailView: React.FC<CommercialDetailViewProps> = ({
           </h2>
           <div className="text-gray-600 leading-relaxed font-TimesNewRoman text-lg">
             <p>
-              This provides a typical localized sales and leasing history for
-              a commercial asset in this area.
+              This provides a typical localized sales and leasing history for a
+              commercial asset in this area.
             </p>
             <p>
               Mar 2026: Property listed on REALTO by {listing.agent.name} (

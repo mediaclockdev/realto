@@ -76,10 +76,12 @@ const images = [instagram, snapchat, tiktok, x, wechat, linkedin];
 const SocialIcons = () => (
   <div className="flex items-center gap-2">
     {images.map((image, index) => (
-      <img
+      <Image
         key={index}
         src={image.src}
         alt={`Social media icon ${index + 1}`}
+        width={24}
+        height={24}
         className="h-6 w-6"
       />
     ))}

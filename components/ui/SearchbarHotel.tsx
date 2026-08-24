@@ -3,8 +3,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import locationIcon from "../../public/location.svg";
-import calendarIcon from "../../public/buycalender.svg";
+import checkInIcon from "../../public/buycalender.svg";
+import checkOutIcon from "../../public/buycalender.svg";
+import guestIcon from "../../public/loginusericon.svg";
+import roomIcon from "../../public/beds.svg";
 import searchIcon from "../../public/iconsearchwhite.svg";
+/* swap checkInIcon/checkOutIcon/guestIcon for the green calendar, red calendar,
+   and round avatar icons once added to public/ */
 import Counteries from "./Counteries";
 
 const SearchBarHotel = () => {
@@ -17,47 +22,56 @@ const SearchBarHotel = () => {
 
   return (
     <>
-      <div className="absolute bottom-5 left-1/2 z-10 hidden w-[85%] max-w-[800px] -translate-x-1/2 md:block">
-        <div className="flex flex-wrap items-center gap-3 rounded-[10px] border border-white/30 bg-[#FFFFFF80] px-3 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.15)] backdrop-blur-sm md:gap-5">
-          <div className="flex flex-wrap items-center gap-2 text-black">
-            <div
-              onClick={() => setIsCountriesOpen((prev) => !prev)}
-              className="flex cursor-pointer items-center gap-1"
-            >
-              <Image src={locationIcon} alt="location" width={22} height={22} />
-              <p className="font-poppins text-xs font-normal lg:text-base">
-                {locationLabel}
-              </p>
-            </div>
-
-            <div className="flex cursor-pointer items-center gap-1">
-              <Image src={calendarIcon} alt="calendar" width={22} height={22} />
-              <p className="font-poppins text-xs font-normal lg:text-base">
-                {dateLabel}
-              </p>
-            </div>
-
-            <span className="hidden text-gray-600 md:block">•</span>
-
-            <p className="font-poppins text-xs font-normal lg:text-base">
-              2 Adults
+      <div className="absolute bottom-5 left-1/2 z-10 hidden w-[90%] max-w-[1100px] -translate-x-1/2 md:block">
+        <div className="flex items-center gap-4 rounded-full border border-white/40 bg-white/55 px-6 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.15)] backdrop-blur-md lg:gap-6">
+          <div
+            onClick={() => setIsCountriesOpen((prev) => !prev)}
+            className="flex flex-1 min-w-0 cursor-pointer items-center gap-2"
+          >
+            <Image src={locationIcon} alt="location" width={26} height={26} />
+            <p className="truncate font-poppins text-sm font-medium text-[#1d1d1d] lg:text-base">
+              {locationLabel}
             </p>
+          </div>
 
-            <span className="hidden text-gray-600 md:block">•</span>
+          <div className="h-6 w-px shrink-0 bg-black/15" />
 
-            <p className="font-poppins text-xs font-normal lg:text-base">
-              0 Children
+          <div className="flex shrink-0 cursor-pointer items-center gap-2">
+            <Image src={checkInIcon} alt="check in" width={26} height={26} />
+            <p className="font-poppins text-sm font-medium text-[#1d1d1d] lg:text-base">
+              Check in
             </p>
+          </div>
 
-            <span className="hidden text-gray-600 md:block">•</span>
+          <div className="h-6 w-px shrink-0 bg-black/15" />
 
-            <p className="font-poppins text-xs font-normal lg:text-base">
+          <div className="flex shrink-0 cursor-pointer items-center gap-2">
+            <Image src={checkOutIcon} alt="check out" width={26} height={26} />
+            <p className="font-poppins text-sm font-medium text-[#1d1d1d] lg:text-base">
+              Check out
+            </p>
+          </div>
+
+          <div className="h-6 w-px shrink-0 bg-black/15" />
+
+          <div className="flex shrink-0 cursor-pointer items-center gap-2">
+            <Image src={guestIcon} alt="guests" width={26} height={26} />
+            <p className="font-poppins text-sm font-medium text-[#1d1d1d] lg:text-base">
+              No. of Guest
+            </p>
+          </div>
+
+          <div className="h-6 w-px shrink-0 bg-black/15" />
+
+          <div className="flex shrink-0 cursor-pointer items-center gap-2">
+            <Image src={roomIcon} alt="rooms" width={30} height={30} />
+            <p className="font-poppins text-sm font-medium text-[#1d1d1d] lg:text-base">
               1 Room
             </p>
           </div>
 
-          <button className="h-12 w-16 transition hover:scale-105">
-            <Image src={searchIcon} alt="search" width={42} height={42} />
+          <button className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0f172a] transition hover:scale-105">
+            <Image src={searchIcon} alt="search" width={22} height={22} />
           </button>
         </div>
 

@@ -12,7 +12,7 @@ import homeliked from "@/public/homelike.svg";
 // import mobile from "@/public/mobileicon.svg";
 import clock from "@/public/buyclock.svg";
 import money from "@/public/money.svg";
-import squaremetericon from "@/public/buysqfticon.svg";
+import squaremetericon from "@/public/buysqfticon1.svg";
 import calender from "@/public/buycalender.svg";
 import {
   Tooltip,

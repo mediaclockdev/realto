@@ -451,7 +451,7 @@ const LanguageSelection = () => {
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
-          className="flex items-center gap-5 overflow-x-auto scrollbar-hide scroll-smooth pt-1 pb-1 flex-1"
+          className="flex items-center gap-4 overflow-x-auto scrollbar-hide scroll-smooth pt-1 pb-1 flex-1"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {languages.map((lang) => {
@@ -475,8 +475,8 @@ const LanguageSelection = () => {
                     <Image
                       src={lang.icon}
                       alt={lang.name}
-                      width={50}
-                      height={50}
+                      width={70}
+                      height={70}
                       className="rounded-full object-cover"
                     />
                   </div>

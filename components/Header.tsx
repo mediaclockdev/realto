@@ -34,7 +34,8 @@ const Header = () => {
   const isAuthRoute =
     pathname.startsWith("/login") ||
     pathname.startsWith("/signup") ||
-    pathname.startsWith("/agentpanel");
+    pathname.startsWith("/agentpanel") ||
+    pathname.startsWith("/userpanel");
 
   if (isAuthRoute) {
     return null;

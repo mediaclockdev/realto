@@ -47,14 +47,16 @@ const hotelBrandLogos = {
   "hotel-6": { src: ibisLogo, alt: "Ibis Hotels Logo" },
 } as const;
 
-const images = [facebook, instagram, snapchat, tiktok, x, linkedin];
+const imagess = [facebook, instagram, snapchat, tiktok, x, linkedin];
 
 const SocialIcons = () => (
   <div className="flex items-center gap-2">
-    {images.map((image, index) => (
-      <img
+    {imagess.map((image, index) => (
+      <Image
         key={index}
         src={image.src}
+        width={32}
+        height={32}
         alt={`Social media icon ${index + 1}`}
         className="h-8 w-8"
       />

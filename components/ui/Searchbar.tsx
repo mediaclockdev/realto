@@ -120,7 +120,7 @@ const Searchbar = () => {
               <div className="h-12 w-[2px] bg-white"></div>
               {/* <div className="h-8 w-px bg-[#FFFFF7]"></div> */}
               <Tooltip text="Microphone">
-                <button className="-mx-2 relative h-12 md:h-13 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+                <button className="-mx-2 relative h-12 md:h-14 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
                   <Image
                     src={voice}
                     alt="voice"
@@ -133,7 +133,7 @@ const Searchbar = () => {
               {/* Google Lens */}
               <div className="h-12 w-[2px] bg-white"></div>
               <Tooltip text="Camera">
-                <button className="relative h-12 md:h-14 w-10 md:w-12 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+                <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
                   <Image
                     src={googlelens}
                     alt="lens"

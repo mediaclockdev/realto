@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import location from "@/public/rentlocation.svg";
+import location from "@/public/rentlocationicon.svg";
 import type { ListingVariant } from "@/lib/listings/types";
 import type { ListingProperty } from "@/lib/properties/types";
 import share from "../../public/landshareicon.svg";
@@ -18,7 +18,7 @@ import rentsqfticon from "@/public/rentsqfticon.svg";
 import buysqfticon from "@/public/buysqfticon.svg";
 import rentshare from "../../public/rentshareicon.svg";
 import rentlikedicon from "../../public/rentlikedicon.svg";
-import email from "@/public/mailicon.svg";
+import email from "@/public/rentmailicon.svg";
 import landliked from "@/public/landlikedicon.svg";
 import landlike from "@/public/landlikeicon.svg";
 
