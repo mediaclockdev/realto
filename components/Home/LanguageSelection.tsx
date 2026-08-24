@@ -53,11 +53,11 @@ import backgroundimg from "@/public/homepageheadingbackground.svg";
 const LanguageSelection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [selectedLanguage, setSelectedLanguage] = useState<number | null>(null);
-  // const [tooltipInfo, setTooltipInfo] = useState<{
-  //   name: string;
-  //   nativeName: string;
-  //   rect: DOMRect;
-  // } | null>(null);
+  const [tooltipInfo, setTooltipInfo] = useState<{
+    name: string;
+    nativeName: string;
+    rect: DOMRect;
+  } | null>(null);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isAtEnd, setIsAtEnd] = useState(false);
 
@@ -218,160 +218,6 @@ const LanguageSelection = () => {
       icon: israelflag,
       code: "is",
     },
-
-    // {
-    //   name: "Bengali",
-    //   country: "Bangladesh",
-    //   nativeName: "বাংলা",
-    //   icon: bangladesh,
-    //   code: "bn",
-    // },
-
-    // {
-    //   name: "Malaysian",
-    //   country: "Malaysia",
-    //   nativeName: "Bahasa Malaysia",
-    //   icon: malasyia,
-    //   code: "ms",
-    // },
-    // {
-    //   name: "Samoan",
-    //   country: "Somoan",
-    //   nativeName: "Samoan",
-    //   icon: samoan,
-    //   code: "sm",
-    // },
-
-    // {
-    //   name: "Armenian",
-    //   country: "Armenia",
-    //   nativeName: "Հայերեն",
-    //   icon: armenia,
-    //   code: "hy",
-    // },
-    // {
-    //   name: "Burmese",
-    //   country: "Burmese",
-    //   nativeName: "မြန်မာဘာသာ",
-    //   icon: burmese,
-    //   code: "my",
-    // },
-    // {
-    //   name: "Cambodian",
-    //   country: "Cambodia",
-    //   nativeName: "ខ្មែរ",
-    //   icon: cambodia,
-    //   code: "km",
-    // },
-    // {
-    //   name: "Croatian",
-    //   country: "Croatia",
-    //   nativeName: "Hrvatski",
-    //   icon: croatian,
-    //   code: "hr",
-    // },
-    // {
-    //   name: "Danish",
-    //   country: "Denmark",
-    //   nativeName: "Dansk",
-    //   icon: denmark,
-    //   code: "da",
-    // },
-
-    // {
-    //   name: "Finnish",
-    //   country: "Finland",
-    //   nativeName: "Suomi",
-    //   icon: finnish,
-    //   code: "fi",
-    // },
-    // {
-    //   name: "Georgian",
-    //   country: "Georgia",
-    //   nativeName: "ქართული",
-    //   icon: georgian,
-    //   code: "ka",
-    // },
-    // {
-    //   name: "Hong Kong",
-    //   country: "HongKong",
-    //   nativeName: "香港",
-    //   icon: hongkong,
-    //   code: "hk",
-    // },
-
-    // {
-    //   name: "Kurdish",
-    //   country: "Kurdistan",
-    //   nativeName: "Kurdî",
-    //   icon: kurdistan,
-    //   code: "ku",
-    // },
-    // {
-    //   name: "Macedonian",
-    //   counter: "Macedonia",
-    //   nativeName: "Македонски",
-    //   icon: macedonian,
-    //   code: "mk",
-    // },
-    // {
-    //   name: "Nepali",
-    //   counter: "Nepal",
-    //   nativeName: "नेपाली",
-    //   icon: nepal,
-    //   code: "ne",
-    // },
-
-    // {
-    //   name: "Polish",
-    //   counter: "Poland ",
-    //   nativeName: "Polski",
-    //   icon: polish,
-    //   code: "pl",
-    // },
-    // {
-    //   name: "Portuguese",
-    //   counter: "Portuguese",
-    //   nativeName: "Português",
-    //   icon: portuguese,
-    //   code: "pt",
-    // },
-    // {
-    //   name: "Romanian",
-    //   counter: "Romania",
-    //   nativeName: "Română",
-    //   icon: romanian,
-    //   code: "ro",
-    // },
-    // {
-    //   name: "Somali",
-    //   counter: "Somalia",
-    //   nativeName: "Soomaali",
-    //   icon: somali,
-    //   code: "so",
-    // },
-    // {
-    //   name: "Tagalog",
-    //   counter: "Philippines",
-    //   nativeName: "Tagalog",
-    //   icon: tagalog,
-    //   code: "tl",
-    // },
-    // {
-    //   name: "Tongan",
-    //   counter: "Tonga",
-    //   nativeName: "Tongan",
-    //   icon: tongon,
-    //   code: "to",
-    // },
-
-    // {
-    //   name: "Ukrainian",
-    //   counter: "Ukrain",
-    //   nativeName: "Українська",
-    //   icon: ukrainian,
-    //   code: "uk",
-    // },
   ];
 
   const languages = Array.from({ length: 23 }, (_, i) => ({
@@ -387,8 +233,6 @@ const LanguageSelection = () => {
       setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 10);
     }
   };
-
-  const selectedLang = languages.find((l) => l.id === selectedLanguage);
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -416,14 +260,6 @@ const LanguageSelection = () => {
             height={70}
             className="rounded-full"
           />
-          {selectedLang && (
-            <div className="absolute -top-9 left-0 z-50 pointer-events-none opacity-0 group-hover/selected:opacity-100 transition-opacity duration-200">
-              <div className="bg-gray-900 text-white text-xs font-medium px-2 py-1 rounded-lg whitespace-nowrap">
-                {selectedLang.name} / {selectedLang.nativeName}
-              </div>
-              <div className="w-3 h-3 bg-gray-900 rotate-45 -mt-1.5 ml-3.5" />
-            </div>
-          )}
         </div>
         <div className="relative inline-flex items-center justify-center">
           <Image
@@ -451,7 +287,7 @@ const LanguageSelection = () => {
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
-          className="flex items-center gap-4 overflow-x-auto scrollbar-hide scroll-smooth pt-1 pb-1 flex-1"
+          className="flex items-start gap-4 overflow-x-auto scrollbar-hide scroll-smooth pt-1 pb-1 flex-1"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {languages.map((lang) => {
@@ -460,11 +296,21 @@ const LanguageSelection = () => {
             return (
               <div
                 key={lang.id}
-                className="relative shrink-0 flex flex-col items-center w-[60px]"
+                className="relative shrink-0 flex flex-col items-center w-[76px]"
               >
                 <div className="flex flex-col items-center justify-center">
                   <div
                     onClick={() => setSelectedLanguage(lang.id)}
+                    onMouseEnter={(e) => {
+                      if (isSelected) {
+                        setTooltipInfo({
+                          name: lang.name,
+                          nativeName: lang.nativeName,
+                          rect: e.currentTarget.getBoundingClientRect(),
+                        });
+                      }
+                    }}
+                    onMouseLeave={() => setTooltipInfo(null)}
                     className={`rounded-full cursor-pointer transition-all duration-200 border-[3px] ${
                       selectedLanguage === lang.id
                         ? "bg-[linear-gradient(135deg,#FFD700,#FFC107,#FFB300)] bg-origin-border bg-clip-border border-transparent"
@@ -481,12 +327,12 @@ const LanguageSelection = () => {
                     />
                   </div>
 
-                  <div className="flex flex-col items-center mt-1 w-[60px]">
-                    <p className="text-black text-xs font-medium w-full text-center leading-tight truncate">
+                  <div className="flex flex-col items-center mt-1 w-[76px]">
+                    {/* <p className="text-black text-xs font-medium w-full text-center leading-tight truncate">
                       {lang.country ?? lang.name}
-                    </p>
-                    <p className="text-gray-500 text-xs font-light font-poppins w-full text-center leading-tight truncate">
-                      ({lang.nativeName})
+                    </p> */}
+                    <p className="text-gray-500 text-xs font-light font-poppins w-full text-center leading-tight break-words">
+                      ({lang.name})
                     </p>
                   </div>
                 </div>
@@ -495,9 +341,9 @@ const LanguageSelection = () => {
           })}
         </div>
 
-        {/* {tooltipInfo && (
+        {tooltipInfo && (
           <div
-            className="fixed z-9999 pointer-events-none"
+            className="fixed z-[9999] pointer-events-none"
             style={{
               left: tooltipInfo.rect.left + tooltipInfo.rect.width / 2,
               top: tooltipInfo.rect.top - 8,
@@ -509,7 +355,7 @@ const LanguageSelection = () => {
             </div>
             <div className="w-3 h-3 bg-gray-900 rotate-45 -mt-1.5 mx-auto" />
           </div>
-        )} */}
+        )}
 
         {!isAtEnd && (
           <button
