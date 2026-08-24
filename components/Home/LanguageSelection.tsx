@@ -408,23 +408,12 @@ const LanguageSelection = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
       <div className="flex items-center gap-3">
-        <div className="relative inline-flex items-center justify-center">
-          <Image
-            src={backgroundimg}
-            alt="heading background"
-            className="absolute inset-0 w-full h-full"
-          />
-
-          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
-            Language selection :
-          </h2>
-        </div>
         <div className="shrink-0 relative group/selected">
           <Image
             src={world}
             alt={"World"}
-            width={46}
-            height={46}
+            width={70}
+            height={70}
             className="rounded-full"
           />
           {selectedLang && (
@@ -435,6 +424,17 @@ const LanguageSelection = () => {
               <div className="w-3 h-3 bg-gray-900 rotate-45 -mt-1.5 ml-3.5" />
             </div>
           )}
+        </div>
+        <div className="relative inline-flex items-center justify-center">
+          <Image
+            src={backgroundimg}
+            alt="heading background"
+            className="absolute inset-0 w-full h-full"
+          />
+
+          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
+            Language selection
+          </h2>
         </div>
       </div>
 
