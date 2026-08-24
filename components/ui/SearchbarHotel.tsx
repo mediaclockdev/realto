@@ -159,7 +159,7 @@ const SearchBarHotel = () => {
                 className="flex w-full items-center gap-3 rounded-2xl border border-gray-200 px-4 py-4 text-left"
               >
                 <Image
-                  src={calendarIcon}
+                  src={checkInIcon}
                   alt="calendar"
                   width={22}
                   height={22}
