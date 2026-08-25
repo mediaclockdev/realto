@@ -39,6 +39,7 @@ export interface BuyPropertyCardData {
   agentImage: ImageSource;
   locationIcon?: ImageSource;
   buyiconImages?: ImageSource[];
+  iconBoxSize?: { width: number; height: number };
   clockIcon?: ImageSource;
   sizeIcon?: ImageSource;
   iconLabels?: string[];
@@ -153,7 +154,17 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                 <div className="mt-1 mb-1 flex items-center justify-between gap-3">
                   {property.buyiconImages.map((icon, index) => (
                     <div key={index} className="flex items-center  gap-0.5">
-                      <div className="h-13 w-18 shrink-0 overflow-hidden rounded-lg">
+                      <div
+                        className="h-13 w-18 shrink-0 overflow-hidden rounded-lg"
+                        style={
+                          property.iconBoxSize
+                            ? {
+                                width: property.iconBoxSize.width,
+                                height: property.iconBoxSize.height,
+                              }
+                            : undefined
+                        }
+                      >
                         <Image
                           src={icon}
                           alt="icons for bed , bath , car"

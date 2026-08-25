@@ -84,7 +84,7 @@ const HotelOfferCard = ({ hotel }: { hotel: HotelListing }) => {
                   key={amenity.label}
                   className="rounded-full border border-gray-300 px-2 py-0.5 text-[10px] md:text-xs text-gray-700"
                 >
-                  {amenity.label}
+                 {amenity.label}
                 </span>
               ))}
             </div>

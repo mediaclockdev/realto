@@ -226,7 +226,17 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                             key={i}
                             className="flex items-center justify-between gap-0.5"
                           >
-                            <div className="h-14 w-17 shrink-0 overflow-hidden rounded-lg">
+                            <div
+                              className="h-14 w-17 shrink-0 overflow-hidden rounded-lg"
+                              style={
+                                property.iconBoxSize
+                                  ? {
+                                      width: property.iconBoxSize.width,
+                                      height: property.iconBoxSize.height,
+                                    }
+                                  : undefined
+                              }
+                            >
                               <Image
                                 src={icon}
                                 alt=""
@@ -271,7 +281,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                   <div className="flex justify-left gap-12 items-center">
                     <div className="flex items-center gap-2 min-w-0">
                       <Image
-                        src={calender}
+                        src={property.dateicon?.[0] ?? calender}
                         alt="money"
                         className="w-7 h-8 shrink-0"
                       />
@@ -494,7 +504,17 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
                 <div className="flex items-center gap-2.5 ">
                   {property.renticonImages.map((icon, i) => (
                     <div key={i} className="flex items-center gap-1">
-                      <div className="w-14 h-10 rounded-xl overflow-hidden ">
+                      <div
+                        className="w-14 h-10 rounded-xl overflow-hidden "
+                        style={
+                          property.iconBoxSize
+                            ? {
+                                width: property.iconBoxSize.width,
+                                height: property.iconBoxSize.height,
+                              }
+                            : undefined
+                        }
+                      >
                         <Image
                           src={icon}
                           alt=""

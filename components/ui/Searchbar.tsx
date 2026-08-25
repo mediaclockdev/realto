@@ -97,7 +97,7 @@ const Searchbar = () => {
             placeholder="Search suburb, postcode, state"
             className="flex-1 min-w-0 bg-transparent outline-none text-white placeholder:text-white/70 text-sm sm:text-base font-light tracking-wide px-3"
           />
-          <div className="flex items-center gap-2  bg-white/50 rounded-r-[10px] pr-2 pl-2">
+          <div className="flex items-center gap-2  bg-white/80 rounded-r-[10px] pr-2 pl-2">
             {/* Right icons */}
             <div className="flex items-center h-full gap-2 shrink-0">
               {/* Filter */}
@@ -117,7 +117,7 @@ const Searchbar = () => {
               </Tooltip>
 
               {/* Voice */}
-              <div className="h-12 w-[2px] bg-white"></div>
+              <div className="h-12 w-[2px] bg-white "></div>
               {/* <div className="h-8 w-px bg-[#FFFFF7]"></div> */}
               <Tooltip text="Microphone">
                 <button className="-mx-2 relative h-12 md:h-14 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">

@@ -7,6 +7,7 @@ import modern from "@/public/Luxury Modern Villa1.jpg";
 import villa from "@/public/Luxury Modern Villa2.jpg";
 import elder from "@/public/elderrealestate.svg";
 import ana from "@/public/anajonesagent.svg";
+import luxurycalendericon from "@/public/luxurycalendericon.svg";
 import type { ListingProperty } from "@/lib/properties/types";
 import {
   luxuryClockIcon,
@@ -20,6 +21,10 @@ import {
 
 const LUXURY_HOVER_BORDER_GRADIENT =
   "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
+
+// Bed/bath/car icon box size for luxury rent cards — tweak here without touching
+// newly-listed/trending cards, which fall back to PropertyListingCard's default size.
+const LUXURY_ICON_BOX_SIZE = { width: 76, height: 62 };
 
 const createRentSectionCard = (
   property: Omit<ListingProperty, "thumbnail" | "socials" | "flags">,
@@ -211,6 +216,7 @@ export const luxuryRentProperties: ListingProperty[] = [
     location: "Toorak, VIC 3142",
     size: "3,850",
     date: "04-03-2026",
+    dateicon: [luxurycalendericon],
     time: "10:30",
     priceRange: "$2,400/week",
     propertyType: "Villa",
@@ -223,6 +229,7 @@ export const luxuryRentProperties: ListingProperty[] = [
     agentImage: ana,
     agentImageCard: ana,
     renticonImages: luxuryPropertyFeatureIcons,
+    iconBoxSize: LUXURY_ICON_BOX_SIZE,
     iconLabels: ["1", "1", "1"],
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon,
@@ -238,6 +245,7 @@ export const luxuryRentProperties: ListingProperty[] = [
     location: "Vaucluse, NSW 2030",
     size: "4,120",
     date: "05-03-2026",
+    dateicon: [luxurycalendericon],
     time: "12:30",
     priceRange: "$2,900/week",
     propertyType: "House",
@@ -250,6 +258,7 @@ export const luxuryRentProperties: ListingProperty[] = [
     agentImage: ana,
     agentImageCard: ana,
     renticonImages: luxuryPropertyFeatureIcons,
+    iconBoxSize: LUXURY_ICON_BOX_SIZE,
     iconLabels: ["1", "1", "1"],
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon,
@@ -265,6 +274,7 @@ export const luxuryRentProperties: ListingProperty[] = [
     location: "Noosa Heads, QLD 4567",
     size: "3,640",
     date: "06-03-2026",
+    dateicon: [luxurycalendericon],
     time: "14:30",
     priceRange: "$2,100/week",
     propertyType: "Villa",
@@ -277,6 +287,7 @@ export const luxuryRentProperties: ListingProperty[] = [
     agentImage: ana,
     agentImageCard: ana,
     renticonImages: luxuryPropertyFeatureIcons,
+    iconBoxSize: LUXURY_ICON_BOX_SIZE,
     iconLabels: ["1", "1", "1"],
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon,
@@ -292,6 +303,7 @@ export const luxuryRentProperties: ListingProperty[] = [
     location: "Mosman Park, WA 6012",
     size: "3,980",
     date: "07-03-2026",
+    dateicon: [luxurycalendericon],
     time: "15:30",
     priceRange: "$2,250/week",
     propertyType: "House",
@@ -304,6 +316,7 @@ export const luxuryRentProperties: ListingProperty[] = [
     agentImage: ana,
     agentImageCard: ana,
     renticonImages: luxuryPropertyFeatureIcons,
+    iconBoxSize: LUXURY_ICON_BOX_SIZE,
     iconLabels: ["1", "1", "1"],
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon,

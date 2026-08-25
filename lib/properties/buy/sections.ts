@@ -9,6 +9,7 @@ import elder from "@/public/elderrealestate.svg";
 import ana from "@/public/anajonesagent.svg";
 import calender from "@/public/buycalender.svg";
 import hammer from "@/public/hammer.svg";
+import luxurycalendericon from "@/public/luxurycalendericon.svg";
 import type { BuyPropertyCardItem } from "@/lib/property-cards/types";
 import {
   buyPropertyFeatureIcons,
@@ -24,6 +25,10 @@ import {
 
 const LUXURY_HOVER_BORDER_GRADIENT =
   "linear-gradient(90deg, #CB9E33, #EDD06A, #FCEA94, #FADE7B, #FDEE9D, #C29225)";
+
+// Bed/bath/car icon box size for luxury buy cards — tweak here without touching
+// newly-listed/trending cards, which fall back to BuyPropertyCard's default size.
+const LUXURY_ICON_BOX_SIZE = { width: 80, height: 58 };
 
 const baseBuySectionCards: BuyPropertyCardItem[] = [
   {
@@ -143,8 +148,9 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
   {
     ...baseBuySectionCards[0],
     images: [luxury, modern],
-    dateicon: hammer,
+    dateicon: luxurycalendericon,
     iconImages: luxuryPropertyFeatureIcons,
+    iconBoxSize: LUXURY_ICON_BOX_SIZE,
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon,
     sizeIcon: luxurySqftIcon,
@@ -156,8 +162,9 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
   {
     ...baseBuySectionCards[1],
     images: [luxury, villa],
-    dateicon: calender,
+    dateicon: luxurycalendericon,
     iconImages: luxuryPropertyFeatureIcons,
+    iconBoxSize: LUXURY_ICON_BOX_SIZE,
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon,
     sizeIcon: luxurySqftIcon,
@@ -169,8 +176,9 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
   {
     ...baseBuySectionCards[2],
     images: [luxury, modern],
-    dateicon: hammer,
+    dateicon: luxurycalendericon,
     iconImages: luxuryPropertyFeatureIcons,
+    iconBoxSize: LUXURY_ICON_BOX_SIZE,
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon,
     sizeIcon: luxurySqftIcon,
@@ -182,8 +190,9 @@ export const luxuryBuyProperties: BuyPropertyCardItem[] = [
   {
     ...baseBuySectionCards[3],
     images: [luxury, villa],
-    dateicon: calender,
+    dateicon: luxurycalendericon,
     iconImages: luxuryPropertyFeatureIcons,
+    iconBoxSize: LUXURY_ICON_BOX_SIZE,
     locationIcon: luxuryLocationIcon,
     clockIcon: luxuryClockIcon,
     sizeIcon: luxurySqftIcon,
