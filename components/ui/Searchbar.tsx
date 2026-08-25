@@ -117,7 +117,7 @@ const Searchbar = () => {
               </Tooltip>
 
               {/* Voice */}
-              <div className="h-12 w-[2px] bg-white "></div>
+              <div className="h-12 w-[2px] bg-white shadow-[0_0_20px_3px_rgba(255,255,255,0.5)]"></div>
               {/* <div className="h-8 w-px bg-[#FFFFF7]"></div> */}
               <Tooltip text="Microphone">
                 <button className="-mx-2 relative h-12 md:h-14 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
@@ -131,7 +131,7 @@ const Searchbar = () => {
               </Tooltip>
 
               {/* Google Lens */}
-              <div className="h-12 w-[2px] bg-white"></div>
+              <div className="h-12 w-[2px] bg-white shadow-[0_0_20px_3px_rgba(255,255,255,0.5)]"></div>
               <Tooltip text="Camera">
                 <button className="relative h-12 md:h-16 w-10 md:w-14 shrink-0 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
                   <Image
@@ -144,7 +144,7 @@ const Searchbar = () => {
               </Tooltip>
 
               {/* Search button — fills full height */}
-              <div className="h-12 w-[2px] bg-white "></div>
+              <div className="h-12 w-[2px] bg-white shadow-[0_0_20px_3px_rgba(255,255,255,0.5)]"></div>
               <Tooltip text="Search">
                 <button className=" relative h-12 md:h-16 w-12 md:w-16 shrink-0 flex items-center justify-center transition-colors cursor-pointer ">
                   <Image

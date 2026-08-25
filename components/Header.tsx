@@ -86,7 +86,7 @@ const Header = () => {
             setView("choose");
             dialogRef.current?.showModal();
           }}
-          className="relative flex h-11 shrink-0 self-start cursor-pointer items-center gap-2 overflow-hidden rounded-full pl-1.5 pr-5 transition-transform duration-200 active:scale-95 sm:h-12 sm:gap-2.5 sm:pr-6"
+          className="relative flex h-11 shrink-0 self-start cursor-pointer items-center gap-2 overflow-hidden  pl-1.5 pr-5 transition-transform duration-200 active:scale-95 sm:h-12 sm:gap-2.5 sm:pr-6"
         >
           {/* loginbg.png is a 1536x1024 canvas holding a 1180x200 pill;
               this scale crops the padding so the pill fills the button */}
@@ -95,7 +95,7 @@ const Header = () => {
             alt=""
             fill
             loading="eager"
-            className="scale-x-[1.302] scale-y-[5.12] object-fill"
+            className="scale-x-[1] scale-y-[1] "
           />
           <Image
             src={usericon}
