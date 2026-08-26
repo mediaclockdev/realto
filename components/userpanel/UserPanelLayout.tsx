@@ -9,14 +9,14 @@ import realtoLogo from "@/public/Realto Logo - 1.gif";
 import searchFlag from "@/public/austrilaflag.svg";
 import agentAvatarThumb from "@/public/emilyrodriguez.jpg";
 import supportAgent from "@/public/contact2.jpeg";
-import dashboardicon from "@/public/agentpanelicons/sidebardashboardicon.svg";
-import profileicon from "@/public/agentpanelicons/sidebarprofileicon.svg";
-import leadsmanagementicon from "@/public/agentpanelicons/sidebarleadsmanagementicon.svg";
+import dashboardicon from "@/public/userpanelicons/userpaneldashboardicon.svg";
+import profileicon from "@/public/userpanelicons/userpanelprofileicon.svg";
+import leadsmanagementicon from "@/public/userpanelicons/userpanelinspectionbookingicon.svg";
 import mylistingsicon from "@/public/agentpanelicons/sidebarmylistingicon.svg";
-import analyticsicon from "@/public/agentpanelicons/sidebaranalyticsicons.svg";
-import messageicon from "@/public/agentpanelicons/sidebarmessageicon.svg";
-import documentsicon from "@/public/agentpanelicons/sidebardocumentsicon.svg";
-import settingsicon from "@/public/agentpanelicons/sidebarsettingsicon.svg";
+import analyticsicon from "@/public/userpanelicons/userpanelsavedproperties.svg";
+import messageicon from "@/public/userpanelicons/userpanelmessagesicon.svg";
+import documentsicon from "@/public/userpanelicons/userpaneldocumentsicon.svg";
+import settingsicon from "@/public/userpanelicons/userpanelsettingsicon.svg";
 import styles from "@/components/agentpanel/sidebar.module.css";
 
 const menuItems = [

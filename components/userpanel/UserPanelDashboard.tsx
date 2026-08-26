@@ -5,21 +5,19 @@ import { useState } from "react";
 
 import dashboardicon from "@/public/agentpanelicons/sidebardashboardicon.svg";
 import calendericon from "@/public/agentpanelicons/analtyicscalendericon.svg";
-import savedicon from "@/public/agentpanelicons/sidebaranalyticsicons.svg";
-import inquiriesicon from "@/public/agentpanelicons/analyticsEnquiriesicon.svg";
-import messageicon from "@/public/agentpanelicons/sidebarmessageicon.svg";
-import documenticon from "@/public/agentpanelicons/sidebardocumentsicon.svg";
+import savedicon from "@/public/userpanelicons/userpanelsavedproperties.svg";
+import inquiriesicon from "@/public/userpanelicons/userpaneldashboardactiveinquryicon.svg";
+import messageicon from "@/public/userpanelicons/userpanelmessagesicon.svg";
+import documenticon from "@/public/userpanelicons/userpaneldocumentsicon.svg";
 import villaImg from "@/public/Luxury Modern Villa.jpg";
 import apartmentImg from "@/public/buyimg1.jpg";
 import landImg from "@/public/landimg1.jpg";
 
-const SOFT_SHADOW =
-  "shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF,inset_0_4px_4px_0_rgba(43,108,176,0.2)]";
+const OUTER_SHADOW = "shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
+const SOFT_SHADOW = `${OUTER_SHADOW.slice(0, -1)},inset_0_4px_4px_0_rgba(43,108,176,0.2)]`;
 const CARD = `flex h-full flex-col rounded-2xl bg-white p-4 ${SOFT_SHADOW}`;
-const CARD_TITLE =
-  "rounded-full bg-[#F1F5F9] px-4 py-2 text-lg font-bold text-[#00A3EE]";
-const VIEW_ALL =
-  "shrink-0 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-bold text-[#2495FF] shadow-sm";
+const CARD_TITLE = `rounded-[100px] bg-[#F1F3F2] px-4 py-2 text-lg font-bold text-[#00A3EE] ${OUTER_SHADOW}`;
+const VIEW_ALL = `shrink-0 rounded-lg border border-[#C2C6D9] bg-white px-3 py-1.5 text-sm font-bold text-[#2495FF] ${OUTER_SHADOW}`;
 
 const stats = [
   { label: "Saved Properties", value: "87", icon: savedicon },
@@ -45,7 +43,7 @@ const land = {
 };
 
 const inspections = [villa, apartment, land, land, land, villa, apartment].map(
-  (p) => ({ ...p, date: "May 24, 2025", time: "10:00 AM" })
+  (p) => ({ ...p, date: "May 24, 2025", time: "10:00 AM" }),
 );
 
 const bookings = {
@@ -156,7 +154,7 @@ export default function UserPanelDashboard() {
 
         <div className="w-full max-w-xs space-y-2">
           <button
-            className={`flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-lg font-bold text-[#E1AB18] ${SOFT_SHADOW}`}
+            className={`flex w-full items-center justify-center gap-2 rounded-xl border border-transparent bg-white px-4 py-2.5 text-lg font-bold text-[#E1AB18] [background:linear-gradient(white,white)_padding-box,linear-gradient(135deg,#BA9000,#F7D257,#BA9000)_border-box] ${OUTER_SHADOW}`}
           >
             <Image src={calendericon} alt="" className="size-9" />
             Book New Inspection
