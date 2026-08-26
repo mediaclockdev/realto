@@ -12,6 +12,7 @@ import cushman from "../../public/cushman&wakefield.svg";
 import belle from "../../public/belle.svg";
 import Image from "next/image";
 import backgroundimg from "@/public/homepageheadingbackground2.svg";
+import commercial from "@/public/homepagecommercialicon.svg";
 
 const CommercialRealestateAgencies = () => {
   const franchise = [
@@ -28,16 +29,17 @@ const CommercialRealestateAgencies = () => {
   ];
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
-      <div className="flex justify-center mb-4">
-        <div className="relative inline-flex items-center justify-center">
+      <div className="flex w-fit mx-auto items-center gap-2 mb-4">
+        <Image src={commercial} alt="" className="shrink-0" />
+        <div className="relative inline-flex items-center justify-center gap-2 px-8 py-4">
           <Image
             src={backgroundimg}
             alt="heading background"
             className="absolute inset-0 w-full h-full"
           />
 
-          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
-            Commercial Realestate Agencies
+          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading">
+            Commercial Realestate
           </h2>
         </div>
       </div>

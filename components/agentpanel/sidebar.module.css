@@ -2,14 +2,14 @@
   position: relative;
   display: flex;
   align-items: center;
-  height: 56px;
+  height: 46px;
   width: 100%;
   border-radius: 14px;
-  padding: 0 52px 0 20px;
+  padding: 0 52px 0 10px;
   overflow: visible;
   text-decoration: none;
   background: transparent;
-  border: 1px solid #DBE5F1;
+  border: 1px solid #dbe5f1;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
@@ -28,7 +28,7 @@
   width: calc(100% + 8px);
   z-index: 10;
   background: #ffffff;
-  border: 1px solid #DBE5F1;
+  border: 1px solid #dbe5f1;
   border-right: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -37,7 +37,7 @@
 .active:hover {
   background: #ffffff;
   transform: none;
-  }
+}
 
 /* Fillets easing the divider into the tab's top and bottom edges. Each box
    covers the last 12px of the straight divider and redraws it as an arc. */
@@ -56,8 +56,8 @@
   background: radial-gradient(
     circle at top left,
     #f8fafc 11px,
-    #DBE5F1 11px,
-    #DBE5F1 12px,
+    #dbe5f1 11px,
+    #dbe5f1 12px,
     #f8fafc 12px
   );
 }
@@ -67,8 +67,8 @@
   background: radial-gradient(
     circle at bottom left,
     #f8fafc 11px,
-    #DBE5F1 11px,
-    #DBE5F1 12px,
+    #dbe5f1 11px,
+    #dbe5f1 12px,
     #f8fafc 12px
   );
 }
@@ -76,16 +76,22 @@
 .label {
   position: relative;
   z-index: 1;
-  font-size: 14px;
+  font-family: var(--font-inter);
+  font-size: 16px;
   font-weight: 600;
   line-height: 1;
+  letter-spacing: 0;
   white-space: nowrap;
-  color: #0f172a;
+  color: #ffffff;
+  text-shadow:
+    0 0 7.3px rgba(0, 0, 0, 0.6),
+    1px 1px 2.1px #000000;
 }
 
 .labelActive {
   composes: label;
-  color: #d9a000;
+  color: #e1ab18;
+  text-shadow: none;
 }
 
 .icon {

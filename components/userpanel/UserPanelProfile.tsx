@@ -4,10 +4,6 @@ import Image from "next/image";
 import {
   CheckCircle2,
   XCircle,
-  Camera,
-  Pencil,
-  MapPin,
-  Calendar,
   Mail,
   Phone,
   PhoneCall,
@@ -27,6 +23,8 @@ import {
 
 import avatar from "@/public/emilyrodriguez.jpg";
 import profileicon from "@/public/agentpanelicons/sidebarprofileicon.svg";
+import editIcon from "@/public/agentpanelicons/profileEditicon.svg";
+import camericon from "@/public/agentpanelicons/profilecameraicon.svg";
 
 const SOFT_SHADOW = "shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
 const SECTION = `rounded-xl bg-white p-4 ${SOFT_SHADOW}`;
@@ -34,7 +32,12 @@ const HEADING_PILL =
   "flex w-fit items-center gap-2 rounded-full bg-[#F1F3F2] px-4 py-2 text-xl font-bold text-[#2495FF]";
 
 const personalFields = [
-  { label: "Full Name", value: "Parker Realestate", icon: undefined, valid: true },
+  {
+    label: "Full Name",
+    value: "Parker Realestate",
+    icon: undefined,
+    valid: true,
+  },
   {
     label: "Email Address",
     value: "parker.realestate@gmail.com",
@@ -60,8 +63,16 @@ const bio = {
 };
 
 const socialLinks = [
-  { label: "Instagram", icon: Instagram, placeholder: "https://www.instagram...." },
-  { label: "Facebook", icon: Facebook, placeholder: "https://www.facebook...." },
+  {
+    label: "Instagram",
+    icon: Instagram,
+    placeholder: "https://www.instagram....",
+  },
+  {
+    label: "Facebook",
+    icon: Facebook,
+    placeholder: "https://www.facebook....",
+  },
   { label: "Youtube", icon: Youtube, placeholder: "https://www.facebook...." },
 ];
 
@@ -163,31 +174,39 @@ export default function UserPanelProfile() {
             <div className="relative">
               <Image
                 src={avatar}
-                alt="Masha Klein"
-                className="size-28 rounded-full object-cover"
+                alt="Parker Realestate"
+                className="size-60 rounded-full object-cover"
               />
               <button
-                className="absolute bottom-0 right-0 rounded-full bg-white p-1.5 shadow"
+                className="absolute bottom-0 right-0"
                 aria-label="Change photo"
               >
-                <Camera className="size-4 text-gray-700" />
+                <Image
+                  src={camericon}
+                  alt="camera icon"
+                  className="size-auto "
+                />
               </button>
             </div>
             <div>
-              <p className="text-2xl font-bold text-gray-900">Masha Klein</p>
-              <p className="mt-1 flex items-center gap-1.5 text-[#424656]">
-                <MapPin className="size-4 text-red-500" /> New York, USA
+              <p className="text-3xl font-bold text-[#2495FF]">Masha Klein</p>
+              <p className="text-lg text-[#424656] font-medium">
+                New York, USA
               </p>
-              <p className="mt-1 flex items-center gap-1.5 text-sm text-[#737687]">
-                <Calendar className="size-4 text-[#E1AB18]" /> Member since
-                Jan 2026
+              <p className="text-base text-[#737687] font-medium">
+                Member since Jan 2026
               </p>
             </div>
           </div>
           <button
-            className={`flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-bold text-[#004BCA] ${SOFT_SHADOW}`}
+            className={`relative cursor-pointer ml-10 mt-8 rounded-lg border border-gray-300 bg-white px-12 py-3 text-base font-bold text-[#004BCA] ${SOFT_SHADOW}`}
           >
-            <Pencil className="size-4" /> Edit Profile
+            <Image
+              src={editIcon}
+              alt=""
+              className="absolute -left-1 -top-4 size-16 -rotate-6 object-contain"
+            />
+            Edit Profile
           </button>
         </div>
       </div>

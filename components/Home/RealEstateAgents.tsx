@@ -70,7 +70,7 @@ export default function RealEstateAgents({
           />
 
           <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-6 py-4">
-            Real Estate Agencies :
+            Real Estate Agency :
           </h2>
         </div>
       </div>

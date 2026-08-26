@@ -109,7 +109,7 @@ export default function UserPanelLayout({
                   onClick={() => setMobileOpen(false)}
                   className={`${styles.item} ${active ? styles.active : ""}`}
                 >
-                  <span className={active ? styles.labelActive : styles.label}>
+                  <span className={active ? styles.labelActive : styles.label }>
                     {label}
                   </span>
                   <Image src={Icon} alt="" priority className={styles.icon} />

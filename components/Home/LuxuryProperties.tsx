@@ -4,14 +4,19 @@ import React from "react";
 import Image from "next/image";
 import building from "../../public/luxuryheadingicon.svg";
 import { PropertySlider } from "./PropertySlider";
-import PropertyListingCardSlider from "./PropertyListingCardSlider";
 import { luxuryBuyProperties } from "@/lib/properties/buy/sections";
-import { luxuryRentProperties } from "@/lib/properties/rent/sections";
 import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
 const LuxuryHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
   <div className="flex w-fit mx-auto items-center  gap-2">
     {/* Text + Background */}
+    <Image
+      src={building}
+      alt="luxury properties"
+      width={100}
+      height={100}
+      className="shrink-0 "
+    />
     <div className="relative inline-flex items-center justify-center pr-4 pl-8 py-4 ">
       <Image
         src={backgroundimg}
@@ -33,21 +38,10 @@ const LuxuryHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
         >
           Luxury properties
         </h2>
-
-        <span className="font-amasis text-2xl font-semibold text-[#1FAF38] lg:text-[32px]">
-          {variant}
-        </span>
       </div>
     </div>
 
     {/* Building Image */}
-    <Image
-      src={building}
-      alt="luxury properties"
-      width={100}
-      height={100}
-      className="shrink-0 "
-    />
   </div>
 );
 
@@ -56,13 +50,6 @@ const LuxuryProperties = () => {
     <section className="mx-auto max-w-screen-2xl px-5 py-5">
       <LuxuryHeading variant="BUY" />
       <PropertySlider properties={luxuryBuyProperties} listingVariant="buy" />
-
-      <LuxuryHeading variant="RENT" />
-      <PropertyListingCardSlider
-        properties={luxuryRentProperties}
-        listingVariant="rent"
-        scrollLabel="luxury rent properties"
-      />
     </section>
   );
 };

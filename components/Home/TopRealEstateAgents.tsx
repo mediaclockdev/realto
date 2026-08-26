@@ -13,7 +13,7 @@ const TopRealEstateAgents = () => {
   return (
     <div>
       <AgentCarousel
-        variant="TOP REAL ESTATE "
+        variant=" Real estate "
         heading="Agents"
         agents={agents}
         headingClassName="text-base lg:text-[32px] font-extrabold reel-text-heading font-amasis text-[#000000] [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"

@@ -137,7 +137,7 @@ export default function UserPanelDashboard() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <div className="w-fit rounded-lg border border-yellow-400 bg-white px-2 py-2 font-semibold text-[#E1AB18]">
-            <p className="flex items-center gap-2 text-xl">
+            <p className="flex items-center gap-2 text-xl font-inter">
               Dashboard
               <Image
                 src={dashboardicon}
@@ -147,7 +147,7 @@ export default function UserPanelDashboard() {
               />
             </p>
           </div>
-          <p className="mt-3 italic text-gray-600">
+          <p className="mt-3 italic text-gray-600 font-TimesNewRoman">
             Welcome back, Masha! Here&apos;s what&apos;s happening today.
           </p>
         </div>
