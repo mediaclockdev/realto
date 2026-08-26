@@ -71,7 +71,7 @@ const Contact = ({ images = IMAGES, interval = 4000 }: ContactProps) => {
               className="w-full h-auto"
             />
 
-            <div className="absolute left-3 top-11 -translate-y-1/2 ">
+            <div className="absolute left-3 top-9 -translate-y-1/2 ">
               <Image src={mail} alt="mail" className="" />
             </div>
 

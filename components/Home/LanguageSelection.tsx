@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import indianflag from "../../public/India.svg";
 import koreanflag from "../../public/koreanflag.svg";
 import franceflag from "../../public/Franceflag.svg";
@@ -27,7 +27,7 @@ import australia from "../../public/austrilaflag.svg";
 import thailand from "../../public/thailandflag.svg";
 import germany from "../../public/germanyflag.svg";
 import philippines from "../../public/Philippineflag.svg";
-import backgroundimg from "@/public/homepageheadingbackground.svg";
+import backgroundimg from "@/public/homepageheadingbackground2.svg";
 // import bangladesh from "../../public/bangladesh.svg";
 // import malasyia from "../../public/malasyianflag.svg";
 // import samoan from "../../public/samoan.svg";
@@ -261,7 +261,7 @@ const LanguageSelection = () => {
             className="absolute inset-0 w-full h-full"
           />
 
-          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading py-4 pl-[76px] pr-8 lg:pl-[78px]">
+          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading py-4 pl-[76px] pr-8 lg:pl-[98px]">
             Language selection
           </h2>
         </div>
@@ -269,9 +269,9 @@ const LanguageSelection = () => {
         <Image
           src={world}
           alt={"World"}
-          width={104}
-          height={104}
-          className="absolute left-0 top-1/2 z-20 h-[72px] w-[72px] -translate-y-1/2 rounded-full lg:h-[70px] lg:w-[70px]"
+          width={70}
+          height={70}
+          className="absolute left-5 top-6 z-20 h-[55px] w-[55px] -translate-y-1/2 rounded-full lg:h-[65px] lg:w-[65px]"
         />
       </div>
 
