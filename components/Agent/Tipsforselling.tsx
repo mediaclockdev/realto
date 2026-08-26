@@ -4,6 +4,7 @@ import Collette2 from "../../public/Collette2.svg";
 import Collette3 from "../../public/Collette3.svg";
 import Collette4 from "../../public/Collette4.svg";
 import Image from "next/image";
+import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
 const blogs = [
   {
@@ -31,16 +32,19 @@ const blogs = [
 const Tipsforselling = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 space-y-5">
-      <h2
-        className=" font-semibold font-poppins text-xl
-         text-[#111827] px-4 py-2 rounded-md inline-block  [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
-        }}
-      >
-        Tips for selling
-      </h2>
+      <div className="flex justify-center mb-4">
+        <div className="relative inline-flex items-center justify-center">
+          <Image
+            src={backgroundimg}
+            alt="background image"
+            className="absolute inset-0 w-full h-full"
+          />
+
+          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-6 py-4">
+            Tips for selling
+          </h2>
+        </div>
+      </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
         {blogs.map((item, idx) => (

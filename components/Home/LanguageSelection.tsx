@@ -49,6 +49,8 @@ import backgroundimg from "@/public/homepageheadingbackground.svg";
 // import tagalog from "../../public/tagalog.svg";
 // import tongon from "../../public/tongan.svg";
 // import ukrainian from "../../public/ukrainian.svg";
+import left from "@/public/homepagearrowleft.svg";
+import right from "@/public/homepagearrowright.svg";
 
 const LanguageSelection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -251,16 +253,7 @@ const LanguageSelection = () => {
 
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
-      <div className="flex items-center gap-3">
-        <div className="shrink-0 relative group/selected">
-          <Image
-            src={world}
-            alt={"World"}
-            width={70}
-            height={70}
-            className="rounded-full"
-          />
-        </div>
+      <div className="relative w-fit">
         <div className="relative inline-flex items-center justify-center">
           <Image
             src={backgroundimg}
@@ -268,19 +261,27 @@ const LanguageSelection = () => {
             className="absolute inset-0 w-full h-full"
           />
 
-          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
+          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading py-4 pl-[76px] pr-8 lg:pl-[78px]">
             Language selection
           </h2>
         </div>
+
+        <Image
+          src={world}
+          alt={"World"}
+          width={104}
+          height={104}
+          className="absolute left-0 top-1/2 z-20 h-[72px] w-[72px] -translate-y-1/2 rounded-full lg:h-[70px] lg:w-[70px]"
+        />
       </div>
 
       <div className="relative group flex items-center gap-3">
         {scrollLeft > 10 && (
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 mt-[-12] -ml-4"
+            className="absolute cursor-pointer left-0 top-1/2 -translate-y-1/2 z-10 rounded-full shadow-lg transition-opacity duration-300 mt-[-12] -ml-4"
           >
-            <ChevronLeft className="w-5 h-5 text-gray-800" />
+            <Image src={left} alt="arrow left" className="w-10 h-10 " />
           </button>
         )}
 
@@ -360,9 +361,9 @@ const LanguageSelection = () => {
         {!isAtEnd && (
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-opacity duration-300 -mr-4 mt-[-12]"
+            className="absolute cursor-pointer right-0 top-1/2 -translate-y-1/2 z-10 shadow-lg rounded-full transition-opacity duration-300 -mr-4 mt-[-12]"
           >
-            <ChevronRight className="w-5 h-5 text-gray-800" />
+            <Image src={right} alt="arrow right" className="w-10 h-10 " />
           </button>
         )}
       </div>
