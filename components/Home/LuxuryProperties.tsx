@@ -8,15 +8,8 @@ import { luxuryBuyProperties } from "@/lib/properties/buy/sections";
 import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
 const LuxuryHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
-  <div className="flex w-fit mx-auto items-center  gap-2">
-    {/* Text + Background */}
-    <Image
-      src={building}
-      alt="luxury properties"
-      width={100}
-      height={100}
-      className="shrink-0 "
-    />
+  <div className="flex justify-center">
+    <div className="relative w-fit">
     <div className="relative inline-flex items-center justify-center pr-4 pl-8 py-4 ">
       <Image
         src={backgroundimg}
@@ -41,7 +34,14 @@ const LuxuryHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
       </div>
     </div>
 
-    {/* Building Image */}
+      <Image
+        src={building}
+        alt="luxury properties"
+        width={100}
+        height={100}
+        className="absolute right-full top-1/2 mr-2 -translate-y-1/2"
+      />
+    </div>
   </div>
 );
 
