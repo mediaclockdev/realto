@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import AuthInput from "./AuthInput";
+import { signup } from "@/lib/api/auth";
 import emailIcon from "@/public/authicons/emailicon.svg";
 import nameIcon from "@/public/authicons/dl.svg";
 import phoneIcon from "@/public/authicons/phone.svg";
@@ -31,22 +32,20 @@ export default function Signup({
     setPending(true);
     setError("");
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/agents/signup`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ ...body, role: isAgent ? "agent" : "user" }),
-        },
-      );
-      const json = await res.json();
-      if (!res.ok || !json.success)
-        return setError(json.message ?? "Signup failed");
+      const json = await signup({ ...body, role: isAgent ? "agent" : "user" });
+      if (!json.success) return setError(json.message ?? "Signup failed");
+
+      const token = (json as any).token || (json.data as any)?.token;
+      if (token) {
+        localStorage.setItem("token", token);
+      }
+
       // trust the API's flag, not the role
-      const me = json.data.agent;
-      if (me.is_approved) window.location.href = "/login";
-      else setDone(json.message);
+      const me = json.data?.agent;
+      if (me?.is_approved)
+        window.location.href =
+          me.role === "agent" ? "/agentpanel" : "/userpanel";
+      else setDone(json.message ?? "Your request is pending approval.");
     } catch {
       setError("Network error. Please try again.");
     } finally {
@@ -89,11 +88,11 @@ export default function Signup({
         <div className="flex gap-2">
           <select
             name="country_code"
-            defaultValue="+91"
+            defaultValue="+61"
             className="h-12 shrink-0 cursor-pointer rounded-xl border-2 border-[#C9A227] bg-white px-2 text-base text-[#1f2a28] outline-none sm:h-14"
           >
-            <option value="+91">+91</option>
             <option value="+61">+61</option>
+            <option value="+91">+91</option>
             <option value="+1">+1</option>
             <option value="+44">+44</option>
             <option value="+971">+971</option>

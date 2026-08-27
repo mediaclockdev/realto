@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import AuthInput from "./AuthInput";
+import { login } from "@/lib/api/auth";
 import emailIcon from "@/public/authicons/emailicon.svg";
 import passwordIconView from "@/public/authicons/eyeopen.svg";
 import passwordIconClosed from "@/public/authicons/eyeclosed.svg";
@@ -24,23 +25,21 @@ export default function Login({
     setPending(true);
     setError("");
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/agents/login`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify(
-            Object.fromEntries(new FormData(e.currentTarget)),
-          ),
-        },
-      );
-      const json = await res.json();
+      const json = await login({
+        ...Object.fromEntries(new FormData(e.currentTarget)),
+        role: isAgent ? "agent" : "user",
+      });
       // API rejects unapproved agents with its own message
-      if (!res.ok || !json.success)
+      if (!json.success)
         return setError(json.message ?? "Invalid email or password");
+      
+      const token = (json as any).token || (json.data as any)?.token;
+      if (token) {
+        localStorage.setItem("token", token);
+      }
+
       const me = json.data?.agent;
-      window.location.href = me?.role === "agent" ? "/agent" : "/";
+      window.location.href = me?.role === "agent" ? "/agentpanel" : "/userpanel";
     } catch {
       setError("Network error. Please try again.");
     } finally {

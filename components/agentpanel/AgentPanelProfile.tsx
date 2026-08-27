@@ -1,5 +1,10 @@
+"use client";
+
 import Image, { type StaticImageData } from "next/image";
 import { CheckCircle2, XCircle, Link2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { getAgentProfile, updateAgentProfile, Agent } from "@/lib/api/profile";
+import toast from "react-hot-toast";
 
 import avatar from "@/public/agentimg1.jpg";
 import linkedinIcon from "@/public/logos_linkedin.svg";
@@ -86,68 +91,6 @@ const stats = [
   },
 ];
 
-const personalFields = [
-  {
-    label: "Full Name",
-    value: "Parker Realestate",
-    image: licenseIcon,
-    valid: true,
-  },
-  {
-    label: "Email Address",
-    value: "parker.realestate@gmail.com",
-    image: mailIcon,
-    valid: true,
-  },
-  {
-    label: "Phone Number",
-    value: "0142 345 678",
-    image: mobileIcon,
-    valid: true,
-  },
-  {
-    label: "Landline",
-    value: "03 9123 4567",
-    image: telephoneIcon,
-    valid: true,
-  },
-  {
-    label: "Address",
-    value: "123 Broadway, New York, NY 10001, USA",
-    image: locationIcon,
-    valid: true,
-    full: true,
-  },
-  {
-    label: "Company Name",
-    value: "Parker Realestate Group",
-
-    valid: true,
-  },
-  {
-    label: "Your Title",
-    value: "Senior Real Estate Agent",
-
-    valid: true,
-  },
-  {
-    label: "Website",
-    value: "www.parkerrealestate.com",
-    image: globeIcon,
-    valid: false,
-    full: true,
-  },
-  { label: "License No.", value: "#12345678", valid: false },
-  { label: "Total Experience (Years)", value: "9", valid: false },
-];
-
-const bio = {
-  label: "About / Bio",
-  value:
-    "Experienced real estate agent specializing in residential and commercial properties. Helping clients find their perfect space with dedicated expertise and a track record of success in the New York market.",
-  valid: false,
-};
-
 const socialLinks: { label: string; image?: StaticImageData }[] = [
   { label: "LinkedIn", image: linkedinIcon },
   { label: "Instagram", image: instagramIcon },
@@ -226,12 +169,14 @@ function StatusDot({ valid }: { valid: boolean }) {
 function FieldBox({
   label,
   value,
+  name,
   image,
   valid,
   full,
 }: {
   label: string;
   value: string;
+  name: string;
   image?: StaticImageData;
   valid: boolean;
   full?: boolean;
@@ -249,6 +194,7 @@ function FieldBox({
         </span>
         <input
           type="text"
+          name={name}
           defaultValue={value}
           className="mt-0.5 w-full text-xl text-gray-900 outline-none placeholder:text-gray-400"
         />
@@ -266,8 +212,111 @@ function FieldBox({
 }
 
 export default function AgentPanelProfile() {
+  const [agent, setAgent] = useState<Agent | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function fetchProfile() {
+      const res = await getAgentProfile();
+      if (res.success && res.data) {
+        setAgent(res.data);
+      } else {
+        setError(res.message || "Failed to load profile details.");
+      }
+      setLoading(false);
+    }
+    fetchProfile();
+  }, []);
+
+  const personalFields = [
+    {
+      label: "Full Name",
+      name: "name",
+      value: agent?.name || "",
+      image: licenseIcon,
+      valid: !!agent?.name,
+    },
+    {
+      label: "Email Address",
+      name: "email",
+      value: agent?.email || "",
+      image: mailIcon,
+      valid: !!agent?.email,
+    },
+    {
+      label: "Phone Number",
+      name: "phone",
+      value: agent?.phone || "",
+      image: mobileIcon,
+      valid: !!agent?.phone,
+    },
+    {
+      label: "Landline",
+      name: "landline",
+      value: "03 9123 4567",
+      image: telephoneIcon,
+      valid: true,
+    },
+    {
+      label: "Address",
+      name: "address",
+      value: agent?.address || "",
+      image: locationIcon,
+      valid: !!agent?.address,
+      full: true,
+    },
+    {
+      label: "Company Name",
+      name: "company_name",
+      value: agent?.company_name || "",
+      valid: !!agent?.company_name,
+    },
+    {
+      label: "Your Title",
+      name: "title",
+      value: agent?.title || "",
+      valid: !!agent?.title,
+    },
+    {
+      label: "Website",
+      name: "website",
+      value: agent?.website || "",
+      image: globeIcon,
+      valid: !!agent?.website,
+      full: true,
+    },
+    { label: "License No.", name: "license_no", value: agent?.license_no || "", valid: !!agent?.license_no },
+    { label: "Total Experience (Years)", name: "total_experience", value: agent?.total_experience?.toString() || "", valid: !!agent?.total_experience },
+  ];
+  const bio = {
+    label: "About / Bio",
+    value: agent?.bio || "",
+    valid: !!agent?.bio,
+  };
+
+  const [saving, setSaving] = useState(false);
+
+  async function onSave(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSaving(true);
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+    
+    const res = await updateAgentProfile(data);
+    setSaving(false);
+    if (res.success) {
+      toast.success("Profile updated successfully!");
+      if (res.data) setAgent(res.data);
+    } else {
+      toast.error(res.message || "Failed to update profile.");
+    }
+  }
+
+  if (loading) return <div className="p-8 text-center">Loading profile...</div>;
+  if (error) return <div className="p-8 text-center text-red-500">{error}</div>;
   return (
-    <main className="space-y-5">
+    <form onSubmit={onSave} className="space-y-5">
       <div>
         <p className="flex w-40 items-center justify-between gap-2 rounded-lg border border-yellow-400 bg-white px-2 py-2 font-bold text-[#E1AB18]">
           Profile
@@ -285,7 +334,7 @@ export default function AgentPanelProfile() {
             <div className="relative">
               <Image
                 src={avatar}
-                alt="Parker Realestate"
+                alt={agent?.name || "Profile Picture"}
                 className="size-60 rounded-full object-cover"
               />
               <button
@@ -301,13 +350,14 @@ export default function AgentPanelProfile() {
             </div>
             <div>
               <p className="text-3xl font-bold text-[#2495FF]">
-                Parker Realestate
+                {agent?.name || "Parker Realestate"}
               </p>
               <p className="text-lg text-[#424656] font-medium">
-                Senior Real Estate Agent • New York, USA
+                {agent?.title || "Senior Real Estate Agent"}{" "}
+                • {agent?.address || "New York, USA"}
               </p>
               <p className="text-base text-[#737687] font-medium">
-                Member since Jan 2026
+                Member since {agent?.created_at ? new Date(agent.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : "Jan 2026"}
               </p>
             </div>
           </div>
@@ -356,6 +406,7 @@ export default function AgentPanelProfile() {
                 </span>
                 <textarea
                   rows={3}
+                  name="bio"
                   defaultValue={bio.value}
                   className="mt-0.5 w-full resize-none text-xl text-gray-900 outline-none"
                 />
@@ -444,10 +495,14 @@ export default function AgentPanelProfile() {
       </div>
 
       <div className="flex justify-end">
-        <button className="rounded-xl bg-blue-600 px-8 py-3 font-bold text-white">
-          Save Changes
+        <button
+          type="submit"
+          disabled={saving}
+          className="rounded-xl bg-blue-600 px-8 py-3 font-bold text-white disabled:opacity-60"
+        >
+          {saving ? "Saving..." : "Save Changes"}
         </button>
       </div>
-    </main>
+    </form>
   );
 }
