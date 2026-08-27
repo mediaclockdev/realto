@@ -8,6 +8,7 @@ import MarqueeCards from "../ui/MarqueeCards";
 import Image from "next/image";
 import backgroundimg from "@/public/homepageheadingbackground1.svg";
 import student from "@/public/homepagestudenticon.svg";
+import heading from "@/public/homepageheadingicons/studentresidency.svg";
 
 const partners = [
   partner1,
@@ -25,26 +26,8 @@ const partners = [
 const StudentresidencyPartners = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
-      <div className="flex justify-center">
-        <div className="relative w-fit">
-          <div className="relative inline-flex items-center justify-center gap-2 px-8 py-4">
-            <Image
-              src={backgroundimg}
-              alt="heading background"
-              className="absolute inset-0 w-full h-full"
-            />
-
-            <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading">
-              Student Residency
-            </h2>
-          </div>
-
-          <Image
-            src={student}
-            alt=""
-            className="absolute right-full top-1/2 mr-2 -translate-y-1/2"
-          />
-        </div>
+      <div className="flex justify-center mb-4">
+        <Image src={heading} alt="heading " className="" />
       </div>
 
       <MarqueeCards items={partners} speed="fast" />

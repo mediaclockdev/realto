@@ -5,6 +5,7 @@ import Collette3 from "../../public/Collette3.svg";
 import Collette4 from "../../public/Collette4.svg";
 import Image from "next/image";
 import backgroundimg from "@/public/homepageheadingbackground1.svg";
+import newsheading from "@/public/homepageheadingicons/news.svg";
 
 const blogs = [
   {
@@ -29,10 +30,13 @@ const blogs = [
   },
 ];
 
-const Tipsforselling = () => {
+const Tipsforselling = ({ newsHeading = false }: { newsHeading?: boolean }) => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 space-y-5">
       <div className="flex justify-center mb-4">
+        {newsHeading ? (
+          <Image src={newsheading} alt="heading" />
+        ) : (
         <div className="relative inline-flex items-center justify-center">
           <Image
             src={backgroundimg}
@@ -44,6 +48,7 @@ const Tipsforselling = () => {
             Tips for selling
           </h2>
         </div>
+        )}
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-5">

@@ -6,42 +6,11 @@ import building from "../../public/luxuryheadingicon.svg";
 import { PropertySlider } from "./PropertySlider";
 import { luxuryBuyProperties } from "@/lib/properties/buy/sections";
 import backgroundimg from "@/public/homepageheadingbackground1.svg";
+import heading from "@/public/homepageheadingicons/luxuryproperties.svg";
 
 const LuxuryHeading = ({ variant }: { variant: "BUY" | "RENT" }) => (
   <div className="flex justify-center">
-    <div className="relative w-fit">
-    <div className="relative inline-flex items-center justify-center pr-4 pl-8 py-4 ">
-      <Image
-        src={backgroundimg}
-        alt="heading background"
-        className="absolute inset-0 w-full h-full"
-      />
-
-      <div className="relative z-10 flex items-baseline gap-2">
-        <h2
-          className="font-amasis font-semibold text-base lg:text-[32px]"
-          style={{
-            background:
-              "linear-gradient(180deg, #F5D06A 0%, #B8860B 50%, #8B6914 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            WebkitTextStroke: "1px #8B6914",
-            filter: "drop-shadow(2px 2px 3px rgba(0,0,0,0.4))",
-          }}
-        >
-          Luxury properties
-        </h2>
-      </div>
-    </div>
-
-      <Image
-        src={building}
-        alt="luxury properties"
-        width={100}
-        height={100}
-        className="absolute right-full top-1/2 mr-2 -translate-y-1/2"
-      />
-    </div>
+    <Image src={heading} alt="heading" />
   </div>
 );
 

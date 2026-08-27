@@ -1,5 +1,6 @@
 import AgentCarousel, { Agent } from "@/components/ui/AgentCarousel";
 import { agentsCatalog } from "@/lib/agents/mock-data";
+import heading from "@/public/homepageheadingicons/realestateagent.svg";
 
 const TopRealEstateAgents = () => {
   const agents: Agent[] = agentsCatalog.map((agent) => ({
@@ -12,12 +13,7 @@ const TopRealEstateAgents = () => {
 
   return (
     <div>
-      <AgentCarousel
-        variant=" Real estate "
-        heading="Agents"
-        agents={agents}
-        headingClassName="text-base lg:text-[32px] font-extrabold reel-text-heading font-amasis text-[#000000] [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]"
-      />
+      <AgentCarousel headingImage={heading} agents={agents} />
     </div>
   );
 };

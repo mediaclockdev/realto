@@ -26,7 +26,7 @@ import yehs from "../../public/yehs.svg";
 import theritzcarlton from "../../public/theritzcarlton.svg";
 import Image from "next/image";
 import backgroundimg from "@/public/homepageheadingbackground.svg";
-import headingiocn from "@/public/hotelheadingicon.svg";
+import heading from "@/public/homepageheadingicons/hotelroombooking.svg";
 
 interface HotelLogosProps {
   headingColor?: string;
@@ -69,27 +69,7 @@ const HotelLogos = ({
       </h2> */}
       {pillHeading ? (
         <div className="flex justify-center mb-4">
-          <div className="relative w-fit">
-            <div className="relative inline-flex items-center justify-center">
-              <Image
-                src={backgroundimg}
-                alt="heading background"
-                className="absolute inset-0 w-full h-full"
-              />
-
-              <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading px-8 py-4">
-                Hotel Room Booking
-              </h2>
-            </div>
-
-            <Image
-              src={headingiocn}
-              alt="hotel franchise"
-              width={80}
-              height={70}
-              className="absolute right-full top-1/2 mr-2 -translate-y-1/2"
-            />
-          </div>
+          <Image src={heading} alt="" />
         </div>
       ) : (
         <h2

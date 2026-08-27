@@ -68,7 +68,7 @@ const page = () => {
         <LatestLandForSale />
       </div>
       {/* <LandRealEstateAgents /> */}
-      <Tipsforselling />
+      <Tipsforselling newsHeading />
       {/* heading change */}
       <Contact />
     </div>

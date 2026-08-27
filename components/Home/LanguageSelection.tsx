@@ -51,6 +51,7 @@ import backgroundimg from "@/public/homepageheadingbackground2.svg";
 // import ukrainian from "../../public/ukrainian.svg";
 import left from "@/public/homepagearrowleft.svg";
 import right from "@/public/homepagearrowright.svg";
+import heading from "@/public/homepageheadingicons/languagesection.svg";
 
 const LanguageSelection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -253,26 +254,8 @@ const LanguageSelection = () => {
 
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
-      <div className="relative w-fit">
-        <div className="relative inline-flex items-center justify-center">
-          <Image
-            src={backgroundimg}
-            alt="heading background"
-            className="absolute inset-0 w-full h-full"
-          />
-
-          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading py-4 pl-[76px] pr-8 lg:pl-[98px]">
-            Language selection
-          </h2>
-        </div>
-
-        <Image
-          src={world}
-          alt={"World"}
-          width={70}
-          height={70}
-          className="absolute left-5 top-6 z-20 h-[55px] w-[55px] -translate-y-1/2 rounded-full lg:h-[65px] lg:w-[65px]"
-        />
+      <div className="">
+        <Image src={heading} alt="heading" />
       </div>
 
       <div className="relative group flex items-center gap-3">

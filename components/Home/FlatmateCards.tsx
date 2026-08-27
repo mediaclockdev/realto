@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ListingCard from "@/components/Flatmate/ListingCard";
 import { flatmateListings } from "@/lib/flatmate/data";
-import backgroundimg from "@/public/homepageheadingbackground1.svg";
+import heading from "@/public/homepageheadingicons/sharedaccomodation.svg";
 import Image from "next/image";
 
 const VISIBLE_COUNT = 8;
@@ -36,18 +36,8 @@ const FlatmateCards = () => {
 
   return (
     <section className="mx-auto max-w-screen-2xl px-5 py-5">
-      <div className="flex justify-center">
-        <div className="relative inline-flex items-center justify-center gap-2 px-6 py-4">
-          <Image
-            src={backgroundimg}
-            alt="heading background"
-            className="absolute inset-0 w-full h-full"
-          />
-
-          <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading">
-            Shared Accomodation
-          </h2>
-        </div>
+      <div className="flex justify-center mb-4">
+        <Image src={heading} alt="heading" />
       </div>
 
       <div className="relative">

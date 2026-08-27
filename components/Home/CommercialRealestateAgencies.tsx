@@ -11,8 +11,8 @@ import raywhite from "../../public/raywhitecommercial.svg";
 import cushman from "../../public/cushman&wakefield.svg";
 import belle from "../../public/belle.svg";
 import Image from "next/image";
-import backgroundimg from "@/public/homepageheadingbackground2.svg";
-import commercial from "@/public/homepagecommercialicon.svg";
+
+import heading from "@/public/homepageheadingicons/commercialrealestate.svg";
 
 const CommercialRealestateAgencies = () => {
   const franchise = [
@@ -30,25 +30,7 @@ const CommercialRealestateAgencies = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5">
       <div className="flex justify-center mb-4">
-        <div className="relative w-fit">
-          <div className="relative inline-flex items-center justify-center gap-2 px-8 py-4">
-            <Image
-              src={backgroundimg}
-              alt="heading background"
-              className="absolute inset-0 w-full h-full"
-            />
-
-            <h2 className="relative z-10 text-center font-extrabold font-amasis text-base lg:text-[32px] reel-text-heading">
-              Commercial Realestate
-            </h2>
-          </div>
-
-          <Image
-            src={commercial}
-            alt=""
-            className="absolute right-full top-1/2 mr-2 -translate-y-1/2"
-          />
-        </div>
+        <Image src={heading} alt="heading " className="" />
       </div>
 
       <MarqueeCards items={franchise} speed="fast" />

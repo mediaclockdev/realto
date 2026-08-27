@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import anzbank from "../../public/anzbank.svg";
 import aussiebank from "../../public/aussieBank.svg";
 import nabbank from "../../public/nabbank.svg";
@@ -24,10 +24,15 @@ import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
 interface BanksProps {
   heading?: string;
+  headingImage?: StaticImageData;
   pillHeading?: boolean;
 }
 
-const Banks = ({ heading = "Banks", pillHeading = false }: BanksProps) => {
+const Banks = ({
+  heading = "Banks",
+  headingImage,
+  pillHeading = false,
+}: BanksProps) => {
   const bank = [
     { name: "Aussie", icon: aussiebank, interest: "6.94% p.a.%" },
     { name: "Nab bank", icon: nabbank, interest: "6.94% p.a.%" },
@@ -73,7 +78,11 @@ const Banks = ({ heading = "Banks", pillHeading = false }: BanksProps) => {
 
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 overflow-hidden">
-      {pillHeading ? (
+      {headingImage ? (
+        <div className="flex justify-center mb-4">
+          <Image src={headingImage} alt="heading" />
+        </div>
+      ) : pillHeading ? (
         <div className="flex justify-center mb-4">
           <div className="relative inline-flex items-center justify-center">
             <Image
