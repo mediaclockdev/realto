@@ -1,6 +1,7 @@
 import { Endpoints } from "./Endpoints";
 import axiosClient from "./axiosClient";
 import { Agent, ApiResult } from "./auth";
+export type { Agent };
 
 export type User = {
   id?: string;
