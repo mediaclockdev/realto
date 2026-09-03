@@ -35,6 +35,7 @@ const TopHotelOffers = dynamic(
   () => import("@/components/Home/TopHotelOffers"),
 );
 const Contact = dynamic(() => import("@/components/Home/Contact"));
+const Reviews = dynamic(() => import("@/components/Home/Reviews"));
 
 const page = () => {
   return (
@@ -71,6 +72,7 @@ const page = () => {
       <Tipsforselling newsHeading />
       {/* heading change */}
       <Contact />
+      <Reviews />
     </div>
   );
 };

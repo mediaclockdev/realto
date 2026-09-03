@@ -3,8 +3,6 @@ import Image from "next/image";
 import PropertyListingCardSlider from "./PropertyListingCardSlider";
 
 import { newlyListedRentProperties } from "@/lib/properties/rent/sections";
-import backgroundimg from "@/public/homepageheadingbackground.svg";
-import rent from "@/public/homepagerenticon.svg";
 import heading from "@/public/homepageheadingicons/rent.svg";
 
 const SectionHeading = ({ title }: { title: string }) => (

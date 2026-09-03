@@ -7,6 +7,7 @@ import PropertyGrid from "./PropertyGrid";
 import Image from "next/image";
 import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
+
 type PopularCityPropertiesSectionProps = {
   title?: string;
   citiesData: Record<string, Property[]>;

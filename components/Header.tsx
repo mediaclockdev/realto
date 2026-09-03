@@ -90,7 +90,7 @@ const Header = () => {
         >
           {/* loginbg.png is a 1536x1024 canvas holding a 1180x200 pill;
               this scale crops the padding so the pill fills the button */}
-          <Image
+          {/* <Image
             src={blueglassbackground}
             alt=""
             fill
@@ -105,7 +105,13 @@ const Header = () => {
           />
           <span className="relative text-base font-bold text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)] sm:text-lg">
             Sign In
-          </span>
+          </span> */}
+          <Image
+            src={signinbtn}
+            alt="Sign In"
+            loading="eager"
+            className="relative w-24 h-auto sm:w-32"
+          />
         </button>
 
         <dialog
