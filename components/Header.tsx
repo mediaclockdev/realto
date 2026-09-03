@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import signinbtn from "@/public/signinbtnicon.svg";
-import blueglassbackground from "@/public/loginbg.png";
+import blueglassbackground from "@/public/loginbg.svg";
 import usericon from "@/public/loginusericon.svg";
 import Link from "next/link";
 import realtologogif1 from "@/public/Realto Logo - 1.gif";
@@ -86,7 +86,7 @@ const Header = () => {
             setView("choose");
             dialogRef.current?.showModal();
           }}
-          className="relative flex h-11 shrink-0 self-start cursor-pointer items-center gap-2 overflow-hidden  pl-1.5 pr-5 transition-transform duration-200 active:scale-95 sm:h-12 sm:gap-2.5 sm:pr-6"
+          className="relative -top-10 flex  shrink-0 cursor-pointer items-center gap-2 overflow-hidden transition-transform duration-200 active:scale-95 sm:h-12 sm:gap-2.5 sm:pr-6"
         >
           {/* loginbg.png is a 1536x1024 canvas holding a 1180x200 pill;
               this scale crops the padding so the pill fills the button */}
@@ -106,12 +106,19 @@ const Header = () => {
           <span className="relative text-base font-bold text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)] sm:text-lg">
             Sign In
           </span> */}
-          <Image
+          <Image src={blueglassbackground} alt="bg" className="w-full h-full" />
+          <div className="absolute top-1/2 left-10 transform -translate-y-1/2 flex items-center justify-center gap-2">
+            <Image src={usericon} alt="" loading="eager" className="" />
+            <span className="relative text-base font-bold text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)] sm:text-lg">
+              Sign In
+            </span>
+          </div>
+          {/* <Image
             src={signinbtn}
             alt="Sign In"
             loading="eager"
             className="relative w-24 h-auto sm:w-32"
-          />
+          /> */}
         </button>
 
         <dialog
