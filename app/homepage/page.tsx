@@ -45,20 +45,24 @@ const page = () => {
       <div className="keep-heading-inline mb-2">
         <LanguageSelection />
       </div>
-      <div className="mb-2">
+      <div className="py-3 space-y-4">
         <RealEstateAgents enhancedHeading />
         <BuyProperties />
         <LuxuryProperties />
         <TopRealEstateAgents />
         <RentProperties />
       </div>
-      <div className="mb-2">
+      <div className="py-5">
         <BrokersandBrokerage />
       </div>
-      <HotelLogos headingColor="text-black" pillHeading />
-      <LastMinuteHotels pillHeading />
-      <StudentresidencyPartners />
-      <RoomsAndPrices />
+      <div className="py-5">
+        <HotelLogos headingColor="text-black" pillHeading />
+        <LastMinuteHotels pillHeading />
+      </div>
+      <div className="py-5">
+        <StudentresidencyPartners />
+        <RoomsAndPrices />
+      </div>
       <div className="mb-2">
         <FlatmateCards />
       </div>
@@ -71,8 +75,8 @@ const page = () => {
       {/* <LandRealEstateAgents /> */}
       <Tipsforselling newsHeading />
       {/* heading change */}
-      <Contact />
       <Reviews />
+      <Contact />
     </div>
   );
 };

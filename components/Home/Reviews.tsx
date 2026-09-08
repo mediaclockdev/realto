@@ -87,19 +87,22 @@ const Reviews: React.FC = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 flex flex-col justify-center items-center">
       <div className="flex flex-col justify-center items-center gap-2">
-        <h2 className="text-[#007CBE] font-semibold text-[15px] font-amasis">
-          Reviews
-        </h2>
+        <div className="bg-[#ECC850] rounded-lg px-10 py-2">
+          <span className="font-amasis font-black text-[32px] text-white [-webkit-text-stroke:0.5px_#000000] [text-shadow:1px_1px_3px_rgba(0,0,0,1),2px_2px_10px_rgba(0,0,0,0.85)]">
+            Reviews
+          </span>
+        </div>
         <p className="text-[#6B7280] font-poppins text-base font-normal">
           What people say about finding their place with Realto
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-        {reviews.map((items) => (
+      <div className="marquee-wrapper mt-5">
+        <div className="marquee-track">
+          {[...reviews, ...reviews, ...reviews].map((items, i) => (
           <div
-            key={items.id}
-            className="p-[2px] rounded-xl inline-block hover:scale-105 transition-all duration-300"
+            key={i}
+            className="flex-shrink-0 w-[360px] mx-2 p-[2px] rounded-xl"
             style={{
               background:
                 "linear-gradient(180deg, rgba(237,200,78,0.97) 0%, #ECC440 54%)",
@@ -140,7 +143,8 @@ const Reviews: React.FC = () => {
               </div>
             </div>
           </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -76,20 +76,9 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           <p className="text-xs text-gray-500 mb-3">{property.location}</p>
 
           <div className="flex justify-between items-end">
-            {/* Price */}
-            <div>
-              <span className="text-[11px] text-gray-500 block">From</span>
-              <div className="flex items-baseline gap-0.5">
-                <span className="font-extrabold text-lg text-gray-900">
-                  ${property.price}
-                </span>
-                <span className="text-xs text-gray-500">/ Week</span>
-              </div>
-            </div>
-
             {/* Rating */}
-            <div className="text-right">
-              <div className="flex items-center justify-end gap-1">
+            <div className="">
+              <div className="flex items-center  gap-1">
                 <span className="font-bold text-sm text-green-500">
                   {property.rating}
                 </span>
@@ -100,6 +89,16 @@ export default function PropertyCard({ property }: PropertyCardProps) {
               <span className="text-[11px] text-gray-500">
                 ({property.reviews.toLocaleString()} reviews)
               </span>
+            </div>
+            {/* Price */}
+            <div>
+              <span className="text-[11px] text-gray-500 block">From</span>
+              <div className="flex items-baseline gap-0.5">
+                <span className="font-extrabold text-lg text-gray-900">
+                  ${property.price}
+                </span>
+                <span className="text-xs text-gray-500">/ Week</span>
+              </div>
             </div>
           </div>
         </div>

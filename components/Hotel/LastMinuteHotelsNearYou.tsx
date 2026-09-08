@@ -148,10 +148,10 @@ export const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
           : "0 10px 25px -10px rgba(0,0,0,0.08)",
       }}
     >
-      <div className="bg-gray-100 rounded-2xl flex flex-col justify-between h-full overflow-hidden shadow-md px-2 py-2 border">
+      <div className="bg-gray-100 rounded-2xl flex flex-col justify-between h-full overflow-hidden  px-2 py-2 shadow-[-5px_5px_20px_-3px_rgba(0,0,0,0.9)]">
         {/* Top Brand/Logo & City Bar */}
 
-        <div className="flex items-center justify-center gap-2 border-b border-gray-200 py-2 shadow-md rounded-2xl shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.1)] bg-white">
+        <div className="flex items-center justify-center gap-2 border-b border-gray-200 py-2  rounded-2xl shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.1)] bg-white">
           {brandLogo ? (
             <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center  border border-gray-100 shadow-sm p-1">
               <Image
@@ -349,9 +349,7 @@ const LastMinuteHotels = ({
   };
 
   return (
-    <div
-      className={`max-w-screen-2xl mx-auto px-2 lg:px-5 ${pillHeading ? "py-5" : "py-8"}`}
-    >
+    <div className={`max-w-screen-2xl mx-auto px-2  ${pillHeading}`}>
       {/* Header */}
       {/* <div className={`flex items-center justify-between ${pillHeading ? "mb-4" : "mb-2"}`}> */}
       {/* <div
@@ -401,7 +399,7 @@ const LastMinuteHotels = ({
         {/* Left Arrow */}
         <button
           onClick={() => scroll("left")}
-          className="absolute left-0 top-1/2 z-10 hidden sm:block sm:-ml-5 -translate-y-1/2 rounded-full bg-white p-3 shadow-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:bg-gray-100"
+          className="absolute left-0 top-1/2 z-10 hidden sm:block -translate-y-1/2 rounded-full bg-white p-3 shadow-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:bg-gray-100"
           aria-label="Scroll left"
         >
           <ChevronLeft className="h-6 w-6 text-gray-800" />
@@ -423,7 +421,7 @@ const LastMinuteHotels = ({
         {/* Right Arrow */}
         <button
           onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 z-10 hidden sm:block sm:-mr-5 -translate-y-1/2 rounded-full bg-white p-3 shadow-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:bg-gray-100"
+          className="absolute right-0 top-1/2 z-10 hidden sm:block -translate-y-1/2 rounded-full bg-white p-3 shadow-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:bg-gray-100"
           aria-label="Scroll right"
         >
           <ChevronRight className="h-6 w-6 text-gray-800" />

@@ -1,18 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 import { PlusCircle, UploadCloud, Gavel, XCircle, Search } from "lucide-react";
 
 import AgentPanelRightRail from "./AgentPanelRightRail";
 import PropertyListingCard from "@/components/PropertyListing/PropertyListingCard";
+import {
+  createProperty,
+  updateProperty,
+  deleteProperty,
+  listProperties,
+  getPropertyStats,
+  photoUrl,
+  type Property,
+  type PropertyStats,
+} from "@/lib/api/properties";
 import type { ListingProperty } from "@/lib/properties/types";
 import type { ListingVariant } from "@/lib/listings/types";
-import {
-  newlyListedBuyProperties,
-  luxuryBuyProperties,
-} from "@/lib/properties/buy/sections";
-import { newlyListedRentProperties } from "@/lib/properties/rent/sections";
+import { newlyListedBuyProperties } from "@/lib/properties/buy/sections";
 import mylistingsicon from "@/public/agentpanelicons/sidebarmylistingicon.svg";
 import soldicon from "@/public/agentpanelicons/mylistingsoldicon.svg";
 import totalleadsicon from "@/public/agentpanelicons/dashboardtotalleadicon.svg";
@@ -21,47 +28,53 @@ import activelistingicon from "@/public/agentpanelicons/profileactivelistingicon
 const TILE =
   "bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF,inset_0_4px_4px_0_rgba(43,108,176,0.2)]";
 
-const stats = [
+const buildStats = (s: PropertyStats | null) => [
   {
     label: "Total Listings",
-    value: 10,
+    value: s?.total_properties ?? 0,
     icon: mylistingsicon,
   },
   {
-    label: "Active",
-    value: 6,
+    label: "For Sale",
+    value: s?.for_sale ?? 0,
     icon: activelistingicon,
   },
   {
-    label: "Sold",
-    value: 4,
+    label: "For Rent",
+    value: s?.for_rent ?? 0,
     icon: soldicon,
   },
   {
-    label: "Total Leads",
-    value: 112,
+    label: "For Investment",
+    value: s?.for_investment ?? 0,
     icon: totalleadsicon,
   },
 ];
 
-/** Buy cards carry their bed/bath/car icons on `iconImages`; the card reads `buyiconImages`. */
-const asBuyListing = (property: (typeof newlyListedBuyProperties)[number]) => ({
-  property: {
-    ...property,
-    buyiconImages: property.iconImages,
-  } as unknown as ListingProperty,
-  variant: "buy" as ListingVariant,
-});
+/** Card template: real data comes from the API, decorative assets from a sample card. */
+const cardTemplate = newlyListedBuyProperties[0];
 
-/** Three per section: newly listed buy, luxury buy, rent. */
-const listings: { property: ListingProperty; variant: ListingVariant }[] = [
-  ...newlyListedBuyProperties.slice(0, 3).map(asBuyListing),
-  ...luxuryBuyProperties.slice(0, 3).map(asBuyListing),
-  ...newlyListedRentProperties.slice(0, 3).map((property) => ({
-    property,
-    variant: "rent" as ListingVariant,
-  })),
-];
+const toListing = (p: Property): ListingProperty =>
+  ({
+    ...cardTemplate,
+    buyiconImages: cardTemplate.iconImages,
+    id: String(p.id),
+    images: p.photos?.length ? p.photos.map(photoUrl) : cardTemplate.images,
+    location: p.location ?? "",
+    size: p.area_sqft ?? "",
+    date: p.inspection_date ?? "",
+    time: p.inspection_time ?? "",
+    priceRange: p.price_range ?? "",
+    propertyType: p.type ?? "",
+    iconLabels: [p.bedrooms, p.bathrooms, p.car_spaces].map((n) =>
+      String(n ?? 0),
+    ),
+    agentName: p.agent?.name ?? "",
+    agentLocation: p.location ?? "",
+    agentPhone: `${p.agent?.country_code ?? ""}${p.agent?.phone ?? ""}`,
+    agentEmail: p.agent?.email ?? "",
+    agentCompanyName: p.agent?.company_name ?? "",
+  }) as unknown as ListingProperty;
 
 /** Bordered box with a small floating label, matching the design. */
 function Field({
@@ -84,16 +97,64 @@ const inputClass =
 
 const propertyTypes = ["Apartment", "Villa", "House", "Townhouse", "Studio"];
 const categories = ["Residential", "Commercial", "Land", "Industrial"];
-const amenities = ["Pool", "Gym", "Parking", "Security", "Garden", "Lift"];
+// ponytail: ids hardcoded; fetch /api/amenities once the endpoint exists.
+const amenities = [
+  { id: 1, label: "Pool" },
+  { id: 2, label: "Gym" },
+  { id: 3, label: "Parking" },
+  { id: 4, label: "Security" },
+  { id: 5, label: "Garden" },
+  { id: 6, label: "Lift" },
+];
 
-function AddListingForm({ onClose }: { onClose: () => void }) {
-  const [tab, setTab] = useState("Buy");
+/** One form for both create and edit — `property` present means edit. */
+function AddListingForm({
+  property,
+  onClose,
+}: {
+  property?: Property;
+  onClose: () => void;
+}) {
+  const [tab, setTab] = useState(property?.purpose ?? "Buy");
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const el = e.currentTarget;
+    const body = new FormData(el);
+
+    body.set("purpose", tab);
+    body.set("is_auction", String(el.is_auction.checked));
+    // multi-select posts repeated keys; API wants a JSON id array
+    body.delete("amenity_ids");
+    body.set(
+      "amenity_ids",
+      JSON.stringify(
+        Array.from(el.amenity_ids.selectedOptions, (o: HTMLOptionElement) =>
+          Number(o.value),
+        ),
+      ),
+    );
+
+    // an edit with no new files picked must not blank out existing photos
+    if (property && !(body.get("photos") as File)?.size) body.delete("photos");
+
+    setSaving(true);
+    setError("");
+    const res = property
+      ? await updateProperty(property.id, body)
+      : await createProperty(body);
+    setSaving(false);
+    if (res.success) onClose();
+    else setError(res.message || "Could not save listing.");
+  }
 
   return (
     <main className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
         <span className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-4 py-2 font-bold text-yellow-600">
-          Add New Listing
+          {property ? "Edit Listing" : "Add New Listing"}
           <Image src={mylistingsicon} alt="my listing" className="size-4" />
         </span>
       </div>
@@ -102,7 +163,7 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
       </p>
 
       <form
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={handleSubmit}
         className="space-y-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
       >
         {/* Tabs + auction toggle */}
@@ -126,13 +187,22 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
           <label className="flex items-center gap-2 font-bold text-gray-900">
             <Gavel className="size-6 text-gray-700" />
             Auction Property
-            <input type="checkbox" className="size-4 accent-yellow-400" />
+            <input
+              type="checkbox"
+              name="is_auction"
+              defaultChecked={property?.is_auction}
+              className="size-4 accent-yellow-400"
+            />
           </label>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <Field label="Property Type">
-            <select className={inputClass} defaultValue="">
+            <select
+              name="type"
+              className={inputClass}
+              defaultValue={property?.type ?? ""}
+            >
               <option value="">Select Property Type</option>
               {propertyTypes.map((p) => (
                 <option key={p}>{p}</option>
@@ -140,7 +210,11 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
             </select>
           </Field>
           <Field label="Category of Property">
-            <select className={inputClass} defaultValue="">
+            <select
+              name="category"
+              className={inputClass}
+              defaultValue={property?.category ?? ""}
+            >
               <option value="">Select Category</option>
               {categories.map((c) => (
                 <option key={c}>{c}</option>
@@ -148,15 +222,27 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
             </select>
           </Field>
           <Field label="Property Title">
-            <input className={inputClass} placeholder="Enter Property Title" />
+            <input
+              name="title"
+              defaultValue={property?.title}
+              className={inputClass}
+              placeholder="Enter Property Title"
+            />
           </Field>
           <Field label="Price Range">
-            <input className={inputClass} placeholder="Enter Price Range" />
+            <input
+              name="price_range"
+              defaultValue={property?.price_range}
+              className={inputClass}
+              placeholder="Enter Price Range"
+            />
           </Field>
         </div>
 
         <Field label="Property Description">
           <textarea
+            name="description"
+            defaultValue={property?.description}
             rows={3}
             className={`${inputClass} resize-none`}
             placeholder="Add Property Description Here..."
@@ -172,7 +258,13 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
           <span className="text-xs text-gray-400">
             Upload up to 10 images (JPG, PNG - Max 5MB each)
           </span>
-          <input type="file" accept="image/*" multiple className="hidden" />
+          <input
+            type="file"
+            name="photos"
+            accept="image/*"
+            multiple
+            className="hidden"
+          />
         </label>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -181,6 +273,8 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
               type="number"
               min={0}
               className={inputClass}
+              name="bedrooms"
+              defaultValue={property?.bedrooms}
               placeholder="Enter No. of Bedrooms"
             />
           </Field>
@@ -189,6 +283,8 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
               type="number"
               min={0}
               className={inputClass}
+              name="bathrooms"
+              defaultValue={property?.bathrooms}
               placeholder="Enter No. of Bathrooms"
             />
           </Field>
@@ -197,11 +293,15 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
               type="number"
               min={0}
               className={inputClass}
+              name="car_spaces"
+              defaultValue={property?.car_spaces}
               placeholder="Enter No. of Parking Spaces"
             />
           </Field>
           <Field label="Location">
             <input
+              name="location"
+              defaultValue={property?.location}
               className={inputClass}
               placeholder="Enter Property Location"
             />
@@ -211,23 +311,45 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
               type="number"
               min={0}
               className={inputClass}
+              name="area_sqft"
+              defaultValue={property?.area_sqft}
               placeholder="Enter Area in Square Feet"
             />
           </Field>
           <Field label="Date of Inspection">
-            <input type="date" className={inputClass} />
+            <input
+              type="date"
+              name="inspection_date"
+              defaultValue={property?.inspection_date}
+              className={inputClass}
+            />
           </Field>
           <Field label="Time of Inspection">
-            <input type="time" className={inputClass} />
+            <input
+              type="time"
+              name="inspection_time"
+              defaultValue={property?.inspection_time}
+              className={inputClass}
+            />
           </Field>
           <Field label="Choose Amenities and facilities">
-            <select multiple className={inputClass} size={1}>
+            <select
+              multiple
+              name="amenity_ids"
+              defaultValue={property?.amenities?.map((a) => String(a.id))}
+              className={inputClass}
+              size={1}
+            >
               {amenities.map((a) => (
-                <option key={a}>{a}</option>
+                <option key={a.id} value={a.id}>
+                  {a.label}
+                </option>
               ))}
             </select>
           </Field>
         </div>
+
+        {error && <p className="text-sm font-bold text-red-500">{error}</p>}
 
         <div className="flex flex-wrap justify-end gap-3 pt-2">
           <button
@@ -246,9 +368,14 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
           </button>
           <button
             type="submit"
-            className="rounded-full bg-blue-500 px-6 py-2 font-bold text-white shadow-sm"
+            disabled={saving}
+            className="rounded-full bg-blue-500 px-6 py-2 font-bold text-white shadow-sm disabled:opacity-60"
           >
-            Save Listings
+            {saving
+              ? "Saving..."
+              : property
+                ? "Update Listing"
+                : "Save Listings"}
           </button>
         </div>
       </form>
@@ -258,8 +385,47 @@ function AddListingForm({ onClose }: { onClose: () => void }) {
 
 export default function AgentPanelMyListings() {
   const [adding, setAdding] = useState(false);
+  const [editing, setEditing] = useState<Property | null>(null);
+  const [items, setItems] = useState<Property[]>([]);
+  const [statsData, setStatsData] = useState<PropertyStats | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (adding) return <AddListingForm onClose={() => setAdding(false)} />;
+  const load = useCallback(async () => {
+    const [list, stats] = await Promise.all([
+      listProperties(),
+      getPropertyStats(),
+    ]);
+    if (list.success && Array.isArray(list.data)) setItems(list.data);
+    if (stats.success && stats.data) setStatsData(stats.data);
+    setLoading(false);
+  }, []);
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  if (adding || editing)
+    return (
+      <AddListingForm
+        property={editing ?? undefined}
+        onClose={() => {
+          setAdding(false);
+          setEditing(null);
+          load();
+        }}
+      />
+    );
+
+  async function handleDelete(id: number | string) {
+    if (!window.confirm("Delete this listing?")) return;
+    const res = await deleteProperty(id);
+    if (!res.success)
+      return toast.error(res.message || "Failed to delete listing.");
+    toast.success("Listing deleted.");
+    setItems((prev) => prev.filter((p) => p.id !== id));
+    load();
+  }
+
+  const stats = buildStats(statsData);
 
   return (
     <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_300px]">
@@ -332,26 +498,39 @@ export default function AgentPanelMyListings() {
           </span>
         </div>
 
+        {loading && <p className="text-gray-500">Loading listings...</p>}
+        {!loading && items.length === 0 && (
+          <p className="text-gray-500">No listings yet.</p>
+        )}
+
         {/* Listings grid */}
         <div className="grid grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 [&>div]:w-full [&>div]:max-w-[380px]">
-          {listings.map(({ property, variant }, i) => (
-            <div key={i} className="space-y-2">
+          {items.map((p) => (
+            <div key={p.id} className="space-y-2">
               <PropertyListingCard
-                property={property}
-                listingVariant={variant}
+                property={toListing(p)}
+                listingVariant={
+                  (p.purpose?.toLowerCase() as ListingVariant) ?? "buy"
+                }
                 disableHoverScale
               />
               <div className="grid grid-cols-4 gap-1.5">
                 <button className="rounded-md bg-blue-500 py-1.5 text-xs font-semibold text-white">
                   View
                 </button>
-                <button className="rounded-md bg-orange-400 py-1.5 text-xs font-semibold text-white">
+                <button
+                  onClick={() => setEditing(p)}
+                  className="rounded-md bg-orange-400 py-1.5 text-xs font-semibold text-white"
+                >
                   Edit
                 </button>
                 <button className="rounded-md bg-green-500 py-1.5 text-xs font-semibold text-white">
                   Promote
                 </button>
-                <button className="rounded-md bg-red-500 py-1.5 text-xs font-semibold text-white">
+                <button
+                  onClick={() => handleDelete(p.id)}
+                  className="rounded-md bg-red-500 py-1.5 text-xs font-semibold text-white"
+                >
                   Delete
                 </button>
               </div>

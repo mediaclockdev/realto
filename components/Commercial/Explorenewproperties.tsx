@@ -400,7 +400,7 @@ const Explorenewproperties = ({
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-5 py-5 relative">
+    <div className="max-w-screen-2xl mx-auto px-5 relative">
       {/*
       <div className="flex justify-center mb-4">
         <div className="relative inline-flex items-center justify-center">

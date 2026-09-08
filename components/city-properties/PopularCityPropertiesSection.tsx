@@ -7,7 +7,6 @@ import PropertyGrid from "./PropertyGrid";
 import Image from "next/image";
 import backgroundimg from "@/public/homepageheadingbackground1.svg";
 
-
 type PopularCityPropertiesSectionProps = {
   title?: string;
   citiesData: Record<string, Property[]>;
@@ -30,7 +29,7 @@ export default function PopularCityPropertiesSection({
 
   return (
     <div className="bg-gray-50">
-      <section className="max-w-screen-2xl mx-auto px-5 py-5">
+      <section className="max-w-screen-2xl mx-auto px-5">
         {!title ? null : pillHeading ? (
           <div className="flex justify-center mb-4">
             <div className="relative inline-flex items-center justify-center">

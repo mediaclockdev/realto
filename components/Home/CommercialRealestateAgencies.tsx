@@ -28,7 +28,7 @@ const CommercialRealestateAgencies = () => {
     belle,
   ];
   return (
-    <div className="max-w-screen-2xl mx-auto px-5 py-5">
+    <div className="max-w-screen-2xl mx-auto px-5 ">
       <div className="flex justify-center mb-4">
         <Image src={heading} alt="heading " className="" />
       </div>

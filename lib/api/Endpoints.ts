@@ -13,6 +13,13 @@ export const Endpoints = {
   agentsettingnotification: {
     post: "/api/agents/notification-settings",
   },
+  properties: {
+    create: "/api/properties",
+    list: "/api/properties",
+    statistics: "/api/properties/statistics",
+    update: "/api/properties/:id",
+    delete: "/api/properties/:id",
+  },
   agentdocuments: {
     stats: "/api/documents/stats",
     newfolder: "/api/folders",
