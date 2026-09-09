@@ -66,7 +66,7 @@ const LanguageSelection = () => {
 
   const flags = [
     {
-      name: "Australian",
+      name: "Australian English",
       country: "Australia",
       nativeName: "English",
       icon: australia,
@@ -94,9 +94,9 @@ const LanguageSelection = () => {
       code: "hi",
     },
     {
-      name: "Lebanese",
+      name: "Arabic",
       country: "Lebanon",
-      nativeName: "لبناني",
+      nativeName: "العربية",
       icon: lebanese,
       code: "lb",
     },
@@ -122,7 +122,7 @@ const LanguageSelection = () => {
       code: "ur",
     },
     {
-      name: "Serbia",
+      name: "Serbian",
       country: "Serbia",
       nativeName: "Српски",
       icon: serbia,
@@ -159,9 +159,9 @@ const LanguageSelection = () => {
     },
 
     {
-      name: "Thailand",
+      name: "Thai",
       country: "Thailand",
-      nativeName: "Prathet Thai",
+      nativeName: "ไทย",
       icon: thailand,
       code: "th",
     },
@@ -173,7 +173,7 @@ const LanguageSelection = () => {
       code: "de",
     },
     {
-      name: "Philippines",
+      name: "Filipino",
       country: "Philippines",
       nativeName: "Filipino",
       icon: philippines,
@@ -182,7 +182,7 @@ const LanguageSelection = () => {
     {
       name: "Fijian",
       country: "Fiji",
-      nativeName: "Vosa Viti",
+      nativeName: "VakaViti",
       icon: fijian,
       code: "fj",
     },
@@ -201,7 +201,7 @@ const LanguageSelection = () => {
       code: "ja",
     },
     {
-      name: "Netherlands",
+      name: "Dutch",
       counter: "Nederlands",
       nativeName: "Nederlands",
       icon: netherlands,
@@ -215,7 +215,7 @@ const LanguageSelection = () => {
       code: "ru",
     },
     {
-      name: "Israeli",
+      name: "Hebrew",
       country: "Israel",
       nativeName: "עברית",
       icon: israelflag,
@@ -312,11 +312,11 @@ const LanguageSelection = () => {
                   </div>
 
                   <div className="flex flex-col items-center mt-1 w-[76px]">
-                    {/* <p className="text-black text-xs font-medium w-full text-center leading-tight truncate">
-                      {lang.country ?? lang.name}
-                    </p> */}
+                    <p className="text-black text-xs font-medium w-full text-center leading-tight">
+                      {lang.name}
+                    </p>
                     <p className="text-gray-500 text-xs font-light font-poppins w-full text-center leading-tight break-words">
-                      ({lang.name})
+                      ({lang.nativeName})
                     </p>
                   </div>
                 </div>
