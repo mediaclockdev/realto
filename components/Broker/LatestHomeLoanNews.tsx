@@ -31,11 +31,13 @@ const LatestHomeLoanNews = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-6 py-8">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="font-semibold text-lg lg:text-2xl text-black">
-          Latest Home Loan News
-        </h2>
-        <p className="text-xs lg:text-base underline cursor-pointer text-black">
+      <div className="relative flex justify-center items-center mb-6">
+        <div className="inline-flex gap-3 items-center border-2 border-[#6B7280] rounded-xl px-3 py-1">
+          <h2 className="font-poppins font-bold text-2xl text-black text-center">
+            Latest Home Loan News
+          </h2>
+        </div>
+        <p className="absolute right-0 text-xs lg:text-base underline cursor-pointer text-black">
           View All News
         </p>
       </div>
@@ -45,10 +47,10 @@ const LatestHomeLoanNews = () => {
         {news.map((item, idx) => (
           <div
             key={idx}
-            className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm"
+            className="bg-white border-2 border-[#E2E8F0] rounded-2xl overflow-hidden shadow-[-8px_8px_16px_#999FB4,6px_-6px_12px_#FFFFFF]"
           >
             {/* Image */}
-            <div className="w-full h-[210px] lg:h-[420px] relative">
+            <div className="h-[210px] lg:h-[420px] relative m-2 rounded-xl overflow-hidden">
               <Image src={item.img} alt="news" fill className="object-cover" />
             </div>
 

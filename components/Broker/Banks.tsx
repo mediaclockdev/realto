@@ -21,6 +21,8 @@ import brighten from "../../public/brightenbank.svg";
 import darwinmortgage from "../../public/darwinmortgage.svg";
 import tassie from "../../public/tassiehomeloans.svg";
 import backgroundimg from "@/public/homepageheadingbackground1.svg";
+import brokageheading from "@/public/brokageheading.svg";
+import banksheading from "@/public/bankheading.svg";
 
 interface BanksProps {
   heading?: string;
@@ -29,7 +31,7 @@ interface BanksProps {
 }
 
 const Banks = ({
-  heading = "Banks",
+  heading = "Brokerage & Banks",
   headingImage,
   pillHeading = false,
 }: BanksProps) => {
@@ -97,9 +99,15 @@ const Banks = ({
           </div>
         </div>
       ) : (
-        <h2 className="font-poppins font-semibold text-2xl mb-1 text-black">
-          {heading}
-        </h2>
+        <div className="flex justify-center mb-3">
+          <div className="inline-flex gap-3 items-center border-2 border-[#6B7280] rounded-xl px-3 py-1">
+            <Image src={brokageheading} alt="" />
+            <h2 className="font-poppins font-bold text-2xl text-black text-center">
+              {heading}
+            </h2>
+            <Image src={banksheading} alt="" />
+          </div>
+        </div>
       )}
       <div className="marquee-wrapper">
         <div

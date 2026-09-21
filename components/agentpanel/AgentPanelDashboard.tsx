@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BarChart3, ChevronDown } from "lucide-react";
@@ -18,38 +21,41 @@ import closeddealsicon from "@/public/agentpanelicons/dashboardcloseddealsicon.s
 import addlistingicon from "@/public/agentpanelicons/dashboardaddlistingicon.svg";
 import editprofileicon from "@/public/agentpanelicons/dashboardeditprofileicon.svg";
 import generatereporticon from "@/public/agentpanelicons/dashboardgeneratereporticon.svg";
+import { getDashboardStats, type DashboardStats } from "@/lib/api/properties";
 
 const stats = [
   {
     label: "Total Leads",
-    value: "347",
+    key: "total_leads",
     icon: totalleadsicon,
     color: "bg-[#ef4444]",
   },
   {
     label: "Active Listings",
-    value: "31",
+    key: "active_listings",
     icon: activelistingicon,
     color: "bg-[#f97316]",
   },
   {
     label: "Closed Deals",
-    value: "12",
+    key: "closed_deals",
     icon: closeddealsicon,
     color: "bg-[#22c55e]",
   },
-];
+] as const;
 
 const quickActions = [
   {
     label: "Add New Listing",
     desc: "List a new property",
     icon: addlistingicon,
+    href: "/agentpanel/mylisting?add=1",
   },
   {
     label: "Edit Profile",
     desc: "Update your information",
     icon: editprofileicon,
+    href: "/agentpanel/profile",
   },
   {
     label: "Generate Report",
@@ -67,33 +73,13 @@ const monthlyPerformance = [
   { month: "Jun", value: 90, positive: true },
 ];
 
-const listingsByType = [
-  { label: "Apartments", percent: 75, color: "bg-[#ef4444]" },
-  { label: "Houses", percent: 75, color: "bg-[#f97316]" },
-  { label: "Villas", percent: 75, color: "bg-[#eab308]" },
-  { label: "Commercial", percent: 75, color: "bg-[#ec4899]" },
+const typeColors = [
+  "bg-[#ef4444]",
+  "bg-[#f97316]",
+  "bg-[#eab308]",
+  "bg-[#ec4899]",
 ];
-
-const recentLeads = [
-  {
-    name: "Michael Chen",
-    note: "Looking for 3BR Apartment",
-    time: "2 hours ago",
-    avatar: michaelChen,
-  },
-  {
-    name: "Sarah Williams",
-    note: "Interested in Villa project",
-    time: "4 hours ago",
-    avatar: sarahWilliams,
-  },
-  {
-    name: "David Miller",
-    note: "First-time home buyer",
-    time: "Yesterday",
-    avatar: davidMiller,
-  },
-];
+const avatars = [michaelChen, sarahWilliams, davidMiller];
 
 const SOFT_SHADOW =
   "shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF,inset_0_4px_4px_0_rgba(43,108,176,0.2)]";
@@ -116,6 +102,18 @@ function TrendBadge() {
 }
 
 export default function AgentPanelDashboard() {
+  const [statsData, setStatsData] = useState<DashboardStats | null>(null);
+
+  useEffect(() => {
+    getDashboardStats().then((res) => {
+      if (res.success && res.data) setStatsData(res.data);
+    });
+  }, []);
+
+  const typeEntries = Object.entries(statsData?.types_count ?? {});
+  const typeTotal = typeEntries.reduce((sum, [, n]) => sum + n, 0);
+  const recentLeads = statsData?.recent_leads ?? [];
+
   return (
     <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_300px]">
       {/* Main content */}
@@ -137,7 +135,7 @@ export default function AgentPanelDashboard() {
 
         {/* Stat cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 ">
-          {stats.map(({ label, value, icon: Icon, color }) => (
+          {stats.map(({ label, key, icon: Icon, color }) => (
             <div
               key={label}
               className={`${color} rounded-xl px-2.5 py-2.5 text-white ${SOFT_SHADOW}`}
@@ -149,7 +147,9 @@ export default function AgentPanelDashboard() {
               </div>
               <div className="mt-4 flex items-end justify-between">
                 <p className="font-semibold">{label}</p>
-                <p className="text-2xl font-semibold">{value}</p>
+                <p className="text-2xl font-semibold">
+                  {statsData?.[key] ?? "–"}
+                </p>
               </div>
             </div>
           ))}
@@ -157,9 +157,10 @@ export default function AgentPanelDashboard() {
 
         {/* Quick actions */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {quickActions.map(({ label, desc, icon: Icon }) => (
-            <button
+          {quickActions.map(({ label, desc, icon: Icon, href }) => (
+            <Link
               key={label}
+              href={href ?? "#"}
               className={`flex items-center gap-3 rounded-xl bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] px-4 py-4 text-left ${SOFT_SHADOW}`}
             >
               <Image
@@ -175,7 +176,7 @@ export default function AgentPanelDashboard() {
                   {desc}
                 </span>
               </span>
-            </button>
+            </Link>
           ))}
         </div>
 
@@ -218,24 +219,33 @@ export default function AgentPanelDashboard() {
               </div>
             </div>
             <div className="mt-6 flex flex-1 flex-col  gap-5">
-              {listingsByType.map(({ label, percent, color }) => (
-                <div key={label}>
-                  <div className="flex justify-between text-sm text-gray-700">
-                    <span className="font-medium text-[#343434] text-sm">
-                      {label}
-                    </span>
-                    <span className="font-medium text-[#343434] text-sm">
-                      {percent}%
-                    </span>
+              {typeEntries.length === 0 && (
+                <p className="text-sm text-gray-500">No listings yet.</p>
+              )}
+              {typeEntries.map(([label, count], i) => {
+                const percent = typeTotal
+                  ? Math.round((count / typeTotal) * 100)
+                  : 0;
+                const color = typeColors[i % typeColors.length];
+                return (
+                  <div key={label}>
+                    <div className="flex justify-between text-sm text-gray-700">
+                      <span className="font-medium text-[#343434] text-sm">
+                        {label}
+                      </span>
+                      <span className="font-medium text-[#343434] text-sm">
+                        {percent}%
+                      </span>
+                    </div>
+                    <div className="mt-1 h-2 rounded-full bg-gray-100">
+                      <div
+                        className={`h-2 rounded-full ${color}`}
+                        style={{ width: `${percent}%` }}
+                      />
+                    </div>
                   </div>
-                  <div className="mt-1 h-2 rounded-full bg-gray-100">
-                    <div
-                      className={`h-2 rounded-full ${color}`}
-                      style={{ width: `${percent}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -249,21 +259,25 @@ export default function AgentPanelDashboard() {
               </button>
             </div>
             <div className="mt-6 flex flex-1 flex-col justify-between gap-3">
-              {recentLeads.map(({ name, note, time, avatar }) => (
+              {recentLeads.length === 0 && (
+                <p className="text-sm text-gray-500">No recent leads.</p>
+              )}
+              {recentLeads.slice(0, 3).map((lead, i) => (
                 <div
-                  key={name}
+                  key={lead.id}
                   className="flex items-start gap-3 rounded-xl border border-yellow-300 p-2.5"
                 >
                   <Image
-                    src={avatar}
-                    alt={name}
+                    src={avatars[i % avatars.length]}
+                    alt={lead.name ?? ""}
                     className="size-10 shrink-0 rounded-full object-cover"
                   />
                   <div className="text-sm">
-                    <p className="font-bold text-[#343434]">{name}</p>
-                    <p className="font-medium text-[#343434]">{note}</p>
+                    <p className="font-bold text-[#343434]">{lead.name}</p>
+                    <p className="font-medium text-[#343434]">{lead.email}</p>
                     <p className="mt-0.5 font-medium text-xs text-[#343434]">
-                      {time}
+                      {lead.created_at &&
+                        new Date(lead.created_at).toLocaleDateString()}
                     </p>
                   </div>
                 </div>

@@ -50,7 +50,9 @@ const Header = () => {
     pathname === "/agents" ||
     pathname === "/commercial" ||
     pathname === "/hotel" ||
-    pathname.startsWith("/agents/");
+    pathname.startsWith("/agents/") ||
+    pathname.startsWith("/broker/");
+
   const isHome = pathname === "/homepage";
 
   return (

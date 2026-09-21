@@ -402,6 +402,10 @@ export default function AgentPanelMyListings() {
   useEffect(() => {
     load();
   }, [load]);
+  useEffect(() => {
+    // Dashboard "Add New Listing" links here with ?add=1
+    if (new URLSearchParams(window.location.search).has("add")) setAdding(true);
+  }, []);
 
   if (adding || editing)
     return (

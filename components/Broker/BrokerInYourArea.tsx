@@ -153,8 +153,9 @@ const BrokerInYourArea = () => {
         </div>
         <div className="flex items-start gap-4 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory lg:snap-none lg:gap-6">
           {loanBrokers.map((broker) => (
-            <div
+            <Link
               key={broker.name}
+              href={`/broker/${broker.name.toLowerCase().replace(/\s+/g, "-")}`}
               className="w-[85vw] min-w-[85vw] shrink-0 snap-start sm:w-[320px] sm:min-w-[320px] lg:min-w-[340px] lg:w-[340px]"
             >
               <div className="relative block shrink-0 overflow-hidden rounded-[28px] p-[10px] shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
@@ -298,7 +299,7 @@ const BrokerInYourArea = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

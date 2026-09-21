@@ -24,22 +24,25 @@ const Guidestohelpyoubuysmarter = () => {
           first home
         </p>
       </div>
-      <div className="flex flex-col lg:flex-row items-center gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {guide.map((items, idx) => (
-          <div key={idx} className="space-y-2">
-            <div>
-              <Image src={items.icon} alt="" />
-            </div>
-            <div>
-              <p className="font-poppins text-black font-semibold text-base text-center">
-                {items.name}
-              </p>
-            </div>
+          <div
+            key={idx}
+            className="bg-white rounded-2xl overflow-hidden shadow-[-8px_8px_16px_#999FB4,6px_-6px_12px_#FFFFFF]"
+          >
+            <Image
+              src={items.icon}
+              alt=""
+              className="w-full h-[220px] object-cover"
+            />
+            <p className="font-poppins text-black font-semibold text-base text-center py-4 px-3">
+              {items.name}
+            </p>
           </div>
         ))}
       </div>
-      <div className="mt-6 ">
-        <button className="bg-[#0284C7] text-white px-6 text-xl ] rounded-md font-semibold hover:bg-[#0369a1] transition cursor-pointer">
+      <div className="mt-8">
+        <button className="bg-[#BA9000] text-white px-8 py-2 text-xl rounded-md font-semibold hover:bg-[#9c7900] transition cursor-pointer">
           View All
         </button>
       </div>

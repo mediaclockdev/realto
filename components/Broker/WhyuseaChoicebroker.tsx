@@ -1,8 +1,12 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
 import broker from "../../public/brokerchoiceimg.svg";
+import FindYourBroker from "./FindYourBroker";
 
 const WhyuseaChoicebroker = () => {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
   return (
     <div className="max-w-screen-2xl mx-auto px-5 py-5 space-y-4">
       <div>
@@ -45,13 +49,26 @@ const WhyuseaChoicebroker = () => {
               they discuss with you before proceeding.
             </p>
           </div>
-          <div className="bg-[#0284C7] border border-[#E2E8F0] w-full lg:w-1/2 mx-auto text-center">
-            <button className="text-white font-poppins font-semibold text-xl px-10 py-2 ">
+          <div className="bg-[#CB9E33] border border-[#E2E8F0] w-full lg:w-1/2 mx-auto text-center">
+            <button
+              onClick={() => dialogRef.current?.showModal()}
+              className="text-white font-poppins font-semibold text-xl px-10 py-2 cursor-pointer"
+            >
               Find Your Broker
             </button>
           </div>
         </div>
       </div>
+
+      <dialog
+        ref={dialogRef}
+        onClick={(e) =>
+          e.target === dialogRef.current && dialogRef.current?.close()
+        }
+        className="m-auto w-[92vw] max-w-3xl max-h-[90dvh] overflow-y-auto rounded-2xl bg-transparent backdrop:bg-black/60 backdrop:backdrop-blur-sm"
+      >
+        <FindYourBroker />
+      </dialog>
     </div>
   );
 };

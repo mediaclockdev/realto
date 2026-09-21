@@ -33,4 +33,14 @@ export const Endpoints = {
     updatedocuments: "/api/documents/:id",
     deletedocuments: "/api/documents/:id",
   },
+  agentdashboard: {
+    dashboardStats: "/api/dashboard/stats",
+  },
+  agentleadManagement: {
+    inquryListing: "/api/inquiries",
+    createLead: "/api/inquiries",
+    updateInquire: "/api/inquiries/:id",
+    deleteLead: "/api/inquiries/:id",
+    bulkDelete: "/api/inquiries/bulk",
+  },
 };

@@ -40,7 +40,7 @@ export type PropertyStats = {
   for_investment?: number;
 };
 
-const call = async <T>(req: () => Promise<{ data: ApiResult<T> }>) => {
+export const call = async <T>(req: () => Promise<{ data: ApiResult<T> }>) => {
   try {
     return (await req()).data;
   } catch (error: any) {
@@ -79,6 +79,24 @@ export const listProperties = (params?: Record<string, string | number>) =>
 
 export const getPropertyStats = () =>
   call<PropertyStats>(() => axiosClient.get(Endpoints.properties.statistics));
+
+export type DashboardStats = {
+  total_leads?: number;
+  active_listings?: number;
+  closed_deals?: number;
+  types_count?: Record<string, number>;
+  recent_leads?: import("./leads").Lead[];
+  breakdown?: {
+    total_leads?: number;
+    open_leads?: number;
+    closed_leads?: number;
+  };
+};
+
+export const getDashboardStats = () =>
+  call<DashboardStats>(() =>
+    axiosClient.get(Endpoints.agentdashboard.dashboardStats),
+  );
 
 /** Photos come back as server-relative paths like `/uploads/x.jpg`. */
 export const photoUrl = (path: string) =>

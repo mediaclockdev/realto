@@ -1,6 +1,5 @@
 import Banks from "@/components/Broker/Banks";
 import BrokerInYourArea from "@/components/Broker/BrokerInYourArea";
-import FindYourBroker from "@/components/Broker/FindYourBroker";
 import Guidestohelpyoubuysmarter from "@/components/Broker/Guidestohelpyoubuysmarter";
 import HeroBroker from "@/components/Broker/HeroBroker";
 import LatestHomeLoanNews from "@/components/Broker/LatestHomeLoanNews";
@@ -12,12 +11,11 @@ const page = () => {
   return (
     <div>
       <HeroBroker />
-      <FindYourBroker />
       <Banks />
-      <LatestHomeLoanNews />
       <BrokerInYourArea />
       <WhyuseaChoicebroker />
       <Guidestohelpyoubuysmarter />
+      <LatestHomeLoanNews />
       <PreApproval />
     </div>
   );
