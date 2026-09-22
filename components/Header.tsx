@@ -3,18 +3,23 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import signinbtn from "@/public/signinbtnicon.svg";
 import blueglassbackground from "@/public/loginbg.svg";
 import usericon from "@/public/loginusericon.svg";
 import Link from "next/link";
 import realtologogif1 from "@/public/Realto Logo - 1.gif";
 import realtologogif2 from "@/public/Realto Logo - 2.gif";
 import realtologogif3 from "@/public/Realto Logo - 3.gif";
+import realtologogif4 from "@/public/Realto Logo - 4.gif";
 import Login from "./Auth/Login";
 import Signup from "./Auth/Signup";
 // import avatar from "@/public/avatar.png";
 
-const realtoLogos = [realtologogif1, realtologogif2, realtologogif3];
+const realtoLogos = [
+  realtologogif1,
+  realtologogif2,
+  realtologogif3,
+  realtologogif4,
+];
 
 const Header = () => {
   const pathname = usePathname();

@@ -5,30 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-// import star from "../../public/starsingle.svg";
 import { getHotelListings } from "@/lib/hotel/repository";
 import type { HotelListing } from "@/lib/hotel/types";
-
 import sheratonLogo from "../../public/sheraton.svg";
-import movenpickLogo from "../../public/movenpick.svg";
-import marriottLogo from "../../public/marriott.svg";
-import holidayInnLogo from "../../public/holidayinn.svg";
-import crownePlazaLogo from "../../public/crowneplaza.svg";
-import ibisLogo from "../../public/ibishotels.svg";
-import facebook from "../../public/facebookiconhotel.svg";
-import instagram from "../../public/instagramiconhotel.svg";
-// import whatsapp from "../../public/whatsapp.svg";
+import holidayInnLogo from "../../public/holidayinn1.svg";
+import crownePlazaLogo from "../../public/crowneplaza1.svg";
 import locationIcon from "../../public/hotellocationicon.svg";
 import mail from "../../public/contactemailicon.svg";
 import goldenArrowCircle from "../../public/goldencircle.svg";
 import telephone from "../../public/telephone.svg";
-import tumblur from "../../public/tumbluriconhotel.svg";
-import snapchat from "../../public/snapchaticonhotel.svg";
-import tiktok from "../../public/tiktokiconhotel.svg";
-import x from "../../public/xiconhotel.svg";
-import wechat from "../../public/wechaticonhotel.svg";
-import vicon from "../../public/viconhotel.svg";
-import linkedin from "../../public/linkediniconhotel.svg";
 
 const hotels = getHotelListings();
 
@@ -40,29 +25,12 @@ const GOLD_GRADIENT =
 
 const hotelBrandLogos = {
   "hotel-1": { src: sheratonLogo, alt: "Sheraton Logo" },
-  "hotel-2": { src: movenpickLogo, alt: "Movenpick Logo" },
-  "hotel-3": { src: marriottLogo, alt: "Marriott Logo" },
-  "hotel-4": { src: holidayInnLogo, alt: "Holiday Inn Logo" },
-  "hotel-5": { src: crownePlazaLogo, alt: "Crowne Plaza Logo" },
-  "hotel-6": { src: ibisLogo, alt: "Ibis Hotels Logo" },
+  "hotel-2": { src: holidayInnLogo, alt: "Holiday Inn Logo" },
+  "hotel-3": { src: crownePlazaLogo, alt: "Crowne Plaza Logo" },
+  "hotel-4": { src: sheratonLogo, alt: "Sheraton Logo" },
+  "hotel-5": { src: holidayInnLogo, alt: "Holiday Inn Logo" },
+  "hotel-6": { src: crownePlazaLogo, alt: "Crowne Plaza Logo" },
 } as const;
-
-const imagess = [facebook, instagram, snapchat, tiktok, x, linkedin];
-
-const SocialIcons = () => (
-  <div className="flex items-center gap-2">
-    {imagess.map((image, index) => (
-      <Image
-        key={index}
-        src={image.src}
-        width={32}
-        height={32}
-        alt={`Social media icon ${index + 1}`}
-        className="h-8 w-8"
-      />
-    ))}
-  </div>
-);
 
 const HeartIcon = ({
   liked,
@@ -148,34 +116,20 @@ export const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
           : "0 10px 25px -10px rgba(0,0,0,0.08)",
       }}
     >
-      <div className="bg-gray-100 rounded-2xl flex flex-col justify-between h-full overflow-hidden  px-2 py-2 shadow-[-5px_5px_20px_-3px_rgba(0,0,0,0.9)]">
+      <div className="bg-gray-100 rounded-2xl flex flex-col justify-between h-full overflow-hidden shadow-[-5px_5px_20px_-3px_rgba(0,0,0,0.9)]">
         {/* Top Brand/Logo & City Bar */}
 
-        <div className="flex items-center justify-center gap-2 border-b border-gray-200 py-2  rounded-2xl shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.1)] bg-white">
-          {brandLogo ? (
-            <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center  border border-gray-100 shadow-sm p-1">
-              <Image
-                src={brandLogo.src}
-                alt={brandLogo.alt}
-                className="object-contain w-full h-full"
-              />
-            </div>
-          ) : (
-            <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 flex items-center justify-center bg-gradient-to-tr from-[#CB9E33] to-[#EDD06A] text-white font-bold text-base shadow-sm font-poppins">
-              {hotel.title.slice(0, 1)}
-            </div>
-          )}
-          <div className="flex items-baseline gap-1.5 truncate">
-            <h3 className="text-xl font-bold font-poppins text-black truncate leading-tight">
-              {hotel.title}
-            </h3>
-            {/* <span className="text-gray-500 text-xs font-semibold font-poppins truncate shrink-0">
-                {hotel.subtitle}
-              </span> */}
+        <div className="flex items-center justify-center gap-2  py-2   shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.1)] bg-white">
+          <div className="w-full">
+            <Image
+              src={brandLogo.src}
+              alt={brandLogo.alt}
+              className="object-cover w-full h-full"
+            />
           </div>
         </div>
 
-        <div className="mt-1.5 h-1.5"></div>
+        {/* <div className="mt-1.5 h-1.5"></div> */}
         {/* Auto-rotating Header Photo Container */}
         <div>
           <div
@@ -183,7 +137,7 @@ export const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
               e.stopPropagation();
               setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);
             }}
-            className="relative w-full h-40 lg:h-56 rounded-xl overflow-hidden shadow-sm shrink-0 bg-gray-100 group/image"
+            className="relative w-full h-40 lg:h-56  overflow-hidden shadow-sm shrink-0 bg-gray-100 group/image"
           >
             <Image
               src={displayImages[currentImageIndex]}
@@ -210,7 +164,7 @@ export const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
                     e.stopPropagation();
                     setCurrentImageIndex(targetIndex);
                   }}
-                  className={`relative flex-1 w-full h-20 lg:h-28 rounded-lg overflow-hidden cursor-pointer border-2 shadow-[0_6px_14px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_18px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-0.5 shrink-0 ${
+                  className={`relative flex-1 w-full h-20 lg:h-20 rounded-lg overflow-hidden cursor-pointer border-2 shadow-[-7.86px_7.86px_15.72px_0_#999FB4,2px_-2px_5px_0_#737687] transition-all duration-300 hover:-translate-y-0.5 shrink-0 ${
                     isActive ? "border-[#CB9E33] scale-105" : "border-white"
                   }`}
                 >
@@ -231,7 +185,7 @@ export const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
           </div>
 
           {/* Contact Details (Location, Phone, Email) Flexed with Pricing Section */}
-          <div className="flex justify-between items-start  border-t border-gray-50 pt-2 gap-2">
+          <div className="flex justify-between items-start  border-t border-gray-50 pt-2 gap-2 px-2.5">
             {/* Left Side: Address, Phone, Email Details (with increased spacing & size) */}
             <div className="flex flex-col gap-1 flex-1 min-w-0">
               {/* Address */}
@@ -279,11 +233,37 @@ export const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
             </div>
 
             {/* Right Side: Price Box - Positioned Upwards, bold, very big red price & grey old price */}
-            <div className="text-right flex flex-col items-end shrink-0 pt-1 mt-10 pr-4">
+          </div>
+
+          {/* Rating & Actions Row (Star rating flexed horizontally with like and share) */}
+          <div className="flex justify-between items-center mt-1 px-2.5 pb-1 border-t border-gray-50/50">
+            {/* Left Side: Star Rating - Sized Down */}
+            <div className="flex flex-col gap-1">
+              {/* <StarRating count={hotel.rating} /> */}
+              <div className="w-full  flex justify-between items-center ">
+                <div className="flex items-center gap-1">
+                  <Image
+                    src={goldenArrowCircle}
+                    alt="golden circle"
+                    className="size-10"
+                  />
+                  <HeartIcon
+                    liked={liked}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLiked(!liked);
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side: Enlarged Heart and Golden Arrow Circle (Like & Share) */}
+            <div className="text-right flex flex-col items-end shrink-0 ">
               <span className="text-[10px] uppercase tracking-widest font-extrabold text-gray-400 font-TimesNewRoman italic">
                 from
               </span>
-              <p className="text-3xl font-extrabold text-[#009A00] font-poppins leading-none">
+              <p className="text-3xl font-extrabold text-[#0496FF] font-poppins leading-none">
                 {hotel.priceLabel}
               </p>
               {hotel.oldPrice && (
@@ -291,33 +271,6 @@ export const HotelCard = ({ hotel }: { hotel: HotelListing }) => {
                   was {hotel.oldPrice}
                 </p>
               )}
-            </div>
-          </div>
-
-          {/* Rating & Actions Row (Star rating flexed horizontally with like and share) */}
-          <div className="flex justify-between items-center mt-1 px-1 pb-1 border-t border-gray-50/50">
-            {/* Left Side: Star Rating - Sized Down */}
-            <div className="flex flex-col gap-1">
-              {/* <StarRating count={hotel.rating} /> */}
-              <div className="w-full  flex justify-between items-center ">
-                <SocialIcons />
-              </div>
-            </div>
-
-            {/* Right Side: Enlarged Heart and Golden Arrow Circle (Like & Share) */}
-            <div className="flex items-center gap-1">
-              <Image
-                src={goldenArrowCircle}
-                alt="golden circle"
-                className="size-10"
-              />
-              <HeartIcon
-                liked={liked}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setLiked(!liked);
-                }}
-              />
             </div>
           </div>
         </div>
@@ -412,7 +365,7 @@ const LastMinuteHotels = ({
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {hotels.map((hotel) => (
-            <div key={hotel.id} className="w-[420px] shrink-0">
+            <div key={hotel.id} className="w-[370px] shrink-0">
               <HotelCard hotel={hotel} />
             </div>
           ))}
