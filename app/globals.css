@@ -100,6 +100,17 @@ body {
   -webkit-text-stroke: 0.5px black;
   /* text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6); */
 }
+
+.reel-text-portal {
+  color: #ffffff;
+  /* Figma: 0.5px OUTER stroke. -webkit-text-stroke is centred, so 1px with
+     paint-order lets the fill cover the inner half, leaving 0.5px outside. */
+  -webkit-text-stroke: 1px #000000;
+  paint-order: stroke fill;
+  /* filter, not text-shadow: this shadows the stroke too, like Figma does */
+  filter: drop-shadow(1px 1px 2.1px #000000)
+    drop-shadow(0 0 7.3px rgba(0, 0, 0, 0.6));
+}
 @font-face {
   font-family: "Amasis";
   src: url("/fonts/amasis/Amasis-Light.woff2") format("woff2");

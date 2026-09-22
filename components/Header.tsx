@@ -133,7 +133,7 @@ const Header = () => {
           onClick={(e) =>
             e.target === dialogRef.current && dialogRef.current?.close()
           }
-          className="m-auto w-[92vw] max-w-md max-h-[90dvh] overflow-y-auto rounded-2xl sm:rounded-3xl p-5 sm:p-8 bg-white text-gray-900 backdrop:bg-black/60 backdrop:backdrop-blur-sm"
+          className="m-auto w-[92vw] max-w-md max-h-[90dvh] overflow-y-auto rounded-2xl sm:rounded-3xl p-2 sm:px-5 py-3 bg-white text-gray-900 backdrop:bg-black/60 backdrop:backdrop-blur-sm"
         >
           {view === "choose" ? (
             <>
@@ -141,7 +141,7 @@ const Header = () => {
                 src={realtoLogos[logoIndex]}
                 alt="Realto logo"
                 unoptimized
-                className="w-full h-auto max-h-[30dvh] object-contain mb-5 sm:mb-8"
+                className="w-full h-auto max-h-[20dvh] object-contain mb-5 sm:mb-8"
               />
               <button
                 onClick={() => setView("login-user")}

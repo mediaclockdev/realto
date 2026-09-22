@@ -3,11 +3,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
-import AuthInput from "./AuthInput";
+import AuthInput, { authButtonClass, authTagline } from "./AuthInput";
+import VerifyOtp from "./VerifyOtp";
 import { signup } from "@/lib/api/auth";
 import emailIcon from "@/public/authicons/emailicon.svg";
 import nameIcon from "@/public/authicons/dl.svg";
 import phoneIcon from "@/public/authicons/phone.svg";
+import agencyIcon from "@/public/CompanyBuildinglogin.svg";
+import titleIcon from "@/public/loginusericon.svg";
 import passwordIconView from "@/public/authicons/eyeopen.svg";
 import passwordIconClosed from "@/public/authicons/eyeclosed.svg";
 import logo from "@/public/Realto Logo - 1.gif";
@@ -22,6 +25,24 @@ export default function Signup({
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
   const [done, setDone] = useState<string | null>(null);
+  const [verifying, setVerifying] = useState<{
+    email: string;
+    phone: string;
+  } | null>(null);
+
+  // runs once the account is confirmed (after OTP)
+  function finish(json: Awaited<ReturnType<typeof signup>>) {
+    const token = (json as any).token || (json.data as any)?.token;
+    if (token) {
+      localStorage.setItem("token", token);
+    }
+
+    // trust the API's flag, not the role
+    const me = json.data?.agent;
+    if (me?.is_approved)
+      window.location.href = me.role === "agent" ? "/agentpanel" : "/userpanel";
+    else setDone(json.message ?? "Your request is pending approval.");
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -35,23 +56,22 @@ export default function Signup({
       const json = await signup({ ...body, role: isAgent ? "agent" : "user" });
       if (!json.success) return setError(json.message ?? "Signup failed");
 
-      const token = (json as any).token || (json.data as any)?.token;
-      if (token) {
-        localStorage.setItem("token", token);
-      }
-
-      // trust the API's flag, not the role
-      const me = json.data?.agent;
-      if (me?.is_approved)
-        window.location.href =
-          me.role === "agent" ? "/agentpanel" : "/userpanel";
-      else setDone(json.message ?? "Your request is pending approval.");
+      setVerifying({ email: String(body.email), phone: String(body.phone) });
     } catch {
       setError("Network error. Please try again.");
     } finally {
       setPending(false);
     }
   }
+
+  if (verifying)
+    return (
+      <VerifyOtp
+        email={verifying.email}
+        phone={verifying.phone}
+        onVerified={finish}
+      />
+    );
 
   if (done)
     return (
@@ -68,8 +88,17 @@ export default function Signup({
         alt="Realto"
         priority
         unoptimized
-        className="mx-auto mb-6 h-auto w-full max-w-xs max-h-[22dvh] object-contain"
+        className="mx-auto h-auto w-full max-w-xs  object-contain"
       />
+      <p className="text-center font-serif text-lg italic text-[#1f2a28]">
+        {authTagline}
+      </p>
+      {isAgent ? (
+        <h1 className="reel-text-portal mt-1 text-center font-amasis text-3xl font-black">
+          Agent Registry Portal
+        </h1>
+      ) : null}
+      <div className="mb-6" />
 
       <form onSubmit={onSubmit} className="space-y-4">
         <AuthInput
@@ -85,36 +114,29 @@ export default function Signup({
           placeholder="Email Address"
           required
         />
-        <div className="flex gap-2">
-          <select
-            name="country_code"
-            defaultValue="+61"
-            className="h-12 shrink-0 cursor-pointer rounded-xl border-2 border-[#C9A227] bg-white px-2 text-base text-[#1f2a28] outline-none sm:h-14"
-          >
-            <option value="+61">+61</option>
-            <option value="+91">+91</option>
-            <option value="+1">+1</option>
-            <option value="+44">+44</option>
-            <option value="+971">+971</option>
-          </select>
-          <div className="w-full">
-            <AuthInput
-              icon={phoneIcon}
-              name="phone"
-              type="tel"
-              placeholder="Phone Number"
-              required
-            />
-          </div>
-        </div>
+        {/* ponytail: AU-only for now; restore a select if other regions sign up */}
+        <input type="hidden" name="country_code" value="+61" />
+        <AuthInput
+          icon={phoneIcon}
+          name="phone"
+          type="tel"
+          placeholder="Phone Number"
+          required
+        />
         {isAgent ? (
           <>
             <AuthInput
+              icon={agencyIcon}
               name="company_name"
-              placeholder="Company Name"
+              placeholder="Agency Name"
               required
             />
-            <AuthInput name="title" placeholder="Your title" required />
+            <AuthInput
+              icon={titleIcon}
+              name="title"
+              placeholder="Your Title"
+              required
+            />
           </>
         ) : null}
         <AuthInput
@@ -134,16 +156,17 @@ export default function Signup({
           required
         />
         {error ? <p className="text-sm text-red-600">{error}</p> : null}
-        <button
-          type="submit"
-          disabled={pending}
-          className="w-full cursor-pointer rounded-xl bg-[#2C63B5] py-3 text-lg font-bold text-white disabled:opacity-60"
-        >
+        <Image
+          src={phoneIcon}
+          alt=""
+          className="mx-auto h-24 w-auto object-contain"
+        />
+        <button type="submit" disabled={pending} className={authButtonClass}>
           {pending ? "Signing up..." : "Sign up"}
         </button>
       </form>
 
-      <p className="mt-5 text-center text-base text-gray-800">
+      <p className="mt-4 text-center text-sm text-gray-800">
         Already have an Account?{" "}
         {onSwitch ? (
           <button

@@ -134,7 +134,7 @@ export default function HotelRoomDetailPage({
               alt={hotel.title}
               fill
               className="object-cover"
-              priority
+              priority={activeImageIndex === 0}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             <h1 className="absolute bottom-6 left-6 text-3xl font-bold text-white drop-shadow-md sm:text-4xl">

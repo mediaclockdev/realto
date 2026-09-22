@@ -104,7 +104,7 @@ export default function AgentPanelLayout({
                   <span className={active ? styles.labelActive : styles.label}>
                     {label}
                   </span>
-                  <Image src={Icon} alt="" priority className={styles.icon} />
+                  <Image src={Icon} alt="" className={styles.icon} />
                 </Link>
               );
             })}

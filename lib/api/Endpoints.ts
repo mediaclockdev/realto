@@ -2,6 +2,9 @@ export const Endpoints = {
   auth: {
     login: "/api/agents/login",
     signup: "/api/agents/signup",
+    // ponytail: guessed from the /api/agents/* pattern — confirm with backend
+    verifyOtp: "/api/agents/verify-otp",
+    resendOtp: "/api/agents/resend-otp",
   },
   agentprofile: {
     get: "/api/agents/profile",

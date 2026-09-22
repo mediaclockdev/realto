@@ -7,6 +7,21 @@ const nextConfig: NextConfig = {
       { protocol: "http", hostname: "localhost" },
     ],
   },
+  // ponytail: /public filenames aren't content-hashed, so `immutable` means a
+  // changed asset must be RENAMED to reach users who already cached it
+  async headers() {
+    return [
+      {
+        source: "/:path*.:ext(svg|png|jpg|jpeg|gif|webp|avif|ico|woff|woff2)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

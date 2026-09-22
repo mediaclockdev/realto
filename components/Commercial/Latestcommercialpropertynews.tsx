@@ -60,7 +60,6 @@ const LatestCommercialPropertyNews = () => {
               alt="Featured property"
               fill
               className="object-cover"
-              priority
             />
           </div>
 

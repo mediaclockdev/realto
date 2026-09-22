@@ -56,3 +56,8 @@ export const login = (body: Body) =>
 
 export const signup = (body: Body) =>
   post<{ agent: Agent }>(Endpoints.auth.signup, body);
+
+export const verifyOtp = (body: Body) =>
+  post<{ agent: Agent }>(Endpoints.auth.verifyOtp, body);
+
+export const resendOtp = (body: Body) => post<never>(Endpoints.auth.resendOtp, body);
