@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
+import downArrow from "@/public/downarrowhotel.svg";
 
 type Option = { label: string; note?: string; count?: number };
 
@@ -22,7 +24,10 @@ const GROUPS: { title: string; options: Option[] }[] = [
     title: "Property Type",
     options: [
       { label: "Hotels", note: "Including hotels,resorts and more" },
-      { label: "Homes & apts", note: "Including homes,apartments,villas and more" },
+      {
+        label: "Homes & apts",
+        note: "Including homes,apartments,villas and more",
+      },
       { label: "Hostels", note: "Including hostels,inns and more" },
     ],
   },
@@ -79,46 +84,49 @@ const GROUPS: { title: string; options: Option[] }[] = [
   },
   {
     title: "Booking Policy",
-    options: [{ label: "Instant Confirmation" }, { label: "Free Cancellation" }],
+    options: [
+      { label: "Instant Confirmation" },
+      { label: "Free Cancellation" },
+    ],
   },
 ];
 
 const MAX_BUDGET = 800;
 
 const Chevron = () => (
-  <svg
-    viewBox="0 0 20 20"
-    fill="currentColor"
-    className="size-5 shrink-0 text-[#0496FF] transition-transform duration-200 group-open:rotate-180"
-  >
-    <path
-      fillRule="evenodd"
-      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-      clipRule="evenodd"
-    />
-  </svg>
+  <Image
+    src={downArrow}
+    alt=""
+    className="size-5 shrink-0 transition-transform duration-200 group-open:rotate-180"
+  />
 );
 
 const Panel = ({
   title,
   children,
+  open,
 }: {
   title: string;
   children: React.ReactNode;
+  open?: boolean;
 }) => (
-  // name= makes the dropdowns mutually exclusive natively — opening one closes the rest
-  <details name="hotel-filters" className="group relative">
-    <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-full border border-gray-100 bg-gradient-to-b from-white to-gray-50 px-4 py-2.5 shadow-[0_4px_10px_-4px_rgba(0,0,0,0.3)] transition-shadow hover:shadow-[0_6px_14px_-4px_rgba(0,0,0,0.35)] lg:rounded-lg lg:bg-white lg:bg-none">
+  // wrapper holds the grid cell's height so the open panel can float over the cards
+  <div className="relative min-h-[50px]">
+    {/* name= makes the dropdowns mutually exclusive natively — opening one closes the rest */}
+    <details
+      name="hotel-filters"
+      open={open}
+      className="group absolute inset-x-0 top-0 open:z-30 rounded-2xl border-2 border-transparent open:border-[#CB9E33] open:bg-white open:p-1.5 open:shadow-[-8.68px_8.68px_17.35px_0_rgba(153,159,180,0.5),6.51px_-6.51px_13.01px_0_#FFFFFF]"
+    >
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-xl border-2 border-[#B3E8FF] bg-white px-4 py-2.5 shadow-[-8.68px_8.68px_17.35px_0_rgba(153,159,180,0.5),6.51px_-6.51px_13.01px_0_#FFFFFF]">
       <span className="whitespace-nowrap font-poppins text-sm font-bold text-[#0496FF]">
         {title}
       </span>
       <Chevron />
     </summary>
-    {/* inline accordion on mobile, floating dropdown from lg up */}
-    <div className="mt-2 w-full rounded-xl bg-white px-4 py-3 lg:absolute lg:left-0 lg:top-full lg:z-30 lg:max-h-80 lg:w-72 lg:overflow-y-auto lg:border lg:border-gray-100 lg:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.35)]">
-      {children}
-    </div>
-  </details>
+      <div className="max-h-80 w-full overflow-y-auto px-4 py-3">{children}</div>
+    </details>
+  </div>
 );
 
 const CheckRow = ({ option }: { option: Option }) => (
@@ -201,7 +209,11 @@ const HotelFilterBar = ({ className = "" }: { className?: string }) => {
         </Panel>
 
         {GROUPS.map((group) => (
-          <Panel key={group.title} title={group.title}>
+          <Panel
+            key={group.title}
+            title={group.title}
+            open={group.title === "Popular Filters"}
+          >
             {group.options.map((option) => (
               <CheckRow key={option.label} option={option} />
             ))}
