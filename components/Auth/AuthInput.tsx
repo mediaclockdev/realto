@@ -4,10 +4,38 @@ import Image, { type StaticImageData } from "next/image";
 import { useId, useState } from "react";
 
 // shared by Login/Signup submit buttons
-export const authButtonClass =
-  "w-full cursor-pointer rounded-full bg-gradient-to-b from-[#6cb4fb] via-[#2C7BE5] to-[#164a94] py-3 text-lg font-bold text-white ring-2 ring-white/50 shadow-[0_0_0_4px_rgba(44,123,229,0.2),0_8px_20px_-4px_rgba(22,74,148,0.6)] transition active:translate-y-px disabled:opacity-60";
 
-export const authTagline = "The fastest growing realestate platform in Australia";
+import bluebg from "@/public/loginbg.svg";
+
+export const authTagline =
+  "The fastest growing realestate platform in Australia";
+
+export function AuthButton({
+  pending,
+  label,
+  pendingLabel,
+  disabled,
+  className = "",
+}: {
+  pending?: boolean;
+  label: string;
+  pendingLabel: string;
+  disabled?: boolean;
+  className?: string;
+}) {
+  return (
+    <div className={`relative w-48 mx-auto ${className}`}>
+      <Image src={bluebg} alt="background image" className="w-full h-auto" />
+      <button
+        type="submit"
+        disabled={disabled ?? pending}
+        className="absolute inset-0 flex items-center justify-center font-bold text-white"
+      >
+        {pending ? pendingLabel : label}
+      </button>
+    </div>
+  );
+}
 
 export default function AuthInput({
   icon,

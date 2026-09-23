@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
-import AuthInput, { authButtonClass, authTagline } from "./AuthInput";
+import AuthInput, { authTagline, AuthButton } from "./AuthInput";
 import VerifyOtp from "./VerifyOtp";
 import { signup } from "@/lib/api/auth";
 import emailIcon from "@/public/authicons/emailicon.svg";
@@ -162,9 +162,7 @@ export default function Signup({
           alt=""
           className="mx-auto h-24 w-auto object-contain"
         />
-        <button type="submit" disabled={pending} className={authButtonClass}>
-          {pending ? "Signing up..." : "Sign up"}
-        </button>
+        <AuthButton pending={pending} label="Sign up" pendingLabel="Signing up..." />
       </form>
 
       <p className="mt-4 text-center text-sm text-gray-800">

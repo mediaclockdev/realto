@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Clock } from "lucide-react";
-import { authButtonClass } from "./AuthInput";
+import { AuthButton } from "./AuthInput";
 import { verifyOtp, resendOtp } from "@/lib/api/auth";
 import type { ApiResult, Agent } from "@/lib/api/auth";
 import emailIcon from "@/public/authicons/emailicon.svg";
@@ -48,7 +48,11 @@ export default function VerifyOtp({
   function onChange(i: number, raw: string) {
     // handles both typing and pasting a full code into one box
     const chars = raw.replace(/\D/g, "").split("");
-    if (!chars.length) return write(digits.map((d, n) => (n === i ? "" : d)), i);
+    if (!chars.length)
+      return write(
+        digits.map((d, n) => (n === i ? "" : d)),
+        i,
+      );
 
     const next = [...digits];
     chars.forEach((c, n) => {
@@ -64,7 +68,10 @@ export default function VerifyOtp({
     e.preventDefault();
     const target = digits[i] ? i : i - 1;
     if (target < 0) return;
-    write(digits.map((d, n) => (n === target ? "" : d)), target);
+    write(
+      digits.map((d, n) => (n === target ? "" : d)),
+      target,
+    );
   }
 
   async function onSubmit(e: React.FormEvent) {
@@ -124,18 +131,30 @@ export default function VerifyOtp({
 
         <div className="mt-4 flex items-center justify-center gap-3 divide-x divide-gray-300">
           <div className="flex items-center gap-2 pr-3">
-            <Image src={phoneIcon} alt="" className="h-11 w-auto object-contain" />
+            <Image
+              src={phoneIcon}
+              alt=""
+              className="h-11 w-auto object-contain"
+            />
             <div className="min-w-0">
               <p className="whitespace-nowrap text-sm font-medium text-[#1f2a28]">
                 Phone Number
               </p>
-              <p className="truncate text-xs text-gray-600">{maskPhone(phone)}</p>
+              <p className="truncate text-xs text-gray-600">
+                {maskPhone(phone)}
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-2 pl-3">
-            <Image src={emailIcon} alt="" className="h-11 w-auto object-contain" />
+            <Image
+              src={emailIcon}
+              alt=""
+              className="h-11 w-auto object-contain"
+            />
             <div className="min-w-0">
-              <p className="text-sm font-medium text-[#1f2a28]">Email Address</p>
+              <p className="text-sm font-medium text-[#1f2a28]">
+                Email Address
+              </p>
               <p className="truncate text-xs text-gray-600">{email}</p>
             </div>
           </div>
@@ -175,13 +194,13 @@ export default function VerifyOtp({
           </button>
         </p>
 
-        <button
-          type="submit"
+        <AuthButton
+          pending={pending}
           disabled={pending || left <= 0}
-          className={`${authButtonClass} mt-4`}
-        >
-          {pending ? "Verifying..." : "Sign up"}
-        </button>
+          label="Sign up"
+          pendingLabel="Verifying..."
+          className="mt-4"
+        />
       </form>
 
       <div className="mt-4 flex items-center justify-center gap-2 rounded-xl border-2 border-[#C9A227] bg-white py-3">
