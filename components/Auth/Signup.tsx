@@ -20,9 +20,11 @@ import logo from "@/public/Realto Logo - 1.gif";
 export default function Signup({
   isAgent = false,
   onSwitch,
+  onBack,
 }: {
   isAgent?: boolean;
   onSwitch?: () => void;
+  onBack?: () => void;
 }) {
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
@@ -72,6 +74,7 @@ export default function Signup({
         email={verifying.email}
         phone={verifying.phone}
         onVerified={finish}
+        onBack={() => setVerifying(null)}
       />
     );
 
@@ -85,6 +88,15 @@ export default function Signup({
 
   return (
     <>
+      {onBack ? (
+        <button
+          type="button"
+          onClick={onBack}
+          className="mb-2 cursor-pointer text-sm font-bold text-[#2C63B5]"
+        >
+          ← Back
+        </button>
+      ) : null}
       <Image
         src={logo}
         alt="Realto"
@@ -178,7 +190,7 @@ export default function Signup({
         ) : (
           <Link
             href={isAgent ? "/login?role=agent" : "/login?role=user"}
-            className="font-bold text-[#2C7BE5]"
+            className="font-bold text-[#2C7BE5] "
           >
             Sign In
           </Link>

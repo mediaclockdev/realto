@@ -13,9 +13,11 @@ import logo from "@/public/Realto Logo - 1.gif";
 export default function Login({
   isAgent = false,
   onSwitch,
+  onBack,
 }: {
   isAgent?: boolean;
   onSwitch?: () => void;
+  onBack?: () => void;
 }) {
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
@@ -50,6 +52,15 @@ export default function Login({
 
   return (
     <>
+      {onBack ? (
+        <button
+          type="button"
+          onClick={onBack}
+          className="mb-2 cursor-pointer text-sm font-bold text-[#2C63B5]"
+        >
+          ← Back
+        </button>
+      ) : null}
       <Image
         src={logo}
         alt="Realto"

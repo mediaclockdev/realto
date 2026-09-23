@@ -29,7 +29,7 @@ export function AuthButton({
       <button
         type="submit"
         disabled={disabled ?? pending}
-        className="absolute inset-0 flex items-center justify-center font-bold text-white"
+        className="absolute inset-0 flex cursor-pointer items-center justify-center font-bold text-white disabled:cursor-not-allowed"
       >
         {pending ? pendingLabel : label}
       </button>

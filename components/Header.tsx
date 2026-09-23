@@ -167,6 +167,7 @@ const Header = () => {
               onSwitch={() =>
                 setView(view === "login-agent" ? "signup-agent" : "signup-user")
               }
+              onBack={() => setView("choose")}
             />
           ) : (
             <Signup
@@ -174,6 +175,7 @@ const Header = () => {
               onSwitch={() =>
                 setView(view === "signup-agent" ? "login-agent" : "login-user")
               }
+              onBack={() => setView("choose")}
             />
           )}
         </dialog>

@@ -23,10 +23,12 @@ export default function VerifyOtp({
   email,
   phone,
   onVerified,
+  onBack,
 }: {
   email: string;
   phone: string;
   onVerified: (json: ApiResult<{ agent: Agent }>) => void;
+  onBack?: () => void;
 }) {
   const [digits, setDigits] = useState<string[]>(Array(LENGTH).fill(""));
   const [error, setError] = useState("");
@@ -103,6 +105,15 @@ export default function VerifyOtp({
 
   return (
     <>
+      {onBack ? (
+        <button
+          type="button"
+          onClick={onBack}
+          className="mb-2 cursor-pointer text-sm font-bold text-[#2C63B5]"
+        >
+          ← Back
+        </button>
+      ) : null}
       <h1 className="text-center text-2xl font-bold text-[#1f2a28]">
         Verify Your Account
       </h1>
