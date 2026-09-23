@@ -133,7 +133,7 @@ const Header = () => {
           onClick={(e) =>
             e.target === dialogRef.current && dialogRef.current?.close()
           }
-          className="m-auto w-[92vw] max-w-md max-h-[90dvh] overflow-y-auto rounded-2xl sm:rounded-3xl p-2 sm:px-5 py-3 bg-white text-gray-900 backdrop:bg-black/60 backdrop:backdrop-blur-sm"
+          className="m-auto w-[96vw] max-w-xl max-h-[90dvh] overflow-y-auto rounded-xl  sm:px-5 pt-1 pb-3 bg-white text-gray-900 backdrop:bg-black/60 backdrop:backdrop-blur-sm"
         >
           {view === "choose" ? (
             <>

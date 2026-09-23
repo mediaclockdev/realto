@@ -9,8 +9,10 @@ import { signup } from "@/lib/api/auth";
 import emailIcon from "@/public/authicons/emailicon.svg";
 import nameIcon from "@/public/authicons/dl.svg";
 import phoneIcon from "@/public/authicons/phone.svg";
-import agencyIcon from "@/public/CompanyBuildinglogin.svg";
-import titleIcon from "@/public/loginusericon.svg";
+import mobileIcon from "@/public/authicons/authmobileicon.svg";
+import agencyIcon from "@/public/authicons/agentAgencyNameIcon.svg";
+import agenttitleIcon from "@/public/authicons/agentTitleicon.svg";
+
 import passwordIconView from "@/public/authicons/eyeopen.svg";
 import passwordIconClosed from "@/public/authicons/eyeclosed.svg";
 import logo from "@/public/Realto Logo - 1.gif";
@@ -94,11 +96,10 @@ export default function Signup({
         {authTagline}
       </p>
       {isAgent ? (
-        <h1 className="reel-text-portal mt-1 text-center font-amasis text-3xl font-black">
+        <h1 className="reel-text-portal my-2 text-center font-amasis text-2xl font-black">
           Agent Registry Portal
         </h1>
       ) : null}
-      <div className="mb-6" />
 
       <form onSubmit={onSubmit} className="space-y-4">
         <AuthInput
@@ -132,7 +133,7 @@ export default function Signup({
               required
             />
             <AuthInput
-              icon={titleIcon}
+              icon={agenttitleIcon}
               name="title"
               placeholder="Your Title"
               required
@@ -157,7 +158,7 @@ export default function Signup({
         />
         {error ? <p className="text-sm text-red-600">{error}</p> : null}
         <Image
-          src={phoneIcon}
+          src={mobileIcon}
           alt=""
           className="mx-auto h-24 w-auto object-contain"
         />
