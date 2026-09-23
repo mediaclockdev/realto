@@ -133,7 +133,7 @@ const Header = () => {
           onClick={(e) =>
             e.target === dialogRef.current && dialogRef.current?.close()
           }
-          className="m-auto w-[86vw] max-w-md max-h-[90dvh] overflow-y-auto rounded-xl  sm:px-5 pt-1 pb-3 bg-white text-gray-900 backdrop:bg-black/60 backdrop:backdrop-blur-sm"
+          className="m-auto w-[86vw] max-w-md max-h-[96dvh] overflow-y-auto rounded-xl  sm:px-5 pt-1 pb-3 bg-white text-gray-900 backdrop:bg-black/60 backdrop:backdrop-blur-sm"
         >
           {view === "choose" ? (
             <>
@@ -141,11 +141,11 @@ const Header = () => {
                 src={realtoLogos[logoIndex]}
                 alt="Realto logo"
                 unoptimized
-                className="w-full h-auto max-h-[20dvh] object-contain mb-5 sm:mb-5"
+                className="w-full h-auto max-h-[16dvh] object-contain mb-3"
               />
               <button
                 onClick={() => setView("login-user")}
-                className="block w-full mx-auto cursor-pointer rounded-xl bg-[#5B93E0] py-3 sm:py-4 text-center text-base sm:text-xl font-bold text-white"
+                className="block w-3/4 lg:w-full mx-auto cursor-pointer rounded-xl bg-[#5B93E0] py-3 sm:py-4 text-center text-base sm:text-xl font-bold text-white"
               >
                 Continue as a User
               </button>
@@ -156,7 +156,7 @@ const Header = () => {
               </div>
               <button
                 onClick={() => setView("login-agent")}
-                className="block w-full mx-auto cursor-pointer rounded-xl bg-[#2C63B5] py-3 sm:py-4 text-center text-base sm:text-xl font-bold text-white"
+                className="block w-3/4 lg:w-full mx-auto cursor-pointer rounded-xl bg-[#2C63B5] py-3 sm:py-4 text-center text-base sm:text-xl font-bold text-white"
               >
                 Continue as an Agent
               </button>
