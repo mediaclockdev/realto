@@ -90,7 +90,7 @@ export default function Signup({
         alt="Realto"
         priority
         unoptimized
-        className="mx-auto h-auto w-full max-w-xs  object-contain"
+        className="mx-auto h-auto w-full max-w-55  object-contain"
       />
       <p className="text-center font-serif text-lg italic text-[#1f2a28]">
         {authTagline}
