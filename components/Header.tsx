@@ -93,7 +93,9 @@ const Header = () => {
             setView("choose");
             dialogRef.current?.showModal();
           }}
-          className="relative -top-10 flex  shrink-0 cursor-pointer items-center gap-2 overflow-hidden transition-transform duration-200 active:scale-95 sm:h-12 sm:gap-2.5 sm:pr-6"
+          className={`relative flex shrink-0 cursor-pointer items-center gap-2 overflow-hidden transition-transform duration-200 active:scale-95 sm:h-12 sm:gap-2.5 sm:pr-6 ${
+            isHome ? "-top-10" : ""
+          }`}
         >
           {/* loginbg.png is a 1536x1024 canvas holding a 1180x200 pill;
               this scale crops the padding so the pill fills the button */}
