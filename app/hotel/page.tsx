@@ -13,7 +13,7 @@ export default function Page() {
       <Browsebypropertytype />
       <HotelLogos headingColor="text-[#0287C7]" />
       <LastMinuteHotels />
-      <TrendingHotelDestinations />
+      {/* <TrendingHotelDestinations /> */}
       <Experiencesthatlastalifetime />
       <GuestExperiences />
       <ReadyForYourRainforestRetreat />

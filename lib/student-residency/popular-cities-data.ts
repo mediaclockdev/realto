@@ -14,6 +14,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.5,
       reviews: 1000,
       img: house4,
+      detailHref: `/studentResidency/1`,
     },
     {
       id: 2,
@@ -23,6 +24,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.7,
       reviews: 850,
       img: house4,
+      detailHref: `/studentResidency/2`,
     },
     {
       id: 3,
@@ -32,6 +34,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.3,
       reviews: 620,
       img: house4,
+      detailHref: `/studentResidency/3`,
     },
     {
       id: 4,
@@ -41,6 +44,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.6,
       reviews: 430,
       img: house4,
+      detailHref: `/studentResidency/4`,
     },
   ],
   Brisbane: [
@@ -52,6 +56,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.4,
       reviews: 540,
       img: house2,
+      detailHref: `/studentResidency/5`,
     },
     {
       id: 6,
@@ -61,6 +66,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.2,
       reviews: 310,
       img: house2,
+      detailHref: `/studentResidency/6`,
     },
     {
       id: 7,
@@ -70,6 +76,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.8,
       reviews: 780,
       img: house2,
+      detailHref: `/studentResidency/7`,
     },
     {
       id: 8,
@@ -79,6 +86,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.1,
       reviews: 200,
       img: house2,
+      detailHref: `/studentResidency/8`,
     },
   ],
   Sydney: [
@@ -90,6 +98,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.9,
       reviews: 1200,
       img: house3,
+      detailHref: `/studentResidency/9`,
     },
     {
       id: 10,
@@ -99,6 +108,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.7,
       reviews: 960,
       img: house3,
+      detailHref: `/studentResidency/10`,
     },
     {
       id: 11,
@@ -108,6 +118,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.5,
       reviews: 740,
       img: house3,
+      detailHref: `/studentResidency/11`,
     },
     {
       id: 12,
@@ -117,6 +128,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.3,
       reviews: 380,
       img: house3,
+      detailHref: `/studentResidency/12`,
     },
   ],
   Adelaide: [
@@ -128,6 +140,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.2,
       reviews: 290,
       img: house,
+      detailHref: `/studentResidency/13`,
     },
     {
       id: 14,
@@ -137,6 +150,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.4,
       reviews: 410,
       img: house,
+      detailHref: `/studentResidency/14`,
     },
     {
       id: 15,
@@ -146,6 +160,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.0,
       reviews: 180,
       img: house,
+      detailHref: `/studentResidency/15`,
     },
     {
       id: 16,
@@ -155,6 +170,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.3,
       reviews: 220,
       img: house,
+      detailHref: `/studentResidency/16`,
     },
   ],
   Perth: [
@@ -166,6 +182,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.5,
       reviews: 510,
       img: house,
+      detailHref: `/studentResidency/17`,
     },
     {
       id: 18,
@@ -175,6 +192,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.6,
       reviews: 670,
       img: house2,
+      detailHref: `/studentResidency/18`,
     },
     {
       id: 19,
@@ -184,6 +202,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.4,
       reviews: 340,
       img: house3,
+      detailHref: `/studentResidency/19`,
     },
     {
       id: 20,
@@ -193,6 +212,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.2,
       reviews: 250,
       img: house4,
+      detailHref: `/studentResidency/20`,
     },
   ],
   Canberra: [
@@ -204,6 +224,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.3,
       reviews: 190,
       img: house4,
+      detailHref: `/studentResidency/21`,
     },
     {
       id: 22,
@@ -213,6 +234,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.1,
       reviews: 140,
       img: house3,
+      detailHref: `/studentResidency/22`,
     },
     {
       id: 23,
@@ -222,6 +244,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.4,
       reviews: 260,
       img: house2,
+      detailHref: `/studentResidency/23`,
     },
     {
       id: 24,
@@ -231,6 +254,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.5,
       reviews: 320,
       img: house,
+      detailHref: `/studentResidency/24`,
     },
   ],
   "Gold Coast": [
@@ -242,6 +266,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.6,
       reviews: 890,
       img: house2,
+      detailHref: `/studentResidency/25`,
     },
     {
       id: 26,
@@ -251,6 +276,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.5,
       reviews: 720,
       img: house3,
+      detailHref: `/studentResidency/26`,
     },
     {
       id: 27,
@@ -260,6 +286,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.4,
       reviews: 480,
       img: house,
+      detailHref: `/studentResidency/27`,
     },
     {
       id: 28,
@@ -269,6 +296,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.2,
       reviews: 310,
       img: house4,
+      detailHref: `/studentResidency/28`,
     },
   ],
   "Coffs Harbour": [
@@ -280,6 +308,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.1,
       reviews: 150,
       img: house4,
+      detailHref: `/studentResidency/29`,
     },
     {
       id: 30,
@@ -289,6 +318,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.0,
       reviews: 110,
       img: house3,
+      detailHref: `/studentResidency/30`,
     },
     {
       id: 31,
@@ -298,6 +328,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 4.3,
       reviews: 200,
       img: house2,
+      detailHref: `/studentResidency/31`,
     },
     {
       id: 32,
@@ -307,6 +338,7 @@ export const studentResidencyCitiesData: Record<string, Property[]> = {
       rating: 3.9,
       reviews: 90,
       img: house,
+      detailHref: `/studentResidency/32`,
     },
   ],
 };

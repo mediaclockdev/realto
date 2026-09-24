@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "realto.mediaclocksoft.com.au" },
       { protocol: "http", hostname: "localhost" },
+      { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
   // ponytail: /public filenames aren't content-hashed, so `immutable` means a

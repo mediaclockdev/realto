@@ -72,11 +72,11 @@ const Header = () => {
         className={`max-w-screen-2xl mx-auto flex items-center justify-between ${
           isTransparentHeader
             ? "px-3 lg:px-5 py-2 lg:py-4"
-            : "px-4 sm:px-6 lg:px-10 py-2 sm:py-3"
+            : "px-4 sm:px-6 lg:px-10 py-2 lg:py-2"
         }`}
       >
         {/* Logo */}
-        <div className={isHome ? "w-32  lg:w-80" : "w-24  lg:w-40"}>
+        <div className={isHome ? "w-32  lg:w-80" : "w-32 md:w-36  lg:w-48"}>
           <Link href="/homepage">
             <Image
               key={logoIndex}
@@ -115,10 +115,19 @@ const Header = () => {
           <span className="relative text-base font-bold text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)] sm:text-lg">
             Sign In
           </span> */}
-          <Image src={blueglassbackground} alt="bg" className="w-full h-full" />
+          <Image
+            src={blueglassbackground}
+            alt="bg"
+            className="lg:w-full lg:h-full"
+          />
           <div className="absolute top-1/2 left-10 transform -translate-y-1/2 flex items-center justify-center gap-2">
-            <Image src={usericon} alt="" loading="eager" className="" />
-            <span className="relative text-base font-bold text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)] sm:text-lg">
+            <Image
+              src={usericon}
+              alt=""
+              loading="eager"
+              className="size-8 lg:size-auto"
+            />
+            <span className="relative font-bold text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)] text-sm lg:text-lg">
               Sign In
             </span>
           </div>
