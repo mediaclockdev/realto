@@ -1,13 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ChevronRight,
-  CheckCircle2,
-  Mail,
-  Phone,
-  IdCard,
-  Plus,
-} from "lucide-react";
+import { ChevronRight, CheckCircle2 } from "lucide-react";
 import {
   getHotelListingById,
   getHotelListings,
@@ -20,6 +13,13 @@ import checkOutIcon from "@/public/calendericonhotel1.svg";
 import guestIcon from "@/public/loginusericon.svg";
 import roomIcon from "@/public/bedhotelicon.svg";
 import supersaverIcon from "@/public/supersaver.svg";
+import bgblue from "@/public/bluebgglasshotel.webp";
+import dlIcon from "@/public/agentpanelicons/profiledl.svg";
+import emailIcon from "@/public/contactemailicon.svg";
+import phoneIcon from "@/public/contactphoneicon.svg";
+import addnewguest from "@/public/checkout/addNewGuest.webp";
+import orangebg from "@/public/checkout/orangebghotel.webp";
+import redbg from "@/public/checkout/redbghotel.webp";
 
 type PageProps = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
@@ -35,8 +35,10 @@ const REQUESTS: [string, string[], boolean][] = [
 ];
 
 const card = "rounded-3xl bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.08)]";
-const pill =
-  "inline-block rounded-full bg-gradient-to-b from-[#4aa8ff] to-[#0a6fe0] px-5 py-1.5 text-lg text-white shadow";
+const glass =
+  "bg-[length:100%_100%] bg-no-repeat font-TimesNewRoman text-white";
+const glassBg = { backgroundImage: `url(${bgblue.src})` };
+const pill = `inline-block px-6 py-2 text-xl ${glass}`;
 const field =
   "flex items-center justify-between rounded-xl border-2 border-[#D9A441] px-3 py-2";
 
@@ -53,7 +55,7 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
     <div className="min-h-screen bg-[#f5f7fa] pb-16">
       <div className="relative">
         {/* Hero Background */}
-        <div className="absolute inset-x-0 top-0 h-[400px] overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-[400px]  overflow-hidden">
           <Image
             src={bg}
             alt="Hero Background"
@@ -154,9 +156,22 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
         <div className="grid gap-6 md:grid-cols-[1.4fr_1fr]">
           {/* Room details */}
           <section className={card}>
-            <span className={pill}>Room Details</span>
-            <h2 className="mt-4 font-semibold">{room.name}</h2>
-            <p className="text-gray-400">2 Adults • 7 Nights</p>
+            <div className="relative inline-grid w-40 place-items-center">
+              <Image
+                src={bgblue}
+                alt=""
+                className="col-start-1 row-start-1 h-auto w-full"
+              />
+              <span className="col-start-1 row-start-1 font-serif text-xl text-white">
+                Room Details
+              </span>
+            </div>
+            <h2 className="mt-3 font-bold font-TimesNewRoman text-black text-base">
+              {room.name}
+            </h2>
+            <p className="text-[#A5A0A0] font-TimesNewRoman text-base">
+              2 Adults • 7 Nights
+            </p>
             <ul className="mt-3 list-inside list-disc space-y-2 text-gray-500">
               <li>Room With Free Cancellation</li>
               <li>No meals included</li>
@@ -171,10 +186,10 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
               </button>
             </p>
             <div className="mt-4 flex h-7 max-w-sm overflow-hidden rounded-full text-sm">
-              <span className="flex-1 bg-green-700 pl-4 leading-7 text-white">
+              <span className="flex-1 bg-[#018A5E] pl-4 leading-7 text-white">
                 100% Refund
               </span>
-              <span className="flex-1 bg-amber-50 text-center leading-7 text-red-500">
+              <span className="flex-1 bg-[#FFEFC6] text-center leading-7 text-red-500">
                 Non Refundable
               </span>
             </div>
@@ -197,11 +212,11 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
 
           {/* Price */}
           <section className={`${card} flex flex-col gap-3`}>
-            <div className="flex justify-between text-lg">
+            <div className="flex justify-between text-lg text-black">
               <span>Base Price</span>
               <span>{room.price}</span>
             </div>
-            <div className="flex justify-between text-lg">
+            <div className="flex justify-between text-lg text-black">
               <span>1 Room × 7 Night</span>
               <span>$819</span>
             </div>
@@ -214,21 +229,24 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
                 <p className="text-xs text-gray-400">Coupon Code</p>
                 <input
                   placeholder="Have A Coupon Code?"
-                  className="text-sm outline-none"
+                  className="text-sm outline-none text-black"
                 />
               </div>
-              <button className="text-sm font-semibold">APPLY</button>
+              <button className="text-sm font-semibold text-black">
+                APPLY
+              </button>
             </div>
             <p className="text-xs italic text-gray-500">
               No coupon codes applicable for this property.
             </p>
-            <div className="mt-auto flex justify-between text-xl font-semibold">
+            <div className="mt-auto flex justify-between text-xl font-semibold text-black">
               <span>Total Amount to be paid :</span>
               <span className="text-green-600">$697</span>
             </div>
             <Link
               href="/hotel/booking-confirmation"
-              className="mx-auto rounded-full bg-gradient-to-b from-[#4aa8ff] to-[#0a6fe0] px-14 py-2 text-xl font-bold tracking-wide text-white shadow-lg"
+              className={`mx-auto px-14 py-3 text-2xl ${glass}`}
+              style={glassBg}
             >
               Reserve
             </Link>
@@ -237,45 +255,68 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
 
         {/* Guest details */}
         <section className={card}>
-          <span className={pill}>Guest Details</span>
+          <span className={pill} style={glassBg}>
+            Guest Details
+          </span>
           <p className="mt-3 text-sm font-semibold text-gray-500">
             Guest names must match the official ID which will be used at
             check-in.
           </p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {[
-              ["Full name", "text", IdCard],
-              ["National ID number", "text", IdCard],
-              ["Email id", "email", Mail],
-              ["Phone number (+61)", "tel", Phone],
-            ].map(([label, type, Icon]) => {
-              const I = Icon as typeof Mail;
+              ["Full name", "text", dlIcon],
+              ["National ID number", "text", dlIcon],
+              ["Email id", "email", emailIcon],
+              ["Phone number", "tel", phoneIcon],
+            ].map(([label, type, icon]) => {
               return (
                 <label key={label as string} className={field}>
-                  <span className="flex-1">
+                  <span className="flex-1 text-black">
                     <span className="block text-xs text-gray-500">
                       {label as string}
                     </span>
-                    <input
-                      type={type as string}
-                      className="w-full text-sm font-semibold outline-none"
-                    />
+                    <span className="flex items-center gap-2 text-black">
+                      {type === "tel" && (
+                        <>
+                          {/* <Image
+                            src="/checkout/flag.png"
+                            alt=""
+                            className="h-5"
+                          /> */}
+                          <span className="border-r pr-2 font-semibold">
+                            +61
+                          </span>
+                        </>
+                      )}
+                      <input
+                        type={type as string}
+                        className="w-full text-sm font-semibold outline-none text-black"
+                      />
+                    </span>
                   </span>
-                  <I className="h-8 w-8 text-[#0496FF]" />
+                  <Image src={icon} alt="" className="h-14 w-auto" />
                 </label>
               );
             })}
           </div>
           <div className="mt-3 flex items-center justify-between text-sm font-semibold text-gray-500">
             <span>Booking voucher will be sent to this email ID</span>
-            <button className="flex items-center gap-1 rounded-lg border-2 border-[#D9A441] px-3 py-1 text-[#D9A441]">
-              <Plus className="h-4 w-4" /> Add New Guest
+            <button className="relative ml-8 rounded-xl border-[3px] border-[#B8962E] py-1 pl-14 pr-3 font-serif text-xl font-bold text-[#B8962E]">
+              <Image
+                src={addnewguest}
+                alt="add new guest icon"
+                className="absolute left-0 -top-3 size-12 "
+              />{" "}
+              <p>Add New Guest</p>
             </button>
           </div>
         </section>
 
         {/* Special requests */}
-        <span className="inline-block rounded-full bg-gradient-to-b from-[#ffb347] to-[#ff6a00] px-5 py-2 font-bold text-white shadow">
+        <span
+          className="inline-block bg-[length:100%_100%] bg-no-repeat px-4 py-2 font-sans text-xl font-bold text-white"
+          style={{ backgroundImage: `url(${orangebg.src})` }}
+        >
           Special Requests
         </span>
         <section className={card}>
@@ -286,7 +327,7 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
           <div className="mt-5 grid gap-6 sm:grid-cols-3">
             {REQUESTS.map(([title, options, multi]) => (
               <fieldset key={title}>
-                <legend className="mb-2 text-sm font-semibold uppercase">
+                <legend className="mb-2 text-sm font-semibold uppercase text-black">
                   {title}
                 </legend>
                 {options.map((opt) => (
@@ -305,14 +346,14 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
               </fieldset>
             ))}
           </div>
-          <p className="mt-5 font-semibold">Have Another Request?</p>
+          <p className="mt-5 font-semibold text-black">Have Another Request?</p>
           <textarea
             rows={3}
             placeholder="Type here if you have any other specific requests..."
             className="mt-2 w-full rounded-xl border-2 border-sky-300 bg-sky-50 p-3 outline-none"
           />
           <div className="mt-4 text-right">
-            <button className="rounded-full bg-gradient-to-b from-[#4aa8ff] to-[#0a6fe0] px-10 py-2 text-xl font-bold text-white shadow-lg">
+            <button className={`px-10 py-3 text-xl ${glass}`} style={glassBg}>
               Save &amp; Apply
             </button>
           </div>
@@ -320,7 +361,10 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
 
         {/* Cancellation policy */}
         <section className={card}>
-          <span className="inline-block rounded-full bg-gradient-to-b from-[#ff5a5a] to-[#c40000] px-5 py-1.5 text-lg text-white shadow">
+          <span
+            className={`inline-block px-4 py-2 text-xl font-bold ${glass}`}
+            style={{ backgroundImage: `url(${redbg.src})` }}
+          >
             Cancellation policy
           </span>
           <p className="mt-5 text-sm font-semibold text-red-600">
