@@ -12,8 +12,8 @@ import holidayInnLogo from "../../public/holidayinn1.svg";
 import crownePlazaLogo from "../../public/crowneplaza1.svg";
 import locationIcon from "../../public/hotellocationicon.svg";
 import mail from "../../public/contactemailicon.svg";
-import goldenArrowCircle from "../../public/goldencircle.svg";
 import telephone from "../../public/telephone.svg";
+import goldenArrowCircle from "../../public/goldencircle.svg";
 
 const hotels = getHotelListings();
 

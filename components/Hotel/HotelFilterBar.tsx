@@ -82,13 +82,6 @@ const GROUPS: { title: string; options: Option[] }[] = [
       { label: "Kitchen/Kitchenette", count: 67 },
     ],
   },
-  {
-    title: "Booking Policy",
-    options: [
-      { label: "Instant Confirmation" },
-      { label: "Free Cancellation" },
-    ],
-  },
 ];
 
 const MAX_BUDGET = 800;
@@ -119,12 +112,14 @@ const Panel = ({
       className="group absolute inset-x-0 top-0 open:z-30 rounded-2xl border-2 border-transparent open:border-[#CB9E33] open:bg-white open:p-1.5 open:shadow-[-8.68px_8.68px_17.35px_0_rgba(153,159,180,0.5),6.51px_-6.51px_13.01px_0_#FFFFFF]"
     >
       <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-xl border-2 border-[#B3E8FF] bg-white px-4 py-2.5 shadow-[-8.68px_8.68px_17.35px_0_rgba(153,159,180,0.5),6.51px_-6.51px_13.01px_0_#FFFFFF]">
-      <span className="whitespace-nowrap font-poppins text-sm font-bold text-[#0496FF]">
-        {title}
-      </span>
-      <Chevron />
-    </summary>
-      <div className="max-h-80 w-full overflow-y-auto px-4 py-3">{children}</div>
+        <span className="whitespace-nowrap font-poppins text-sm font-bold text-[#0496FF]">
+          {title}
+        </span>
+        <Chevron />
+      </summary>
+      <div className="max-h-80 w-full overflow-y-auto px-4 py-3">
+        {children}
+      </div>
     </details>
   </div>
 );
@@ -209,11 +204,7 @@ const HotelFilterBar = ({ className = "" }: { className?: string }) => {
         </Panel>
 
         {GROUPS.map((group) => (
-          <Panel
-            key={group.title}
-            title={group.title}
-            open={group.title === "Popular Filters"}
-          >
+          <Panel key={group.title} title={group.title}>
             {group.options.map((option) => (
               <CheckRow key={option.label} option={option} />
             ))}

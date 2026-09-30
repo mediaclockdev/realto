@@ -92,19 +92,21 @@ const HotelSearchBar = ({
     <div className="w-full bg-white">
       <div className="h-20 bg-gradient-to-b from-[#1F7FC0] to-[#5BA9DB]" />
 
-      <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center gap-3 px-3 py-3 lg:flex-nowrap lg:overflow-x-auto">
-        <button
-          type="button"
-          onClick={onToggle}
-          className="flex items-center gap-2"
-        >
-          <Image src={funnel} alt="funnel icon" />
-          <Image
-            src={down}
-            alt="arrow"
-            className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-          />
-        </button>
+      <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center gap-3 px-3 py-3 lg:flex-nowrap lg:overflow-x-auto [.peer:not(:checked)~*_&]:lg:flex-wrap [.peer:not(:checked)~*_&]:lg:overflow-visible">
+        {onToggle && (
+          <button
+            type="button"
+            onClick={onToggle}
+            className="flex items-center gap-2"
+          >
+            <Image src={funnel} alt="funnel icon" />
+            <Image
+              src={down}
+              alt="arrow"
+              className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+            />
+          </button>
+        )}
 
         <label className={`${FIELD} min-w-56 flex-1`}>
           <Image

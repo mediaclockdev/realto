@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import MarqueeCards from "../ui/MarqueeCards";
 import sheraton from "../../public/sheraton.svg";
 import movenpick from "../../public/movenpick.svg";
@@ -72,8 +73,9 @@ const HotelLogos = ({
           <Image src={heading} alt="" />
         </div>
       ) : (
+        <div className="flex items-center justify-between gap-4 mb-2">
         <h2
-          className={`font-amasis font-semibold text-base lg:text-[32px] ${headingColor} px-4 py-2 inline-block mb-2 [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]`}
+          className={`font-amasis font-semibold text-base lg:text-[32px] ${headingColor} px-4 py-2 inline-block [text-shadow:_0px_0px_4px_rgb(255_255_255_/_100%)]`}
           style={{
             WebkitTextFillColor: "white",
             WebkitTextStroke: "1.5px #000000",
@@ -83,6 +85,13 @@ const HotelLogos = ({
         >
           Hotel Franchise
         </h2>
+          <Link
+            href="/hotel/browse"
+            className="shrink-0 rounded-full border-2 border-[#ECC440] px-5 py-1.5 font-poppins text-sm font-semibold text-[#343434] hover:bg-[#ECC440]"
+          >
+            View All
+          </Link>
+        </div>
       )}
       <MarqueeCards items={franchise} speed="fast" />
     </div>
