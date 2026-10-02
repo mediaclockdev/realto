@@ -6,7 +6,7 @@ import locationIcon from "../../public/hotellocationicon.svg";
 import checkInIcon from "@/public/calendericonhotel.svg";
 import checkOutIcon from "@/public/calendericonhotel1.svg";
 import roomIcon from "../../public/bedhotelicon.svg";
-import guestIcon from "../../public/loginusericon.svg";
+import guestIcon from "../../public/loginusericon.webp";
 import starIcon from "../../public/starsingle.svg";
 import funnel from "@/public/hotelfunnelicon.svg";
 import down from "@/public/downarrowhotel.svg";

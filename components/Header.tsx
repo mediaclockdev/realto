@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import blueglassbackground from "@/public/loginbg.svg";
-import usericon from "@/public/loginusericon.svg";
+import blueglassbackground from "@/public/loginbg.webp";
+import usericon from "@/public/loginusericon.webp";
 import Link from "next/link";
 import realtologogif1 from "@/public/Realto Logo - 1.gif";
 import realtologogif2 from "@/public/Realto Logo - 2.gif";
@@ -94,7 +94,7 @@ const Header = () => {
             dialogRef.current?.showModal();
           }}
           className={`relative flex shrink-0 cursor-pointer items-center gap-2 overflow-hidden transition-transform duration-200 active:scale-95 sm:h-12 sm:gap-2.5 sm:pr-6 ${
-            isHome ? "-top-10" : ""
+            isHome ? "lg:-top-10" : ""
           }`}
         >
           {/* loginbg.png is a 1536x1024 canvas holding a 1180x200 pill;
@@ -118,14 +118,18 @@ const Header = () => {
           <Image
             src={blueglassbackground}
             alt="bg"
+            width={160}
+            height={41}
             className="lg:w-full lg:h-full"
           />
           <div className="absolute top-1/2 left-10 transform -translate-y-1/2 flex items-center justify-center gap-2">
             <Image
               src={usericon}
               alt=""
+              width={35}
+              height={34}
               loading="eager"
-              className="size-8 lg:size-auto"
+              className="size-8 lg:h-[34px] lg:w-[35px]"
             />
             <span className="relative font-bold text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)] text-sm lg:text-lg">
               Sign In

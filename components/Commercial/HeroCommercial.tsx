@@ -1,6 +1,6 @@
 import React from "react";
 import HeroSection from "../ui/HeroSection";
-import bg from "../../public/commercialbg.svg";
+import bg from "../../public/commercialbg.webp";
 
 const HeroCommercial = () => {
   return (

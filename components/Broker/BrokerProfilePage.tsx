@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { Award, CheckCircle2, ChevronDown, XCircle } from "lucide-react";
 import HeroSection from "../ui/HeroSection";
 // hero background
-import heroBg from "@/public/herobrokerbg.jpg";
+import heroBg from "@/public/herobrokerbg.webp";
 // agency logo (Mortgage Choice)
 import agencyLogo from "@/public/mortagagechoicebank.svg";
 // broker portrait

@@ -5,7 +5,7 @@ import Image from "next/image";
 import locationIcon from "../../public/location.svg";
 import checkInIcon from "../../public/buycalender.svg";
 import checkOutIcon from "../../public/buycalender.svg";
-import guestIcon from "../../public/loginusericon.svg";
+import guestIcon from "../../public/loginusericon.webp";
 import roomIcon from "../../public/beds.svg";
 import searchIcon from "../../public/iconsearchwhite.svg";
 /* swap checkInIcon/checkOutIcon/guestIcon for the green calendar, red calendar,

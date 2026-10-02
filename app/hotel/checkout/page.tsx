@@ -10,7 +10,7 @@ import starIcon from "@/public/starsingle.svg";
 import locationIcon from "@/public/location.svg";
 import checkInIcon from "@/public/calendericonhotel.svg";
 import checkOutIcon from "@/public/calendericonhotel1.svg";
-import guestIcon from "@/public/loginusericon.svg";
+import guestIcon from "@/public/loginusericon.webp";
 import roomIcon from "@/public/bedhotelicon.svg";
 import supersaverIcon from "@/public/supersaver.svg";
 import bgblue from "@/public/bluebgglasshotel.webp";
@@ -42,7 +42,7 @@ const pill = `inline-block px-6 py-2 text-xl ${glass}`;
 const field =
   "flex items-center justify-between rounded-xl border-2 border-[#D9A441] px-3 py-2";
 
-import bg from "@/public/hotelherobg.png";
+import bg from "@/public/hotelherobg.webp";
 
 export default async function CheckoutPage({ searchParams }: PageProps) {
   const params = (await searchParams) ?? {};

@@ -1,6 +1,6 @@
 import React from "react";
 
-import herobg from "../../public/studentherobg.jpg";
+import herobg from "../../public/studentherobg.webp";
 import HeroSection from "../ui/HeroSection";
 
 const StudentHero = () => {

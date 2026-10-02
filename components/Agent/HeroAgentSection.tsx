@@ -1,6 +1,6 @@
 import React from "react";
 import HeroSection from "../ui/HeroSection";
-import bg from "../../public/heroagentbg.jpg";
+import bg from "../../public/heroagentbg.webp";
 
 const HeroAgentSection = () => {
   return (

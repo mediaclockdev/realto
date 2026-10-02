@@ -5,7 +5,7 @@ import { useId, useState } from "react";
 
 // shared by Login/Signup submit buttons
 
-import bluebg from "@/public/loginbg.svg";
+import bluebg from "@/public/loginbg.webp";
 
 export const authTagline =
   "The fastest growing realestate platform in Australia";
