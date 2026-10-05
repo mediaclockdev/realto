@@ -36,7 +36,7 @@ const SocialIcons = () => (
     {socialImages.map((image, index) => (
       <Image
         key={index}
-        src={image.src}
+        src={image}
         alt={`Social media icon ${index + 1}`}
         className="h-6 w-6"
       />
