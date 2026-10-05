@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Search, Bell, Menu, X } from "lucide-react";
-import realtoLogo from "@/public/Realto Logo - 1.gif";
+import realtoLogo from "@/public/Realto Logo - 1.webp";
 import searchFlag from "@/public/austrilaflag.svg";
 import agentAvatarThumb from "@/public/emilyrodriguez.jpg";
 import supportAgent from "@/public/contact2.jpeg";

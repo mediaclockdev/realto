@@ -15,7 +15,7 @@ import agenttitleIcon from "@/public/authicons/agentTitleicon.svg";
 
 import passwordIconView from "@/public/authicons/eyeopen.svg";
 import passwordIconClosed from "@/public/authicons/eyeclosed.svg";
-import logo from "@/public/Realto Logo - 1.gif";
+import logo from "@/public/Realto Logo - 1.webp";
 
 export default function Signup({
   isAgent = false,

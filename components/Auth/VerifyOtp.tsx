@@ -8,7 +8,7 @@ import { verifyOtp, resendOtp } from "@/lib/api/auth";
 import type { ApiResult, Agent } from "@/lib/api/auth";
 import emailIcon from "@/public/authicons/emailicon.svg";
 import phoneIcon from "@/public/authicons/phone.svg";
-import logo from "@/public/Realto Logo - 1.gif";
+import logo from "@/public/Realto Logo - 1.webp";
 
 const LENGTH = 6;
 const EXPIRY_SECONDS = 10 * 60;
