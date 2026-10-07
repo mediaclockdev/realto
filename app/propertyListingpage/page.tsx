@@ -1,24 +1,5 @@
-import PropertyListingPage from "@/components/PropertyListing/PropertyListingPage";
-import { getPropertyListingPageData } from "@/lib/listings/repository";
-import { parsePropertyListingQuery } from "@/lib/listings/query";
+import StateGalleries from "@/components/StateGalleries";
 
-type PageProps = {
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
-};
-
-const page = async ({ searchParams }: PageProps) => {
-  const resolvedSearchParams = (await searchParams) ?? {};
-  const query = parsePropertyListingQuery(resolvedSearchParams);
-  const listingPageData = getPropertyListingPageData({
-    ...query,
-    listingVariant: "buy",
-  });
-
-  return (
-    <div>
-      <PropertyListingPage data={listingPageData} query={query} />
-    </div>
-  );
-};
-
-export default page;
+export default function BuyPage() {
+  return <StateGalleries variant="buy" heading="Explore Property For Sale" subtitle="Find properties For Sale across Australia, from cities to suburbs" cta="Buy Property" />;
+}

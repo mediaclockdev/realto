@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import bgblue from "@/public/bluebgglasshotel.webp";
 import {
   CheckCircle2,
   Share2,
@@ -17,8 +18,11 @@ import {
   Mail,
   HelpCircle,
   ChevronLeft,
-  CreditCard,
 } from "lucide-react";
+
+const glass =
+  "bg-[length:100%_100%] bg-no-repeat font-TimesNewRoman text-white";
+const glassBg = { backgroundImage: `url(${bgblue.src})` };
 
 export default function BookingConfirmationPage() {
   return (
@@ -35,59 +39,67 @@ export default function BookingConfirmationPage() {
 
       <div className="mx-auto max-w-screen-xl px-4 lg:px-6 py-5">
         {/* Top Success Banner */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex flex-wrap gap-6 items-center justify-between">
-          <div className="flex items-center gap-4">
-            <CheckCircle2 className="h-16 w-16 text-green-500 bg-green-50 rounded-full p-2" />
+        <div className="bg-white rounded-3xl shadow-lg border border-gray-200 px-8 py-6 grid gap-6 md:grid-cols-2 items-center">
+          {/* Part 1: confirmation message */}
+          <div className="flex items-center gap-5">
+            <CheckCircle2 className="h-20 w-20 shrink-0 text-white bg-green-500 rounded-full p-2 shadow-md" />
             <div>
-              <h1 className="text-2xl font-bold text-[#343434]">
+              <h1 className="text-3xl font-bold text-[#059669]">
                 Booking Confirmed!
               </h1>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-lg font-bold text-[#334155] mt-1">
                 Your hotel reservation is confirmed.
               </p>
-              <p className="text-xs text-gray-500 italic mt-1">
+              <p className="text-base text-[#64748B] italic leading-snug">
                 A confirmation email and SMS have been sent to your registered
                 email and mobile number.
               </p>
             </div>
           </div>
 
-          <div className="flex-1 min-w-[250px] border-l border-gray-200 pl-6 hidden md:block">
-            <p className="text-sm font-semibold text-[#0496FF]">
-              Booking Reference Number
-            </p>
-            <p className="text-xl font-bold text-[#343434] tracking-wide">
-              RLTO78456231
-            </p>
-            <div className="mt-2 text-sm text-gray-600 flex flex-col gap-1">
-              <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-[#F0B429]" />{" "}
-                indranilx06@gmail.com
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-[#F0B429]" /> 04XX XXX 2887
+          {/* Part 2: booking reference, contact and actions */}
+          <div className="grid gap-6 sm:grid-cols-[3fr_2fr] items-center md:border-l md:border-gray-200 md:pl-8">
+            <div>
+              <p className="text-xl font-bold text-[#0496FF]">
+                Booking Reference Number
+              </p>
+              <p className="text-2xl font-bold text-[#343434] tracking-wide mt-1">
+                RLTO78456231
+              </p>
+              <div className="mt-4 text-xl text-gray-600 flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <Mail className="h-8 w-8 shrink-0 text-[#F0B429]" />
+                  <span>indranilx06@gmail.com</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Phone className="h-8 w-8 shrink-0 text-[#F0B429]" />
+                  <span>04XX XXX 2887</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="flex flex-col items-end gap-3">
-            <div className="flex gap-4">
-              <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800">
-                <Share2 className="h-4 w-4 text-red-500" /> Share
+            <div className="flex flex-col items-end gap-4">
+              <div className="flex gap-8">
+                <button className="flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-gray-800">
+                  <Share2 className="h-9 w-9 text-red-500" /> Share
+                </button>
+                <button className="flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-gray-800">
+                  <Heart className="h-9 w-9 text-red-500" /> Save
+                </button>
+              </div>
+              <button
+                className={`w-full px-8 py-4 text-xl ${glass}`}
+                style={glassBg}
+              >
+                Download Confirmation
               </button>
-              <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800">
-                <Heart className="h-4 w-4 text-red-500" /> Save
-              </button>
+              <Link
+                href="/my-bookings"
+                className="text-lg text-[#0496FF] font-semibold hover:underline"
+              >
+                View in My Bookings →
+              </Link>
             </div>
-            <button className="bg-gradient-to-r from-blue-400 to-blue-500 text-white px-6 py-2 rounded-full font-semibold shadow hover:opacity-90 transition">
-              Download Confirmation
-            </button>
-            <Link
-              href="/my-bookings"
-              className="text-sm text-[#0496FF] font-medium hover:underline"
-            >
-              View in My Bookings →
-            </Link>
           </div>
         </div>
 
@@ -217,7 +229,7 @@ export default function BookingConfirmationPage() {
 
             {/* Important Information */}
             <div className="bg-white rounded-2xl shadow-sm border border-blue-200 overflow-hidden relative">
-              <div className="bg-blue-500 text-white px-6 py-2 inline-block rounded-br-2xl absolute top-0 left-0 font-semibold text-sm flex items-center gap-2 z-10 shadow-md">
+              <div className={`absolute top-0 left-0 z-10 flex items-center gap-2 px-6 py-2 text-xl ${glass}`} style={glassBg}>
                 <AlertCircle className="h-4 w-4" /> Important Information
               </div>
 
@@ -264,7 +276,7 @@ export default function BookingConfirmationPage() {
                   </h4>
                   <p className="text-[11px] text-gray-500 italic">
                     A valid government ID is required at check-in (e.g. passport
-                    or driver's license).
+                    or driver&apos;s license).
                   </p>
                 </div>
 
@@ -417,7 +429,7 @@ export default function BookingConfirmationPage() {
         {/* Recommended Places */}
         <div className="mt-6 bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
           <div className="flex items-center justify-between">
-            <h3 className="rounded-full bg-gradient-to-b from-[#4aa8ff] to-[#0a6fe0] px-6 py-2 text-xl font-bold text-white shadow">
+            <h3 className={`inline-block px-6 py-2 text-xl ${glass}`} style={glassBg}>
               Recommended Places
             </h3>
             <Link href="/hotel" className="font-bold text-[#0496FF]">
@@ -496,7 +508,7 @@ export default function BookingConfirmationPage() {
               <div>
                 <h4 className="font-bold text-[#343434] text-sm">Need Help?</h4>
                 <p className="text-xs text-gray-500 italic">
-                  We're here to help. If you have any questions about your
+                  We&apos;re here to help. If you have any questions about your
                   booking, feel free to contact us.
                 </p>
               </div>

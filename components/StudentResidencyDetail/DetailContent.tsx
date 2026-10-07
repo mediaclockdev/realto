@@ -18,6 +18,8 @@ import {
   Mail,
   MessageCircle,
 } from "lucide-react";
+import bgblue from "@/public/bluebgglasshotel.webp";
+import orangebg from "@/public/checkout/orangebghotel.webp";
 import walk from "@/public/studentresidencywalkicon.svg";
 import bus from "@/public/studentresidencybusicon.svg";
 import community from "@/public/studentresidencycommunityicon.svg";
@@ -194,10 +196,17 @@ const NeedHelpCard = () => (
   </div>
 );
 
+const glass =
+  "inline-block px-6 py-2 text-xl bg-[length:100%_100%] bg-no-repeat font-TimesNewRoman text-white";
+const glassBg = { backgroundImage: `url(${bgblue.src})` };
+const orange =
+  "inline-block px-4 py-2 text-xl bg-[length:100%_100%] bg-no-repeat font-sans font-bold text-white";
+const orangeBg = { backgroundImage: `url(${orangebg.src})` };
+
 /* ─── Overview ─── */
 const Overview = ({ property }: { property: Property }) => (
   <div className="mb-10">
-    <h2 className="text-xl font-bold mb-2  bg-[#ECC850] inline-block px-4 py-1 text-white [text-shadow:_1px_1px_2.1px_#000000,_0px_0px_7.3px_rgba(0,0,0,0.6)] rounded-lg">
+    <h2 className={`mb-4 ${glass}`} style={glassBg}>
       Overview
     </h2>
     <p className="text-gray-600 text-sm leading-relaxed mb-1">
@@ -240,9 +249,9 @@ const Overview = ({ property }: { property: Property }) => (
 /* ─── Facilities ─── */
 const Facilities = () => (
   <div className="mb-10">
-    <h2 className="text-lg font-bold mb-5 inline-block px-4 py-1 bg-[#ECC850] text-white [text-shadow:_1px_1px_2.1px_#000000,_0px_0px_7.3px_rgba(0,0,0,0.6)] rounded-lg">
+    <div className="text-center"><h2 className={`mb-4 ${orange}`} style={orangeBg}>
       Facilities & Amenities
-    </h2>
+    </h2></div>
     <div className="relative flex items-center">
       <button className="absolute -left-3 z-10 bg-white shadow-md rounded-full p-1.5 border border-gray-200 text-yellow-500 hover:shadow-lg transition">
         <ChevronLeft className="w-4 h-4" />
@@ -301,9 +310,9 @@ const Facilities = () => (
 /* ─── Location ─── */
 const Location = () => (
   <div className="mb-10">
-    <h2 className="text-xl font-bold mb-5  inline-block px-4 py-1  bg-[#ECC850] text-white [text-shadow:_1px_1px_2.1px_#000000,_0px_0px_7.3px_rgba(0,0,0,0.6)] rounded-lg">
+    <div className="text-center"><h2 className={`mb-4 ${orange}`} style={orangeBg}>
       Location
-    </h2>
+    </h2></div>
     <div className="flex flex-col md:flex-row gap-6">
       {/* Map */}
       <div className="md:w-[45%] rounded-2xl overflow-hidden h-[280px] relative shadow-sm border border-gray-200">
@@ -399,9 +408,9 @@ const Location = () => (
 /* ─── Reviews ─── */
 const Reviews = () => (
   <div className="mb-10">
-    <h2 className="text-xl font-bold mb-5 inline-block px-4 py-1  bg-[#ECC850] text-white [text-shadow:_1px_1px_2.1px_#000000,_0px_0px_7.3px_rgba(0,0,0,0.6)] rounded-lg">
+    <div className="text-center"><h2 className={`mb-4 ${glass}`} style={glassBg}>
       Student Reviews
-    </h2>
+    </h2></div>
     <div className="flex flex-col lg:flex-row gap-4">
       {/* Rating summary */}
       <div className="lg:w-[30%] bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
@@ -532,9 +541,9 @@ const FAQ = () => {
 
   return (
     <div className="mb-10">
-      <h2 className="text-xl font-bold mb-5 inline-block px-4 py-1 bg-[#ECC850] text-white [text-shadow:_1px_1px_2.1px_#000000,_0px_0px_7.3px_rgba(0,0,0,0.6)] rounded-lg">
+      <div className="text-center"><h2 className={`mb-4 ${glass}`} style={glassBg}>
         Frequently Asked Questions
-      </h2>
+      </h2></div>
       <div className="flex flex-col lg:flex-row gap-6">
         {/* FAQ accordion */}
         <div className="lg:w-[60%] space-y-3">

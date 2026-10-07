@@ -8,6 +8,10 @@ export type User = {
   name?: string;
   email?: string;
   role?: string;
+  phone?: string;
+  address?: string | null;
+  bio?: string | null;
+  created_at?: string;
 };
 
 async function get<T>(path: string): Promise<ApiResult<T>> {
@@ -49,11 +53,10 @@ export const updateAgentProfile = (body: Record<string, unknown>) => {
 };
 
 // Fetch User Profile
-// export const getUserProfile = () => {
-//   return get<User>(Endpoints.userprofile.get);
-// };
+export const getUserProfile = () => {
+  return get<User>(Endpoints.userprofile.get);
+};
 
-// Update User Profile
-// export const updateUserProfile = (body: Record<string, unknown>) => {
-//   return put<User>(Endpoints.userprofile.update, body);
-// };
+export const updateUserProfile = (body: Record<string, unknown>) => {
+  return put<User>(Endpoints.userprofile.update, body);
+};

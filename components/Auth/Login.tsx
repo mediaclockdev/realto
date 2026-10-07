@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import AuthInput, { authTagline, AuthButton } from "./AuthInput";
-import { login } from "@/lib/api/auth";
+import { login, userLogin } from "@/lib/api/auth";
 import emailIcon from "@/public/authicons/emailicon.svg";
 import passwordIconView from "@/public/authicons/eyeopen.svg";
 import passwordIconClosed from "@/public/authicons/eyeclosed.svg";
@@ -27,10 +27,10 @@ export default function Login({
     setPending(true);
     setError("");
     try {
-      const json = await login({
-        ...Object.fromEntries(new FormData(e.currentTarget)),
-        role: isAgent ? "agent" : "user",
-      });
+      const body = Object.fromEntries(new FormData(e.currentTarget));
+      const json = isAgent
+        ? await login({ ...body, role: "agent" })
+        : await userLogin(body);
       // API rejects unapproved agents with its own message
       if (!json.success)
         return setError(json.message ?? "Invalid email or password");
@@ -40,9 +40,7 @@ export default function Login({
         localStorage.setItem("token", token);
       }
 
-      const me = json.data?.agent;
-      window.location.href =
-        me?.role === "agent" ? "/agentpanel" : "/userpanel";
+      window.location.href = isAgent ? "/agentpanel" : "/userpanel";
     } catch {
       setError("Network error. Please try again.");
     } finally {

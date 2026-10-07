@@ -54,6 +54,9 @@ async function post<T>(path: string, body: Body): Promise<ApiResult<T>> {
 export const login = (body: Body) =>
   post<{ agent: Agent }>(Endpoints.auth.login, body);
 
+export const userLogin = (body: Body) =>
+  post<{ agent: Agent }>(Endpoints.auth.userLogin, body);
+
 export const signup = (body: Body) =>
   post<{ agent: Agent }>(Endpoints.auth.signup, body);
 

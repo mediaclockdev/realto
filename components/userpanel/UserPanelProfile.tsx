@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   CheckCircle2,
@@ -21,6 +22,8 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+import toast from "react-hot-toast";
+import { getUserProfile, updateUserProfile, type User } from "@/lib/api/profile";
 import avatar from "@/public/emilyrodriguez.jpg";
 import profileicon from "@/public/agentpanelicons/sidebarprofileicon.svg";
 import editIcon from "@/public/agentpanelicons/profileEditicon.svg";
@@ -30,6 +33,13 @@ const SOFT_SHADOW = "shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
 const SECTION = `rounded-xl bg-white p-4 ${SOFT_SHADOW}`;
 const HEADING_PILL =
   "flex w-fit items-center gap-2 rounded-full bg-[#F1F3F2] px-4 py-2 text-xl font-bold text-[#2495FF]";
+
+const fieldNames: Record<string, string> = {
+  "Full Name": "name",
+  "Email Address": "email",
+  "Phone Number": "phone",
+  Address: "address",
+};
 
 const personalFields = [
   {
@@ -145,6 +155,7 @@ function FieldBox({
         </span>
         <input
           type="text"
+          name={fieldNames[label]}
           defaultValue={value}
           className="mt-0.5 w-full text-lg text-gray-900 outline-none"
         />
@@ -155,6 +166,34 @@ function FieldBox({
 }
 
 export default function UserPanelProfile() {
+  const [user, setUser] = useState<User>();
+  useEffect(() => {
+    getUserProfile().then((r) => r.success && setUser(r.data));
+  }, []);
+
+  const fields = personalFields.map((f) => {
+    const live =
+      f.label === "Full Name"
+        ? user?.name
+        : f.label === "Email Address"
+          ? user?.email
+          : f.label === "Phone Number"
+            ? user?.phone
+            : f.label === "Address"
+              ? user?.address
+              : undefined;
+    return live ? { ...f, value: live } : f;
+  });
+  async function save(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const r = await updateUserProfile(Object.fromEntries(new FormData(e.currentTarget)));
+    if (r.success) {
+      toast.success("Profile updated");
+      setUser((u) => ({ ...u, ...(r.data ?? Object.fromEntries(new FormData(e.currentTarget))) }));
+    } else toast.error(r.message ?? "Update failed");
+  }
+  const bioValue = user?.bio || bio.value;
+
   return (
     <main className="space-y-5">
       <div>
@@ -189,7 +228,7 @@ export default function UserPanelProfile() {
               </button>
             </div>
             <div>
-              <p className="text-3xl font-bold text-[#2495FF]">Masha Klein</p>
+              <p className="text-3xl font-bold text-[#2495FF]">{user?.name ?? "Masha Klein"}</p>
               <p className="text-lg text-[#424656] font-medium">
                 New York, USA
               </p>
@@ -199,6 +238,8 @@ export default function UserPanelProfile() {
             </div>
           </div>
           <button
+            type="submit"
+            form="profile-form"
             className={`relative cursor-pointer ml-10 mt-8 rounded-lg border border-gray-300 bg-white px-12 py-3 text-base font-bold text-[#004BCA] ${SOFT_SHADOW}`}
           >
             <Image
@@ -213,11 +254,11 @@ export default function UserPanelProfile() {
 
       <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_360px]">
         {/* Left column */}
-        <div className={SECTION}>
+        <form id="profile-form" onSubmit={save} className={SECTION}>
           <p className={HEADING_PILL}>Personal Information</p>
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {personalFields.map((field) => (
-              <FieldBox key={field.label} {...field} />
+            {fields.map((field) => (
+              <FieldBox key={field.label + field.value} {...field} />
             ))}
             <label className="rounded-2xl border-2 border-[#E1AB18] px-4 py-2.5 sm:col-span-2">
               <span className="flex items-center gap-1.5 text-sm text-gray-500">
@@ -226,7 +267,9 @@ export default function UserPanelProfile() {
               </span>
               <textarea
                 rows={3}
-                defaultValue={bio.value}
+                key={bioValue}
+                name="bio"
+                defaultValue={bioValue}
                 className="mt-0.5 w-full resize-none text-lg text-gray-900 outline-none"
               />
             </label>
@@ -250,7 +293,7 @@ export default function UserPanelProfile() {
               </label>
             ))}
           </div>
-        </div>
+        </form>
 
         {/* Right column */}
         <div className="space-y-5">
