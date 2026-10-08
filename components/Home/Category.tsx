@@ -70,20 +70,10 @@ const categoryItems = [
 
 const Features = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  // 12 slots per hour (one per 5 min, Melbourne time); shorter lists wrap around
+  // New slot every 10s, from the shared clock so all viewers match; shorter lists wrap around
   const [slot, setSlot] = useState(0);
   useEffect(() => {
-    const update = () =>
-      setSlot(
-        Math.floor(
-          Number(
-            new Intl.DateTimeFormat("en-AU", {
-              timeZone: "Australia/Melbourne",
-              minute: "2-digit",
-            }).format(new Date()),
-          ) / 5,
-        ),
-      );
+    const update = () => setSlot(Math.floor(Date.now() / 10000));
     update();
     const interval = setInterval(update, 1000);
     return () => clearInterval(interval);
