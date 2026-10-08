@@ -32,7 +32,7 @@ export default function StateGalleries({ variant, heading, subtitle, cta }: { va
   return (
     <div className="bg-[#f6f7fa] pb-14">
       <section className="relative flex h-[500px] items-center justify-center px-6 pb-16">
-        <Image src="/rent/hero.png" alt="" fill priority className="object-cover" />
+        <Image src="/rent/hero.webp" alt="" fill priority className="object-cover" />
         <div className="absolute inset-0 bg-black/25" />
         <div className="relative flex w-full max-w-[1175px] flex-col items-center gap-4 text-center text-white">
           <h1 className="font-[Montserrat,sans-serif] text-[48px] font-bold leading-[48px]">{heading}</h1>
@@ -46,11 +46,11 @@ export default function StateGalleries({ variant, heading, subtitle, cta }: { va
           <article key={s.code} className="flex flex-col items-center gap-4">
             <div className="flex items-center gap-3">
               <div className="relative h-[50px] w-[83px]">
-                <Image src={`/rent/${s.flag}.png`} alt="" fill className="object-cover" />
+                <Image src={`/rent/${s.flag}.webp`} alt="" fill className="object-cover" />
                 <span className="absolute inset-x-0 top-[30px] text-center font-['Arial_Black',sans-serif] text-[18px] leading-7 text-white [text-shadow:1px_1px_2px_rgba(255,255,255,.7),0_0_7px_rgba(0,0,0,.25)]">{s.code}</span>
               </div>
               <div className="relative flex h-[50px] items-center justify-center overflow-hidden px-[10px]">
-                <Image src="/rent/banner.png" alt="" fill className="object-cover" />
+                <Image src="/rent/banner.webp" alt="" fill className="object-cover" />
                 <span className={`relative text-[20px] font-bold text-white ${shadowText}`}>{s.name} ›</span>
               </div>
             </div>
@@ -64,7 +64,7 @@ export default function StateGalleries({ variant, heading, subtitle, cta }: { va
       <section className="mx-auto flex max-w-[1400px] flex-col gap-12 bg-[#f8fafc] px-8 pt-2">
         <div className="flex flex-col items-center gap-[10px]">
           <div className="relative h-[103px] w-[383px]">
-            <Image src="/rent/cta.png" alt="" fill />
+            <Image src="/rent/cta.webp" alt="" fill />
             <span className="absolute inset-0 flex items-center justify-center font-['Arial_Black',sans-serif] text-[33px] text-white [text-shadow:1px_1px_2px_black]">{cta}</span>
           </div>
           <p className="text-center font-serif text-[30px] italic leading-7 text-[#556987]">Key things to know before {variant === "rent" ? "renting" : "buying"} a property in Australia</p>
