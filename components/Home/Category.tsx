@@ -70,19 +70,22 @@ const categoryItems = [
 
 const Features = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [currentIndexes, setCurrentIndexes] = useState(
-    categoryItems.map(() => 0),
-  );
+  // 12 slots per hour (one per 5 min, Melbourne time); shorter lists wrap around
+  const [slot, setSlot] = useState(0);
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndexes((prev) =>
-        prev.map((index, i) => {
-          const total = categoryItems[i].imgs?.length;
-          return (index + 1) % total;
-        }),
+    const update = () =>
+      setSlot(
+        Math.floor(
+          Number(
+            new Intl.DateTimeFormat("en-AU", {
+              timeZone: "Australia/Melbourne",
+              minute: "2-digit",
+            }).format(new Date()),
+          ) / 5,
+        ),
       );
-    }, 10000); // 10 seconds
-
+    update();
+    const interval = setInterval(update, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -124,7 +127,7 @@ const Features = () => {
                 <div className="relative w-52 h-40 rounded-[12px] overflow-hidden">
                   {/* Image */}
                   <Image
-                    src={item.imgs[currentIndexes[idx]]}
+                    src={item.imgs[slot % item.imgs.length]}
                     alt="category"
                     fill
                     className="object-cover object-top w-full h-full "
@@ -144,7 +147,7 @@ const Features = () => {
               <button key={idx} className="shrink-0">
                 <div className="relative w-52 h-40 rounded-full overflow-hidden">
                   <Image
-                    src={item.imgs[currentIndexes[idx]]}
+                    src={item.imgs[slot % item.imgs.length]}
                     alt="category"
                     fill
                     className="object-cover  w-full h-full"
