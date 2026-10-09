@@ -1,6 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+import { changePassword, updateNotificationSettings } from "@/lib/api/settings";
+import toast from "react-hot-toast";
 import settingicon from "@/public/agentpanelicons/sidebarsettingsicon.svg";
 import notificationicon from "@/public/agentpanelicons/noticationicon.svg";
 import securityIcon from "@/public/agentpanelicons/settingsecurityicon.svg";
@@ -40,12 +43,60 @@ const notifications = [
 ];
 
 const passwordFields = [
-  { label: "Current Password", icon: currentpasswordicon },
-  { label: "New Password", icon: viewpasswordicon },
-  { label: "Confirm Password", icon: viewpasswordicon },
+  { label: "Current Password", name: "current_password", icon: currentpasswordicon },
+  { label: "New Password", name: "new_password", icon: viewpasswordicon },
+  { label: "Confirm Password", name: "confirm_password", icon: viewpasswordicon },
 ];
 
 export default function UserPanelSettings() {
+  const [emailNotifications, setEmailNotifications] = useState(true);
+  const [smsNotifications, setSmsNotifications] = useState(false);
+  const [changingPassword, setChangingPassword] = useState(false);
+
+  async function handleNotificationToggle(type: "email" | "sms", checked: boolean) {
+    const nextEmail = type === "email" ? checked : emailNotifications;
+    const nextSms = type === "sms" ? checked : smsNotifications;
+
+    if (type === "email") setEmailNotifications(checked);
+    else setSmsNotifications(checked);
+
+    const res = await updateNotificationSettings({
+      email_notifications: nextEmail,
+      sms_notifications: nextSms,
+    }, "user");
+    if (res.success) {
+      toast.success("Notification settings updated!");
+    } else {
+      if (type === "email") setEmailNotifications(emailNotifications);
+      else setSmsNotifications(smsNotifications);
+      toast.error(res.message || "Failed to update notification settings.");
+    }
+  }
+
+  async function handlePasswordSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
+    if (data.new_password !== data.confirm_password) {
+      toast.error("New passwords do not match!");
+      return;
+    }
+
+    setChangingPassword(true);
+    const res = await changePassword({
+      current_password: data.current_password,
+      new_password: data.new_password,
+      confirm_password: data.confirm_password,
+    }, "user");
+    setChangingPassword(false);
+    if (res.success) {
+      toast.success("Password changed successfully!");
+      form.reset();
+    } else {
+      toast.error(res.message || "Failed to change password.");
+    }
+  }
+
   return (
     <div className="space-y-5">
       <span className={`${GOLD_PILL} text-[#8A8F98]`} style={GOLD_PILL_STYLE}>
@@ -70,33 +121,43 @@ export default function UserPanelSettings() {
         </p>
 
         <div className="mt-3 space-y-3">
-          {notifications.map(({ icon: Icon, color, title, desc, on }) => (
-            <label
-              key={title}
-              className="flex items-center gap-4 rounded-xl border-2 border-[#E1AB18] px-4 py-3"
-            >
-              <Image
-                src={Icon}
-                alt="icons"
-                className={`size-14 shrink-0 ${color}`}
-              />
-              <span className="flex-1">
-                <span className="block text-lg font-bold text-gray-900">
-                  {title}
+          {notifications.map(({ icon: Icon, color, title, desc }) => {
+            const isEmail = title === "Email Notifications";
+            const checked = isEmail ? emailNotifications : smsNotifications;
+            return (
+              <label
+                key={title}
+                className="flex items-center gap-4 rounded-xl border-2 border-[#E1AB18] px-4 py-3"
+              >
+                <Image
+                  src={Icon}
+                  alt="icons"
+                  className={`size-14 shrink-0 ${color}`}
+                />
+                <span className="flex-1">
+                  <span className="block text-lg font-bold text-gray-900">
+                    {title}
+                  </span>
+                  <span className="block text-base text-gray-600">{desc}</span>
                 </span>
-                <span className="block text-base text-gray-600">{desc}</span>
-              </span>
-              <input
-                type="checkbox"
-                defaultChecked={on}
-                className="peer sr-only"
-                aria-label={title}
-              />
-              <span className="relative h-8 w-14 shrink-0 rounded-full bg-gray-200 transition-colors peer-checked:bg-green-500 peer-checked:[&>span]:translate-x-6">
-                <span className="absolute left-1 top-1 size-6 rounded-full bg-white shadow transition-transform" />
-              </span>
-            </label>
-          ))}
+                <input
+                  type="checkbox"
+                  checked={checked}
+                  onChange={(e) =>
+                    handleNotificationToggle(
+                      isEmail ? "email" : "sms",
+                      e.target.checked,
+                    )
+                  }
+                  className="peer sr-only"
+                  aria-label={title}
+                />
+                <span className="relative h-8 w-14 shrink-0 rounded-full bg-gray-200 transition-colors peer-checked:bg-green-500 peer-checked:[&>span]:translate-x-6">
+                  <span className="absolute left-1 top-1 size-6 rounded-full bg-white shadow transition-transform" />
+                </span>
+              </label>
+            );
+          })}
         </div>
       </section>
 
@@ -109,8 +170,8 @@ export default function UserPanelSettings() {
           Manage your password and account security settings.
         </p>
 
-        <form onSubmit={(e) => e.preventDefault()} className="mt-3 space-y-3">
-          {passwordFields.map(({ label, icon: Icon }) => (
+        <form onSubmit={handlePasswordSubmit} className="mt-3 space-y-3">
+          {passwordFields.map(({ label, name, icon: Icon }) => (
             <div key={label}>
               <p className="mb-1 text-lg font-semibold text-gray-800">{label}</p>
               <label className="flex items-center gap-4 rounded-xl border-2 border-[#E1AB18] px-4 py-4">
@@ -121,16 +182,22 @@ export default function UserPanelSettings() {
                 />
                 <input
                   type="password"
+                  name={name}
                   autoComplete="new-password"
                   placeholder={`Enter ${label}`}
+                  required
                   className="w-full text-lg text-gray-900 outline-none placeholder:text-gray-400"
                 />
               </label>
             </div>
           ))}
           <div className="flex justify-end">
-            <button className="rounded-full bg-[linear-gradient(180deg,#3FA9FF_0%,#0B63D6_100%)] px-10 py-3 text-xl font-bold text-white shadow-[0_6px_12px_0_rgba(11,99,214,0.35)]">
-              Change Password
+            <button
+              type="submit"
+              disabled={changingPassword}
+              className="rounded-full bg-[linear-gradient(180deg,#3FA9FF_0%,#0B63D6_100%)] px-10 py-3 text-xl font-bold text-white shadow-[0_6px_12px_0_rgba(11,99,214,0.35)] disabled:opacity-60"
+            >
+              {changingPassword ? "Changing..." : "Change Password"}
             </button>
           </div>
         </form>

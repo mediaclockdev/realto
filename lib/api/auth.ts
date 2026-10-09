@@ -60,6 +60,12 @@ export const userLogin = (body: Body) =>
 export const signup = (body: Body) =>
   post<{ agent: Agent }>(Endpoints.auth.signup, body);
 
+export const userSignup = (body: Body) =>
+  post<{ agent: Agent }>(Endpoints.auth.userSignup, body);
+
+export const userVerifyCode = (body: Body) =>
+  post<{ agent: Agent }>(Endpoints.auth.userVerifyCode, body);
+
 export const verifyOtp = (body: Body) =>
   post<{ agent: Agent }>(Endpoints.auth.verifyOtp, body);
 

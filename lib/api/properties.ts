@@ -77,6 +77,23 @@ export const listProperties = (params?: Record<string, string | number>) =>
     axiosClient.get(Endpoints.properties.list, { params }),
   );
 
+export const getSavedProperties = () =>
+  call<Property[]>(() => axiosClient.get(Endpoints.properties.saved));
+
+export const checkPropertySaved = (propertyId: number | string) =>
+  call<{ is_saved: boolean }>(() =>
+    axiosClient.get(
+      Endpoints.properties.isSaved.replace(":id", String(propertyId)),
+    ),
+  );
+
+export const removeSavedProperty = (propertyId: number | string) =>
+  call<null>(() =>
+    axiosClient.delete(
+      Endpoints.savedProperties.remove.replace(":property_id", String(propertyId)),
+    ),
+  );
+
 export const getPropertyStats = () =>
   call<PropertyStats>(() => axiosClient.get(Endpoints.properties.statistics));
 

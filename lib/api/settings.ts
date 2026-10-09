@@ -2,11 +2,18 @@ import { Endpoints } from "./Endpoints";
 import axiosClient from "./axiosClient";
 import { ApiResult } from "./auth";
 
-// Change Agent Password
-export async function changePassword(body: Record<string, unknown>): Promise<ApiResult<unknown>> {
+type SettingsPanel = "agent" | "user";
+
+// Change account password for the selected panel.
+export async function changePassword(
+  body: Record<string, unknown>,
+  panel: SettingsPanel = "agent",
+): Promise<ApiResult<unknown>> {
   try {
     const response = await axiosClient.post<ApiResult<unknown>>(
-      Endpoints.agentsettingpassword.post,
+      panel === "user"
+        ? Endpoints.usersettingpassword.post
+        : Endpoints.agentsettingpassword.post,
       body
     );
     return response.data;
@@ -17,12 +24,16 @@ export async function changePassword(body: Record<string, unknown>): Promise<Api
     };
   }
 }
-
 // Update Notification Preferences (Email/SMS)
-export async function updateNotificationSettings(body: Record<string, unknown>): Promise<ApiResult<unknown>> {
+export async function updateNotificationSettings(
+  body: Record<string, unknown>,
+  panel: SettingsPanel = "agent",
+): Promise<ApiResult<unknown>> {
   try {
     const response = await axiosClient.post<ApiResult<unknown>>(
-      Endpoints.agentsettingnotification.post,
+      panel === "user"
+        ? Endpoints.usersettingnotification.post
+        : Endpoints.agentsettingnotification.post,
       body
     );
     return response.data;

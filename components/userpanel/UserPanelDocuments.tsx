@@ -43,13 +43,17 @@ import {
 } from "lucide-react";
 
 import documentsicon from "@/public/agentpanelicons/sidebardocumentsicon.svg";
-import totaldocuments from "@/public/agentpanelicons/documentuploaddocumenticon.svg";
 
 const SOFT_SHADOW = "shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
 const CARD = `rounded-xl bg-white p-4 ${SOFT_SHADOW}`;
 
 const stats = [
-  { label: "Total Documents", value: 12, icon: FileText, color: "text-blue-500" },
+  {
+    label: "Total Documents",
+    value: 12,
+    icon: FileText,
+    color: "text-blue-500",
+  },
   {
     label: "Verified Documents",
     value: 8,
@@ -136,7 +140,11 @@ const leaseholderFields = [
     value: "0142 345 678",
     icon: Phone,
   },
-  { label: "Job (Occupation)", value: "Senior Real Estate Agent", icon: Briefcase },
+  {
+    label: "Job (Occupation)",
+    value: "Senior Real Estate Agent",
+    icon: Briefcase,
+  },
   {
     label: "Email Address",
     value: "parker.realestate@gmail.com",
@@ -280,35 +288,47 @@ export default function UserPanelDocuments() {
     <main className="space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <span className="flex items-center gap-2 rounded-lg border border-yellow-400 bg-white px-2 py-2 text-xl font-semibold text-[#E1AB18]">
-            Documents
-            <Image src={documentsicon} alt="" width={28} height={28} />
+          <span className="flex w-fit items-center gap-2 rounded-lg border border-yellow-400 bg-white px-2 py-2 text-xl font-semibold text-[#E1AB18]">
+            {section === "documents"
+              ? "Documents"
+              : section === "household"
+                ? "Household"
+                : sections.find((item) => item.key === section)?.label}
+            {section === "documents" ? (
+              <Image src={documentsicon} alt="" width={28} height={28} />
+            ) : (
+              <Users className="size-7 text-[#2495FF]" />
+            )}
           </span>
           <p className="mt-2 italic text-gray-600">
-            Manage your important documents and uploads
+            {section === "documents"
+              ? "Manage your important documents and uploads"
+              : "Add the details of everyone who will live with you."}
           </p>
         </div>
-        <button
-          className={`flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-base font-bold text-[#E1AB18] ${SOFT_SHADOW}`}
-        >
-          <UploadCloud className="size-6" />
-          Upload Document
-        </button>
+        {section === "documents" && (
+          <button
+            className={`flex items-center gap-2 rounded-full border border-[#E1AB18] bg-white px-4 py-2.5 text-base font-bold text-[#E1AB18] ${SOFT_SHADOW}`}
+          >
+            <UploadCloud className="size-6" />
+            Upload Document
+          </button>
+        )}
       </div>
 
       {/* Section tabs */}
-      <div className={CARD}>
-        <div className="flex flex-wrap gap-4">
+      <div className={`${CARD} border border-[#E7ECF2]`}>
+        <div className="flex flex-nowrap gap-2 overflow-x-auto pb-1">
           {sections.map(({ key, label, icon: Icon }) => {
             const active = section === key;
             return (
               <button
                 key={key}
                 onClick={() => setSection(active ? "documents" : key)}
-                className={`flex items-center gap-2 rounded-xl px-4 py-3 text-base font-bold text-[#2495FF] ${
+                className={`flex shrink-0 items-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-bold text-[#2495FF] transition-colors ${
                   active
-                    ? "border border-yellow-400 bg-white"
-                    : `bg-white ${SOFT_SHADOW}`
+                    ? "border-[#E1AB18] bg-[#FFFDF5]"
+                    : `border-transparent bg-white ${SOFT_SHADOW}`
                 }`}
               >
                 <Icon className="size-5" />
@@ -319,7 +339,7 @@ export default function UserPanelDocuments() {
         </div>
 
         {section !== "documents" && (
-          <div className="mt-4 border-t border-gray-100 pt-4">
+            <div className="mt-4 border-t border-[#E8EDF4] pt-5">
             {section === "household" && (
               <div className="space-y-6">
                 <p className="text-gray-700">
@@ -341,15 +361,14 @@ export default function UserPanelDocuments() {
 
                   <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
                     {leaseholderFields.map((f) => (
-                      <FieldBox key={f.label} {...f} />
+                      <FieldBox key={f.label} {...f} compact />
                     ))}
                   </div>
 
                   <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                     <p className="text-sm text-gray-500">
                       Adjust the number of adults to add in your co-applicants
-                      they will be invited once your application been
-                      accepted.
+                      they will be invited once your application been accepted.
                     </p>
                     <button
                       className={`flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-gray-900 ${SOFT_SHADOW}`}
@@ -366,13 +385,13 @@ export default function UserPanelDocuments() {
                     Add Occupants:
                   </span>
                   <p className="mt-2 italic text-gray-500">
-                    Please add people who will live with you but they will
-                    not be on the lease
+                    Please add people who will live with you but they will not
+                    be on the lease
                   </p>
 
                   <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
                     {occupantFields.map((f) => (
-                      <FieldBox key={f.label} {...f} />
+                      <FieldBox key={f.label} {...f} compact />
                     ))}
                     <button
                       className={`flex items-center justify-center gap-2 self-start rounded-full bg-white px-4 py-2.5 text-sm font-bold text-gray-900 ${SOFT_SHADOW}`}
@@ -394,7 +413,7 @@ export default function UserPanelDocuments() {
                     {petTypes.map(({ key, label, icon: Icon }) => (
                       <div
                         key={key}
-                        className={`flex items-center justify-between rounded-xl bg-white px-4 py-3 ${SOFT_SHADOW}`}
+                        className={`flex min-h-[68px] items-center justify-between rounded-xl border border-[#E7ECF2] bg-white px-4 py-3 ${SOFT_SHADOW}`}
                       >
                         <span className="flex items-center gap-2 text-lg font-bold text-gray-900">
                           <Icon className="size-6 text-[#2495FF]" />
@@ -436,9 +455,9 @@ export default function UserPanelDocuments() {
             {section === "emergency" && (
               <div className="space-y-4">
                 <p className="italic text-gray-500">
-                  Most realestate agencies request an emergency contact who
-                  will be contacted only in case of an emergency or if you
-                  are unreachable.
+                  Most realestate agencies request an emergency contact who will
+                  be contacted only in case of an emergency or if you are
+                  unreachable.
                 </p>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {emergencyContactFields.map((f) => (
@@ -465,10 +484,10 @@ export default function UserPanelDocuments() {
                 </div>
 
                 <p className="italic text-gray-500">
-                  Please add the details of your previous residential
-                  addresses to help verify your details with a valid
-                  reference, your history could include living with your
-                  parents, your partners or the property you own.
+                  Please add the details of your previous residential addresses
+                  to help verify your details with a valid reference, your
+                  history could include living with your parents, your partners
+                  or the property you own.
                 </p>
 
                 <div className="space-y-4 rounded-xl border border-yellow-400 p-4">
@@ -577,8 +596,8 @@ export default function UserPanelDocuments() {
               <div className="space-y-6">
                 <p className="text-gray-700">
                   If you are currently employed, please add your employment
-                  details. If you are self employed, please add your
-                  accountant to enable verification
+                  details. If you are self employed, please add your accountant
+                  to enable verification
                 </p>
 
                 <div>
@@ -595,21 +614,18 @@ export default function UserPanelDocuments() {
                 <div className="flex items-start gap-2 rounded-xl bg-blue-50 p-3">
                   <Info className="size-5 shrink-0 text-[#2495FF]" />
                   <p className="italic text-gray-600">
-                    You must have this person consent to provide their
-                    personal information to be contacted by the relevant
-                    agency during business hours.
+                    You must have this person consent to provide their personal
+                    information to be contacted by the relevant agency during
+                    business hours.
                   </p>
                 </div>
 
                 <div className={CARD}>
-                  <p className="text-lg font-bold text-gray-900">
-                    Pay Slips:
-                  </p>
+                  <p className="text-lg font-bold text-gray-900">Pay Slips:</p>
                   <p className="mt-1 text-gray-600">
-                    Payslips: You shoud provide payslips to confirm your
-                    current income to show your affordability to pay the
-                    rent. If you are changing jobs, you should include the
-                    last payslips
+                    Payslips: You shoud provide payslips to confirm your current
+                    income to show your affordability to pay the rent. If you
+                    are changing jobs, you should include the last payslips
                   </p>
                   <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                     {Array.from({ length: 6 }).map((_, i) => (
@@ -640,9 +656,9 @@ export default function UserPanelDocuments() {
                     <Coins className="size-6" /> Income
                   </p>
                   <p className="mt-2 text-gray-700">
-                    List all your income spurces,such as wages ,money
-                    transfer ,investments , pensions ,revenues ,support
-                    ,payments and dividends.
+                    List all your income spurces,such as wages ,money transfer
+                    ,investments , pensions ,revenues ,support ,payments and
+                    dividends.
                   </p>
                   <div className="mt-3 flex justify-end">
                     <button
@@ -673,7 +689,7 @@ export default function UserPanelDocuments() {
             {stats.map(({ label, value, icon: Icon, color }) => (
               <div
                 key={label}
-                className={`flex items-center gap-3 rounded-xl bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] px-4 py-4 ${SOFT_SHADOW}`}
+                className={`flex min-h-24 items-center gap-3 rounded-xl border border-[#DCEBFA] bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] px-4 py-4 ${SOFT_SHADOW}`}
               >
                 <Icon className={`size-9 shrink-0 ${color}`} />
                 <span>
@@ -689,8 +705,8 @@ export default function UserPanelDocuments() {
           </div>
 
           {/* Folders + documents table */}
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[220px_1fr]">
-            <div className={CARD}>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[220px_minmax(0,1fr)]">
+            <div className={`${CARD} border border-[#E7ECF2]`}>
               <p className="flex items-center gap-2 text-lg font-bold text-[#2495FF]">
                 Folders <Folder className="size-5" />
               </p>
@@ -716,7 +732,7 @@ export default function UserPanelDocuments() {
               </div>
             </div>
 
-            <div className={CARD}>
+            <div className={`${CARD} min-w-0 border border-[#E7ECF2]`}>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex gap-6 border-b border-gray-200">
                   {tabs.map((t) => (
@@ -738,24 +754,22 @@ export default function UserPanelDocuments() {
                 </button>
               </div>
 
-              <div className="mt-4 overflow-x-auto">
-                <table className="w-full min-w-[800px] text-left text-sm">
-                  <thead>
+              <div className="mt-4 overflow-x-auto rounded-lg border border-[#EDF1F5]">
+                <table className="w-full min-w-[700px] text-left text-sm">
+                  <thead className="bg-[#F7FAFD]">
                     <tr className="text-[#2495FF]">
                       <th className="py-3 text-base font-bold">
                         Document Name
                       </th>
                       <th className="py-3 text-base font-bold">Category</th>
-                      <th className="py-3 text-base font-bold">
-                        Uploaded On
-                      </th>
+                      <th className="py-3 text-base font-bold">Uploaded On</th>
                       <th className="py-3 text-base font-bold">Status</th>
                       <th className="py-3 text-base font-bold">Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody className="divide-y divide-[#EDF1F5]">
                     {visibleDocs.map((d, i) => (
-                      <tr key={i} className="border-t border-gray-100">
+                      <tr key={i} className="transition-colors hover:bg-[#FAFCFE]">
                         <td className="py-3">
                           <div className="flex items-center gap-3">
                             <span
@@ -767,9 +781,7 @@ export default function UserPanelDocuments() {
                               <p className="font-bold text-gray-900">
                                 {d.name}
                               </p>
-                              <p className="text-xs text-gray-500">
-                                {d.file}
-                              </p>
+                              <p className="text-xs text-gray-500">{d.file}</p>
                             </div>
                           </div>
                         </td>
@@ -803,7 +815,7 @@ export default function UserPanelDocuments() {
 
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                 <p className="text-sm text-gray-500">
-                  Showing 1 to {visibleDocs.length} of 32 leads
+                  Showing 1 to {visibleDocs.length} of {visibleDocs.length} documents
                 </p>
                 <div className="flex items-center gap-2">
                   <button className="flex size-9 items-center justify-center rounded-xl bg-[#D7E9FB] text-[#2495FF]">
@@ -844,12 +856,12 @@ export default function UserPanelDocuments() {
 
             <div className="rounded-xl bg-[#EAF3FF] p-4">
               <p className="flex items-center gap-2 text-lg font-bold text-gray-900">
-                <RefreshCw className="size-5 text-orange-500" /> Need to
-                update a document?
+                <RefreshCw className="size-5 text-orange-500" /> Need to update
+                a document?
               </p>
               <p className="mt-2 text-sm text-gray-600">
-                If your document has expired or information has changed,
-                please upload the latest version for review.
+                If your document has expired or information has changed, please
+                upload the latest version for review.
               </p>
               <button
                 className={`mt-4 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-[#E1AB18] ${SOFT_SHADOW}`}
@@ -871,24 +883,32 @@ function FieldBox({
   icon: Icon,
   bordered = true,
   shadow = true,
+  compact = false,
 }: {
   label: string;
   value: string;
   icon?: React.ComponentType<{ className?: string }>;
   bordered?: boolean;
   shadow?: boolean;
+  compact?: boolean;
 }) {
   return (
     <div
-      className={`flex items-center justify-between gap-3 rounded-xl bg-white px-4 py-3 ${bordered ? "border border-yellow-400" : ""} ${shadow ? SOFT_SHADOW : ""}`}
+      className={`flex items-center justify-between gap-3 bg-white ${compact ? "min-h-[58px] rounded-lg px-3 py-2" : "rounded-xl px-4 py-3"} ${bordered ? "border border-yellow-400" : ""} ${shadow ? SOFT_SHADOW : ""}`}
     >
       <div>
-        <p className="flex items-center gap-1.5 text-sm text-gray-500">
+        <p className={`flex items-center gap-1.5 text-gray-500 ${compact ? "text-xs" : "text-sm"}`}>
           <CheckCircle2 className="size-4 text-green-500" /> {label}
         </p>
-        <p className="mt-1 text-lg font-bold text-gray-900">{value}</p>
+        <p className={`mt-1 font-bold text-gray-900 ${compact ? "text-sm" : "text-lg"}`}>
+          {value}
+        </p>
       </div>
-      {Icon && <Icon className="size-8 shrink-0 text-[#2495FF]" />}
+      {Icon && (
+        <Icon
+          className={`shrink-0 text-[#2495FF] ${compact ? "size-5" : "size-8"}`}
+        />
+      )}
     </div>
   );
 }

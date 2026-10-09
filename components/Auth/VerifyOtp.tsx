@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Clock } from "lucide-react";
 import { AuthButton } from "./AuthInput";
-import { verifyOtp, resendOtp } from "@/lib/api/auth";
+import { verifyOtp, userVerifyCode, resendOtp } from "@/lib/api/auth";
 import type { ApiResult, Agent } from "@/lib/api/auth";
 import emailIcon from "@/public/authicons/emailicon.svg";
 import phoneIcon from "@/public/authicons/phone.svg";
@@ -22,11 +22,13 @@ const mmss = (total: number) =>
 export default function VerifyOtp({
   email,
   phone,
+  isAgent = false,
   onVerified,
   onBack,
 }: {
   email: string;
   phone: string;
+  isAgent?: boolean;
   onVerified: (json: ApiResult<{ agent: Agent }>) => void;
   onBack?: () => void;
 }) {
@@ -84,7 +86,7 @@ export default function VerifyOtp({
     setPending(true);
     setError("");
     try {
-      const json = await verifyOtp({ email, phone, otp });
+      const json = await (isAgent ? verifyOtp({ email, phone, otp }) : userVerifyCode({ email, code: otp }));
       if (!json.success) return setError(json.message ?? "Invalid code");
       onVerified(json);
     } catch {

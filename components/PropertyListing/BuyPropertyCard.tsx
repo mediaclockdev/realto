@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { ImageSource } from "@/lib/shared/types";
+import { checkPropertySaved } from "@/lib/api/properties";
 import defaultLocationIcon from "@/public/location.svg";
 
 import share from "@/public/share.svg";
@@ -54,6 +55,8 @@ export interface BuyPropertyCardData {
 interface BuyPropertyCardProps {
   property: BuyPropertyCardData;
   onClick?: () => void;
+  onRemoveSaved?: (propertyId: string) => void;
+  checkSavedState?: boolean;
   sliderMode?: boolean;
   isLastItem?: boolean;
   onSeeMore?: () => void;
@@ -65,6 +68,8 @@ const GOLD_GRADIENT =
 const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
   property,
   onClick,
+  onRemoveSaved,
+  checkSavedState = false,
   sliderMode = false,
   isLastItem = false,
   onSeeMore,
@@ -86,6 +91,18 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
 
     return () => clearInterval(interval);
   }, [property.images]);
+
+  useEffect(() => {
+    if (!checkSavedState) return;
+    let active = true;
+    checkPropertySaved(property.id).then((result) => {
+      if (!active || !result.success || !result.data) return;
+      setLiked(result.data.is_saved);
+    });
+    return () => {
+      active = false;
+    };
+  }, [checkSavedState, property.id]);
   const handleNextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
@@ -330,7 +347,11 @@ const BuyPropertyCard: React.FC<BuyPropertyCardProps> = ({
                         className="z-10 flex cursor-pointer items-center gap-1 rounded-lg px-0.5 py-0.5 transition-colors hover:bg-red-50"
                         onClick={(e) => {
                           e.stopPropagation();
-                          setLiked((prev) => !prev);
+                          if (onRemoveSaved) {
+                            onRemoveSaved(property.id);
+                          } else {
+                            setLiked((prev) => !prev);
+                          }
                         }}
                       >
                         <Image

@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import AuthInput, { authTagline, AuthButton } from "./AuthInput";
 import VerifyOtp from "./VerifyOtp";
-import { signup } from "@/lib/api/auth";
+import { signup, userSignup } from "@/lib/api/auth";
 import emailIcon from "@/public/authicons/emailicon.svg";
 import nameIcon from "@/public/authicons/dl.svg";
 import phoneIcon from "@/public/authicons/phone.svg";
@@ -57,7 +57,7 @@ export default function Signup({
     setPending(true);
     setError("");
     try {
-      const json = await signup({ ...body, role: isAgent ? "agent" : "user" });
+      const json = await (isAgent ? signup : userSignup)({ ...body, role: isAgent ? "agent" : "user" });
       if (!json.success) return setError(json.message ?? "Signup failed");
 
       setVerifying({ email: String(body.email), phone: String(body.phone) });
@@ -73,6 +73,7 @@ export default function Signup({
       <VerifyOtp
         email={verifying.email}
         phone={verifying.phone}
+        isAgent={isAgent}
         onVerified={finish}
         onBack={() => setVerifying(null)}
       />
