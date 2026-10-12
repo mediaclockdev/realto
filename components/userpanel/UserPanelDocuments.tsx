@@ -340,13 +340,13 @@ export default function UserPanelDocuments() {
                 onClick={() => setSection(active ? "documents" : key)}
                 className={`relative flex min-w-0 flex-auto items-center justify-center gap-2 whitespace-nowrap border-2 px-3 py-4 text-sm font-black xl:text-lg 2xl:text-2xl leading-none text-[#0496FF] font-amasis  transition-colors ${
                   active
-                    ? `z-10 -mb-5 border-b-0 border-[#8b8d94] bg-white !p-4 text-[#E1AB18] ${isLast ? "rounded-tr-xl" : "mr-5 border-r-0 !pr-0"} ${i === 0 ? "rounded-tl-3xl" : "ml-5 border-l-0 !pl-0"} drop-shadow-[-6px_-4px_10px_#999FB480]`
+                    ? `z-10 -mb-5 border-b-0 border-[#8b8d94] bg-white !p-2 text-[#E1AB18] ${isLast ? "rounded-tr-xl" : "mr-5 border-r-0 !pr-0"} ${i === 0 ? "rounded-tl-3xl" : "ml-5 border-l-0 !pl-0"} drop-shadow-[-6px_-4px_10px_#999FB480]`
                     : `rounded-2xl border-transparent bg-[#F1F3F2] ${SOFT_SHADOW}`
                 }`}
               >
                 {active ? (
                   <>
-                    <span className="relative z-10 flex items-center rounded-xl border-2 border-[#E1AB18] px-6 py-3 shadow-[-4px_4px_8px_#999FB4]">
+                    <span className="relative z-10 flex flex-1 items-center justify-center rounded-xl border-2 border-[#E1AB18] px-6 py-3 shadow-[-4px_4px_8px_#999FB4]">
                       {imgLeft && imgEl}
                       {label}
                       {!imgLeft && imgEl && <span className="ml-4 flex">{imgEl}</span>}
