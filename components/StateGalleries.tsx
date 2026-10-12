@@ -47,11 +47,12 @@ export default function StateGalleries({ variant, heading, subtitle, cta }: { va
             <div className="flex items-center gap-3">
               <div className="relative h-[50px] w-[83px]">
                 <Image src={`/rent/${s.flag}.webp`} alt="" fill className="object-cover" />
-                <span className="absolute inset-x-0 top-[30px] text-center font-['Arial_Black',sans-serif] text-[18px] leading-7 text-white [text-shadow:1px_1px_2px_rgba(255,255,255,.7),0_0_7px_rgba(0,0,0,.25)]">{s.code}</span>
+                <span className="absolute bottom-0 left-[2px] font-['Arial_Black',sans-serif] text-[20px] font-black leading-none text-white [-webkit-text-stroke:2px_black] [paint-order:stroke_fill] [text-shadow:0_0_6px_rgba(255,255,255,.8)]">{s.code}</span>
               </div>
-              <div className="relative flex h-[50px] items-center justify-center overflow-hidden px-[10px]">
-                <Image src="/rent/banner.webp" alt="" fill className="object-cover" />
-                <span className={`relative text-[20px] font-bold text-white ${shadowText}`}>{s.name} ›</span>
+              <div className="relative -my-[27px] flex h-[104px] items-center justify-center gap-4 px-[24px]">
+                <Image src="/rent/banner.webp" alt="" fill className="object-fill" />
+                <span className={`relative text-[22px] font-bold text-white ${shadowText}`}>{s.name}</span>
+                <span className="relative text-[22px] font-light text-white">›</span>
               </div>
             </div>
             <div className="w-full max-w-screen-2xl px-5">
@@ -63,9 +64,9 @@ export default function StateGalleries({ variant, heading, subtitle, cta }: { va
 
       <section className="mx-auto flex max-w-[1400px] flex-col gap-12 bg-[#f8fafc] px-8 pt-2">
         <div className="flex flex-col items-center gap-[10px]">
-          <div className="relative h-[103px] w-[383px]">
+          <div className="relative h-[85px] w-[380px] max-w-full">
             <Image src="/rent/cta.webp" alt="" fill />
-            <span className="absolute inset-0 flex items-center justify-center font-['Arial_Black',sans-serif] text-[33px] text-white [text-shadow:1px_1px_2px_black]">{cta}</span>
+            <span className="absolute inset-0 flex items-center justify-center whitespace-nowrap pb-3 font-['Arial_Black',sans-serif] text-[27px] text-white [text-shadow:1px_1px_2px_black]">{cta}</span>
           </div>
           <p className="text-center font-serif text-[30px] italic leading-7 text-[#556987]">Key things to know before {variant === "rent" ? "renting" : "buying"} a property in Australia</p>
         </div>

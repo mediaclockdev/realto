@@ -41,6 +41,8 @@ import {
   Coins,
   FileImage,
 } from "lucide-react";
+import EmploymentIncomeicon from "@/public/userpanelicons/Employment&Income.svg";
+import EmergencyContacticon from "@/public/userpanelicons/EmergencyContact.svg";
 
 import documentsicon from "@/public/agentpanelicons/sidebardocumentsicon.svg";
 
@@ -122,9 +124,19 @@ const tabs = ["All Documents", "Verified", "Pending", "Rejected"];
 
 const sections = [
   { key: "household", label: 'Household "family or partners"', icon: Users },
-  { key: "emergency", label: "Emergency Contact", icon: PhoneCall },
+  {
+    key: "emergency",
+    label: "Emergency Contact",
+    icon: PhoneCall,
+    img: EmergencyContacticon,
+  },
   { key: "residential", label: "Residential History", icon: History },
-  { key: "employment", label: "Employment & Income", icon: Briefcase },
+  {
+    key: "employment",
+    label: "Employment & Income",
+    icon: Briefcase,
+    img: EmploymentIncomeicon,
+  },
 ] as const;
 
 const leaseholderFields = [
@@ -279,6 +291,11 @@ export default function UserPanelDocuments() {
   const [leaseTerm, setLeaseTerm] = useState<string | null>(null);
   const [rentPeriod, setRentPeriod] = useState<string | null>(null);
 
+  // show a sliding window of 3 section tabs around the selected one
+  const selected = sections.findIndex((x) => x.key === section);
+  const start = selected >= 2 ? 1 : 0;
+  const shownSections = sections.slice(start, start + 3);
+
   const visibleDocs =
     tab === "All Documents"
       ? documents
@@ -289,21 +306,11 @@ export default function UserPanelDocuments() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <span className="flex w-fit items-center gap-2 rounded-lg border border-yellow-400 bg-white px-2 py-2 text-xl font-semibold text-[#E1AB18]">
-            {section === "documents"
-              ? "Documents"
-              : section === "household"
-                ? "Household"
-                : sections.find((item) => item.key === section)?.label}
-            {section === "documents" ? (
-              <Image src={documentsicon} alt="" width={28} height={28} />
-            ) : (
-              <Users className="size-7 text-[#2495FF]" />
-            )}
+            Documents
+            <Image src={documentsicon} alt="" width={28} height={28} />
           </span>
           <p className="mt-2 italic text-gray-600">
-            {section === "documents"
-              ? "Manage your important documents and uploads"
-              : "Add the details of everyone who will live with you."}
+            Manage your important documents and uploads
           </p>
         </div>
         {section === "documents" && (
@@ -317,29 +324,72 @@ export default function UserPanelDocuments() {
       </div>
 
       {/* Section tabs */}
-      <div className={`${CARD} border border-[#E7ECF2]`}>
-        <div className="flex flex-nowrap gap-2 overflow-x-auto pb-1">
-          {sections.map(({ key, label, icon: Icon }) => {
+      <div>
+        <div
+          className={`flex flex-nowrap items-end justify-between gap-4 overflow-x-auto pt-3 pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
+        >
+          {shownSections.map(({ key, label, ...rest }, i) => {
+            const img = "img" in rest ? rest.img : null;
+            const imgEl = img && <Image src={img} alt="" className="-my-6 h-10 w-auto 2xl:h-14" />;
+            const imgLeft = key === "emergency";
             const active = section === key;
+            const isLast = i === shownSections.length - 1;
             return (
               <button
                 key={key}
                 onClick={() => setSection(active ? "documents" : key)}
-                className={`flex shrink-0 items-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-bold text-[#2495FF] transition-colors ${
+                className={`relative flex min-w-0 flex-auto items-center justify-center gap-2 whitespace-nowrap border-2 px-3 py-4 text-sm font-black xl:text-lg 2xl:text-2xl leading-none text-[#0496FF] font-amasis  transition-colors ${
                   active
-                    ? "border-[#E1AB18] bg-[#FFFDF5]"
-                    : `border-transparent bg-white ${SOFT_SHADOW}`
+                    ? `z-10 -mb-5 border-b-0 border-[#8b8d94] bg-white !p-4 text-[#E1AB18] ${isLast ? "rounded-tr-xl" : "mr-5 border-r-0 !pr-0"} ${i === 0 ? "rounded-tl-3xl" : "ml-5 border-l-0 !pl-0"} drop-shadow-[-6px_-4px_10px_#999FB480]`
+                    : `rounded-2xl border-transparent bg-[#F1F3F2] ${SOFT_SHADOW}`
                 }`}
               >
-                <Icon className="size-5" />
-                {label}
+                {active ? (
+                  <>
+                    <span className="relative z-10 flex items-center rounded-xl border-2 border-[#E1AB18] px-6 py-3 shadow-[-4px_4px_8px_#999FB4]">
+                      {imgLeft && imgEl}
+                      {label}
+                      {!imgLeft && imgEl && <span className="ml-4 flex">{imgEl}</span>}
+                    </span>
+                    {[false, true].map((left) =>
+                      (left ? i === 0 : isLast) ? null : (
+                        <svg
+                          key={String(left)}
+                          viewBox="0 0 48 100"
+                          preserveAspectRatio="none"
+                          className={`pointer-events-none absolute -top-px h-full w-12 overflow-visible ${left ? "right-full -mr-1 -scale-x-100" : "left-full -ml-1"}`}
+                        >
+                          <path
+                            d="M0 0H6Q13 0 14 9L22 84Q24 100 40 100H48V103H0Z"
+                            fill="#fff"
+                          />
+                          <path
+                            d="M0 0H6Q13 0 14 9L22 84Q24 100 40 100H48"
+                            fill="none"
+                            stroke="#8b8d94"
+                            strokeWidth="2"
+                            vectorEffect="non-scaling-stroke"
+                          />
+                        </svg>
+                      ),
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {imgLeft && imgEl}
+                    {label}
+                    {!imgLeft && imgEl}
+                  </>
+                )}
               </button>
             );
           })}
         </div>
 
         {section !== "documents" && (
-            <div className="mt-4 border-t border-[#E8EDF4] pt-5">
+          <div
+            className={`-mt-0.5 rounded-xl ${section === shownSections[0].key ? "rounded-tl-none" : ""} ${section === shownSections[shownSections.length - 1].key ? "rounded-tr-none" : ""} border-2 border-[#8b8d94] bg-white p-6 shadow-[0_6px_12px_#999FB44D]`}
+          >
             {section === "household" && (
               <div className="space-y-6">
                 <p className="text-gray-700">
@@ -769,7 +819,10 @@ export default function UserPanelDocuments() {
                   </thead>
                   <tbody className="divide-y divide-[#EDF1F5]">
                     {visibleDocs.map((d, i) => (
-                      <tr key={i} className="transition-colors hover:bg-[#FAFCFE]">
+                      <tr
+                        key={i}
+                        className="transition-colors hover:bg-[#FAFCFE]"
+                      >
                         <td className="py-3">
                           <div className="flex items-center gap-3">
                             <span
@@ -815,7 +868,8 @@ export default function UserPanelDocuments() {
 
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                 <p className="text-sm text-gray-500">
-                  Showing 1 to {visibleDocs.length} of {visibleDocs.length} documents
+                  Showing 1 to {visibleDocs.length} of {visibleDocs.length}{" "}
+                  documents
                 </p>
                 <div className="flex items-center gap-2">
                   <button className="flex size-9 items-center justify-center rounded-xl bg-[#D7E9FB] text-[#2495FF]">
@@ -897,10 +951,14 @@ function FieldBox({
       className={`flex items-center justify-between gap-3 bg-white ${compact ? "min-h-[58px] rounded-lg px-3 py-2" : "rounded-xl px-4 py-3"} ${bordered ? "border border-yellow-400" : ""} ${shadow ? SOFT_SHADOW : ""}`}
     >
       <div>
-        <p className={`flex items-center gap-1.5 text-gray-500 ${compact ? "text-xs" : "text-sm"}`}>
+        <p
+          className={`flex items-center gap-1.5 text-gray-500 ${compact ? "text-xs" : "text-sm"}`}
+        >
           <CheckCircle2 className="size-4 text-green-500" /> {label}
         </p>
-        <p className={`mt-1 font-bold text-gray-900 ${compact ? "text-sm" : "text-lg"}`}>
+        <p
+          className={`mt-1 font-bold text-gray-900 ${compact ? "text-sm" : "text-lg"}`}
+        >
           {value}
         </p>
       </div>

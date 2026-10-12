@@ -52,7 +52,7 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
   const room = rooms.find((r) => r.id === params.room) ?? rooms[0];
 
   return (
-    <div className="min-h-screen bg-[#f5f7fa] pb-16">
+    <div className="min-h-screen bg-[#f5f7fa] pb-16 text-[#1E293B]">
       <div className="relative">
         {/* Hero Background */}
         <div className="absolute inset-x-0 top-0 h-[400px]  overflow-hidden">
@@ -65,9 +65,9 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
           />
         </div>
 
-        <div className="relative mx-auto max-w-5xl px-4 pt-32">
+        <div className="relative mx-auto max-w-[1000px] px-10 pt-32">
           {/* Hotel summary */}
-          <section className="grid overflow-hidden rounded-3xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] md:grid-cols-[1.4fr_1fr]">
+          <section className="grid overflow-hidden rounded-3xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] md:grid-cols-[520px_1fr]">
             <div className="space-y-3 p-6">
               <h1 className="font-serif text-3xl font-bold text-[#0F172A]">
                 {hotel.title} {hotel.subtitle}
@@ -89,7 +89,7 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
                 className="flex items-center gap-3 rounded-xl border border-[#0496FF] bg-[#C0E8FF] px-3 py-2 text-sm font-semibold text-[#343434]"
               >
                 <Image src={supersaverIcon} alt="gift" className="h-8 w-8" />{" "}
-                <span className="text-[#92400E]">
+                <span className="whitespace-nowrap text-[13px] text-[#92400E]">
                   Sign in or register to earn up to 50 points after check-out
                 </span>
                 <ChevronRight className="ml-auto h-4 w-4" />
@@ -111,10 +111,10 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
                   7 Nights
                 </span>
                 <div className={field}>
-                  <div className="text-right text-sm">
-                    <p className="text-xs text-red-500">Check-out</p>
-                    <p className="font-semibold">01 Sep Sat</p>
-                    <p className="text-xs text-gray-500">10:00 am</p>
+                  <div className="text-sm font-TimesNewRoman">
+                    <p className="text-red-500">Check-out</p>
+                    <p className="text-[#1E293B]">01 Sep Sat</p>
+                    <p className="text-[#64748B]">10:00 am</p>
                   </div>
                   <Image
                     src={checkOutIcon}
@@ -127,15 +127,15 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
                 <div className={`${field} justify-start gap-3`}>
                   <Image src={guestIcon} alt="guests" className="h-10 w-10" />
                   <div className="text-sm">
-                    <p className="text-xs text-gray-400">Guests</p>
-                    <p className="font-semibold">2 Guests</p>
+                    <p className="text-xs text-[#64748B]">Guests</p>
+                    <p className="font-semibold text-[#1E293B]">2 Guests</p>
                   </div>
                 </div>
                 <div className={`${field} justify-start gap-3`}>
                   <Image src={roomIcon} alt="rooms" className="h-10 w-10" />
                   <div className="text-sm">
-                    <p className="text-xs text-gray-400">Rooms</p>
-                    <p className="font-semibold">1 Room</p>
+                    <p className="text-xs text-[#64748B]">Rooms</p>
+                    <p className="font-semibold text-[#1E293B]">1 Room</p>
                   </div>
                 </div>
               </div>
@@ -152,8 +152,8 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
         </div>
       </div>
 
-      <div className="mx-auto mt-6 max-w-5xl space-y-6 px-4">
-        <div className="grid gap-6 md:grid-cols-[1.4fr_1fr]">
+      <div className="mx-auto mt-6 max-w-[1000px] space-y-6 px-10">
+        <div className="grid gap-6 md:grid-cols-[540px_1fr]">
           {/* Room details */}
           <section className={card}>
             <div className="relative inline-grid w-40 place-items-center">
@@ -225,11 +225,11 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
               <span>$122</span>
             </div>
             <div className="flex items-center justify-between rounded-xl border-2 border-[#0496FF] px-3 py-2">
-              <div>
+              <div className="min-w-0 flex-1">
                 <p className="text-xs text-gray-400">Coupon Code</p>
                 <input
                   placeholder="Have A Coupon Code?"
-                  className="text-sm outline-none text-black"
+                  className="w-full min-w-0 text-sm outline-none text-black"
                 />
               </div>
               <button className="text-sm font-semibold text-black">
@@ -239,7 +239,7 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
             <p className="text-xs italic text-gray-500">
               No coupon codes applicable for this property.
             </p>
-            <div className="mt-auto flex justify-between text-xl font-semibold text-black">
+            <div className="mt-auto flex justify-between gap-2 whitespace-nowrap text-lg font-semibold text-black">
               <span>Total Amount to be paid :</span>
               <span className="text-green-600">$697</span>
             </div>
@@ -264,9 +264,9 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
           </p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {[
-              ["Full name", "text", dlIcon],
+              ["First Name", "text", dlIcon],
               ["National ID number", "text", dlIcon],
-              ["Email id", "email", emailIcon],
+              ["Email ID", "email", emailIcon],
               ["Phone number", "tel", phoneIcon],
             ].map(([label, type, icon]) => {
               return (
