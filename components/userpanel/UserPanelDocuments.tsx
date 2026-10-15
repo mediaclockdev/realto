@@ -1,31 +1,22 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useState } from "react";
 import {
   UploadCloud,
   CheckCircle2,
-  Clock,
-  XCircle,
-  FileText,
   Download,
   Trash2,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  RefreshCw,
   BookOpen,
-  Folder,
   Users,
   PhoneCall,
   History,
   Plus,
-  IdCard,
-  Calendar,
   Heart,
-  Phone,
   Briefcase,
-  Mail,
   PawPrint,
   Dog,
   Cat,
@@ -37,14 +28,26 @@ import {
   Hash,
   CalendarCheck,
   Info,
-  DollarSign,
   Coins,
   FileImage,
 } from "lucide-react";
+import totaldocumentsicon from "@/public/userpanelicons/totaldocumentsicon.svg";
+import verifieddocumentsicons from "@/public/userpanelicons/verifieddocumentsicon.svg";
+import pendingreviewicon from "@/public/userpanelicons/pendingreviewicon.svg";
+import rejecteddocumentsicon from "@/public/userpanelicons/rejecteddocumenticon.svg";
 import EmploymentIncomeicon from "@/public/userpanelicons/Employment&Income.svg";
 import EmergencyContacticon from "@/public/userpanelicons/EmergencyContact.svg";
-
+import folderrowicon from "@/public/agentpanelicons/leadmanagementOpenleads.svg";
+import licenseicon from "@/public/agentpanelicons/profiledl.svg";
+import calendaricon from "@/public/buycalender.svg";
+import phoneicon from "@/public/contactformphoneicon.svg";
+import mailicon from "@/public/contactemailicon.svg";
 import documentsicon from "@/public/agentpanelicons/sidebardocumentsicon.svg";
+import uploadDocumenticon from "@/public/agentpanelicons/documentuploaddocumenticon.svg";
+import foldersicon from "@/public/userpanelicons/folders.svg";
+import deleteicon from "@/public/userpanelicons/deleteicon.svg";
+import downloadicon from "@/public/userpanelicons/downloadicon.svg";
+import guidelinesicon from "@/public/userpanelicons/guidelinesicon.svg";
 
 const SOFT_SHADOW = "shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
 const CARD = `rounded-xl bg-white p-4 ${SOFT_SHADOW}`;
@@ -53,28 +56,33 @@ const stats = [
   {
     label: "Total Documents",
     value: 12,
-    icon: FileText,
+    icon: totaldocumentsicon,
     color: "text-blue-500",
   },
   {
     label: "Verified Documents",
     value: 8,
-    icon: CheckCircle2,
+    icon: verifieddocumentsicons,
     color: "text-green-500",
   },
-  { label: "Pending Review", value: 2, icon: Clock, color: "text-orange-500" },
+  {
+    label: "Pending Review",
+    value: 2,
+    icon: pendingreviewicon,
+    color: "text-orange-500",
+  },
   {
     label: "Rejected Documents",
     value: 1,
-    icon: XCircle,
+    icon: rejecteddocumentsicon,
     color: "text-red-500",
   },
 ];
 
 const statusStyles: Record<string, string> = {
-  VERIFIED: "bg-green-50 text-green-600",
-  PENDING: "bg-amber-50 text-amber-600",
-  REJECTED: "bg-red-50 text-red-500",
+  VERIFIED: "bg-[#E6F8F0] text-[#17855C]",
+  PENDING: "bg-[#FFF6DC] text-[#EA7A1E]",
+  REJECTED: "bg-[#FDECEE] text-[#E52B24]",
 };
 
 const documents = [
@@ -121,6 +129,12 @@ const typeColor: Record<string, string> = {
 };
 
 const tabs = ["All Documents", "Verified", "Pending", "Rejected"];
+const tabColor: Record<string, string> = {
+  "All Documents": "text-[#2F63E0]",
+  Verified: "text-[#17855C]",
+  Pending: "text-[#EA7A1E]",
+  Rejected: "text-[#E52B24]",
+};
 
 const sections = [
   { key: "household", label: 'Household "family or partners"', icon: Users },
@@ -140,8 +154,8 @@ const sections = [
 ] as const;
 
 const leaseholderFields = [
-  { label: "Full Name", value: "Parker Realestate", icon: IdCard },
-  { label: "Date Of Birth", value: "03/06/2000", icon: Calendar },
+  { label: "Full Name", value: "Parker Realestate", img: licenseicon },
+  { label: "Date Of Birth", value: "03/06/2000", img: calendaricon },
   {
     label: "Relationship To You ( Wife , Husband , son , father ,etc... )",
     value: "Married",
@@ -150,28 +164,24 @@ const leaseholderFields = [
   {
     label: "Phone Number  ( Mobile preferred )",
     value: "0142 345 678",
-    icon: Phone,
+    img: phoneicon,
   },
-  {
-    label: "Job (Occupation)",
-    value: "Senior Real Estate Agent",
-    icon: Briefcase,
-  },
+  { label: "Job (Occupation)", value: "Senior Real Estate Agent" },
   {
     label: "Email Address",
     value: "parker.realestate@gmail.com",
-    icon: Mail,
+    img: mailicon,
   },
 ];
 
 const occupantFields = [
-  { label: "Occupant's Full Name", value: "Parker Realestate", icon: IdCard },
+  { label: "Occupant's Full Name", value: "Parker Realestate", img: licenseicon },
   {
     label: "Relationship To You ( Wife , Husband , son , father ,etc... )",
     value: "Married",
     icon: Heart,
   },
-  { label: "Date Of Birth", value: "03/06/2000", icon: Calendar },
+  { label: "Date Of Birth", value: "03/06/2000", img: calendaricon },
 ];
 
 const petTypes = [
@@ -181,17 +191,17 @@ const petTypes = [
 ] as const;
 
 const emergencyContactFields = [
-  { label: "Full Name", value: "Parker Realestate", icon: IdCard },
+  { label: "Full Name", value: "Parker Realestate", img: licenseicon },
   {
     label: "Relationship To You ( Wife , Husband , son , father ,etc... )",
     value: "Married",
     icon: Heart,
   },
-  { label: "Phone Number", value: "0142 345 678", icon: Phone },
+  { label: "Phone Number", value: "0142 345 678", img: phoneicon },
   {
     label: "Email Address",
     value: "parker.realestate@gmail.com",
-    icon: Mail,
+    img: mailicon,
   },
 ];
 
@@ -221,12 +231,12 @@ const previousAddressFields = [
   {
     label: "Residential Email Address",
     value: "parker.realestate@gmail.com",
-    icon: Mail,
+    img: mailicon,
   },
   {
     label: "Real Estate Agent's Number",
     value: "0142 345 678",
-    icon: Phone,
+    img: phoneicon,
   },
 ];
 
@@ -244,21 +254,19 @@ const rentPeriodOptions = [
 ];
 
 const employmentFields = [
-  { label: "Employment Type", value: "Full Time", icon: Briefcase },
-  { label: "Company Name", value: "Parker Realestate", icon: Building2 },
+  { label: "Employment Type", value: "Full Time" },
+  { label: "Company Name", value: "Parker Realestate" },
   {
     label: "Job Title/Role",
     value: "Senior Real Estate Agent",
-    icon: IdCard,
   },
-  { label: "Reference Name", value: "Michael Parker", icon: User },
-  { label: "Start Date", value: "03/06/2000", icon: Calendar },
-  { label: "Reference Number", value: "+61 412 345 678", icon: Phone },
-  { label: "Income (weekly/monthly)", value: "$8500/month", icon: DollarSign },
+  { label: "Reference Name", value: "Michael Parker" },
+  { label: "Start Date", value: "03/06/2000" },
+  { label: "Reference Number", value: "+61 412 345 678" },
+  { label: "Income (weekly/monthly)", value: "$8500/month" },
   {
     label: "Reference E-mail",
     value: "michael.parker@parkerrealestategmail.com",
-    icon: Mail,
   },
 ];
 
@@ -315,9 +323,13 @@ export default function UserPanelDocuments() {
         </div>
         {section === "documents" && (
           <button
-            className={`flex items-center gap-2 rounded-full border border-[#E1AB18] bg-white px-4 py-2.5 text-base font-bold text-[#E1AB18] ${SOFT_SHADOW}`}
+            className={`flex items-center gap-2 rounded-lg border border-[#E1AB18] bg-white px-2 text-lg font-bold text-[#E1AB18] ${SOFT_SHADOW}`}
           >
-            <UploadCloud className="size-6" />
+            <Image
+              src={uploadDocumenticon}
+              alt="Upload Document"
+              className="size-12"
+            />
             Upload Document
           </button>
         )}
@@ -326,11 +338,17 @@ export default function UserPanelDocuments() {
       {/* Section tabs */}
       <div>
         <div
-          className={`flex flex-nowrap items-end justify-between gap-4 overflow-x-auto pt-3 pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
+          className={`flex flex-nowrap items-end justify-between gap-4 -mx-2 overflow-x-auto px-2 pt-3 pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
         >
           {shownSections.map(({ key, label, ...rest }, i) => {
             const img = "img" in rest ? rest.img : null;
-            const imgEl = img && <Image src={img} alt="" className="-my-6 h-10 w-auto 2xl:h-14" />;
+            const imgEl = img && (
+              <Image
+                src={img}
+                alt=""
+                className="-my-6 hidden h-10 w-auto sm:block 2xl:h-14"
+              />
+            );
             const imgLeft = key === "emergency";
             const active = section === key;
             const isLast = i === shownSections.length - 1;
@@ -338,7 +356,7 @@ export default function UserPanelDocuments() {
               <button
                 key={key}
                 onClick={() => setSection(active ? "documents" : key)}
-                className={`relative flex min-w-0 flex-auto items-center justify-center gap-2 whitespace-nowrap border-2 px-3 py-4 text-sm font-black xl:text-lg 2xl:text-2xl leading-none text-[#0496FF] font-amasis  transition-colors ${
+                className={`relative flex min-w-0 flex-auto cursor-pointer items-center justify-center gap-2 border-2 px-2 py-3 text-center text-xs font-black sm:whitespace-nowrap sm:px-3 sm:py-4 sm:text-sm xl:text-lg 2xl:text-2xl leading-none text-[#0496FF] font-amasis  transition-colors ${
                   active
                     ? `z-10 -mb-5 border-b-0 border-[#8b8d94] bg-white !p-2 text-[#E1AB18] ${isLast ? "rounded-tr-xl" : "mr-5 border-r-0 !pr-0"} ${i === 0 ? "rounded-tl-3xl" : "ml-5 border-l-0 !pl-0"} drop-shadow-[-6px_-4px_10px_#999FB480]`
                     : `rounded-2xl border-transparent bg-[#F1F3F2] ${SOFT_SHADOW}`
@@ -346,10 +364,12 @@ export default function UserPanelDocuments() {
               >
                 {active ? (
                   <>
-                    <span className="relative z-10 flex flex-1 items-center justify-center rounded-xl border-2 border-[#E1AB18] px-6 py-3 shadow-[-4px_4px_8px_#999FB4]">
+                    <span className="relative z-10 flex flex-1 items-center justify-center rounded-xl border-2 border-[#E1AB18] px-2 py-2 sm:px-6 sm:py-3 shadow-[-4px_4px_8px_#999FB4]">
                       {imgLeft && imgEl}
                       {label}
-                      {!imgLeft && imgEl && <span className="ml-4 flex">{imgEl}</span>}
+                      {!imgLeft && imgEl && (
+                        <span className="ml-4 hidden sm:flex">{imgEl}</span>
+                      )}
                     </span>
                     {[false, true].map((left) =>
                       (left ? i === 0 : isLast) ? null : (
@@ -388,7 +408,7 @@ export default function UserPanelDocuments() {
 
         {section !== "documents" && (
           <div
-            className={`-mt-0.5 rounded-xl ${section === shownSections[0].key ? "rounded-tl-none" : ""} ${section === shownSections[shownSections.length - 1].key ? "rounded-tr-none" : ""} border-2 border-[#8b8d94] bg-white p-6 shadow-[0_6px_12px_#999FB44D]`}
+            className={`-mt-0.5 rounded-xl ${section === shownSections[0].key ? "rounded-tl-none" : ""} ${section === shownSections[shownSections.length - 1].key ? "rounded-tr-none" : ""} border-2 border-[#8b8d94] bg-white p-3 shadow-[0_6px_12px_#999FB44D] sm:p-6`}
           >
             {section === "household" && (
               <div className="space-y-6">
@@ -550,7 +570,7 @@ export default function UserPanelDocuments() {
                         shadow={false}
                       />
                     ))}
-                    <div className="flex items-center justify-between gap-3 rounded-xl px-4 py-3">
+                    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl px-4 py-3">
                       <div>
                         <p className="flex items-center gap-1.5 text-sm font-bold text-green-600">
                           Check-in
@@ -612,7 +632,7 @@ export default function UserPanelDocuments() {
                       <FieldBox
                         label="Move in date"
                         value="03/06/2026"
-                        icon={Calendar}
+                        img={calendaricon}
                       />
                     </div>
 
@@ -739,9 +759,13 @@ export default function UserPanelDocuments() {
             {stats.map(({ label, value, icon: Icon, color }) => (
               <div
                 key={label}
-                className={`flex min-h-24 items-center gap-3 rounded-xl border border-[#DCEBFA] bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] px-4 py-4 ${SOFT_SHADOW}`}
+                className={`flex min-h-16 items-center gap-3 rounded-xl border border-[#DCEBFA] bg-[linear-gradient(135deg,#D8EFFD_0%,#E9EDFE_100%)] px-4  ${SOFT_SHADOW}`}
               >
-                <Icon className={`size-9 shrink-0 ${color}`} />
+                <Image
+                  src={Icon}
+                  alt={label}
+                  className={`size-12 shrink-0 ${color}`}
+                />
                 <span>
                   <span className={`block text-base font-bold ${color}`}>
                     {label}
@@ -755,26 +779,34 @@ export default function UserPanelDocuments() {
           </div>
 
           {/* Folders + documents table */}
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[220px_minmax(0,1fr)]">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[290px_minmax(0,1fr)]">
             <div className={`${CARD} border border-[#E7ECF2]`}>
-              <p className="flex items-center gap-2 text-lg font-bold text-[#2495FF]">
-                Folders <Folder className="size-5" />
+              <p
+                className={`flex items-center justify-between rounded-full bg-[#F1F3F2] px-6 py-2 text-xl font-black text-[#2495FF] font-amasis ${SOFT_SHADOW}`}
+              >
+                Folders{" "}
+                <Image
+                  src={foldersicon}
+                  alt="folder"
+                  className="-my-3 size-12"
+                />
               </p>
-              <div className="mt-3 space-y-2">
+              <div className="mt-4 space-y-3">
                 {folders.map(({ label, count }) => (
                   <button
                     key={label}
                     onClick={() => setActiveFolder(label)}
-                    className={`flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2.5 text-left text-sm font-bold ${
+                    className={`flex w-full cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-3 text-left font-[family-name:var(--font-inter)] text-lg font-semibold leading-none text-white [text-shadow:0_0_7.3px_rgba(0,0,0,0.6),1px_1px_2.1px_#000] border transition-all duration-300 ease-out ${
                       activeFolder === label
-                        ? "bg-amber-50 text-amber-600"
-                        : "text-gray-600"
+                        ? "border-[#E1AB18] bg-gray-200 shadow-[-8px_8px_16px_0_transparent,6px_-6px_12px_0_transparent]"
+                        : `border-transparent bg-white ${SOFT_SHADOW}`
                     }`}
                   >
                     <span className="flex items-center gap-2">
-                      <Folder className="size-4" /> {label}
+                      <Image src={folderrowicon} alt="" className="size-5" />{" "}
+                      {label}
                     </span>
-                    <span className="flex size-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                    <span className="flex size-5 items-center justify-center rounded-full bg-[#FF0000] text-[10px] font-bold text-white shadow-[0_6px_16px_rgba(255,77,103,0.4),-5px_5px_4.2px_rgba(255,0,0,0.3)]">
                       {count}
                     </span>
                   </button>
@@ -784,15 +816,13 @@ export default function UserPanelDocuments() {
 
             <div className={`${CARD} min-w-0 border border-[#E7ECF2]`}>
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <div className="flex gap-6 border-b border-gray-200">
+                <div className="flex max-w-full gap-4 overflow-x-auto whitespace-nowrap border-b border-gray-200 [scrollbar-width:none] sm:gap-6 [&::-webkit-scrollbar]:hidden">
                   {tabs.map((t) => (
                     <button
                       key={t}
                       onClick={() => setTab(t)}
-                      className={`-mb-px border-b-2 px-1 pb-2 text-base font-bold ${
-                        tab === t
-                          ? "border-[#2495FF] text-[#2495FF]"
-                          : "border-transparent text-gray-400"
+                      className={`-mb-px border-b-2 px-1 pb-2 text-base font-bold cursor-pointer transition-colors ${tabColor[t]} ${
+                        tab === t ? "border-current" : "border-transparent"
                       }`}
                     >
                       {t}
@@ -808,13 +838,17 @@ export default function UserPanelDocuments() {
                 <table className="w-full min-w-[700px] text-left text-sm">
                   <thead className="bg-[#F7FAFD]">
                     <tr className="text-[#2495FF]">
-                      <th className="py-3 text-base font-bold">
+                      <th className="px-3 py-3 text-base font-bold">
                         Document Name
                       </th>
-                      <th className="py-3 text-base font-bold">Category</th>
-                      <th className="py-3 text-base font-bold">Uploaded On</th>
-                      <th className="py-3 text-base font-bold">Status</th>
-                      <th className="py-3 text-base font-bold">Actions</th>
+                      <th className="px-3 py-3 text-base font-bold">
+                        Category
+                      </th>
+                      <th className="px-3 py-3 text-base font-bold">
+                        Uploaded On
+                      </th>
+                      <th className="px-3 py-3 text-base font-bold">Status</th>
+                      <th className="px-3 py-3 text-base font-bold">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#EDF1F5]">
@@ -823,7 +857,7 @@ export default function UserPanelDocuments() {
                         key={i}
                         className="transition-colors hover:bg-[#FAFCFE]"
                       >
-                        <td className="py-3">
+                        <td className="px-3 py-3">
                           <div className="flex items-center gap-3">
                             <span
                               className={`flex size-9 shrink-0 items-center justify-center rounded-lg text-[10px] font-bold text-white ${typeColor[d.type]}`}
@@ -838,25 +872,35 @@ export default function UserPanelDocuments() {
                             </div>
                           </div>
                         </td>
-                        <td className="py-3 text-gray-700">{d.category}</td>
-                        <td className="py-3">
+                        <td className="px-3 py-3 text-gray-700">
+                          {d.category}
+                        </td>
+                        <td className="px-3 py-3">
                           <p className="font-bold text-gray-900">{d.date}</p>
                           <p className="text-xs text-gray-500">{d.time}</p>
                         </td>
-                        <td className="py-3">
+                        <td className="px-3 py-3">
                           <span
-                            className={`rounded-full px-3 py-1 text-xs font-bold ${statusStyles[d.status]}`}
+                            className={`rounded-full px-5 py-2.5 text-sm font-semibold shadow-[0_4px_10px_rgba(0,0,0,0.08)] ${statusStyles[d.status]}`}
                           >
                             {d.status}
                           </span>
                         </td>
-                        <td className="py-3">
+                        <td className="px-3 py-3">
                           <div className="flex items-center gap-3 text-gray-500">
                             <button aria-label="Download">
-                              <Download className="size-4 text-orange-500" />
+                              <Image
+                                src={downloadicon}
+                                alt="download"
+                                className="size-8 text-orange-500"
+                              />
                             </button>
                             <button aria-label="Delete">
-                              <Trash2 className="size-4" />
+                              <Image
+                                src={deleteicon}
+                                alt="delete"
+                                className="size-8"
+                              />
                             </button>
                           </div>
                         </td>
@@ -899,7 +943,12 @@ export default function UserPanelDocuments() {
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <div className={CARD}>
               <p className="flex items-center gap-2 text-lg font-bold text-[#2495FF]">
-                <BookOpen className="size-5" /> Document Guidelines
+                Document Guidelines
+                <Image
+                  src={guidelinesicon}
+                  alt="document guidelines"
+                  className="size-8"
+                />
               </p>
               <ul className="mt-3 space-y-2 text-sm text-gray-600">
                 {guidelines.map((g) => (
@@ -908,19 +957,28 @@ export default function UserPanelDocuments() {
               </ul>
             </div>
 
-            <div className="rounded-xl bg-[#EAF3FF] p-4">
-              <p className="flex items-center gap-2 text-lg font-bold text-gray-900">
-                <RefreshCw className="size-5 text-orange-500" /> Need to update
-                a document?
+            <div className={`flex flex-col rounded-3xl border border-[#E7ECF2] bg-[#EEF4FF] p-6 ${SOFT_SHADOW}`}>
+              <p className="flex items-center gap-4 font-[family-name:var(--font-inter)] text-xl font-semibold text-[#0F1B33]">
+                <span className="relative size-12 shrink-0 overflow-hidden">
+                  <Image
+                    src="/confirmbooking/imgImage1650.png"
+                    alt=""
+                    width={400}
+                    height={400}
+                    className="absolute max-w-none"
+                    style={{ height: "103.16%", left: "-2.5%", top: 0, width: "105%" }}
+                  />
+                </span>
+                Need to update a document?
               </p>
-              <p className="mt-2 text-sm text-gray-600">
+              <p className="mt-4 text-base text-slate-500">
                 If your document has expired or information has changed, please
                 upload the latest version for review.
               </p>
               <button
-                className={`mt-4 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-[#E1AB18] ${SOFT_SHADOW}`}
+                className={`mt-auto ml-auto flex items-center gap-3 rounded-xl border-2 border-[#E1AB18] bg-white py-2 pr-6 pl-2 text-lg font-semibold text-[#E8C04A] ${SOFT_SHADOW}`}
               >
-                <UploadCloud className="size-5" />
+                <Image src={uploadDocumenticon} alt="" className="size-10" />
                 Upload New Document
               </button>
             </div>
@@ -935,6 +993,7 @@ function FieldBox({
   label,
   value,
   icon: Icon,
+  img,
   bordered = true,
   shadow = true,
   compact = false,
@@ -942,6 +1001,7 @@ function FieldBox({
   label: string;
   value: string;
   icon?: React.ComponentType<{ className?: string }>;
+  img?: StaticImageData;
   bordered?: boolean;
   shadow?: boolean;
   compact?: boolean;
@@ -950,18 +1010,25 @@ function FieldBox({
     <div
       className={`flex items-center justify-between gap-3 bg-white ${compact ? "min-h-[58px] rounded-lg px-3 py-2" : "rounded-xl px-4 py-3"} ${bordered ? "border border-yellow-400" : ""} ${shadow ? SOFT_SHADOW : ""}`}
     >
-      <div>
+      <div className="min-w-0">
         <p
           className={`flex items-center gap-1.5 text-gray-500 ${compact ? "text-xs" : "text-sm"}`}
         >
           <CheckCircle2 className="size-4 text-green-500" /> {label}
         </p>
         <p
-          className={`mt-1 font-bold text-gray-900 ${compact ? "text-sm" : "text-lg"}`}
+          className={`mt-1 break-words font-bold text-gray-900 ${compact ? "text-sm" : "text-lg"}`}
         >
           {value}
         </p>
       </div>
+      {img && (
+        <Image
+          src={img}
+          alt=""
+          className={`shrink-0 object-contain ${compact ? "h-8 w-12" : "h-10 w-14"}`}
+        />
+      )}
       {Icon && (
         <Icon
           className={`shrink-0 text-[#2495FF] ${compact ? "size-5" : "size-8"}`}
