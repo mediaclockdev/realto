@@ -76,9 +76,7 @@ const PropertyListingCard: React.FC<PropertyListingCardProps> = ({
       (p) => (p - 1 + property.images.length) % property.images.length,
     );
   };
-  console.log("variant:", listingVariant);
-  console.log("rent icons:", property.renticonImages);
-  console.log("buy icons:", property.buyiconImages);
+
   if (listingVariant === "buy") {
     return (
       <BuyPropertyCard

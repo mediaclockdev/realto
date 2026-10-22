@@ -5,12 +5,9 @@ import { useState } from "react";
 import {
   UploadCloud,
   CheckCircle2,
-  Download,
-  Trash2,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  BookOpen,
   Users,
   PhoneCall,
   History,

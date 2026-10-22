@@ -107,8 +107,17 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
                     <p className=" text-[#64748B]">1:00 pm</p>
                   </div>
                 </div>
-                <span className="rounded-lg border bg-gray-50 px-3 py-1 text-sm font-semibold shadow-sm">
-                  7 Nights
+                <span className="relative flex h-[41px] w-[134px] shrink-0 items-center justify-center overflow-hidden font-TimesNewRoman text-xl font-bold text-black">
+                  <Image
+                    src="/confirmbooking/imgNightsPill.png"
+                    alt=""
+                    width={400}
+                    height={400}
+                    sizes="300px"
+                    className="absolute max-w-none"
+                    style={{ height: "168.56%", left: "-7.37%", top: "-34.28%", width: "111.47%" }}
+                  />
+                  <span className="relative">7 Nights</span>
                 </span>
                 <div className={field}>
                   <div className="text-sm font-TimesNewRoman">
