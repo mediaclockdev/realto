@@ -1,7 +1,7 @@
 import Image from "next/image";
 import PropertyListingCardSlider from "@/components/Home/PropertyListingCardSlider";
 import { getListings } from "@/lib/listings/repository";
-import Searchbar from "@/components/ui/Searchbar";
+import HeroSection from "@/components/ui/HeroSection";
 import { CircleDollarSign } from "lucide-react";
 
 const states = [
@@ -31,15 +31,7 @@ export default function StateGalleries({ variant, heading, subtitle, cta }: { va
   const { properties } = getListings({ listingVariant: variant });
   return (
     <div className="bg-[#f6f7fa] pb-14">
-      <section className="relative flex h-[500px] items-center justify-center px-6 pb-16">
-        <Image src="/rent/hero.webp" alt="" fill priority className="object-cover" />
-        <div className="absolute inset-0 bg-black/25" />
-        <div className="relative flex w-full max-w-[1175px] flex-col items-center gap-4 text-center text-white">
-          <h1 className="font-[Montserrat,sans-serif] text-[48px] font-bold leading-[48px]">{heading}</h1>
-          <p className="text-[18px] leading-7">{subtitle}</p>
-        </div>
-        <Searchbar />
-      </section>
+      <HeroSection image="/rent/hero.webp" title={heading} description={subtitle} />
 
       <main className="flex flex-col gap-10 py-10 pl-[10px]">
         {states.map((s) => (

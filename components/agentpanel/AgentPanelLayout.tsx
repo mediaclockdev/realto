@@ -36,8 +36,10 @@ const menuItems = [
 
 export default function AgentPanelLayout({
   children,
+  items = menuItems,
 }: {
   children: React.ReactNode;
+  items?: typeof menuItems;
 }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -92,7 +94,7 @@ export default function AgentPanelLayout({
             Main Menu
           </p>
           <nav className="mt-3 space-y-3">
-            {menuItems.map(({ label, icon: Icon, href }) => {
+            {items.map(({ label, icon: Icon, href }) => {
               const active = pathname.startsWith(href);
               return (
                 <Link

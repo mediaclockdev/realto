@@ -17,7 +17,8 @@ const Footer = () => {
     pathname.startsWith("/login") ||
     pathname.startsWith("/signup") ||
     pathname.startsWith("/agentpanel") ||
-    pathname.startsWith("/userpanel");
+    pathname.startsWith("/userpanel") ||
+    pathname.startsWith("/adminpanel");
 
   if (isAuthRoute) {
     return null;

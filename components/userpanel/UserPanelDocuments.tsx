@@ -12,18 +12,13 @@ import {
   PhoneCall,
   History,
   Plus,
-  Heart,
   Briefcase,
   PawPrint,
   Dog,
   Cat,
   Rabbit,
   ChevronUp,
-  MapPin,
-  Building2,
-  User,
-  Hash,
-  CalendarCheck,
+
   Info,
   Coins,
   FileImage,
@@ -39,14 +34,19 @@ import licenseicon from "@/public/agentpanelicons/profiledl.svg";
 import calendaricon from "@/public/buycalender.svg";
 import phoneicon from "@/public/contactformphoneicon.svg";
 import mailicon from "@/public/contactemailicon.svg";
+import pinicon from "@/public/rentlocationicon.svg";
+import checkinicon from "@/public/calendericonhotel.svg";
+import checkouticon from "@/public/calendericonhotel1.svg";
 import documentsicon from "@/public/agentpanelicons/sidebardocumentsicon.svg";
 import uploadDocumenticon from "@/public/agentpanelicons/documentuploaddocumenticon.svg";
 import foldersicon from "@/public/userpanelicons/folders.svg";
 import deleteicon from "@/public/userpanelicons/deleteicon.svg";
 import downloadicon from "@/public/userpanelicons/downloadicon.svg";
 import guidelinesicon from "@/public/userpanelicons/guidelinesicon.svg";
+import weddingicon from "@/public/userpanelicons/marriedicon.svg";
 
 const SOFT_SHADOW = "shadow-[-8px_8px_16px_0_#999FB4,6px_-6px_12px_0_#FFFFFF]";
+const PILL_TITLE = `w-full max-w-xl rounded-full bg-[#F1F3F2] px-6 py-3 text-center text-3xl font-black text-[#4189DD] font-amasis ${SOFT_SHADOW}`;
 const CARD = `rounded-xl bg-white p-4 ${SOFT_SHADOW}`;
 
 const stats = [
@@ -156,7 +156,7 @@ const leaseholderFields = [
   {
     label: "Relationship To You ( Wife , Husband , son , father ,etc... )",
     value: "Married",
-    icon: Heart,
+    img: weddingicon,
   },
   {
     label: "Phone Number  ( Mobile preferred )",
@@ -172,11 +172,15 @@ const leaseholderFields = [
 ];
 
 const occupantFields = [
-  { label: "Occupant's Full Name", value: "Parker Realestate", img: licenseicon },
+  {
+    label: "Occupant's Full Name",
+    value: "Parker Realestate",
+    img: licenseicon,
+  },
   {
     label: "Relationship To You ( Wife , Husband , son , father ,etc... )",
     value: "Married",
-    icon: Heart,
+    img: weddingicon,
   },
   { label: "Date Of Birth", value: "03/06/2000", img: calendaricon },
 ];
@@ -192,7 +196,7 @@ const emergencyContactFields = [
   {
     label: "Relationship To You ( Wife , Husband , son , father ,etc... )",
     value: "Married",
-    icon: Heart,
+    img: weddingicon,
   },
   { label: "Phone Number", value: "0142 345 678", img: phoneicon },
   {
@@ -203,28 +207,26 @@ const emergencyContactFields = [
 ];
 
 const currentAddressFields = [
-  { label: "Current address", value: "123,Broadway,1001,NY,USA", icon: MapPin },
+  { label: "Current address", value: "123,Broadway,1001,NY,USA", img: pinicon },
   {
     label: "Real Estate Agency",
     value: "Parker Real Estate Group",
-    icon: Building2,
   },
-  { label: "Agent's Name", value: "Michael", icon: User },
-  { label: "Agent's Number", value: "PN12345VB", icon: Hash },
+  { label: "Agent's Name", value: "Michael" },
+  { label: "Agent's Number", value: "PN12345VB", img: phoneicon },
 ];
 
 const previousAddressFields = [
   {
     label: "Previous Residential address",
     value: "11,Brokeline,1001,NY,USA",
-    icon: MapPin,
+    img: pinicon,
   },
   {
     label: "Real Estate Agency",
     value: "Parker Real Estate Group",
-    icon: Building2,
   },
-  { label: "Real Estate Agent's Name", value: "Mark", icon: User },
+  { label: "Real Estate Agent's Name", value: "Mark" },
   {
     label: "Residential Email Address",
     value: "parker.realestate@gmail.com",
@@ -546,69 +548,73 @@ export default function UserPanelDocuments() {
               <div className="space-y-6">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {currentAddressFields.map((f) => (
-                    <FieldBox key={f.label} {...f} />
+                    <FieldBox key={f.label} {...f} shadow={false} />
                   ))}
                 </div>
 
-                <p className="italic text-gray-500">
+                <p className="font-TimesNewRoman text-xl italic text-gray-600">
                   Please add the details of your previous residential addresses
                   to help verify your details with a valid reference, your
                   history could include living with your parents, your partners
                   or the property you own.
                 </p>
 
-                <div className="space-y-4 rounded-xl border border-yellow-400 p-4">
+                <div className={`space-y-4 ${CARD}`}>
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     {previousAddressFields.map((f) => (
-                      <FieldBox
-                        key={f.label}
-                        {...f}
-                        bordered={false}
-                        shadow={false}
-                      />
+                      <FieldBox key={f.label} {...f} shadow={false} />
                     ))}
-                    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl px-4 py-3">
-                      <div>
-                        <p className="flex items-center gap-1.5 text-sm font-bold text-green-600">
-                          Check-in
-                        </p>
-                        <p className="text-lg font-bold text-gray-900">
-                          May 24, 2025
-                        </p>
+                    <div className="flex items-center justify-between gap-3 rounded-xl border-2 border-[#D4AF37] bg-white px-2 py-1">
+                      <div className="flex items-center gap-2">
+                        <Image
+                          src={checkinicon}
+                          alt=""
+                          className="h-14 w-16 object-contain"
+                        />
+                        <div>
+                          <p className="font-amasis text-xl font-black text-green-700">
+                            Check-in
+                          </p>
+                          <p className="text-lg text-gray-900">May 24, 2025</p>
+                        </div>
                       </div>
-                      <CalendarCheck className="size-8 shrink-0 text-green-500" />
-                      <div className="text-right">
-                        <p className="text-sm font-bold text-red-500">
-                          Check-out
-                        </p>
-                        <p className="text-lg font-bold text-gray-900">
-                          May 24, 2025
-                        </p>
+                      <div className="h-10 w-px bg-gray-300" />
+                      <div className="flex items-center gap-2">
+                        <div className="text-right">
+                          <p className="font-amasis text-xl font-black text-red-600">
+                            Check-out
+                          </p>
+                          <p className="text-lg text-gray-900">May 24, 2025</p>
+                        </div>
+                        <Image
+                          src={checkouticon}
+                          alt=""
+                          className="h-14 w-16 object-contain"
+                        />
                       </div>
-                      <CalendarCheck className="size-8 shrink-0 text-red-500" />
                     </div>
                   </div>
                   <FieldBox
                     label="Reasons of leaving"
                     value="abc"
-                    bordered={false}
                     shadow={false}
                   />
                 </div>
 
                 <div className="flex justify-end">
                   <button
-                    className={`flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-gray-900 ${SOFT_SHADOW}`}
+                    className={`flex items-center gap-3 rounded-xl border-t border-r border-[#DCDCDC] bg-white px-4 py-2.5 text-lg font-bold text-black ${SOFT_SHADOW}`}
                   >
-                    <Plus className="size-4 rounded-full bg-yellow-400 p-0.5" />
+                    <Plus
+                      className="size-8 rounded-full bg-gradient-to-br from-[#E9C04A] to-[#B8962E] p-1 text-white"
+                      strokeWidth={4}
+                    />
                     Add another address
                   </button>
                 </div>
 
                 <div>
-                  <p className="text-xl font-bold text-[#2495FF]">
-                    Rental Preferrences
-                  </p>
+                  <p className={PILL_TITLE}>Rental Preferrences</p>
                   <div className={`mt-3 space-y-4 ${CARD}`}>
                     <div className="grid grid-cols-1 items-center gap-3 md:grid-cols-[220px_1fr]">
                       <div>
@@ -954,7 +960,9 @@ export default function UserPanelDocuments() {
               </ul>
             </div>
 
-            <div className={`flex flex-col rounded-3xl border border-[#E7ECF2] bg-[#EEF4FF] p-6 ${SOFT_SHADOW}`}>
+            <div
+              className={`flex flex-col rounded-3xl border border-[#E7ECF2] bg-[#EEF4FF] p-6 ${SOFT_SHADOW}`}
+            >
               <p className="flex items-center gap-4 font-[family-name:var(--font-inter)] text-xl font-semibold text-[#0F1B33]">
                 <span className="relative size-12 shrink-0 overflow-hidden">
                   <Image
@@ -963,7 +971,12 @@ export default function UserPanelDocuments() {
                     width={400}
                     height={400}
                     className="absolute max-w-none"
-                    style={{ height: "103.16%", left: "-2.5%", top: 0, width: "105%" }}
+                    style={{
+                      height: "103.16%",
+                      left: "-2.5%",
+                      top: 0,
+                      width: "105%",
+                    }}
                   />
                 </span>
                 Need to update a document?
@@ -1005,7 +1018,7 @@ function FieldBox({
 }) {
   return (
     <div
-      className={`flex items-center justify-between gap-3 bg-white ${compact ? "min-h-[58px] rounded-lg px-3 py-2" : "rounded-xl px-4 py-3"} ${bordered ? "border border-yellow-400" : ""} ${shadow ? SOFT_SHADOW : ""}`}
+      className={`flex items-center justify-between gap-3 bg-white ${compact ? "min-h-[58px] rounded-lg px-3 py-2" : "rounded-xl px-4 py-3"} ${bordered ? "border-2 border-[#D4AF37]" : ""} ${shadow ? SOFT_SHADOW : ""}`}
     >
       <div className="min-w-0">
         <p
@@ -1014,7 +1027,7 @@ function FieldBox({
           <CheckCircle2 className="size-4 text-green-500" /> {label}
         </p>
         <p
-          className={`mt-1 break-words font-bold text-gray-900 ${compact ? "text-sm" : "text-lg"}`}
+          className={`mt-1 break-words text-gray-900 ${compact ? "text-sm font-bold" : "text-2xl"}`}
         >
           {value}
         </p>
@@ -1023,7 +1036,7 @@ function FieldBox({
         <Image
           src={img}
           alt=""
-          className={`shrink-0 object-contain ${compact ? "h-8 w-12" : "h-10 w-14"}`}
+          className={`shrink-0 object-contain ${compact ? "h-8 w-12" : "h-14 w-14"}`}
         />
       )}
       {Icon && (
@@ -1079,7 +1092,7 @@ function UploadBox({
 }) {
   return (
     <div>
-      <p className="text-xl font-bold text-[#2495FF]">{title}</p>
+      <p className={PILL_TITLE}>{title}</p>
       <p className="mt-2 text-gray-700">{description}</p>
       {disclaimer && (
         <p className="mt-1 text-red-500">

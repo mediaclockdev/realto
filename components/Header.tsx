@@ -40,7 +40,8 @@ const Header = () => {
     pathname.startsWith("/login") ||
     pathname.startsWith("/signup") ||
     pathname.startsWith("/agentpanel") ||
-    pathname.startsWith("/userpanel");
+    pathname.startsWith("/userpanel") ||
+    pathname.startsWith("/adminpanel");
 
   if (isAuthRoute) {
     return null;
@@ -55,10 +56,15 @@ const Header = () => {
     pathname === "/agents" ||
     pathname === "/commercial" ||
     pathname === "/hotel" ||
+    pathname === "/rent" ||
+    pathname === "/propertyListingpage" ||
     pathname.startsWith("/agents/") ||
     pathname.startsWith("/broker/");
 
-  const isHome = pathname === "/homepage";
+  const isHome =
+    pathname === "/homepage" ||
+    pathname === "/rent" ||
+    pathname === "/propertyListingpage";
 
   return (
     <header
