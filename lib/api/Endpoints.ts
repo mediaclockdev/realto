@@ -8,6 +8,11 @@ export const Endpoints = {
     // ponytail: guessed from the /api/agents/* pattern — confirm with backend
     verifyOtp: "/api/agents/verify-otp",
     resendOtp: "/api/agents/resend-otp",
+    adminLogin: "/api/auth/login",
+    adminForgotPassword: "/api/auth/forgot-password",
+    adminVerifyOtp: "/api/auth/verify-otp",
+    adminResendOtp: "/api/auth/resend-otp",
+    adminResetPassword: "/api/auth/reset-password",
   },
   userprofile: {
     get: "/api/profile/",
@@ -53,6 +58,20 @@ export const Endpoints = {
     downloaddocuments: "/api/documents/:id/download",
     updatedocuments: "/api/documents/:id",
     deletedocuments: "/api/documents/:id",
+  },
+  categories: {
+    create: "/api/categories",
+    list: "/api/categories",
+    update: "/api/categories/:id",
+    delete: "/api/categories/:id",
+    export: "/api/categories/export",
+  },
+  languages: {
+    list: "/api/languages",
+    create: "/api/languages",
+    update: "/api/languages/:id",
+    delete: "/api/languages/:id",
+    export: "/api/languages/export",
   },
   agentdashboard: {
     dashboardStats: "/api/dashboard/stats",

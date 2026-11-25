@@ -9,12 +9,10 @@ import {
   CheckCircle2,
   Download,
   MoreVertical,
-  Plus,
   RotateCcw,
   Search,
   SlidersHorizontal,
   Star,
-
 } from "lucide-react";
 import agentsicon from "@/public/agentpanelicons/sidebarleadsmanagementicon.svg";
 import avatar from "@/public/agentimg1.jpg";
@@ -78,13 +76,6 @@ export default function AdminPanelAgents() {
           <button className={`${goldBtn} text-xl`} style={GOLD_BORDER}>
             <Download className="size-8 rounded-full bg-[#D9A91B] p-1.5 text-white" />{" "}
             Export
-          </button>
-          <button className={`${goldBtn} text-xl`} style={GOLD_BORDER}>
-            <Plus
-              className="size-8 rounded-full bg-[#D9A91B] p-1 text-white"
-              strokeWidth={4}
-            />{" "}
-            Add New Agent
           </button>
         </div>
       </div>

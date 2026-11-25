@@ -57,6 +57,23 @@ export const login = (body: Body) =>
 export const userLogin = (body: Body) =>
   post<{ agent: Agent }>(Endpoints.auth.userLogin, body);
 
+export const adminLogin = (body: Body) =>
+  post<{ token?: string }>(Endpoints.auth.adminLogin, body);
+
+export const adminForgotPassword = (body: Body) =>
+  post<never>(Endpoints.auth.adminForgotPassword, body);
+
+// ponytail: request bodies for these weren't shown; assumed { email }, { email, otp }, { email, otp, password, confirm_password }
+export const adminVerifyOtp = (body: Body) => post<never>(Endpoints.auth.adminVerifyOtp, body);
+export const adminResetPassword = (body: Body) => post<never>(Endpoints.auth.adminResetPassword, body);
+export async function adminResendOtp(email: string): Promise<ApiResult<never>> {
+  try {
+    return (await axiosClient.get(Endpoints.auth.adminResendOtp, { params: { email } })).data;
+  } catch (error: any) {
+    return { success: false, message: error.response?.data?.message || "An unexpected error occurred." };
+  }
+}
+
 export const signup = (body: Body) =>
   post<{ agent: Agent }>(Endpoints.auth.signup, body);
 

@@ -1,3 +1,4 @@
+import AdminGuard from "@/components/adminpanel/AdminGuard";
 import AgentPanelLayout from "@/components/agentpanel/AgentPanelLayout";
 import dashboardicon from "@/public/agentpanelicons/sidebardashboardicon.svg";
 import listingsicon from "@/public/agentpanelicons/sidebarmylistingicon.svg";
@@ -6,6 +7,8 @@ import bookingsicon from "@/public/userpanelicons/userpanelinspectionbookingicon
 import customersicon from "@/public/agentpanelicons/sidebarprofileicon.svg";
 import agentsicon from "@/public/agentpanelicons/sidebarleadsmanagementicon.svg";
 import analyticsicon from "@/public/agentpanelicons/sidebaranalyticsicons.svg";
+import { categoryGroups } from "@/components/adminpanel/categoryGroups";
+import categoryicon from "@/public/agentpanelicons/sidebardocumentsicon.svg";
 import settingsicon from "@/public/agentpanelicons/sidebarsettingsicon.svg";
 
 const adminItems = [
@@ -36,9 +39,22 @@ const adminItems = [
     icon: analyticsicon,
     href: "/adminpanel/analytics",
   },
+  {
+    label: "Manage Category",
+    icon: categoryicon,
+    href: "/adminpanel/categories",
+    children: categoryGroups.map(({ label, slug }) => ({
+      label,
+      href: `/adminpanel/categories/${slug}`,
+    })),
+  },
   { label: "Settings", icon: settingsicon, href: "/adminpanel/settings" },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <AgentPanelLayout items={adminItems}>{children}</AgentPanelLayout>;
+  return (
+    <AdminGuard>
+      <AgentPanelLayout items={adminItems}>{children}</AgentPanelLayout>
+    </AdminGuard>
+  );
 }

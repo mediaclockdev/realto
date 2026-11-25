@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -19,7 +19,15 @@ import documentsicon from "@/public/agentpanelicons/sidebardocumentsicon.svg";
 import settingsicon from "@/public/agentpanelicons/sidebarsettingsicon.svg";
 import styles from "./sidebar.module.css";
 
-const menuItems = [
+type Item = {
+  label: string;
+  icon: StaticImageData;
+  href: string;
+  // Sub-links, shown only while the parent route is open
+  children?: { label: string; href: string }[];
+};
+
+const menuItems: Item[] = [
   { label: "Dashboard", icon: dashboardicon, href: "/agentpanel/dashboard" },
   { label: "Profile", icon: profileicon, href: "/agentpanel/profile" },
   {
@@ -39,7 +47,7 @@ export default function AgentPanelLayout({
   items = menuItems,
 }: {
   children: React.ReactNode;
-  items?: typeof menuItems;
+  items?: Item[];
 }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -94,20 +102,36 @@ export default function AgentPanelLayout({
             Main Menu
           </p>
           <nav className="mt-3 space-y-3">
-            {items.map(({ label, icon: Icon, href }) => {
+            {items.map(({ label, icon: Icon, href, children: subs }) => {
               const active = pathname.startsWith(href);
               return (
-                <Link
-                  key={label}
-                  href={href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`${styles.item} ${active ? styles.active : ""}`}
-                >
-                  <span className={active ? styles.labelActive : styles.label}>
-                    {label}
-                  </span>
-                  <Image src={Icon} alt="" className={styles.icon} />
-                </Link>
+                <div key={label} className="space-y-2">
+                  <Link
+                    href={href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`${styles.item} ${active ? styles.active : ""}`}
+                  >
+                    <span className={active ? styles.labelActive : styles.label}>
+                      {label}
+                    </span>
+                    <Image src={Icon} alt="" className={styles.icon} />
+                  </Link>
+                  {active &&
+                    subs?.map((sub) => (
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        onClick={() => setMobileOpen(false)}
+                        className={`ml-6 block rounded-lg px-3 py-1.5 text-sm font-semibold ${
+                          pathname === sub.href
+                            ? "bg-yellow-400 text-gray-900"
+                            : "text-gray-700 hover:bg-gray-100"
+                        }`}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                </div>
               );
             })}
           </nav>

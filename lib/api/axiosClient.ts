@@ -36,12 +36,14 @@ axiosClient.interceptors.response.use(
 
       if (status === 401) {
         console.warn("Unauthorized! Redirecting to login...");
-        if (
-          typeof window !== "undefined" &&
-          window.location.pathname !== "/login"
-        ) {
-          localStorage.removeItem("token");
-          window.location.href = "/login";
+        if (typeof window !== "undefined") {
+          // admins sign in on their own page; a failed sign-in shouldn't reload the login page
+          const { pathname } = window.location;
+          const login = pathname.startsWith("/adminpanel") ? "/adminpanel/login" : "/login";
+          if (pathname !== login && !pathname.startsWith("/adminpanel/forgot-password")) {
+            localStorage.removeItem("token");
+            window.location.href = login;
+          }
         }
       }
 

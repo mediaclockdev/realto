@@ -31,6 +31,8 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
+import { type StaticImageData } from "next/image";
+import { categoryImages, listCategories } from "@/lib/api/categories";
 import land from "../../public/land.svg";
 import land1 from "../../public/landimg1.jpg";
 import land2 from "../../public/landimg2.jpg";
@@ -39,7 +41,7 @@ import land4 from "../../public/landimg4.jpg";
 import land5 from "../../public/landimg5.jpg";
 import land6 from "../../public/landimg6.jpg";
 
-const categoryItems = [
+export const categoryItems = [
   { imgs: [buy, buy1], href: "/propertyListingpage", title: "Buy" },
   { imgs: [rent, rent1, rent2, rent3], href: "/rent", title: "Rent" },
   { imgs: [agent, agent1, agent2], href: "/agentspage", title: "Agent" },
@@ -70,6 +72,22 @@ const categoryItems = [
 
 const Features = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  // Tiles managed in the admin panel; built-in tiles until the API has any
+  const [items, setItems] = useState<{ imgs: (StaticImageData | string)[]; href: string; title: string }[]>(categoryItems);
+  useEffect(() => {
+    listCategories().then((res) => {
+      const tiles = (res.data ?? [])
+        .filter((c) => c.status !== "inactive")
+        .map((c) => ({
+          imgs: categoryImages(c),
+          // ponytail: API has no link field, so reuse the built-in tile's link by name
+          href: categoryItems.find((t) => t.title.toLowerCase() === c.name.toLowerCase())?.href ?? "#",
+          title: c.name,
+        }))
+        .filter((t) => t.imgs.length);
+      if (tiles.length) setItems(tiles);
+    });
+  }, []);
   // New slot every 10s, from the shared clock so all viewers match; shorter lists wrap around
   const [slot, setSlot] = useState(0);
   useEffect(() => {
@@ -111,7 +129,7 @@ const Features = () => {
           className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {categoryItems.map((item, idx) =>
+          {items.map((item, idx) =>
             item.href ? (
               <Link key={idx} href={item.href} className="shrink-0">
                 <div className="relative w-52 h-40 rounded-[12px] overflow-hidden">

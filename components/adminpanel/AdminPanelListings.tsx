@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import Image from "next/image";
 import {
   ChevronDown,
@@ -32,10 +32,34 @@ const goldBtn = `flex items-center gap-2 rounded-xl border-2 border-transparent 
 
 // ponytail: static demo data, swap for an admin listings API when it exists
 const stats = [
-  { label: "Total Properties", img: totalicon, value: "1,500", change: "20%", up: true },
-  { label: "Buy Properties", img: buyicon, value: "450", change: "20%", up: true },
-  { label: "Rent Properties", img: renticon, value: "1,050", change: "22%", up: true },
-  { label: "Active Properties", img: activeicon, value: "980", change: "20%", up: true },
+  {
+    label: "Total Properties",
+    img: totalicon,
+    value: "1,500",
+    change: "20%",
+    up: true,
+  },
+  {
+    label: "Buy Properties",
+    img: buyicon,
+    value: "450",
+    change: "20%",
+    up: true,
+  },
+  {
+    label: "Rent Properties",
+    img: renticon,
+    value: "1,050",
+    change: "22%",
+    up: true,
+  },
+  {
+    label: "Active Properties",
+    img: activeicon,
+    value: "980",
+    change: "20%",
+    up: true,
+  },
 ];
 
 const categoryStyle: Record<string, string> = {
@@ -127,11 +151,25 @@ export default function AdminPanelListings() {
   const shown = rows.filter((r) => tab === "All Properties" || r.type === tab);
   const [selected, setSelected] = useState<Set<object>>(new Set());
   const allOn = shown.length > 0 && shown.every((r) => selected.has(r));
-  const toggle = (r: object) => setSelected((s) => { const n = new Set(s); if (!n.delete(r)) n.add(r); return n; });
+  const toggle = (r: object) =>
+    setSelected((s) => {
+      const n = new Set(s);
+      if (!n.delete(r)) n.add(r);
+      return n;
+    });
   const toggleAll = () => setSelected(allOn ? new Set() : new Set(shown));
   const tick = (on: boolean, onClick: () => void) => (
-    <button type="button" onClick={onClick} aria-pressed={on} className="shrink-0 cursor-pointer">
-      {on ? <CheckCircle2 className="size-5 fill-green-500 text-white" /> : <span className="block size-5 rounded-full border-2 border-gray-300 bg-white" />}
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={on}
+      className="shrink-0 cursor-pointer"
+    >
+      {on ? (
+        <CheckCircle2 className="size-5 fill-green-500 text-white" />
+      ) : (
+        <span className="block size-5 rounded-full border-2 border-gray-300 bg-white" />
+      )}
     </button>
   );
 
@@ -150,13 +188,6 @@ export default function AdminPanelListings() {
             <Download className="size-8 rounded-full bg-[#D9A91B] p-1.5 text-white" />{" "}
             Export
           </button>
-          <button className={`${goldBtn} text-xl`} style={GOLD_BORDER}>
-            <Plus
-              className="size-8 rounded-full bg-[#D9A91B] p-1 text-white"
-              strokeWidth={4}
-            />{" "}
-            Add New Property
-          </button>
         </div>
       </div>
 
@@ -166,7 +197,11 @@ export default function AdminPanelListings() {
             key={s.label}
             className={`flex items-center gap-3 rounded-2xl bg-gradient-to-br from-[#DCEBFF] to-[#EEF1FB] p-3 ${SOFT_SHADOW}`}
           >
-            <Image src={s.img} alt="" className="size-12 shrink-0 object-contain" />
+            <Image
+              src={s.img}
+              alt=""
+              className="size-12 shrink-0 object-contain"
+            />
             <div>
               <p className="text-lg font-semibold text-[#0496FF]">{s.label}</p>
               <p className="mt-1 text-2xl font-bold">{s.value}</p>
@@ -214,7 +249,11 @@ export default function AdminPanelListings() {
           ))}
           <FilterPill
             icon={<SlidersHorizontal className="size-4" />}
-            badge={<span className="flex size-5 items-center justify-center rounded-full bg-[#2F7BE8] text-xs text-white">2</span>}
+            badge={
+              <span className="flex size-5 items-center justify-center rounded-full bg-[#2F7BE8] text-xs text-white">
+                2
+              </span>
+            }
           >
             Filters
           </FilterPill>
@@ -231,7 +270,9 @@ export default function AdminPanelListings() {
                     className="whitespace-nowrap px-3 py-3 text-center align-middle"
                   >
                     <span className="inline-flex items-center gap-1">
-                      {ci === 0 && <span className="mr-2">{tick(allOn, toggleAll)}</span>}
+                      {ci === 0 && (
+                        <span className="mr-2">{tick(allOn, toggleAll)}</span>
+                      )}
                       {c}
                       {c !== "Action" && <ChevronDown className="size-3" />}
                     </span>
@@ -284,8 +325,16 @@ export default function AdminPanelListings() {
                   </td>
                   <td className="px-3 text-center">
                     <div className="flex items-center justify-center gap-3">
-                      <Image src={eyeicon} alt="View" className="h-7 w-auto cursor-pointer" />
-                      <Image src={dotsicon} alt="More" className="h-6 w-auto cursor-pointer" />
+                      <Image
+                        src={eyeicon}
+                        alt="View"
+                        className="h-7 w-auto cursor-pointer"
+                      />
+                      <Image
+                        src={dotsicon}
+                        alt="More"
+                        className="h-6 w-auto cursor-pointer"
+                      />
                     </div>
                   </td>
                 </tr>
